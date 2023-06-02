@@ -1,0 +1,104 @@
+---
+import Layout from "~/layouts/PageLayoutMinimal.astro";
+---
+
+<Layout meta={{ title: "Contact us" }}>
+  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div class="container mx-auto p-8">
+      <form
+        id="contact-form"
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        class="bg-white dark:bg-neutral-900 rounded-lg shadow-md p-6"
+      >
+        <div id="form-inputs">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+              for="name"
+            >
+              Your Name
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+              id="name"
+              type="text"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+              for="email"
+            >
+              Your Email
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+              id="email"
+              type="email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+              for="message"
+            >
+              Your Message
+            </label>
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+              id="message"
+              name="message"
+              required></textarea>
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Send Message
+            </button>
+          </div>
+        </div>
+        <div class="hidden" id="success-message">
+          <p class="text-center text-green-500">
+            Your message has been successfully sent!
+          </p>
+        </div>
+      </form>
+    </div>
+  </body>
+</Layout>
+
+<script>
+  const hideInputsAndDisplayMessage = (form: HTMLElement | null, formInputs: HTMLElement | null) => {
+  if (!form || !formInputs) return;
+
+  // Hide form inputs
+  formInputs.style.display = 'none';
+
+  // Create and display the success message
+  const successMessage = document.createElement('p');
+  successMessage.textContent = 'Your message has been successfully sent!';
+  successMessage.classList.add('text-center', 'text-green-500', 'text-xl', 'animate-bounce');
+  
+  // Append the success message to the form
+  form.appendChild(successMessage);
+};
+
+document.querySelector('form')?.addEventListener('submit', (event: Event) => {
+  event.preventDefault();
+
+  const form = document.getElementById('contact-form');
+  const formInputs = document.getElementById('form-inputs');
+  
+  hideInputsAndDisplayMessage(form, formInputs);
+});
+
+</script>

@@ -62,7 +62,7 @@ export const headerData = {
     {
       type: "button",
       text: "Επικοινωνία",
-      href: "https://github.com/onwidget/astrowind",
+      href: "/contact",
     },
   ],
 };
