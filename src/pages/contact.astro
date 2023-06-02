@@ -3,102 +3,161 @@ import Layout from "~/layouts/PageLayoutMinimal.astro";
 ---
 
 <Layout meta={{ title: "Contact us" }}>
-  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    <div class="container mx-auto p-8">
-      <form
-        id="contact-form"
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        class="bg-white dark:bg-neutral-900 rounded-lg shadow-md p-6"
-        netlify-honeypot="person-title"
-      >
-        <div id="form-inputs">
-          <input type="hidden" name="form-name" value="contact" />
-          <div class="mb-4 hidden">
-            <label
-              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
-              for="person-title"
-            >
-              Τίτλος
-            </label>
-            <input
-              name="person-title"
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
-              for="name"
-            >
-              Ονοματεπώνυμο
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
-              id="name"
-              type="text"
-              name="name"
-              required
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
-              for="email"
-            >
-              Email
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
-              id="email"
-              type="email"
-              name="email"
-              required
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
-              for="message"
-            >
-              Το μήνυμά σας
-            </label>
-            <textarea
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
-              id="message"
-              name="message"
-              required></textarea>
-          </div>
-          <div class="mb-4">
-            <label
-              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
-            >
-              <input type="checkbox" name="terms" required />
-              Έχω διαβάσει και αποδέχομαι την <a
-                href="/privacy"
-                target="_blank"
-                class="text-orange-500">πολιτική απορρήτου</a
+  <section class="contact-form">
+    <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <div class="container mx-auto p-8 max-w-3xl">
+        <form
+          id="contact-form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          class="bg-white dark:bg-neutral-900 rounded-lg shadow-md p-6"
+          netlify-honeypot="person-title"
+        >
+          <div id="form-inputs">
+            <input type="hidden" name="form-name" value="contact" />
+            <div class="mb-4 hidden">
+              <label
+                class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+                for="person-title"
               >
-            </label>
+                Τίτλος
+              </label>
+              <input
+                name="person-title"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+                for="name"
+              >
+                Ονοματεπώνυμο
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+                id="name"
+                type="text"
+                name="name"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+                for="email"
+              >
+                Email
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+                id="email"
+                type="email"
+                name="email"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+                for="message"
+              >
+                Το μήνυμά σας
+              </label>
+              <textarea
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+                id="message"
+                name="message"
+                required></textarea>
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+              >
+                <input type="checkbox" name="terms" class="rounded" required />
+                Έχω διαβάσει και αποδέχομαι την <a
+                  href="/privacy"
+                  target="_blank"
+                  class="text-orange-500">πολιτική απορρήτου</a
+                >
+              </label>
+            </div>
+            <div class="flex items-center justify-between">
+              <button
+                class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Αποστολή
+              </button>
+            </div>
           </div>
-          <div class="flex items-center justify-between">
-            <button
-              class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Αποστολή
-            </button>
+          <div class="hidden" id="success-message">
+            <p class="text-center text-green-500">
+              Το μήνυμά σας στάλθηκε επιτυχώς!
+            </p>
           </div>
-        </div>
-        <div class="hidden" id="success-message">
-          <p class="text-center text-green-500">
-            Το μήνυμά σας στάλθηκε επιτυχώς!
-          </p>
-        </div>
-      </form>
+        </form>
+      </div>
+    </body>
+  </section>
+  <hr
+    class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"
+  />
+  <section class="contact-details">
+    <div class="grid md:grid-cols-2 grid-cols-1 gap-4 mx-auto p-8 max-w-4xl">
+      <div class="pl-4 pr-4 mb-4 md:mb-0 md:justify-self-start">
+        <p class="font-bold text-2xl">The Kitchen Studio</p>
+        <p class="font-bold text-lg">
+          Email : <a
+            href="mailto:info@thekitchenstudio.gr"
+            class="text-orange-500"
+            ><span class="blockspam" aria-hidden="true">This a pipe!</span> info@<!-- sdfjsdhfkjypcs -->thekitchenstudio.gr</a
+          >
+        </p>
+        <p class="font-bold text-lg">
+          Τηλέφωνο : <a href="tel:+302108981423" class="text-orange-500"
+            >210 8981423</a
+          >
+        </p>
+        <p class="font-bold text-lg">Γρ. Λαμπράκη 28</p>
+        <p class="font-bold text-lg">Γλυφάδα</p>
+        <p class="font-bold text-lg">166 74</p>
+      </div>
+      <div class="pl-4 pr-4 md:justify-self-end">
+        <p class="font-bold text-2xl">Ωράριο λειτουργίας</p>
+        <p class="font-bold text-lg">
+          Δευτέρα - Τετάρτη - Σάββατο: <br /><span class="text-orange-500"
+            >10:00 - 14:00</span
+          >
+        </p>
+        <p class="font-bold text-lg">
+          Τρίτη - Πέμπτη - Παρασκευή: <br /><span class="text-orange-500"
+            >10:00 - 14:00 & 17:30 - 20:30</span
+          >
+        </p>
+      </div>
     </div>
-  </body>
+  </section>
+  <hr
+    class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"
+  />
+  <section class="map">
+    <div
+      class="grid grid-cols-1 md:grid-cols-1 gap-4 mx-auto p-8 max-w-full justify-center items-center"
+    >
+      <div class="h-96 w-full md:max-h-[500px]">
+        <iframe
+          class="w-full h-full"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12599.46668416214!2d23.7539803!3d37.86341!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bfd2351a4041%3A0xae265f67cd7f7a72!2sThe%20Kitchen%20Studio!5e0!3m2!1sen!2sgr!4v1685711084495!5m2!1sen!2sgr"
+          style="border:0; -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <script>
