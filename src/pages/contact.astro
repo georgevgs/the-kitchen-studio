@@ -77,28 +77,56 @@ import Layout from "~/layouts/PageLayoutMinimal.astro";
 </Layout>
 
 <script>
-  const hideInputsAndDisplayMessage = (form: HTMLElement | null, formInputs: HTMLElement | null) => {
-  if (!form || !formInputs) return;
+  const hideInputsAndDisplayMessage = (
+    form: HTMLElement | null,
+    formInputs: HTMLElement | null
+  ) => {
+    if (!form || !formInputs) return;
 
-  // Hide form inputs
-  formInputs.style.display = 'none';
+    // Hide form inputs
+    formInputs.style.display = "none";
 
-  // Create and display the success message
-  const successMessage = document.createElement('p');
-  successMessage.textContent = 'Your message has been successfully sent!';
-  successMessage.classList.add('text-center', 'text-green-500', 'text-xl', 'animate-bounce');
-  
-  // Append the success message to the form
-  form.appendChild(successMessage);
-};
+    // Create and display the success message
+    const successMessage = document.createElement("p");
+    successMessage.textContent = "Your message has been successfully sent!";
+    successMessage.classList.add(
+      "text-center",
+      "text-green-500",
+      "text-xl",
+      "animate-bounce"
+    );
 
-document.querySelector('form')?.addEventListener('submit', (event: Event) => {
-  event.preventDefault();
+    // Append the success message to the form
+    form.appendChild(successMessage);
+  };
 
-  const form = document.getElementById('contact-form');
-  const formInputs = document.getElementById('form-inputs');
-  
-  hideInputsAndDisplayMessage(form, formInputs);
-});
+  document.querySelector("form")?.addEventListener("submit", (event: Event) => {
+    handleSubmit(event);
+  });
 
+  const handleSubmit = (event: Event) => {
+    event.preventDefault();
+
+    const myForm = event.target as HTMLFormElement;
+    const formData = new FormData(myForm);
+
+    // Convert FormData to an object
+    const formDataObj: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      formDataObj[key] = value as string;
+    });
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formDataObj).toString(),
+    })
+      .then(() => console.log("Form successfully submitted"))
+      .catch((error) => console.log(error));
+
+    const form = document.getElementById("contact-form");
+    const formInputs = document.getElementById("form-inputs");
+
+    hideInputsAndDisplayMessage(form, formInputs);
+  };
 </script>
