@@ -34,6 +34,11 @@
   span.blockspam {
     display: none;
   }
+
+  .rotate-icon:hover .icon {
+    transform: rotate(-90deg);
+}
+
 }
 
 #header.scroll {

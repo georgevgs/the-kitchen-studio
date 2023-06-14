@@ -6,24 +6,30 @@ export const headerData = {
       text: "Έπιπλα Κουζίνας",
       links: [
         {
-          text: "Features",
-          href: "#",
+          text: "Submenu 1",
+          links: [
+            {
+              text: "Nested Link 1",
+              href: "#",
+            },
+            {
+              text: "Nested Link 2",
+              href: "#",
+            },
+          ],
         },
         {
-          text: "Pricing",
-          href: "#",
-        },
-        {
-          text: "Contact",
-          href: "#",
-        },
-        {
-          text: "Terms",
-          href: getPermalink("/terms"),
-        },
-        {
-          text: "Privacy policy",
-          href: getPermalink("/privacy"),
+          text: "Submenu 2",
+          links: [
+            {
+              text: "Nested Link 3",
+              href: "#",
+            },
+            {
+              text: "Nested Link 4",
+              href: "#",
+            },
+          ],
         },
       ],
     },

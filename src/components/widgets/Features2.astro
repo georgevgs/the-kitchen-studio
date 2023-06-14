@@ -31,20 +31,20 @@ const {
           <div class="mb-8 md:mx-auto text-center max-w-3xl">
             {highlight && (
               <p
-                class="text-base text-primary dark:text-primary font-semibold tracking-wide uppercase"
+                class="text-base text-white dark:text-black font-semibold tracking-wide uppercase"
                 set:html={highlight}
               />
             )}
             {title && (
               <h2
-                class="text-4xl md:text-5xl text-primary font-bold leading-tighter tracking-tighter mb-4 font-heading"
+                class="text-4xl md:text-5xl text-white dark:text-black font-bold leading-tighter tracking-tighter mb-4 font-heading"
                 set:html={title}
               />
             )}
 
             {subtitle && (
               <p
-                class="max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400"
+                class="max-w-3xl mx-auto sm:text-center text-xl text-white dark:text-black"
                 set:html={subtitle}
               />
             )}
