@@ -28,29 +28,6 @@ const meta = {
   src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"
 ></script>
 
-<!-- Slide in animation *************** -->
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    let scrollPos: number;
-    const slidingElements = document.querySelectorAll(".slide-in");
-
-    function checkPosition() {
-      scrollPos = window.pageYOffset || document.documentElement.scrollTop;
-
-      slidingElements.forEach(function (elem) {
-        const elemPos = elem.getBoundingClientRect().top + scrollPos;
-
-        if (scrollPos + window.innerHeight > elemPos) {
-          elem.classList.add("active");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", checkPosition);
-  });
-</script>
-
 <Layout {meta}>
   <!-- Carousel Widget *************** -->
 

@@ -35,10 +35,6 @@
     display: none;
   }
 
-  .rotate-icon:hover .icon {
-    transform: rotate(-90deg);
-  }
-
   .slide-in {
     transform: translateX(-100%);
     opacity: 0;
@@ -49,6 +45,27 @@
     transform: translateX(0);
     opacity: 1;
   }
+  
+  @media (min-width: 768px) {
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      transform: translateX(0);
+      display: block;
+    }
+  }
+
+  .menu {
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  button.open .icon {
+    transform: rotate(-90deg);
+  }
+
+  .icon {
+    transition: transform 0.3s ease;
+  }  
 }
 
 #header.scroll {

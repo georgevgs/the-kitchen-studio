@@ -1,31 +1,38 @@
 ---
-import { SITE } from '~/config.mjs';
+import { SITE } from "~/config.mjs";
 ---
 
 <script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
   function applyTheme(theme) {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      document.getElementById('tks-logo-image').style.filter = '';
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.getElementById("tks-logo-image").style.filter = "";
     } else {
-      document.documentElement.classList.remove('dark');
-      document.getElementById('tks-logo-image').style.filter = 'brightness(0)';
+      document.documentElement.classList.remove("dark");
+      document.getElementById("tks-logo-image").style.filter = "brightness(0)";
     }
   }
 
-  if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
-    applyTheme(defaultTheme.replace(':only', ''));
-  } else if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  if (
+    (defaultTheme && defaultTheme.endsWith(":only")) ||
+    (!localStorage.theme && defaultTheme !== "system")
   ) {
-    applyTheme('dark');
+    applyTheme(defaultTheme.replace(":only", ""));
+  } else if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    applyTheme("dark");
   } else {
-    applyTheme('light');
+    applyTheme("light");
   }
 
   function attachEvent(selector, event, fn) {
-    const matches = typeof selector === 'string' ? document.querySelectorAll(selector) : selector;
+    const matches =
+      typeof selector === "string"
+        ? document.querySelectorAll(selector)
+        : selector;
     if (matches && matches.length) {
       matches.forEach((elem) => {
         elem.addEventListener(event, (e) => fn(e, elem), false);
@@ -37,48 +44,51 @@ import { SITE } from '~/config.mjs';
     let lastKnownScrollPosition = window.scrollY;
     let ticking = true;
 
-    attachEvent('[data-aw-toggle-menu]', 'click', function (_, elem) {
-      elem.classList.toggle('expanded');
-      document.body.classList.toggle('overflow-hidden');
-      document.getElementById('header')?.classList.toggle('h-screen');
-      document.querySelector('#header nav')?.classList.toggle('hidden');
+    attachEvent("[data-aw-toggle-menu]", "click", function (_, elem) {
+      elem.classList.toggle("expanded");
+      document.body.classList.toggle("overflow-hidden");
+      document.getElementById("header")?.classList.toggle("h-screen");
+      document.querySelector("#header nav")?.classList.toggle("hidden");
     });
 
-    attachEvent('[data-aw-toggle-color-scheme]', 'click', function () {
-      if (defaultTheme.endsWith(':only')) {
+    attachEvent("[data-aw-toggle-color-scheme]", "click", function () {
+      if (defaultTheme.endsWith(":only")) {
         return;
       }
-      document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle("dark");
 
-      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.theme = document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light";
 
-      if(localStorage.theme === 'dark') {
-        document.getElementById('tks-logo-image').style.filter = '';
+      if (localStorage.theme === "dark") {
+        document.getElementById("tks-logo-image").style.filter = "";
       } else {
-        document.getElementById('tks-logo-image').style.filter = 'brightness(0)'; // Make logo black
+        document.getElementById("tks-logo-image").style.filter =
+          "brightness(0)"; // Make logo black
       }
     });
 
-    attachEvent('[data-aw-social-share]', 'click', function (_, elem) {
-      const network = elem.getAttribute('data-aw-social-share');
-      const url = encodeURIComponent(elem.getAttribute('data-aw-url'));
-      const text = encodeURIComponent(elem.getAttribute('data-aw-text'));
+    attachEvent("[data-aw-social-share]", "click", function (_, elem) {
+      const network = elem.getAttribute("data-aw-social-share");
+      const url = encodeURIComponent(elem.getAttribute("data-aw-url"));
+      const text = encodeURIComponent(elem.getAttribute("data-aw-text"));
 
       let href;
       switch (network) {
-        case 'facebook':
+        case "facebook":
           href = `https://www.facebook.com/sharer.php?u=${url}`;
           break;
-        case 'twitter':
+        case "twitter":
           href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
           break;
-        case 'linkedin':
+        case "linkedin":
           href = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
           break;
-        case 'whatsapp':
+        case "whatsapp":
           href = `https://wa.me/?text=${text}%20${url}`;
           break;
-        case 'mail':
+        case "mail":
           href = `mailto:?subject=%22${text}%22&body=${text}%20${url}`;
           break;
 
@@ -86,24 +96,30 @@ import { SITE } from '~/config.mjs';
           return;
       }
 
-      const newlink = document.createElement('a');
-      newlink.target = '_blank';
+      const newlink = document.createElement("a");
+      newlink.target = "_blank";
       newlink.href = href;
       newlink.click();
     });
 
     function appyHeaderStylesOnScroll() {
-      const header = document.getElementById('header');
-      if (lastKnownScrollPosition > 25 && !header.classList.contains('scroll')) {
-        document.getElementById('header').classList.add('scroll');
-      } else if (lastKnownScrollPosition <= 25 && header.classList.contains('scroll')) {
-        document.getElementById('header').classList.remove('scroll');
+      const header = document.getElementById("header");
+      if (
+        lastKnownScrollPosition > 25 &&
+        !header.classList.contains("scroll")
+      ) {
+        document.getElementById("header").classList.add("scroll");
+      } else if (
+        lastKnownScrollPosition <= 25 &&
+        header.classList.contains("scroll")
+      ) {
+        document.getElementById("header").classList.remove("scroll");
       }
       ticking = false;
     }
     appyHeaderStylesOnScroll();
 
-    attachEvent([document], 'scroll', function () {
+    attachEvent([document], "scroll", function () {
       lastKnownScrollPosition = window.scrollY;
 
       if (!ticking) {
@@ -116,13 +132,113 @@ import { SITE } from '~/config.mjs';
   };
 
   window.onpageshow = function () {
-    document.documentElement.classList.add('motion-safe:scroll-smooth');
-    const elem = document.querySelector('[data-aw-toggle-menu]');
+    document.documentElement.classList.add("motion-safe:scroll-smooth");
+    const elem = document.querySelector("[data-aw-toggle-menu]");
     if (elem) {
-      elem.classList.remove('expanded');
+      elem.classList.remove("expanded");
     }
-    document.body.classList.remove('overflow-hidden');
-    document.getElementById('header')?.classList.remove('h-screen');
-    document.querySelector('#header nav')?.classList.add('hidden');
+    document.body.classList.remove("overflow-hidden");
+    document.getElementById("header")?.classList.remove("h-screen");
+    document.querySelector("#header nav")?.classList.add("hidden");
   };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    applySlideInAnimation();
+    setupDropdownMenus();
+  });
+
+  // Slide in animation
+  function applySlideInAnimation() {
+    let scrollPos;
+    const slidingElements = document.querySelectorAll(".slide-in");
+
+    function checkPosition() {
+      scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+      slidingElements.forEach((elem) => {
+        const elemPos = elem.getBoundingClientRect().top + scrollPos;
+
+        if (scrollPos + window.innerHeight > elemPos) {
+          elem.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", checkPosition);
+  }
+
+  // Dropdown menu
+  function setupDropdownMenus() {
+    const dropdowns = document.querySelectorAll(".dropdown");
+
+    dropdowns.forEach((dropdown) => {
+      const menu = dropdown.querySelector(".dropdown-menu");
+      setMenuStyles(menu);
+      setMenuPosition(menu, dropdown);
+      const button = dropdown.querySelector("button");
+      setupMenuButton(button, menu);
+      handleMenuHover(dropdown, button, menu);
+    });
+  }
+
+  function setMenuStyles(menu) {
+    menu.style.marginLeft = "5px";
+    menu.style.opacity = "0";
+    menu.style.transform = "translateX(-10px)";
+    menu.style.transition = "all 0.3s ease";
+  }
+
+  function setMenuPosition(menu, dropdown) {
+    if (dropdown.parentElement?.classList.contains("dropdown-menu")) {
+      menu.style.top = "0";
+      menu.style.left = "100%";
+    }
+  }
+
+  function setupMenuButton(button, menu) {
+    if (button) {
+      button.addEventListener("click", (event) => {
+        if (window.innerWidth < 768) {
+          event.stopPropagation();
+          if (menu.style.display !== "block") {
+            showMenu(button, menu);
+          } else {
+            hideMenu(button, menu);
+          }
+        }
+      });
+    }
+
+    document.addEventListener("click", () => {
+      if (window.innerWidth < 768) {
+        hideMenu(button, menu);
+      }
+    });
+  }
+
+  function handleMenuHover(dropdown, button, menu) {
+    if (window.innerWidth >= 768) {
+      dropdown.addEventListener("mouseenter", () => showMenu(button, menu));
+      dropdown.addEventListener("mouseleave", () => hideMenu(button, menu));
+    }
+  }
+
+  function showMenu(button, menu) {
+    menu.style.display = "block";
+    menu.style.opacity = "1";
+    menu.style.transform = "translateX(0)";
+    menu.style.maxHeight = "500px";
+    button?.classList.add("open");
+  }
+
+  function hideMenu(button, menu) {
+    menu.style.opacity = "0";
+    menu.style.transform = "translateX(-10px)";
+    menu.style.maxHeight = "0";
+    button?.classList.remove("open");
+
+    setTimeout(() => {
+      menu.style.display = "none";
+    }, 300);
+  }
 </script>

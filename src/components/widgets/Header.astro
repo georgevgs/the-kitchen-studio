@@ -41,49 +41,6 @@ const {
 } = Astro.props;
 ---
 
-<script>
-  // Get all dropdowns
-  const dropdowns = document.querySelectorAll(".dropdown");
-
-  dropdowns.forEach((dropdown) => {
-    // Get the dropdown menu within this dropdown
-    const menu = dropdown.querySelector(".dropdown-menu") as HTMLElement;
-
-    // Add padding on the left
-    menu.style.marginLeft = "5px";
-
-    // Initially hide and translate the menu
-    menu.style.opacity = "0";
-    menu.style.transform = "translateX(-10px)";
-    menu.style.transition = "all 0.3s ease";
-
-    // Check if this dropdown is a sub-menu
-    if (dropdown.parentElement?.classList.contains("dropdown-menu")) {
-      // Position this dropdown menu to the right of the parent
-      menu.style.top = "0";
-      menu.style.left = "100%";
-    }
-
-    dropdown.addEventListener("mouseenter", () => {
-      // Show and move the menu to its original position
-      menu.style.display = "block";
-      menu.style.opacity = "1";
-      menu.style.transform = "translateX(0)";
-    });
-
-    dropdown.addEventListener("mouseleave", () => {
-      // Hide and translate the menu
-      menu.style.opacity = "0";
-      menu.style.transform = "translateX(-10px)";
-
-      // After the transition ends, hide the menu
-      setTimeout(() => {
-        menu.style.display = "none";
-      }, 300);
-    });
-  });
-</script>
-
 <header
   class:list={[
     { sticky: isSticky, relative: !isSticky },
@@ -121,7 +78,7 @@ const {
                     {text}{" "}
                     <Icon
                       name="tabler:chevron-down"
-                      class="w-3.5 h-3.5 ml-0.5 hidden md:inline"
+                      class="w-3.5 h-3.5 ml-0.5"
                     />
                   </button>
                   <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
@@ -134,7 +91,7 @@ const {
                                 {text2}{" "}
                                 <Icon
                                   name="tabler:chevron-down"
-                                  class="icon w-3.5 h-3.5 ml-0.5 hidden md:inline"
+                                  class="icon w-3.5 h-3.5 ml-0.5"
                                 />
                               </button>
                               <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
