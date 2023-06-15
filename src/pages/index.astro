@@ -27,8 +27,32 @@ const meta = {
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"
 ></script>
+
+<!-- Slide in animation *************** -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let scrollPos: number;
+    const slidingElements = document.querySelectorAll(".slide-in");
+
+    function checkPosition() {
+      scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+      slidingElements.forEach(function (elem) {
+        const elemPos = elem.getBoundingClientRect().top + scrollPos;
+
+        if (scrollPos + window.innerHeight > elemPos) {
+          elem.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", checkPosition);
+  });
+</script>
+
 <Layout {meta}>
-  <!-- Features Widget *************** -->
+  <!-- Carousel Widget *************** -->
 
   <Carousel
     images={[
@@ -40,6 +64,8 @@ const meta = {
     ]}
     widthType="full-width"
   />
+
+  <!-- Features Widget *************** -->
 
   <Features
     highlight="Ανακαίνιση και Διακόσμηση του Χώρου σας"
@@ -167,7 +193,8 @@ const meta = {
     items={[
       [
         {
-          question: "Πώς μπορώ να επιλέξω τα κατάλληλα έπιπλα κουζίνας για τον χώρο μου;",
+          question:
+            "Πώς μπορώ να επιλέξω τα κατάλληλα έπιπλα κουζίνας για τον χώρο μου;",
           answer:
             "Για να επιλέξετε τα κατάλληλα έπιπλα κουζίνας για τον χώρο σας, σας προτείνουμε να επισκεφτείτε το κατάστημά μας. Έχουμε ένα ευρύ φάσμα επίπλων κουζίνας στην έκθεσή μας για να σας εμπνεύσουμε και να σας βοηθήσουμε να πάρετε τη σωστή απόφαση. Επιπλέον, μπορούμε να κανονίσουμε ένα ραντεβού για να επισκεφθούμε τον χώρο σας και να σας παράσχουμε εξατομικευμένες συμβουλές.",
         },
@@ -175,11 +202,12 @@ const meta = {
           question: "Ποια υλικά είναι κατάλληλα για έπιπλα κουζίνας;",
           answer:
             "Τα έπιπλα κουζίνας μπορούν να κατασκευαστούν από διάφορα υλικά, όπως ξύλο, MDF, μέταλλο και πλαστικό. Κατά την επίσκεψή σας στο κατάστημά μας, μπορούμε να σας παρουσιάσουμε τις διαφορετικές επιλογές υλικών και να σας εξηγήσουμε τα πλεονεκτήματα και τα χαρακτηριστικά τους, βοηθώντας σας να κάνετε μια ενημερωμένη επιλογή.",
-        }
+        },
       ],
       [
         {
-          question: "Πώς μπορώ να οργανώσω ένα ραντεβού για να συζητήσω τις ανάγκες μου;",
+          question:
+            "Πώς μπορώ να οργανώσω ένα ραντεβού για να συζητήσω τις ανάγκες μου;",
           answer:
             "Για να οργανώσετε ένα ραντεβού για να συζητήσετε τις ανάγκες σας και να λάβετε εξατομικευμένη συμβουλή, παρακαλούμε επικοινωνήστε μαζί μας μέσω του τηλεφώνου ή του ηλεκτρονικού ταχυδρομείου που παρέχονται στην ιστοσελίδα μας. Θα χαρούμε να σας εξυπηρετήσουμε και να κανονίσουμε ένα κατάλληλο ραντεβού για επίσκεψη στον χώρο σας.",
         },
@@ -187,7 +215,7 @@ const meta = {
           question: "Παρέχετε εγγύηση για τα έπιπλα κουζίνας;",
           answer:
             "Ναι, παρέχουμε εγγύηση για τα έπιπλα κουζίνας που αγοράζετε από εμάς. Οι λεπτομέρειες της εγγύησης θα σας παρουσιαστούν κατά την επίσκεψή σας στο κατάστημά μας και θα καλυφθούν όλες οι απαραίτητες πληροφορίες σχετικά με την κάλυψη και τη διάρκειά της.",
-        }
+        },
       ],
     ]}
   />
@@ -212,12 +240,8 @@ const meta = {
       icon: "tabler:download",
     }}
   >
-    <Fragment slot="title">
-      The Kitchen Studio leaflet
-    </Fragment>
+    <Fragment slot="title">The Kitchen Studio leaflet</Fragment>
 
-    <Fragment slot="subtitle">
-      Ξεφυλλίστε το φυλλάδιό μας!
-    </Fragment>
+    <Fragment slot="subtitle">Ξεφυλλίστε το φυλλάδιό μας!</Fragment>
   </CallToAction>
 </Layout>
