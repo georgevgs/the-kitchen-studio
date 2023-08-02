@@ -106,4 +106,5 @@ const image =
 <link rel="mask-icon" href={getAsset("/favicon.svg")} color="#8D46E7" />
 <link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png")} />
 <link rel="manifest" href={getAsset("/site.webmanifest")} />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css"></noscript>
