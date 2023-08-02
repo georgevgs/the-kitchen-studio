@@ -29,6 +29,25 @@ module.exports = {
         152: "38rem",
         screenMinusHeader: "calc(100vh - 5.5rem)",
       },
+      animation: {
+        "fade-in": "fade-in 0.5s forwards",
+        "slide-in-from-left": "slide-in 0.5s forwards",
+      },
+      keyframes: {
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "slide-in": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+      },
+      transitionDelay: {
+        150: "150ms",
+        300: "300ms",
+        450: "450ms",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

@@ -1,5 +1,6 @@
 ---
 import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
 import Layout from "~/layouts/PageLayout.astro";
 
 const meta = {
@@ -9,16 +10,27 @@ const meta = {
 ---
 
 <Layout meta={meta}>
-  <Carousel
-    images={[
-      "/assets/bath/corian/corian-bathroom-sink.avif",
-      "/assets/bath/corian/corian-bathroom-sink-2.avif",
-      "/assets/bath/corian/corian-bathroom-sink-3.avif",
-      "/assets/bath/corian/corian-bathroom-sink-4.avif",
-      "/assets/bath/corian/corian-bathroom-sink-5.avif",
-      "/assets/bath/corian/corian-bathroom-sink-6.avif",
-      "/assets/bath/corian/corian-bathroom-sink-7.avif",
-    ]}
-    widthType="normal"
-  />
+  <div class="content-container">
+    <PageDescription
+      title="Corian Bath"
+      subtitle="Το μέλλον της αισθητικής μπάνιου"
+      description="Εξερευνήστε την πρωτοποριακή και σύγχρονη αισθητική του Corian Bath και αφεθείτε στην μοναδική εμπειρία που προσφέρει."
+    />
+
+    <Carousel
+      images={[
+        "/assets/bath/corian/corian-bathroom-sink.avif",
+        "/assets/bath/corian/corian-bathroom-sink-2.avif",
+        "/assets/bath/corian/corian-bathroom-sink-3.avif",
+        "/assets/bath/corian/corian-bathroom-sink-4.avif",
+        "/assets/bath/corian/corian-bathroom-sink-5.avif",
+        "/assets/bath/corian/corian-bathroom-sink-6.avif",
+        "/assets/bath/corian/corian-bathroom-sink-7.avif",
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <div class="space"></div>
 </Layout>
+

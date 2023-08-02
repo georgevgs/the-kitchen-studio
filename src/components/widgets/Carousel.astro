@@ -4,7 +4,9 @@ const widthType = Astro.props.widthType;
 ---
 
 <section
-  class={`${widthType === "normal" ? "max-w-[1280px]" : "w-full"} mx-auto`}
+  class={`${
+    widthType === "normal" ? "max-w-[1280px] w-full" : "w-full"
+  } mx-auto`}
   id="carousel"
 >
   <div

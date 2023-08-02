@@ -65,7 +65,26 @@
 
   .icon {
     transition: transform 0.3s ease;
-  }  
+  }
+  
+  .space {
+    height: 50px;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (max-width: 768px) {
+    .content-container > :first-child {
+      order: 2;
+    }
+    .content-container > :last-child {
+      order: 1;
+    }
+  }
+  
 }
 
 #header.scroll {
