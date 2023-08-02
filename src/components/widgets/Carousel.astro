@@ -15,7 +15,7 @@ const widthType = Astro.props.widthType;
     <div
       id="carousel-wrapper"
       class={`relative ${
-        widthType === "normal" ? "h-152" : "h-96"
+        widthType === "normal" ? "h-screenMinusHeader md:h-152" : "h-96"
       } overflow-hidden flex justify-center`}
     >
       {
@@ -24,8 +24,10 @@ const widthType = Astro.props.widthType;
             <img
               src={src}
               class={`${
-                widthType === "normal" ? "object-scale-down" : ""
-              } w-full h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 block`}
+                widthType === "normal"
+                  ? "md:object-scale-down object-cover"
+                  : "object-cover"
+              } h-full w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 block`}
               alt={`Image ${index + 1}`}
             />
           </div>
