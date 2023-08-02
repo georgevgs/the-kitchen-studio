@@ -18,20 +18,19 @@ module.exports = {
         serif: ["var(--aw-font-serif)", ...defaultTheme.fontFamily.serif],
         heading: ["var(--aw-font-heading)", ...defaultTheme.fontFamily.sans],
       },
-      animation: {
-        bounce: "bounce 1s infinite",
-      },
       objectFit: {
         "scale-down": "scale-down",
       },
       height: {
         128: "32rem",
         152: "38rem",
+        "1/3vh": "33vh",
         screenMinusHeader: "calc(100vh - 5.5rem)",
       },
       animation: {
         "fade-in": "fade-in 0.5s forwards",
         "slide-in-from-left": "slide-in 0.5s forwards",
+        bounce: "bounce 1s infinite",
       },
       keyframes: {
         "fade-in": {
