@@ -27,6 +27,7 @@ module.exports = {
       height: {
         128: "32rem",
         152: "38rem",
+        screenMinusHeader: "calc(100vh - 5.5rem)",
       },
     },
   },
