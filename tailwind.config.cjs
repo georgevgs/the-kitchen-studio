@@ -21,6 +21,13 @@ module.exports = {
       animation: {
         bounce: "bounce 1s infinite",
       },
+      objectFit: {
+        "scale-down": "scale-down",
+      },
+      height: {
+        128: "32rem",
+        152: "38rem",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

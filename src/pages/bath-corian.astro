@@ -1,0 +1,24 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Corian Bath",
+  description: "Έπιπλα μπάνιου από Corian",
+};
+---
+
+<Layout meta={meta}>
+  <Carousel
+    images={[
+      "/assets/bath/corian/corian-bathroom-sink.avif",
+      "/assets/bath/corian/corian-bathroom-sink-2.avif",
+      "/assets/bath/corian/corian-bathroom-sink-3.avif",
+      "/assets/bath/corian/corian-bathroom-sink-4.avif",
+      "/assets/bath/corian/corian-bathroom-sink-5.avif",
+      "/assets/bath/corian/corian-bathroom-sink-6.avif",
+      "/assets/bath/corian/corian-bathroom-sink-7.avif",
+    ]}
+    widthType="normal"
+  />
+</Layout>

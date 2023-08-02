@@ -77,27 +77,23 @@ export const headerData = {
       ],
     },
     {
-      text: "Ντουλάπες",
-      links: [
-        {
-          text: "Multi One",
-          href: "#",
-        },
-        {
-          text: "Multi Two",
-          href: "#",
-        },
-      ],
-    },
-    {
       text: "Προϊόντα",
       links: [
         {
-          text: "Multi One",
-          href: "#",
+          text: "Bath",
+          links: [
+            {
+              text: "Corian Bath",
+              href: "/bath-corian",
+            },
+            {
+              text: "Είδη Υγιεινής",
+              href: "#",
+            },
+          ],
         },
         {
-          text: "Multi Two",
+          text: "Πλακάκια",
           href: "#",
         },
       ],
