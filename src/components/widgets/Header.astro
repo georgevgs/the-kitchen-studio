@@ -71,7 +71,10 @@ const {
       >
         {
           links.map(({ text, href, links }) => (
-            <li class:list={[{ dropdown: links?.length }]}>
+            <li
+              class="dark:hover:bg-gray-700 hover:bg-gray-100 rounded-lg"
+              class:list={[{ dropdown: links?.length }]}
+            >
               {links?.length ? (
                 <>
                   <button class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out">
@@ -85,6 +88,7 @@ const {
                     {links.map(
                       ({ text: text2, href: href2, links: subLinks }) => (
                         <li
+                          class="dark:hover:bg-gray-700 hover:bg-gray-100 rounded-lg"
                           class:list={[
                             { dropdown: subLinks?.length },
                             "relative",
