@@ -11,19 +11,19 @@ import { SITE } from "~/config.mjs";
   const logoImages = document.querySelectorAll(".tks-logo-image");
 
   // First we get the viewport height and we multiply it by 1% to get a value for a vh unit
-  const vh = window.innerHeight * 0.01;
+  let vh = window.innerHeight * 0.01;
   // Then we set the value in the --vh custom property
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-  const touchDevice =
+  let touchDevice =
     navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
 
   // We listen to the resize event
   window.addEventListener("resize", () => {
     // We execute the same script as before
-    const vh = window.innerHeight * 0.01;
+    let vh = window.innerHeight * 0.01;
 
-    const touchDevice =
+    let touchDevice =
       navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   });
