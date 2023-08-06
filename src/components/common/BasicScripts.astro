@@ -10,6 +10,10 @@ import { SITE } from "~/config.mjs";
 <script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
   const logoImages = document.querySelectorAll(".tks-logo-image");
 
+  let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+
   function applyTheme(theme) {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -272,7 +276,7 @@ import { SITE } from "~/config.mjs";
         (rect.right > 0 && rect.right <= windowWidth))
     );
   }
-  
+
   window.addEventListener("scroll", function () {
     const footerLogoElement = document.querySelector(".tks-logo-image.footer");
     const headerLogoElement = document.querySelector(".tks-logo-image.header");
