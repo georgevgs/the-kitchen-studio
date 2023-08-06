@@ -1,4 +1,5 @@
 ---
+const placement = Astro.props.placement;
 ---
 
 <span
@@ -8,7 +9,6 @@
     src="/assets/the-kitchen-studio-logo-header.avif"
     alt="the-kitchen-studio-logo"
     width="125"
-    class="rounded-xl"
-    id="tks-logo-image"
+    class=`tks-logo-image ${placement} rounded-xl`
   /></span
 >

@@ -2,16 +2,25 @@
 import { SITE } from "~/config.mjs";
 ---
 
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+<script
+  is:inline
+  src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"
+></script>
 
 <script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
+  const logoImages = document.querySelectorAll(".tks-logo-image");
+
   function applyTheme(theme) {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
-      document.getElementById("tks-logo-image").style.filter = "";
+      logoImages.forEach((element) => {
+        element.style.filter = "";
+      });
     } else {
       document.documentElement.classList.remove("dark");
-      document.getElementById("tks-logo-image").style.filter = "brightness(0)";
+      logoImages.forEach((element) => {
+        element.style.filter = "brightness(0)";
+      });
     }
   }
 
@@ -64,10 +73,13 @@ import { SITE } from "~/config.mjs";
         : "light";
 
       if (localStorage.theme === "dark") {
-        document.getElementById("tks-logo-image").style.filter = "";
+        logoImages.forEach((element) => {
+          element.style.filter = "";
+        });
       } else {
-        document.getElementById("tks-logo-image").style.filter =
-          "brightness(0)"; // Make logo black
+        logoImages.forEach((element) => {
+          element.style.filter = "brightness(0)";
+        });
       }
     });
 
@@ -104,7 +116,7 @@ import { SITE } from "~/config.mjs";
       newlink.click();
     });
 
-    function appyHeaderStylesOnScroll() {
+    function applyHeaderStylesOnScroll() {
       const header = document.getElementById("header");
       if (
         lastKnownScrollPosition > 25 &&
@@ -119,14 +131,14 @@ import { SITE } from "~/config.mjs";
       }
       ticking = false;
     }
-    appyHeaderStylesOnScroll();
+    applyHeaderStylesOnScroll();
 
     attachEvent([document], "scroll", function () {
       lastKnownScrollPosition = window.scrollY;
 
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          appyHeaderStylesOnScroll();
+          applyHeaderStylesOnScroll();
         });
         ticking = true;
       }
@@ -243,4 +255,59 @@ import { SITE } from "~/config.mjs";
       menu.style.display = "none";
     }, 300);
   }
+
+  let headerHidden = false; // flag to track header visibility state
+
+  function isElementPartiallyInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    const windowHeight =
+      window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth =
+      window.innerWidth || document.documentElement.clientWidth;
+
+    return (
+      ((rect.top >= 0 && rect.top < windowHeight) ||
+        (rect.bottom > 0 && rect.bottom <= windowHeight)) &&
+      ((rect.left >= 0 && rect.left < windowWidth) ||
+        (rect.right > 0 && rect.right <= windowWidth))
+    );
+  }
+  
+  window.addEventListener("scroll", function () {
+    const footerLogoElement = document.querySelector(".tks-logo-image.footer");
+    const headerLogoElement = document.querySelector(".tks-logo-image.header");
+
+    if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
+      // If the footer logo is in the viewport and header logo is not already hidden
+      headerHidden = true; // Update the flag
+      headerLogoElement.animate(
+        [
+          { transform: "translateY(0)", opacity: 1 },
+          { transform: "translateY(50px)", opacity: 0 },
+        ],
+        {
+          duration: 500,
+          easing: "ease",
+          fill: "forwards",
+        }
+      );
+    } else if (
+      !isElementPartiallyInViewport(footerLogoElement) &&
+      headerHidden
+    ) {
+      // If the footer logo is not in the viewport and the header logo is hidden
+      headerHidden = false; // Update the flag
+      headerLogoElement.animate(
+        [
+          { transform: "translateY(50px)", opacity: 0 },
+          { transform: "translateY(0)", opacity: 1 },
+        ],
+        {
+          duration: 500,
+          easing: "ease",
+          fill: "forwards",
+        }
+      );
+    }
+  });
 </script>

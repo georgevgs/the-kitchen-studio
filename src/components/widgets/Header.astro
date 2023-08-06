@@ -55,7 +55,7 @@ const {
       class:list={[{ "mr-auto": position === "right" }, "flex justify-between"]}
     >
       <a class="flex items-center" href={getHomePermalink()}>
-        <Logo />
+        <Logo placement="header" />
       </a>
       <div class="flex items-center md:hidden">
         <ToggleTheme />
@@ -72,7 +72,7 @@ const {
         {
           links.map(({ text, href, links }) => (
             <li
-              class="dark:hover:bg-gray-700 hover:bg-gray-100 rounded-lg"
+              class="dark:hover:bg-gray-700 md:hover:bg-gray-100 rounded-lg"
               class:list={[{ dropdown: links?.length }]}
             >
               {links?.length ? (
@@ -88,7 +88,7 @@ const {
                     {links.map(
                       ({ text: text2, href: href2, links: subLinks }) => (
                         <li
-                          class="dark:hover:bg-gray-700 hover:bg-gray-100 rounded-lg"
+                          class="dark:hover:bg-gray-700 md:hover:bg-gray-100 rounded-lg"
                           class:list={[
                             { dropdown: subLinks?.length },
                             "relative",

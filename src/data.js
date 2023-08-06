@@ -84,7 +84,7 @@ export const headerData = {
           links: [
             {
               text: "Corian Bath",
-              href: "/bath-corian",
+              href: getPermalink("/bath-corian"),
             },
             {
               text: "Είδη Υγιεινής",
@@ -97,6 +97,14 @@ export const headerData = {
           href: "#",
         },
       ],
+    },
+    {
+      text: "Έργα",
+      href: getPermalink("#"),
+    },
+    {
+      text: "Μελέτες",
+      href: getPermalink("#"),
     },
     {
       text: "Showroom",
@@ -115,7 +123,7 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: "Product",
+      title: "Έπιπλα Κουζίνας",
       links: [
         { text: "Features", href: "#" },
         { text: "Security", href: "#" },
@@ -127,7 +135,7 @@ export const footerData = {
       ],
     },
     {
-      title: "Platform",
+      title: "Προϊόντα",
       links: [
         { text: "Developer API", href: "#" },
         { text: "Partners", href: "#" },
@@ -137,7 +145,7 @@ export const footerData = {
       ],
     },
     {
-      title: "Support",
+      title: "Showroom",
       links: [
         { text: "Docs", href: "#" },
         { text: "Community Forum", href: "#" },
@@ -147,15 +155,8 @@ export const footerData = {
       ],
     },
     {
-      title: "Company",
-      links: [
-        { text: "About", href: "#" },
-        { text: "Careers", href: "#" },
-        { text: "Press", href: "#" },
-        { text: "Inclusion", href: "#" },
-        { text: "Social Impact", href: "#" },
-        { text: "Shop", href: "#" },
-      ],
+      title: "The Kitchen Studio",
+      links: [{ text: "About", href: "#" }],
     },
   ],
   secondaryLinks: [
