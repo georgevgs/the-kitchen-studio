@@ -10,9 +10,23 @@ import { SITE } from "~/config.mjs";
 <script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
   const logoImages = document.querySelectorAll(".tks-logo-image");
 
-  let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`);
+  // First we get the viewport height and we multiply it by 1% to get a value for a vh unit
+  const vh = window.innerHeight * 0.01;
+  // Then we set the value in the --vh custom property
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
 
+  const touchDevice =
+    navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
+
+  // We listen to the resize event
+  window.addEventListener("resize", () => {
+    // We execute the same script as before
+    const vh = window.innerHeight * 0.01;
+
+    const touchDevice =
+      navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  });
 
   function applyTheme(theme) {
     if (theme === "dark") {
@@ -262,56 +276,62 @@ document.documentElement.style.setProperty('--vh', `${vh}px`);
 
   let headerHidden = false; // flag to track header visibility state
 
-  function isElementPartiallyInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    const windowHeight =
-      window.innerHeight || document.documentElement.clientHeight;
-    const windowWidth =
-      window.innerWidth || document.documentElement.clientWidth;
+  if (!touchDevice) {
+    function isElementPartiallyInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+      const windowWidth =
+        window.innerWidth || document.documentElement.clientWidth;
 
-    return (
-      ((rect.top >= 0 && rect.top < windowHeight) ||
-        (rect.bottom > 0 && rect.bottom <= windowHeight)) &&
-      ((rect.left >= 0 && rect.left < windowWidth) ||
-        (rect.right > 0 && rect.right <= windowWidth))
-    );
-  }
-
-  window.addEventListener("scroll", function () {
-    const footerLogoElement = document.querySelector(".tks-logo-image.footer");
-    const headerLogoElement = document.querySelector(".tks-logo-image.header");
-
-    if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
-      // If the footer logo is in the viewport and header logo is not already hidden
-      headerHidden = true; // Update the flag
-      headerLogoElement.animate(
-        [
-          { transform: "translateY(0)", opacity: 1 },
-          { transform: "translateY(50px)", opacity: 0 },
-        ],
-        {
-          duration: 500,
-          easing: "ease",
-          fill: "forwards",
-        }
-      );
-    } else if (
-      !isElementPartiallyInViewport(footerLogoElement) &&
-      headerHidden
-    ) {
-      // If the footer logo is not in the viewport and the header logo is hidden
-      headerHidden = false; // Update the flag
-      headerLogoElement.animate(
-        [
-          { transform: "translateY(50px)", opacity: 0 },
-          { transform: "translateY(0)", opacity: 1 },
-        ],
-        {
-          duration: 500,
-          easing: "ease",
-          fill: "forwards",
-        }
+      return (
+        ((rect.top >= 0 && rect.top < windowHeight) ||
+          (rect.bottom > 0 && rect.bottom <= windowHeight)) &&
+        ((rect.left >= 0 && rect.left < windowWidth) ||
+          (rect.right > 0 && rect.right <= windowWidth))
       );
     }
-  });
+
+    window.addEventListener("scroll", function () {
+      const footerLogoElement = document.querySelector(
+        ".tks-logo-image.footer"
+      );
+      const headerLogoElement = document.querySelector(
+        ".tks-logo-image.header"
+      );
+
+      if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
+        // If the footer logo is in the viewport and header logo is not already hidden
+        headerHidden = true; // Update the flag
+        headerLogoElement.animate(
+          [
+            { transform: "translateY(0)", opacity: 1 },
+            { transform: "translateY(50px)", opacity: 0 },
+          ],
+          {
+            duration: 500,
+            easing: "ease",
+            fill: "forwards",
+          }
+        );
+      } else if (
+        !isElementPartiallyInViewport(footerLogoElement) &&
+        headerHidden
+      ) {
+        // If the footer logo is not in the viewport and the header logo is hidden
+        headerHidden = false; // Update the flag
+        headerLogoElement.animate(
+          [
+            { transform: "translateY(50px)", opacity: 0 },
+            { transform: "translateY(0)", opacity: 1 },
+          ],
+          {
+            duration: 500,
+            easing: "ease",
+            fill: "forwards",
+          }
+        );
+      }
+    });
+  }
 </script>
