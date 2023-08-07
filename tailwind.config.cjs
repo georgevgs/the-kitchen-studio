@@ -25,7 +25,7 @@ module.exports = {
         128: "32rem",
         152: "38rem",
         "1/3vh": "33vh",
-        screenMinusHeader: "calc(-webkit-fill-available - 5.5rem)",
+        screenMinusHeader: "calc((var(--vh, 1vh) * 100) - 5.5rem)",
       },
       animation: {
         "fade-in": "fade-in 0.5s forwards",
