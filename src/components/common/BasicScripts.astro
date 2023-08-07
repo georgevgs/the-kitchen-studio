@@ -20,6 +20,9 @@ import { SITE } from "~/config.mjs";
 
   // We listen to the resize event
   window.addEventListener("resize", () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+
     let touchDevice =
       navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
   });
