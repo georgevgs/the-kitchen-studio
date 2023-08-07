@@ -15,7 +15,8 @@ import { SITE } from "~/config.mjs";
   // Then we set the value in the --vh custom property to the root of the document
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-  let touchDevice = navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
+  let touchDevice =
+    navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
 
   function applyTheme(theme) {
     if (theme === "dark") {
@@ -289,37 +290,39 @@ import { SITE } from "~/config.mjs";
         ".tks-logo-image.header"
       );
 
-      if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
-        // If the footer logo is in the viewport and header logo is not already hidden
-        headerHidden = true; // Update the flag
-        headerLogoElement.animate(
-          [
-            { transform: "translateY(0)", opacity: 1 },
-            { transform: "translateY(50px)", opacity: 0 },
-          ],
-          {
-            duration: 500,
-            easing: "ease",
-            fill: "forwards",
-          }
-        );
-      } else if (
-        !isElementPartiallyInViewport(footerLogoElement) &&
-        headerHidden
-      ) {
-        // If the footer logo is not in the viewport and the header logo is hidden
-        headerHidden = false; // Update the flag
-        headerLogoElement.animate(
-          [
-            { transform: "translateY(50px)", opacity: 0 },
-            { transform: "translateY(0)", opacity: 1 },
-          ],
-          {
-            duration: 500,
-            easing: "ease",
-            fill: "forwards",
-          }
-        );
+      if (footerLogoElement) {
+        if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
+          // If the footer logo is in the viewport and header logo is not already hidden
+          headerHidden = true; // Update the flag
+          headerLogoElement.animate(
+            [
+              { transform: "translateY(0)", opacity: 1 },
+              { transform: "translateY(50px)", opacity: 0 },
+            ],
+            {
+              duration: 500,
+              easing: "ease",
+              fill: "forwards",
+            }
+          );
+        } else if (
+          !isElementPartiallyInViewport(footerLogoElement) &&
+          headerHidden
+        ) {
+          // If the footer logo is not in the viewport and the header logo is hidden
+          headerHidden = false; // Update the flag
+          headerLogoElement.animate(
+            [
+              { transform: "translateY(50px)", opacity: 0 },
+              { transform: "translateY(0)", opacity: 1 },
+            ],
+            {
+              duration: 500,
+              easing: "ease",
+              fill: "forwards",
+            }
+          );
+        }
       }
     });
   }

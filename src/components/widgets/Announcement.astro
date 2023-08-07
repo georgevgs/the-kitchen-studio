@@ -1,27 +1,21 @@
 ---
+import { Icon } from 'astro-icon';
 ---
 
-<div
-  class="hidden md:block bg-blue-900 dark:bg-slate-800 dark:border-slate-800 dark:text-slate-400 border-b border-blue-900 text-sm px-3 py-2 text-gray-200 overflow-hidden whitespace-nowrap text-ellipsis"
->
-  <span class="text-xs py-0.5 px-1 bg-primary dark:bg-slate-700 dark:text-slate-300 font-semibold">NEW</span>
-  <a
-    href="https://astro.build/blog/astro-2/"
-    class="hover:underline text-gray-200 dark:text-slate-400"
-    >Astro 2.0 is released. »</a
-  >
-  <a
-    target="_blank"
-    rel="noopener"
-    class="float-right"
-    title="If you like AstroWind, give us a star."
-    href="https://github.com/onwidget/astrowind"
-  >
-    <img
-      src="https://img.shields.io/github/stars/onwidget/astrowind.svg?style=social&label=Stars&maxAge=86400"
-      alt="Follow @onWidget"
-      width="84"
-      height="20"
+<div class="bg-gradient-to-r from-gray-400 to-gray-700 dark:from-orange-400 dark:to-orange-700 text-white px-4 py-3 flex justify-center items-center">
+  <!-- Wrapping container for the icon and text, centered using flex on the parent container -->
+  <div class="flex items-center space-x-3">
+    <!-- Icon next to the text -->
+    <Icon
+      name="fxemoji:palmtree"
+      class="w-6 h-6"
     />
-  </a>
+
+    <!-- Text content -->
+    <div class="text-center">
+      <a href="/assets/summer-vacation.webp" class="hover:underline">
+        <span class="font-semibold">Summer Break 2023:</span> 11/8 to 2/9
+      </a>
+    </div>
+  </div>
 </div>

@@ -72,7 +72,7 @@ const {
         {
           links.map(({ text, href, links }) => (
             <li
-              class="dark:hover:bg-gray-700 md:hover:bg-gray-100 rounded-lg"
+              class="md:dark:hover:bg-gray-700 md:hover:bg-gray-100 rounded-lg"
               class:list={[{ dropdown: links?.length }]}
             >
               {links?.length ? (
@@ -88,7 +88,7 @@ const {
                     {links.map(
                       ({ text: text2, href: href2, links: subLinks }) => (
                         <li
-                          class="dark:hover:bg-gray-700 md:hover:bg-gray-100 rounded-lg"
+                          class="md:dark:hover:bg-gray-700 md:hover:bg-gray-100 rounded-lg"
                           class:list={[
                             { dropdown: subLinks?.length },
                             "relative",

@@ -22,9 +22,11 @@ export interface Props {
   socialLinks: Array<Link>;
   footNote?: string;
   theme?: string;
+  class?: string;
 }
 
 const {
+  class: classes = "",
   socialLinks = [],
   secondaryLinks = [],
   links = [],
@@ -35,12 +37,14 @@ const {
 
 <footer
   class:list={[
+    classes,
     { dark: theme === "dark" },
     "relative border-t border-gray-200 dark:border-slate-800",
+    "bg-offwhite",
   ]}
 >
   <div
-    class="dark:bg-dark absolute inset-0 pointer-events-none"
+    class="dark:bg-black absolute inset-0 pointer-events-none"
     aria-hidden="true"
   >
   </div>

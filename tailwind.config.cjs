@@ -12,6 +12,7 @@ module.exports = {
         primary: "var(--aw-color-primary)",
         secondary: "var(--aw-color-secondary)",
         accent: "var(--aw-color-accent)",
+        offwhite: "var(--aw-offwhite-bg-page)",
       },
       fontFamily: {
         sans: ["var(--aw-font-sans)", ...defaultTheme.fontFamily.sans],
