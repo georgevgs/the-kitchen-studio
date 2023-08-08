@@ -326,4 +326,32 @@ import { SITE } from "~/config.mjs";
       }
     });
   }
+
+  // Mobile image carousel controls
+  let startX = 0;
+  let movedX = 0;
+
+  const carousel = document.getElementById("default-carousel");
+  const prevButton = document.querySelector("[data-carousel-prev]");
+  const nextButton = document.querySelector("[data-carousel-next]");
+
+  carousel.addEventListener("touchstart", (event) => {
+    startX = event.touches[0].clientX;
+  });
+
+  carousel.addEventListener("touchmove", (event) => {
+    movedX = event.touches[0].clientX - startX;
+  });
+
+  carousel.addEventListener("touchend", () => {
+    const threshold = 50;
+
+    if (movedX > threshold) {
+      prevButton.click();
+    } else if (movedX < -threshold) {
+      nextButton.click();
+    }
+
+    movedX = 0;
+  });
 </script>
