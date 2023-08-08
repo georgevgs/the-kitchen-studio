@@ -4,7 +4,7 @@ import Logo from "~/components/Logo.astro";
 import ToggleTheme from "~/components/common/ToggleTheme.astro";
 import ToggleMenu from "~/components/common/ToggleMenu.astro";
 
-import { getHomePermalink, getAsset } from "~/utils/permalinks";
+import { getHomePermalink, getPermalink, getAsset } from "~/utils/permalinks";
 
 interface Link {
   text?: string;
@@ -142,6 +142,16 @@ const {
             </li>
           ))
         }
+        <li class="md:hidden">
+          <a
+            href={getPermalink("/contact")}
+            class="font-medium hover:text-gray-900 dark:hover:text-white px-0 py-2 pr-4 mt-4 flex items-center"
+          >
+            <span class="border-2 border-gray-500 rounded-xl px-4 py-2">
+              Επικοινωνία
+            </span>
+          </a>
+        </li>
       </ul>
     </nav>
     <div
