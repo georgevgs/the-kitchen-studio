@@ -72,7 +72,7 @@ const {
       </div>
       {
         links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
+          <div class="col-span-6 md:col-span-3 lg:col-span-2 min-w-[200px]">
             <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
             {links && Array.isArray(links) && links.length > 0 && (
               <ul class="text-sm">
