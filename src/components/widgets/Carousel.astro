@@ -45,7 +45,7 @@ const widthType = Astro.props.widthType;
         images.map((src, index) => (
           <button
             type="button"
-            class="w-4 h-4 rounded-full"
+            class={`${images.length > 10 ? "w-0 h-0" : "w-4 h-4"} rounded-full`}
             aria-current={index === 0 ? "true" : "false"}
             aria-label={`Slide ${index + 1}`}
             data-carousel-slide-to={index}

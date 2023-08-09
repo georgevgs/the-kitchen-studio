@@ -108,14 +108,14 @@ export const headerData = {
     },
     {
       text: "Showroom",
-      href: getPermalink("#"),
+      href: getPermalink("/showroom"),
     },
   ],
   actions: [
     {
       type: "button",
       text: "Επικοινωνία",
-      href: "/contact",
+      href: getPermalink("/contact"),
     },
   ],
 };
@@ -145,18 +145,13 @@ export const footerData = {
       ],
     },
     {
-      title: "Showroom",
-      links: [
-        { text: "Docs", href: "#" },
-        { text: "Community Forum", href: "#" },
-        { text: "Professional Services", href: "#" },
-        { text: "Skills", href: "#" },
-        { text: "Status", href: "#" },
-      ],
-    },
-    {
       title: "The Kitchen Studio",
-      links: [{ text: "About", href: "#" }],
+      links: [
+        { text: "About us", href: getPermalink("/about-us") },
+        { text: "Showroom", href: getPermalink("/showroom") },
+        { text: "Έργα", href: "#" },
+        { text: "Μελέτες", href: "#" },
+      ],
     },
   ],
   secondaryLinks: [
