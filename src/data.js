@@ -104,7 +104,7 @@ export const headerData = {
     },
     {
       text: "Μελέτες",
-      href: getPermalink("#"),
+      href: getPermalink("/meletes"),
     },
     {
       text: "Showroom",
@@ -150,7 +150,7 @@ export const footerData = {
         { text: "About us", href: getPermalink("/about-us") },
         { text: "Showroom", href: getPermalink("/showroom") },
         { text: "Έργα", href: getPermalink("/erga") },
-        { text: "Μελέτες", href: "#" },
+        { text: "Μελέτες", href: getPermalink("/meletes") },
       ],
     },
   ],

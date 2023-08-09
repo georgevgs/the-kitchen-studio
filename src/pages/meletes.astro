@@ -1,0 +1,57 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Μελέτες",
+  description: "Εξερευνήστε τις μελέτες μας",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Μελέτες"
+      subtitle="Εξερευνήστε τις μελέτες μας"
+      description="Οι μελέτες μας διακατέχονται από προσεκτική σχεδίαση και σκέψη, λαμβάνοντας υπόψη τόσο την αισθητική όσο και τη λειτουργικότητα του χώρου."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/meletes/meletes.avif",
+          alt: "meletes",
+        },
+        {
+          src: "/assets/meletes/meletes-2.avif",
+          alt: "meletes-2",
+        },
+        {
+          src: "/assets/meletes/meletes-3.avif",
+          alt: "meletes-3",
+        },
+        {
+          src: "/assets/meletes/meletes-4.avif",
+          alt: "meletes-4",
+        },
+        {
+          src: "/assets/meletes/meletes-5.avif",
+          alt: "meletes-5",
+        },
+        {
+          src: "/assets/meletes/meletes-6.avif",
+          alt: "meletes-6",
+        },
+        {
+          src: "/assets/meletes/meletes-8.avif",
+          alt: "meletes-8",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>
