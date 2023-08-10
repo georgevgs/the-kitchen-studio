@@ -14,42 +14,6 @@ All commands are run from the root of the project, from a terminal:
 
 <br>
 
-### Configuration
-
-Basic configuration file: `./src/config.mjs`
-
-```javascript
-const CONFIG = {
-  name: 'The Kitchen Studio',
-
-  origin: 'https://thekitchenstudio.gr',
-  basePathname: '/', // Change this if you need to deploy to Github Pages, for example
-  trailingSlash: false, // Generate permalinks with or without "/" at the end
-
-  title: 'The Kitchen Studio', // Default seo title
-  description: 'Σχεδιάζουμε στα μέτρα σας', // Default seo description
-  defaultImage: 'image.jpg', // Default seo image
-
-  defaultTheme: 'system', // Values: "system" | "light" | "dark" | "light:only" | "dark:only"
-
-  language: 'el', // Default language
-  textDirection: 'ltr', // Default html text direction
-
-  dateFormatter: new Intl.DateTimeFormat('el_GR', {
-    // Date format
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC',
-  }),
-
-  googleAnalyticsId: false, // Or "G-XXXXXXXXXX",
-  googleSiteVerificationId: false, // Or some value,
-};
-```
-
-<br>
-
 ### Deploy
 
 #### Deploy to production (manual)

@@ -1,31 +1,30 @@
-import defaultImage from './assets/images/default.png';
+import defaultImage from "/assets/the-kitchen-studio-logo.avif";
 
 const CONFIG = {
-  name: 'The Kitchen Studio',
+  name: "The Kitchen Studio",
 
-  origin: 'https://thekitchenstudio.gr',
-  basePathname: '/',
+  origin: "https://www.thekitchenstudio.gr",
+  basePathname: "/",
   trailingSlash: false,
 
-  title: 'The Kitchen Studio',
-  description:
-    'Σχεδιάζουμε την κουζίνα στα μέτρα σας',
+  title: "The Kitchen Studio",
+  description: "Σχεδιάζουμε την κουζίνα στα μέτρα σας",
   defaultImage: defaultImage,
 
-  defaultTheme: 'system', // Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  defaultTheme: "system", // Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 
-  language: 'el',
-  textDirection: 'ltr',
+  language: "el",
+  textDirection: "ltr",
 
-  dateFormatter: new Intl.DateTimeFormat('el', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC',
+  dateFormatter: new Intl.DateTimeFormat("el", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
   }),
 
-  googleAnalyticsId: false, // or "G-XXXXXXXXXX",
-  googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
+  googleAnalyticsId: "G-80QQFP5723",
+  googleSiteVerificationId: "",
 };
 
 export const SITE = { ...CONFIG };
