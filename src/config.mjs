@@ -1,4 +1,4 @@
-import defaultImage from "/assets/the-kitchen-studio-logo.avif";
+import defaultImage from "./assets/images/the-kitchen-studio-logo.png";
 
 const CONFIG = {
   name: "The Kitchen Studio",
