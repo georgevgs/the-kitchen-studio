@@ -1,0 +1,93 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Ντουλάπες Υπνοδωματίου",
+  description: "Ντουλάπες Υπνοδωματίου",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Ντουλάπες Υπνοδωματίου"
+      subtitle="Οργανωμένη και χαλαρωτική ατμόσφαιρα στο υπνοδωμάτιό σας"
+      description="Ανακαλύψτε την αρμονία ανάμεσα στη λειτουργικότητα και την αισθητική με τις ντουλάπες υπνοδωματίου."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/wardrobes/wardrobe.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-2.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-3.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-4.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-5.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-6.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-7.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-8.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-9.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-10.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-11.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-12.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-13.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-14.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-15.avif",
+          alt: "wardrobe",
+        },
+        {
+          src: "/assets/wardrobes/wardrobe-16.avif",
+          alt: "wardrobe",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>

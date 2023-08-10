@@ -6,64 +6,16 @@ export const headerData = {
       text: "Έπιπλα Κουζίνας",
       links: [
         {
-          text: "Submenu 1",
-          links: [
-            {
-              text: "Nested Link 1",
-              href: "#",
-            },
-            {
-              text: "Nested Link 2",
-              href: "#",
-            },
-          ],
+          text: "Modern Kitchens",
+          href: getPermalink("/modern-kitchens"),
         },
         {
-          text: "Submenu 2",
-          links: [
-            {
-              text: "Nested Link 3",
-              href: "#",
-            },
-            {
-              text: "Nested Link 4",
-              href: "#",
-            },
-          ],
+          text: "Classic Kitchens",
+          href: getPermalink("/classic-kitchens"),
         },
         {
           text: "Corian Kitchens",
           href: getPermalink("/corian-kitchens"),
-        },
-        {
-          text: "Submenu 4",
-          links: [
-            {
-              text: "Nested Link 7",
-              href: "#",
-            },
-            {
-              text: "Nested Link 8",
-              href: "#",
-            },
-          ],
-        },
-        {
-          text: "Submenu 5",
-          links: [
-            {
-              text: "Nested Link 9",
-              href: "#",
-            },
-            {
-              text: "Nested Link 10",
-              href: "#",
-            },
-          ],
-        },
-        {
-          text: "Submenu 6",
-          href: "#",
         },
       ],
     },
@@ -74,18 +26,30 @@ export const headerData = {
           text: "Bath",
           links: [
             {
-              text: "Corian Bath",
-              href: getPermalink("/corian-bath"),
+              text: "Έπιπλα Μπάνιου",
+              href: getPermalink("/bath-furnitures"),
             },
             {
-              text: "Είδη Υγιεινής",
-              href: "#",
+              text: "Corian Bath",
+              href: getPermalink("/corian-bath"),
             },
           ],
         },
         {
+          text: "Πλακάκια",
+          href: getPermalink("/tiles"),
+        },
+        {
+          text: "Ντουλάπες",
+          href: getPermalink("/wardrobes"),
+        },
+        {
           text: "Living",
           href: getPermalink("/living"),
+        },
+        {
+          text: "Πόρτες",
+          href: getPermalink("/doors"),
         },
       ],
     },
@@ -116,23 +80,19 @@ export const footerData = {
     {
       title: "Έπιπλα Κουζίνας",
       links: [
-        { text: "Features", href: "#" },
-        { text: "Security", href: "#" },
-        { text: "Team", href: "#" },
-        { text: "Enterprise", href: "#" },
-        { text: "Customer stories", href: "#" },
-        { text: "Pricing", href: "#" },
-        { text: "Resources", href: "#" },
+        { text: "Modern Kitchens", href: getPermalink("/modern-kitchens") },
+        { text: "Classic Kitchens", href: getPermalink("/classic-kitchens") },
+        { text: "Corian Kitchens", href: getPermalink("/corian-kitchens") },
       ],
     },
     {
       title: "Προϊόντα",
       links: [
-        { text: "Developer API", href: "#" },
-        { text: "Partners", href: "#" },
-        { text: "Atom", href: "#" },
-        { text: "Electron", href: "#" },
-        { text: "AstroWind Desktop", href: "#" },
+        { text: "Bath", href: getPermalink("/bath-furnitures") },
+        { text: "Πλακάκια", href: getPermalink("/tiles") },
+        { text: "Ντουλάπες", href: getPermalink("/wardrobes") },
+        { text: "Living", href: getPermalink("/living") },
+        { text: "Πόρτες", href: getPermalink("/doors") },
       ],
     },
     {

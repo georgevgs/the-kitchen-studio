@@ -1,0 +1,97 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Classic Kitchens",
+  description: "Κλασικά έπιπλα κουζίνας",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Classic Kitchens"
+      subtitle="Η γοητεία των κλασικών επίπλων κουζίνας"
+      description="Ανακαλύψτε την αιώνια γοητεία των κλασικών έπιπλων κουζίνας. Τα κλασικά έπιπλα κουζίνας συνδυάζουν την αρμονία του παρελθόντος με τη λειτουργικότητα του παρόντος."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/kitchens/classic/classic-kitchen.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-2.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-3.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-4.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-5.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-6.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-7.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-8.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-9.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-10.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-11.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-12.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-13.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-14.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-15.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-16.avif",
+          alt: "classic-kitchen",
+        },
+        {
+          src: "/assets/kitchens/classic/classic-kitchen-17.avif",
+          alt: "classic-kitchen",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>

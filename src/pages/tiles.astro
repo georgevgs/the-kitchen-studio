@@ -1,0 +1,113 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Πλακάκια",
+  description: "Πλακάκια",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Πλακάκια"
+      subtitle="Ατελείωτες επιλογές σε σχέδια, χρώματα, υλικά και μεγέθη"
+      description="Ανακαλύψτε την ποικιλία των πλακιδίων που μεταμορφώνουν τον χώρο σας σε έναν χώρο αισθητικής και πρακτικότητας."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/tiles/tile.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-2.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-3.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-4.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-5.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-6.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-7.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-8.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-9.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-10.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-11.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-12.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-13.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-14.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-15.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-16.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-17.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-18.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-19.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-20.avif",
+          alt: "tiles",
+        },
+        {
+          src: "/assets/tiles/tile-21.avif",
+          alt: "tiles",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>

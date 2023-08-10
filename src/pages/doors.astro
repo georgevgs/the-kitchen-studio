@@ -1,0 +1,73 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Πόρτες",
+  description: "Πόρτες",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Πόρτες"
+      subtitle="Ατελείωτες επιλογές με διαφορετικά υλικά, όπως ξύλο, γυαλί και μέταλλο"
+      description="Ανακαλύψτε πόρτες που μπορούν να δώσουν χαρακτήρα και λειτουργικότητα στον εσωτερικό και εξωτερικό χώρο του σπιτιού σας."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/doors/door.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-2.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-3.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-4.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-5.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-6.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-7.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-8.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-9.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-10.avif",
+          alt: "doors",
+        },
+        {
+          src: "/assets/doors/door-11.avif",
+          alt: "doors",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>

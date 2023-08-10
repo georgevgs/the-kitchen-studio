@@ -1,0 +1,89 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Έπιπλα Μπάνιου",
+  description: "Έπιπλα μπάνιου",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Έπιπλα Μπάνιου"
+      subtitle="Σύγχρονες λιτές γραμμές και υψηλής τεχνολογίας υλικά"
+      description="Ανακαλύψτε την υπέροχη ποικιλία των επίπλων μπάνιου που μπορούν να μεταμορφώσουν τον χώρο σας σε έναν χώρο χαλάρωσης και περιποίησης."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/bath/furniture/bath-furniture.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-2.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-3.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-4.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-5.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-6.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-7.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-8.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-9.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-10.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-11.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-12.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-13.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-14.avif",
+          alt: "bath-furniture",
+        },
+        {
+          src: "/assets/bath/furniture/bath-furniture-15.avif",
+          alt: "bath-furniture",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>

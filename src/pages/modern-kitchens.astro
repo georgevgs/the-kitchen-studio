@@ -1,0 +1,97 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Modern Kitchens",
+  description: "Μοντέρνα έπιπλα κουζίνας",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Modern Kitchens"
+      subtitle="Απλές γραμμές και ανθεκτικά υλικά υψηλής ποιότητας"
+      description="Ανακαλύψτε την αισθητική του μέλλοντος με τα μοντέρνα έπιπλα κουζίνας. Με εξαιρετικό design και πρωτοποριακά υλικά, ενσωματώνουν τη σύγχρονη τεχνολογία και τις λειτουργικές καινοτομίες."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/kitchens/modern/modern-kitchen.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-2.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-3.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-4.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-5.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-6.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-7.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-8.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-9.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-10.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-11.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-12.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-13.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-14.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-15.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-16.avif",
+          alt: "modern-kitchen",
+        },
+        {
+          src: "/assets/kitchens/modern/modern-kitchen-17.avif",
+          alt: "modern-kitchen",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>
