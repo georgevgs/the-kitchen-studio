@@ -1,0 +1,53 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Corian Kitchens",
+  description: "Έπιπλα κουζίνας από Corian",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Corian Kitchens"
+      subtitle="Το μέλλον της αισθητικής στα έπιπλα κουζίνας"
+      description="Εξερευνήστε την πρωτοποριακή και σύγχρονη αισθητική των Corian Kitchens."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/kitchens/corian/corian-kitchen-countertop.avif",
+          alt: "corian-kitchen-countertop",
+        },
+        {
+          src: "/assets/kitchens/corian/corian-kitchen-countertop-2.avif",
+          alt: "corian-kitchen-countertop",
+        },
+        {
+          src: "/assets/kitchens/corian/corian-kitchen-countertop-3.avif",
+          alt: "corian-kitchen-countertop",
+        },
+        {
+          src: "/assets/kitchens/corian/corian-kitchen-sink.avif",
+          alt: "corian-kitchen-sink",
+        },
+        {
+          src: "/assets/kitchens/corian/corian-kitchen-sink-2.avif",
+          alt: "corian-kitchen-sink",
+        },
+        {
+          src: "/assets/kitchens/corian/corian-kitchen-sink-3.avif",
+          alt: "corian-kitchen-sink",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>

@@ -32,17 +32,8 @@ export const headerData = {
           ],
         },
         {
-          text: "Submenu 3",
-          links: [
-            {
-              text: "Nested Link 5",
-              href: "#",
-            },
-            {
-              text: "Nested Link 6",
-              href: "#",
-            },
-          ],
+          text: "Corian Kitchens",
+          href: getPermalink("/corian-kitchens"),
         },
         {
           text: "Submenu 4",
@@ -84,7 +75,7 @@ export const headerData = {
           links: [
             {
               text: "Corian Bath",
-              href: getPermalink("/bath-corian"),
+              href: getPermalink("/corian-bath"),
             },
             {
               text: "Είδη Υγιεινής",
@@ -93,8 +84,8 @@ export const headerData = {
           ],
         },
         {
-          text: "Πλακάκια",
-          href: "#",
+          text: "Living",
+          href: getPermalink("/living"),
         },
       ],
     },

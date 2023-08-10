@@ -1,0 +1,85 @@
+---
+import Carousel from "~/components/widgets/Carousel.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const meta = {
+  title: "Living",
+  description: "Μοντέρνα και λειτουργικά έπιπλα καθιστικού",
+};
+---
+
+<Layout meta={meta}>
+  <div class="content-container">
+    <PageDescription
+      title="Living"
+      subtitle="Το μέλλον της αισθητικής στα έπιπλα καθιστικού"
+      description="Ανακαλύψτε τον καινοτόμο και σύγχρονο χαρακτήρα των έπιπλων καθιστικού. Με τον χαρακτηριστικό σχεδιασμό τους και την προηγμένη αισθητική, τα έπιπλα αυτά αναδεικνύουν μια νέα διάσταση στο χώρο σας."
+    />
+
+    <Carousel
+      images={[
+        {
+          src: "/assets/living/living.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-2.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-3.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-4.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-5.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-6.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-7.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-8.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-9.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-10.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-11.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-12.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-13.avif",
+          alt: "living-furnitures",
+        },
+        {
+          src: "/assets/living/living-14.avif",
+          alt: "living-furnitures",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer/>
+</Layout>

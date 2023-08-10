@@ -17,7 +17,11 @@ const widthType = Astro.props.widthType;
     <div
       id="carousel-wrapper"
       class={`relative ${
-        widthType === "normal" ? "h-screenMinusHeader md:h-152" : "h-96"
+        widthType === "normal"
+          ? "h-screenMinusHeader md:h-152"
+          : widthType === "full-width"
+          ? "h-128 md:h-152"
+          : "h-96"
       } overflow-hidden flex justify-center`}
     >
       {
