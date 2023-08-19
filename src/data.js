@@ -7,15 +7,15 @@ export const headerData = {
       links: [
         {
           text: "Modern Kitchens",
-          href: getPermalink("/modern-kitchens"),
+          href: getPermalink("/kitchens/modern-kitchens"),
         },
         {
           text: "Classic Kitchens",
-          href: getPermalink("/classic-kitchens"),
+          href: getPermalink("/kitchens/classic-kitchens"),
         },
         {
           text: "Corian Kitchens",
-          href: getPermalink("/corian-kitchens"),
+          href: getPermalink("/kitchens/corian-kitchens"),
         },
       ],
     },
@@ -27,11 +27,11 @@ export const headerData = {
           links: [
             {
               text: "Έπιπλα Μπάνιου",
-              href: getPermalink("/bath-furnitures"),
+              href: getPermalink("/bath/bath-furnitures"),
             },
             {
               text: "Corian Bath",
-              href: getPermalink("/corian-bath"),
+              href: getPermalink("/bath/corian-bath"),
             },
           ],
         },
@@ -80,9 +80,18 @@ export const footerData = {
     {
       title: "Έπιπλα Κουζίνας",
       links: [
-        { text: "Modern Kitchens", href: getPermalink("/modern-kitchens") },
-        { text: "Classic Kitchens", href: getPermalink("/classic-kitchens") },
-        { text: "Corian Kitchens", href: getPermalink("/corian-kitchens") },
+        {
+          text: "Modern Kitchens",
+          href: getPermalink("/kitchens/modern-kitchens"),
+        },
+        {
+          text: "Classic Kitchens",
+          href: getPermalink("/kitchens/classic-kitchens"),
+        },
+        {
+          text: "Corian Kitchens",
+          href: getPermalink("/kitchens/corian-kitchens"),
+        },
       ],
     },
     {
