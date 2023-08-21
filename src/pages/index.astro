@@ -9,6 +9,7 @@ import FAQs from "~/components/widgets/FAQs.astro";
 import Stats from "~/components/widgets/Stats.astro";
 import CallToAction from "~/components/widgets/CallToAction.astro";
 import Carousel from "~/components/widgets/Carousel.astro";
+import { getPermalink } from "~/utils/permalinks";
 
 const meta = {
   title: SITE.title,
@@ -151,36 +152,42 @@ const meta = {
         description:
           "Ανακαλύψτε ποιοτικά έπιπλα κουζίνας με λειτουργικότητα, αισθητική και πρωτοποριακό design. Εμπιστευθείτε μας για την ιδανική λύση στο χώρο σας.",
         icon: "mdi:countertop-outline",
+        href: getPermalink("/kitchens")
       },
       {
         title: "Έπιπλα Μπάνιου",
         description:
           "Ανακαλύψτε μοναδικά έπιπλα μπάνιου που συνδυάζουν ποιότητα, λειτουργικότητα και αισθητική. Εμπνευστείτε από το πρωτοποριακό design.",
         icon: "mdi:shower",
+        href: getPermalink("/bath")
       },
       {
         title: "Πλακάκια",
         description:
           "Ανακαλύψτε μοναδικά πλακάκια για εντυπωσιακό και λειτουργικό στυλ στον χώρο σας.",
         icon: "mdi:square-opacity",
+        href: getPermalink("/tiles")
       },
       {
         title: "Ντουλάπες",
         description:
           "Ανακαλύψτε πρακτικές και λειτουργικές ντουλάπες για οργάνωση και αποθήκευση στον χώρο σας.",
         icon: "mdi:wardrobe-outline",
+        href: getPermalink("/wardrobes")
       },
       {
         title: "Πόρτες",
         description:
           "Ανακαλύψτε ποιοτικές πόρτες που προσδίδουν λειτουργικότητα και αισθητική στον χώρο σας.",
         icon: "mdi:door",
+        href: getPermalink("/doors")
       },
       {
         title: "Living",
         description:
           "Ανανεώστε τον χώρο σας με έπιπλα living που θα αναβαθμίσουν την εμφάνιση και θα δώσουν νέα αίσθηση στο σαλόνι σας.",
         icon: "mdi:sofa-outline",
+        href: getPermalink("/living")
       },
     ]}
   />
