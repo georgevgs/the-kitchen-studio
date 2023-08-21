@@ -1,0 +1,41 @@
+---
+import Category from "~/components/widgets/Category.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+import { getPermalink } from "./../utils/permalinks";
+
+const meta = {
+  title: "Bath",
+  description: "Δημιουργήστε το ιδανικό μπάνιο με την ποικιλία μας σε έπιπλα μπάνιου και Corian λύσεις. Ανανεώστε τον χώρο σας με μοντέρνα ή κλασικά σχέδια έπιπλων μπάνιου, σχεδιασμένα για να συνδυάζουν πρακτικότητα και αισθητική.",
+};
+---
+
+<Layout meta={meta}>
+  <div class="category-container">
+    <PageDescription
+      title="Bath"
+      subtitle="Σύγχρονες λιτές γραμμές και υψηλής τεχνολογίας υλικά"
+      description="Δημιουργήστε το ιδανικό μπάνιο με την ποικιλία μας σε έπιπλα μπάνιου και Corian λύσεις. Ανανεώστε τον χώρο σας με μοντέρνα ή κλασικά σχέδια έπιπλων μπάνιου, σχεδιασμένα για να συνδυάζουν πρακτικότητα και αισθητική."
+    />
+
+    <Category
+      categories={[
+        {
+          text: "Έπιπλα Μπάνιου",
+          href: getPermalink("/bath/bath-furnitures"),
+          src: "/assets/bath/furniture/bath-furniture-2.avif",
+          alt: "bath-furniture",
+        },
+        {
+          text: "Corian Bath",
+          href: getPermalink("/bath/corian-bath"),
+          src: "/assets/bath/corian/corian-bathroom-sink-4.avif",
+          alt: "corian-bath",
+        },
+      ]}
+    />
+  </div>
+
+  <Spacer />
+</Layout>

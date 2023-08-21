@@ -97,7 +97,7 @@ export const footerData = {
     {
       title: "Προϊόντα",
       links: [
-        { text: "Bath", href: getPermalink("/bath-furnitures") },
+        { text: "Bath", href: getPermalink("/bath") },
         { text: "Πλακάκια", href: getPermalink("/tiles") },
         { text: "Ντουλάπες", href: getPermalink("/wardrobes") },
         { text: "Living", href: getPermalink("/living") },

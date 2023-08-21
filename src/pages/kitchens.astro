@@ -1,0 +1,48 @@
+---
+import Category from "~/components/widgets/Category.astro";
+import PageDescription from "~/components/widgets/PageDescription.astro";
+import Spacer from "~/components/widgets/Spacer.astro";
+import Layout from "~/layouts/PageLayout.astro";
+import { getPermalink } from "./../utils/permalinks";
+
+const meta = {
+  title: "Kitchens",
+  description:
+    "Ανακαλύψτε μοναδικά σχέδια κουζινών: μοντέρνες, κλασικές και Corian. Επαναπροσδιορίστε τον χώρο σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική.",
+};
+---
+
+<Layout meta={meta}>
+  <div class="category-container">
+    <PageDescription
+      title="Kitchens"
+      subtitle="Σύγχρονες λιτές γραμμές και υψηλής τεχνολογίας υλικά"
+      description="Ανακαλύψτε μοναδικά σχέδια κουζινών: μοντέρνες, κλασικές και Corian. Επαναπροσδιορίστε τον χώρο σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική."
+    />
+
+    <Category
+      categories={[
+        {
+          text: "Modern Kitchens",
+          href: getPermalink("/kitchens/modern-kitchens"),
+          src: "/assets/kitchens/modern/modern-kitchen.avif",
+          alt: "modern-kitchens",
+        },
+        {
+          text: "Classic Kitchens",
+          href: getPermalink("/kitchens/classic-kitchens"),
+          src: "/assets/kitchens/classic/classic-kitchen-5.avif",
+          alt: "classic-kitchens",
+        },
+        {
+          text: "Corian Kitchens",
+          href: getPermalink("/kitchens/corian-kitchens"),
+          src: "/assets/kitchens/corian/corian-kitchen-countertop.avif",
+          alt: "corian-kitchens",
+        },
+      ]}
+    />
+  </div>
+
+  <Spacer />
+</Layout>
