@@ -1,4 +1,4 @@
-import { getPermalink, getAsset } from "./utils/permalinks";
+import { getPermalink } from "./utils/permalinks";
 
 export const headerData = {
   links: [
@@ -32,6 +32,11 @@ export const headerData = {
             {
               text: "Corian Bath",
               href: getPermalink("/bath/corian-bath"),
+            },
+            {
+              text: "ikaradimas.gr",
+              href: "https://ikaradimas.gr",
+              newtab: true,
             },
           ],
         },
