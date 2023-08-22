@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://www.thekitchenstudio.gr/sitemap-index.xml
