@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 
-import { SITE } from '~/config.mjs';
+import { SITE } from '../config.mjs';
 
 export const get = async () => {
   return rss({

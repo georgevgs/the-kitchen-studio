@@ -1,7 +1,7 @@
 import slugify from 'limax';
 
-import { SITE } from '~/config.mjs';
-import { trim } from '~/utils/utils';
+import { SITE } from './../config.mjs';
+import { trim } from './../utils/utils';
 
 export const trimSlash = (s: string) => trim(trim(s, '/'));
 const createPath = (...params: string[]) => {

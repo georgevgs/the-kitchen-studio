@@ -1,6 +1,6 @@
 ---
 title: "About Us"
-layout: "~/layouts/MarkdownLayout.astro"
+layout: "../layouts/MarkdownLayout.astro"
 ---
 
 ### Ο σχεδιασμός που διακρίνει την THE KITCHEN STUDIO

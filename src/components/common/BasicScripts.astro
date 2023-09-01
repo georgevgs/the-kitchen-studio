@@ -1,5 +1,5 @@
 ---
-import { SITE } from "~/config.mjs";
+import { SITE } from "../../config.mjs";
 ---
 
 <script
@@ -128,12 +128,12 @@ import { SITE } from "~/config.mjs";
       const header = document.getElementById("header");
       if (
         lastKnownScrollPosition > 25 &&
-        !header.classList.contains("scroll")
+        !header?.classList.contains("scroll")
       ) {
         document.getElementById("header").classList.add("scroll");
       } else if (
         lastKnownScrollPosition <= 25 &&
-        header.classList.contains("scroll")
+        header?.classList.contains("scroll")
       ) {
         document.getElementById("header").classList.remove("scroll");
       }
