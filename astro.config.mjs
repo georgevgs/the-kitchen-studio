@@ -8,7 +8,6 @@ import partytown from '@astrojs/partytown';
 import compress from 'astro-compress';
 import { SITE } from './src/config.mjs';
 import serviceWorker from "astrojs-service-worker";
-import icon from "astro-icon";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const whenExternalScripts = (items = []) =>
@@ -53,12 +52,6 @@ export default defineConfig({
       logger: 1,
     }),
     serviceWorker(),
-    icon({
-      iconDir: "src/assets/icons",
-      include: {
-        ri: ["*"],
-      },
-    }),
   ],
   markdown: {},
   vite: {

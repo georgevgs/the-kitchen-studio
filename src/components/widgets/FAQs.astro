@@ -1,6 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
-
 interface Item {
   question: string;
   answer: string;
@@ -52,7 +50,7 @@ const {
               {subitems.map(({ question, answer }) => (
                 <div>
                   <h3 class="mb-4 text-xl font-bold">
-                    <Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary inline-block dark:text-orange-500" />
+                    <i class="fa-regular fa-circle-question text-primary inline-block dark:text-orange-500 mr-2"></i>
                     {question}
                   </h3>
                   {answer && <div class="text-muted dark:text-gray-400" set:html={answer} />}

@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import Logo from "../../components/Logo.astro";
 import ToggleTheme from "../../components/common/ToggleTheme.astro";
 import ToggleMenu from "../../components/common/ToggleMenu.astro";
@@ -80,10 +79,7 @@ const {
                 <>
                   <button class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out">
                     {text}{" "}
-                    <Icon
-                      name="tabler:chevron-down"
-                      class="w-3.5 h-3.5 ml-0.5"
-                    />
+                    <i class="fa-solid fa-chevron-down ml-1"></i>
                   </button>
                   <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
                     {links.map(
@@ -104,10 +100,7 @@ const {
                             <>
                               <button class="rotate-icon font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out">
                                 {text2}{" "}
-                                <Icon
-                                  name="tabler:chevron-down"
-                                  class="icon w-3.5 h-3.5 ml-0.5"
-                                />
+                                <i class="fa-solid fa-chevron-down icon ml-1"></i>
                               </button>
                               <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
                                 {subLinks.map(
@@ -184,7 +177,7 @@ const {
               aria-label="RSS Feed"
               href={getAsset("/rss.xml")}
             >
-              <Icon name="tabler:rss" class="w-5 h-5" />
+              <i class="fa-solid fa-rss"></i>
             </a>
           )
         }

@@ -126,12 +126,12 @@ export const footerData = {
   socialLinks: [
     {
       ariaLabel: "Instagram",
-      icon: "tabler:brand-instagram",
+      icon: "fa-brands fa-instagram",
       href: "https://www.instagram.com/thekitchenstudiogr/",
     },
     {
       ariaLabel: "Facebook",
-      icon: "tabler:brand-facebook",
+      icon: "fa-brands fa-facebook",
       href: "https://www.facebook.com/kitchenstudio/",
     },
   ],

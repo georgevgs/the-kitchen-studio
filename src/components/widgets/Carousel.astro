@@ -1,6 +1,18 @@
 ---
-const images = Astro.props.images;
-const widthType = Astro.props.widthType;
+interface Image {
+  src: string;
+  alt: string;
+}
+
+export type WidthType = "normal" | "full-width";
+
+export interface Props {
+  images: Image[];
+  widthType: WidthType;
+}
+
+const images = Astro.props.images as Image[];
+const widthType = Astro.props.widthType as WidthType;
 ---
 
 <section
@@ -25,7 +37,7 @@ const widthType = Astro.props.widthType;
       } overflow-hidden flex justify-center`}
     >
       {
-        images.map((image, index) => (
+        images.map((image: any, index: number) => (
           <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img
               src={image.src}
@@ -48,7 +60,7 @@ const widthType = Astro.props.widthType;
       id="slide-indicators"
     >
       {
-        images.map((src, index) => (
+        images.map((image: Image, index: number) => (
           <button
             type="button"
             class={`${images.length > 10 ? "w-0 h-0" : "w-4 h-4"} rounded-full`}
