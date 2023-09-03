@@ -1,5 +1,6 @@
 ---
-interface Image {
+import { Image } from 'astro:assets';
+interface Images {
   src: string;
   alt: string;
 }
@@ -7,11 +8,11 @@ interface Image {
 export type WidthType = "normal" | "full-width";
 
 export interface Props {
-  images: Image[];
+  images: Images[];
   widthType: WidthType;
 }
 
-const images = Astro.props.images as Image[];
+const images = Astro.props.images as Images[];
 const widthType = Astro.props.widthType as WidthType;
 ---
 
@@ -39,7 +40,7 @@ const widthType = Astro.props.widthType as WidthType;
       {
         images.map((image: any, index: number) => (
           <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img
+            <Image
               src={image.src}
               class={`${
                 widthType === "normal"
@@ -60,7 +61,7 @@ const widthType = Astro.props.widthType as WidthType;
       id="slide-indicators"
     >
       {
-        images.map((image: Image, index: number) => (
+        images.map((image: Images, index: number) => (
           <button
             type="button"
             class={`${images.length > 10 ? "w-0 h-0" : "w-4 h-4"} rounded-full`}

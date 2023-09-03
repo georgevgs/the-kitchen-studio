@@ -2,6 +2,18 @@
 import { SITE } from "../config.mjs";
 import Layout from "../layouts/PageLayout.astro";
 
+import modernKitchenImage from '../assets/images/home-images/modern-kitchen-home.avif';
+import modernKitchenImage2 from '../assets/images/home-images/modern-kitchen-home-2.avif';
+import classicKitchenImage from '../assets/images/home-images/classic-kitchen-home.avif';
+import classicKitchenImage2 from '../assets/images/home-images/classic-kitchen-home-2.avif';
+import wardrobeImage from '../assets/images/home-images/wardrobe-home.avif';
+import wardrobeImage2 from '../assets/images/home-images/wardrobe-home-2.avif';
+import wardrobeImage3 from '../assets/images/home-images/wardrobe-home-3.avif';
+import bedroomBedImage from '../assets/images/home-images/bedroom-bed-home.avif';
+import modernBathroomImage from '../assets/images/home-images/modern-bathroom-home.avif';
+import modernBathroomViewImage from '../assets/images/home-images/modern-bathroom-view-home.avif';
+import showroomBWImage from '../assets/images/showroom/the-kitchen-studio-showroom-bw.avif';
+
 import Features from "../components/widgets/Features.astro";
 import Features2 from "../components/widgets/Features2.astro";
 import Steps from "../components/widgets/Steps.astro";
@@ -24,43 +36,43 @@ const meta = {
   <Carousel
     images={[
       {
-        src: "/assets/home-images/modern-kitchen-home.avif",
+        src: modernKitchenImage,
         alt: "modern-kitchen-home",
       },
       {
-        src: "/assets/home-images/modern-kitchen-home-2.avif",
+        src: modernKitchenImage2,
         alt: "modern-kitchen-home",
       },
       {
-        src: "/assets/home-images/classic-kitchen-home.avif",
+        src: classicKitchenImage,
         alt: "classic-kitchen-home",
       },
       {
-        src: "/assets/home-images/classic-kitchen-home-2.avif",
+        src: classicKitchenImage2,
         alt: "classic-kitchen-home",
       },
       {
-        src: "/assets/home-images/wardrobe-home.avif",
+        src: wardrobeImage,
         alt: "wardrobe-home",
       },
       {
-        src: "/assets/home-images/wardrobe-home-2.avif",
+        src: wardrobeImage2,
         alt: "wardrobe-home",
       },
       {
-        src: "/assets/home-images/wardrobe-home-3.avif",
+        src: wardrobeImage3,
         alt: "wardrobe-home",
       },
       {
-        src: "/assets/home-images/bedroom-bed-home.avif",
+        src: bedroomBedImage,
         alt: "bedroom-bed-home",
       },
       {
-        src: "/assets/home-images/modern-bathroom-home.avif",
+        src: modernBathroomImage,
         alt: "modern-bathroom-home",
       },
       {
-        src: "/assets/home-images/modern-bathroom-view-home.avif",
+        src: modernBathroomViewImage,
         alt: "modern-bathroom-view-home",
       },
     ]}
@@ -135,7 +147,7 @@ const meta = {
       },
     ]}
     image={{
-      src: "/assets/showroom/the-kitchen-studio-showroom-bw.avif",
+      src: showroomBWImage,
       alt: "the-kitchen-studio-showroom",
     }}
   />
