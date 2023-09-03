@@ -18,7 +18,6 @@
     "@astrolib/seo": "^0.6.0",
     "@fontsource/inter": "^5.0.8",
     "astro": "^3.0.6",
-    "astro-compress": "^2.0.15",
     "astro-google-analytics": "^1.0.3",
     "astrojs-service-worker": "^1.1.0",
     "flowbite": "^1.8.1",

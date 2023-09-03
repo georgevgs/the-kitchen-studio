@@ -4,8 +4,7 @@ import { defineConfig, squooshImageService } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-import partytown from '@astrojs/partytown';
-import compress from 'astro-compress';
+import partytown from "@astrojs/partytown";
 import { SITE } from './src/config.mjs';
 import serviceWorker from "astrojs-service-worker";
 
@@ -41,16 +40,6 @@ export default defineConfig({
         },
       })
     ),
-    compress({
-      css: true,
-      html: {
-        removeAttributeQuotes: false,
-      },
-      img: false,
-      js: true,
-      svg: false,
-      logger: 1,
-    }),
     serviceWorker(),
   ],
   markdown: {},
