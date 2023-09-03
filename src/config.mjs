@@ -5,6 +5,7 @@ const CONFIG = {
 
   origin: "https://www.thekitchenstudio.gr",
   basePathname: "/",
+  trailingSlash: "",
 
   title: "The Kitchen Studio",
   description: "Σχεδιάζουμε την κουζίνα στα μέτρα σας",
