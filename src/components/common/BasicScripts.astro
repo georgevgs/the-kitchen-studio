@@ -8,352 +8,361 @@ import { SITE } from "../../config.mjs";
 ></script>
 
 <script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
-  const logoImages = document.querySelectorAll(".tks-logo-image");
+const logoImages = document.querySelectorAll(".tks-logo-image");
+const themeToggleButtonIcon = document.querySelectorAll(".theme-toggle");
 
-  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-  let vh = window.innerHeight * 0.01;
-  // Then we set the value in the --vh custom property to the root of the document
-  document.documentElement.style.setProperty("--vh", `${vh}px`);
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-  let touchDevice =
-    navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
+let touchDevice =
+	navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
 
-  function applyTheme(theme) {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      logoImages.forEach((element) => {
-        element.style.filter = "";
-      });
-    } else {
-      document.documentElement.classList.remove("dark");
-      logoImages.forEach((element) => {
-        element.style.filter = "brightness(0)";
-      });
-    }
-  }
+function applyTheme(theme) {
+	const isDark = theme === "dark";
 
-  if (
-    (defaultTheme && defaultTheme.endsWith(":only")) ||
-    (!localStorage.theme && defaultTheme !== "system")
-  ) {
-    applyTheme(defaultTheme.replace(":only", ""));
-  } else if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    applyTheme("dark");
-  } else {
-    applyTheme("light");
-  }
+	// Add or remove "dark" class on the document element
+	document.documentElement.classList.toggle("dark", isDark);
 
-  function attachEvent(selector, event, fn) {
-    const matches =
-      typeof selector === "string"
-        ? document.querySelectorAll(selector)
-        : selector;
-    if (matches && matches.length) {
-      matches.forEach((elem) => {
-        elem.addEventListener(event, (e) => fn(e, elem), false);
-      });
-    }
-  }
+	// Update logo images using a ternary expression
+	const filterValue = isDark ? "" : "brightness(0)";
+	logoImages.forEach((element) => {
+		element.style.filter = filterValue;
+	});
 
-  window.onload = function () {
-    let lastKnownScrollPosition = window.scrollY;
-    let ticking = true;
+	themeToggleButtonIcon.forEach((icon) => {
+		const shouldHide =
+			(icon.classList.contains("fa-sun") && !isDark) ||
+			(icon.classList.contains("fa-moon") && isDark);
+		icon.classList.toggle("hidden", shouldHide);
+	});
+}
 
-    attachEvent("[data-aw-toggle-menu]", "click", function (_, elem) {
-      elem.classList.toggle("expanded");
-      document.body.classList.toggle("overflow-hidden");
-      document.getElementById("header")?.classList.toggle("h-screen");
-      document.querySelector("#header nav")?.classList.toggle("hidden");
-    });
+if (
+	(defaultTheme && defaultTheme.endsWith(":only")) ||
+	(!localStorage.theme && defaultTheme !== "system")
+) {
+	applyTheme(defaultTheme.replace(":only", ""));
+} else if (
+	localStorage.theme === "dark" ||
+	(!("theme" in localStorage) &&
+		window.matchMedia("(prefers-color-scheme: dark)").matches)
+) {
+	applyTheme("dark");
+} else {
+	applyTheme("light");
+}
 
-    attachEvent("[data-aw-toggle-color-scheme]", "click", function () {
-      if (defaultTheme.endsWith(":only")) {
-        return;
-      }
-      document.documentElement.classList.toggle("dark");
+function attachEvent(selector, event, fn) {
+	const matches =
+		typeof selector === "string"
+			? document.querySelectorAll(selector)
+			: selector;
+	if (matches && matches.length) {
+		matches.forEach((elem) => {
+			elem.addEventListener(event, (e) => fn(e, elem), false);
+		});
+	}
+}
 
-      localStorage.theme = document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
+window.onload = function () {
+	let lastKnownScrollPosition = window.scrollY;
+	let ticking = true;
 
-      if (localStorage.theme === "dark") {
-        logoImages.forEach((element) => {
-          element.style.filter = "";
-        });
-      } else {
-        logoImages.forEach((element) => {
-          element.style.filter = "brightness(0)";
-        });
-      }
-    });
+	attachEvent("[data-aw-toggle-menu]", "click", function (_, elem) {
+		elem.classList.toggle("expanded");
+		document.body.classList.toggle("overflow-hidden");
+		document.getElementById("header")?.classList.toggle("h-screen");
+		document.querySelector("#header nav")?.classList.toggle("hidden");
+	});
 
-    attachEvent("[data-aw-social-share]", "click", function (_, elem) {
-      const network = elem.getAttribute("data-aw-social-share");
-      const url = encodeURIComponent(elem.getAttribute("data-aw-url"));
-      const text = encodeURIComponent(elem.getAttribute("data-aw-text"));
+	attachEvent("[data-aw-toggle-color-scheme]", "click", function () {
+		if (defaultTheme.endsWith(":only")) {
+			return;
+		}
 
-      let href;
-      switch (network) {
-        case "facebook":
-          href = `https://www.facebook.com/sharer.php?u=${url}`;
-          break;
-        case "twitter":
-          href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-          break;
-        case "linkedin":
-          href = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
-          break;
-        case "whatsapp":
-          href = `https://wa.me/?text=${text}%20${url}`;
-          break;
-        case "mail":
-          href = `mailto:?subject=%22${text}%22&body=${text}%20${url}`;
-          break;
+		// Toggle dark class on the document element and update localStorage
+		const isDark = document.documentElement.classList.toggle("dark");
+		localStorage.theme = isDark ? "dark" : "light";
 
-        default:
-          return;
-      }
+		// Update logo images using a ternary expression
+		const filterValue = isDark ? "" : "brightness(0)";
+		logoImages.forEach((element) => {
+			element.style.filter = filterValue;
+		});
 
-      const newlink = document.createElement("a");
-      newlink.target = "_blank";
-      newlink.href = href;
-      newlink.click();
-    });
+		themeToggleButtonIcon.forEach((icon) => {
+			const shouldHide =
+				(icon.classList.contains("fa-sun") && !isDark) ||
+				(icon.classList.contains("fa-moon") && isDark);
+			icon.classList.toggle("hidden", shouldHide);
+		});
+	});
 
-    function applyHeaderStylesOnScroll() {
-      const header = document.getElementById("header");
-      if (
-        lastKnownScrollPosition > 25 &&
-        !header?.classList.contains("scroll")
-      ) {
-        document.getElementById("header").classList.add("scroll");
-      } else if (
-        lastKnownScrollPosition <= 25 &&
-        header?.classList.contains("scroll")
-      ) {
-        document.getElementById("header").classList.remove("scroll");
-      }
-      ticking = false;
-    }
-    applyHeaderStylesOnScroll();
+	attachEvent("[data-aw-social-share]", "click", function (_, elem) {
+		const network = elem.getAttribute("data-aw-social-share");
+		const url = encodeURIComponent(elem.getAttribute("data-aw-url"));
+		const text = encodeURIComponent(elem.getAttribute("data-aw-text"));
 
-    attachEvent([document], "scroll", function () {
-      lastKnownScrollPosition = window.scrollY;
+		let href;
+		switch (network) {
+			case "facebook":
+				href = `https://www.facebook.com/sharer.php?u=${url}`;
+				break;
+			case "twitter":
+				href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+				break;
+			case "linkedin":
+				href = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
+				break;
+			case "whatsapp":
+				href = `https://wa.me/?text=${text}%20${url}`;
+				break;
+			case "mail":
+				href = `mailto:?subject=%22${text}%22&body=${text}%20${url}`;
+				break;
 
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          applyHeaderStylesOnScroll();
-        });
-        ticking = true;
-      }
-    });
-  };
+			default:
+				return;
+		}
 
-  window.onpageshow = function () {
-    document.documentElement.classList.add("motion-safe:scroll-smooth");
-    const elem = document.querySelector("[data-aw-toggle-menu]");
-    if (elem) {
-      elem.classList.remove("expanded");
-    }
-    document.body.classList.remove("overflow-hidden");
-    document.getElementById("header")?.classList.remove("h-screen");
-    document.querySelector("#header nav")?.classList.add("hidden");
-  };
+		const newlink = document.createElement("a");
+		newlink.target = "_blank";
+		newlink.href = href;
+		newlink.click();
+	});
 
-  document.addEventListener("DOMContentLoaded", () => {
-    applySlideInAnimation();
-    setupDropdownMenus();
-  });
+	function applyHeaderStylesOnScroll() {
+		const header = document.getElementById("header");
+		if (
+			lastKnownScrollPosition > 25 &&
+			!header?.classList.contains("scroll")
+		) {
+			document.getElementById("header").classList.add("scroll");
+		} else if (
+			lastKnownScrollPosition <= 25 &&
+			header?.classList.contains("scroll")
+		) {
+			document.getElementById("header").classList.remove("scroll");
+		}
+		ticking = false;
+	}
+	applyHeaderStylesOnScroll();
 
-  // Slide in animation
-  function applySlideInAnimation() {
-    let scrollPos;
-    const slidingElements = document.querySelectorAll(".slide-in");
+	attachEvent([document], "scroll", function () {
+		lastKnownScrollPosition = window.scrollY;
 
-    function checkPosition() {
-      scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+		if (!ticking) {
+			window.requestAnimationFrame(() => {
+				applyHeaderStylesOnScroll();
+			});
+			ticking = true;
+		}
+	});
+};
 
-      slidingElements.forEach((elem) => {
-        const elemPos = elem.getBoundingClientRect().top + scrollPos;
+window.onpageshow = function () {
+	document.documentElement.classList.add("motion-safe:scroll-smooth");
+	const elem = document.querySelector("[data-aw-toggle-menu]");
+	if (elem) {
+		elem.classList.remove("expanded");
+	}
+	document.body.classList.remove("overflow-hidden");
+	document.getElementById("header")?.classList.remove("h-screen");
+	document.querySelector("#header nav")?.classList.add("hidden");
+};
 
-        if (scrollPos + window.innerHeight > elemPos) {
-          elem.classList.add("active");
-        }
-      });
-    }
+document.addEventListener("DOMContentLoaded", () => {
+	applySlideInAnimation();
+	setupDropdownMenus();
+});
 
-    window.addEventListener("scroll", checkPosition);
-  }
+// Slide in animation
+function applySlideInAnimation() {
+	let scrollPos;
+	const slidingElements = document.querySelectorAll(".slide-in");
 
-  // Dropdown menu
-  function setupDropdownMenus() {
-    const dropdowns = document.querySelectorAll(".dropdown");
+	function checkPosition() {
+		scrollPos = window.pageYOffset || document.documentElement.scrollTop;
 
-    dropdowns.forEach((dropdown) => {
-      const menu = dropdown.querySelector(".dropdown-menu");
-      setMenuStyles(menu);
-      setMenuPosition(menu, dropdown);
-      const button = dropdown.querySelector("button");
-      setupMenuButton(button, menu);
-      handleMenuHover(dropdown, button, menu);
-    });
-  }
+		slidingElements.forEach((elem) => {
+			const elemPos = elem.getBoundingClientRect().top + scrollPos;
 
-  function setMenuStyles(menu) {
-    menu.style.marginLeft = "5px";
-    menu.style.opacity = "0";
-    menu.style.transform = "translateX(-10px)";
-    menu.style.transition = "all 0.3s ease";
-  }
+			if (scrollPos + window.innerHeight > elemPos) {
+				elem.classList.add("active");
+			}
+		});
+	}
 
-  function setMenuPosition(menu, dropdown) {
-    if (dropdown.parentElement?.classList.contains("dropdown-menu")) {
-      menu.style.top = "0";
-      menu.style.left = "100%";
-    }
-  }
+	window.addEventListener("scroll", checkPosition);
+}
 
-  function setupMenuButton(button, menu) {
-    if (button) {
-      button.addEventListener("click", (event) => {
-        if (window.innerWidth < 768) {
-          event.stopPropagation();
-          if (menu.style.display !== "block") {
-            showMenu(button, menu);
-          } else {
-            hideMenu(button, menu);
-          }
-        }
-      });
-    }
+// Dropdown menu
+function setupDropdownMenus() {
+	const dropdowns = document.querySelectorAll(".dropdown");
 
-    document.addEventListener("click", () => {
-      if (window.innerWidth < 768) {
-        hideMenu(button, menu);
-      }
-    });
-  }
+	dropdowns.forEach((dropdown) => {
+		const menu = dropdown.querySelector(".dropdown-menu");
+		setMenuStyles(menu);
+		setMenuPosition(menu, dropdown);
+		const button = dropdown.querySelector("button");
+		setupMenuButton(button, menu);
+		handleMenuHover(dropdown, button, menu);
+	});
+}
 
-  function handleMenuHover(dropdown, button, menu) {
-    if (window.innerWidth >= 768) {
-      dropdown.addEventListener("mouseenter", () => showMenu(button, menu));
-      dropdown.addEventListener("mouseleave", () => hideMenu(button, menu));
-    }
-  }
+function setMenuStyles(menu) {
+	menu.style.marginLeft = "5px";
+	menu.style.opacity = "0";
+	menu.style.transform = "translateX(-10px)";
+	menu.style.transition = "all 0.3s ease";
+}
 
-  function showMenu(button, menu) {
-    menu.style.display = "block";
-    menu.style.opacity = "1";
-    menu.style.transform = "translateX(0)";
-    menu.style.maxHeight = "500px";
-    button?.classList.add("open");
-  }
+function setMenuPosition(menu, dropdown) {
+	if (dropdown.parentElement?.classList.contains("dropdown-menu")) {
+		menu.style.top = "0";
+		menu.style.left = "100%";
+	}
+}
 
-  function hideMenu(button, menu) {
-    menu.style.opacity = "0";
-    menu.style.transform = "translateX(-10px)";
-    menu.style.maxHeight = "0";
-    button?.classList.remove("open");
+function setupMenuButton(button, menu) {
+	if (button) {
+		button.addEventListener("click", (event) => {
+			if (window.innerWidth < 768) {
+				event.stopPropagation();
+				if (menu.style.display !== "block") {
+					showMenu(button, menu);
+				} else {
+					hideMenu(button, menu);
+				}
+			}
+		});
+	}
 
-    setTimeout(() => {
-      menu.style.display = "none";
-    }, 300);
-  }
+	document.addEventListener("click", () => {
+		if (window.innerWidth < 768) {
+			hideMenu(button, menu);
+		}
+	});
+}
 
-  let headerHidden = false; // flag to track header visibility state
+function handleMenuHover(dropdown, button, menu) {
+	if (window.innerWidth >= 768) {
+		dropdown.addEventListener("mouseenter", () => showMenu(button, menu));
+		dropdown.addEventListener("mouseleave", () => hideMenu(button, menu));
+	}
+}
 
-  if (!touchDevice) {
-    function isElementPartiallyInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      const windowHeight =
-        window.innerHeight || document.documentElement.clientHeight;
-      const windowWidth =
-        window.innerWidth || document.documentElement.clientWidth;
+function showMenu(button, menu) {
+	menu.style.display = "block";
+	menu.style.opacity = "1";
+	menu.style.transform = "translateX(0)";
+	menu.style.maxHeight = "500px";
+	button?.classList.add("open");
+}
 
-      return (
-        ((rect.top >= 0 && rect.top < windowHeight) ||
-          (rect.bottom > 0 && rect.bottom <= windowHeight)) &&
-        ((rect.left >= 0 && rect.left < windowWidth) ||
-          (rect.right > 0 && rect.right <= windowWidth))
-      );
-    }
+function hideMenu(button, menu) {
+	menu.style.opacity = "0";
+	menu.style.transform = "translateX(-10px)";
+	menu.style.maxHeight = "0";
+	button?.classList.remove("open");
 
-    window.addEventListener("scroll", function () {
-      const footerLogoElement = document.querySelector(
-        ".tks-logo-image.footer"
-      );
-      const headerLogoElement = document.querySelector(
-        ".tks-logo-image.header"
-      );
+	setTimeout(() => {
+		menu.style.display = "none";
+	}, 300);
+}
 
-      if (footerLogoElement) {
-        if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
-          // If the footer logo is in the viewport and header logo is not already hidden
-          headerHidden = true; // Update the flag
-          headerLogoElement.animate(
-            [
-              { transform: "translateY(0)", opacity: 1 },
-              { transform: "translateY(50px)", opacity: 0 },
-            ],
-            {
-              duration: 500,
-              easing: "ease",
-              fill: "forwards",
-            }
-          );
-        } else if (
-          !isElementPartiallyInViewport(footerLogoElement) &&
-          headerHidden
-        ) {
-          // If the footer logo is not in the viewport and the header logo is hidden
-          headerHidden = false; // Update the flag
-          headerLogoElement.animate(
-            [
-              { transform: "translateY(50px)", opacity: 0 },
-              { transform: "translateY(0)", opacity: 1 },
-            ],
-            {
-              duration: 500,
-              easing: "ease",
-              fill: "forwards",
-            }
-          );
-        }
-      }
-    });
-  }
+let headerHidden = false; // flag to track header visibility state
 
-  // Mobile image carousel controls
-  let startX = 0;
-  let movedX = 0;
+if (!touchDevice) {
+	function isElementPartiallyInViewport(el) {
+		const rect = el.getBoundingClientRect();
+		const windowHeight =
+			window.innerHeight || document.documentElement.clientHeight;
+		const windowWidth =
+			window.innerWidth || document.documentElement.clientWidth;
 
-  const carousel = document.getElementById("default-carousel");
-  const prevButton = document.querySelector("[data-carousel-prev]");
-  const nextButton = document.querySelector("[data-carousel-next]");
+		return (
+			((rect.top >= 0 && rect.top < windowHeight) ||
+				(rect.bottom > 0 && rect.bottom <= windowHeight)) &&
+			((rect.left >= 0 && rect.left < windowWidth) ||
+				(rect.right > 0 && rect.right <= windowWidth))
+		);
+	}
 
-  if (carousel) {
-    carousel.addEventListener("touchstart", (event) => {
-      startX = event.touches[0].clientX;
-    });
+	window.addEventListener("scroll", function () {
+		const footerLogoElement = document.querySelector(
+			".tks-logo-image.footer"
+		);
+		const headerLogoElement = document.querySelector(
+			".tks-logo-image.header"
+		);
 
-    carousel.addEventListener("touchmove", (event) => {
-      movedX = event.touches[0].clientX - startX;
-    });
+		if (footerLogoElement) {
+			if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
+				// If the footer logo is in the viewport and header logo is not already hidden
+				headerHidden = true; // Update the flag
+				headerLogoElement.animate(
+					[
+						{ transform: "translateY(0)", opacity: 1 },
+						{ transform: "translateY(50px)", opacity: 0 },
+					],
+					{
+						duration: 500,
+						easing: "ease",
+						fill: "forwards",
+					}
+				);
+			} else if (
+				!isElementPartiallyInViewport(footerLogoElement) &&
+				headerHidden
+			) {
+				// If the footer logo is not in the viewport and the header logo is hidden
+				headerHidden = false; // Update the flag
+				headerLogoElement.animate(
+					[
+						{ transform: "translateY(50px)", opacity: 0 },
+						{ transform: "translateY(0)", opacity: 1 },
+					],
+					{
+						duration: 500,
+						easing: "ease",
+						fill: "forwards",
+					}
+				);
+			}
+		}
+	});
+}
 
-    carousel.addEventListener("touchend", () => {
-      const threshold = 50;
+// Mobile image carousel controls
+let startX = 0;
+let movedX = 0;
 
-      if (movedX > threshold && prevButton) {
-        prevButton.click();
-      } else if (movedX < -threshold && nextButton) {
-        nextButton.click();
-      }
+const carousel = document.getElementById("default-carousel");
+const prevButton = document.querySelector("[data-carousel-prev]");
+const nextButton = document.querySelector("[data-carousel-next]");
 
-      movedX = 0;
-    });
+if (carousel) {
+	carousel.addEventListener("touchstart", (event) => {
+		startX = event.touches[0].clientX;
+	});
+
+	carousel.addEventListener("touchmove", (event) => {
+		movedX = event.touches[0].clientX - startX;
+	});
+
+	carousel.addEventListener("touchend", () => {
+		const threshold = 50;
+
+		if (movedX > threshold && prevButton) {
+			prevButton.click();
+		} else if (movedX < -threshold && nextButton) {
+			nextButton.click();
+		}
+
+		movedX = 0;
+	});
   }
 </script>

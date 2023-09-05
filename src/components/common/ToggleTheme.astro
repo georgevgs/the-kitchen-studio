@@ -17,7 +17,8 @@ const {
 {
   !(SITE?.defaultTheme && SITE.defaultTheme.endsWith(':only')) && (
     <button type="button" class={className} aria-label={label} data-aw-toggle-color-scheme>
-      <i class="fa-regular fa-sun fa-lg"></i>
+      <i class="theme-toggle fa-solid fa-sun fa-lg"></i>
+      <i class="theme-toggle fa-solid fa-moon fa-lg hidden"></i>
     </button>
   )
 }
