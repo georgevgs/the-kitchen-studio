@@ -137,6 +137,6 @@ export const footerData = {
   ],
   footNote: `
     <span class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 float-left rounded-sm bg-[url(https://raw.githubusercontent.com/georgevgs/gv-portfolio/main/public/favicon.svg)]"></span>
-    Made by <a class="text-orange-800 hover:underline dark:text-gray-200 font-bold" href="https://vagdas.eu/" target="_blank" rel="noopener noreferrer"> VAGDAS</a> · All rights reserved.
+    Made by <a class="text-orange-500 hover:underline dark:text-gray-200 font-bold" href="https://vagdas.eu/" target="_blank" rel="noopener noreferrer"> VAGDAS</a> · All rights reserved.
   `,
 };
