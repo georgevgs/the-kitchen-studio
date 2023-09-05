@@ -5,6 +5,10 @@ import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
 import { getPermalink } from "./../utils/permalinks";
 
+import modernKitchenImage from '../assets/images/kitchens/modern/modern-kitchen.avif';
+import classicKitchenImage from '../assets/images/kitchens/classic/classic-kitchen-5.avif';
+import corianKitchenImage from '../assets/images/kitchens/corian/corian-kitchen-countertop.avif';
+
 const meta = {
   title: "Kitchens",
   description:
@@ -25,22 +29,23 @@ const meta = {
         {
           text: "Modern Kitchens",
           href: getPermalink("/kitchens/modern-kitchens"),
-          src: "/assets/kitchens/modern/modern-kitchen.avif",
+          src: modernKitchenImage,
           alt: "modern-kitchens",
         },
         {
           text: "Classic Kitchens",
           href: getPermalink("/kitchens/classic-kitchens"),
-          src: "/assets/kitchens/classic/classic-kitchen-5.avif",
+          src: classicKitchenImage,
           alt: "classic-kitchens",
         },
         {
           text: "Corian Kitchens",
           href: getPermalink("/kitchens/corian-kitchens"),
-          src: "/assets/kitchens/corian/corian-kitchen-countertop.avif",
+          src: corianKitchenImage,
           alt: "corian-kitchens",
         },
       ]}
+      widecategory={false}
     />
   </div>
 

@@ -1,6 +1,7 @@
 {
     "name": "The Kitchen Studio",
     "short_name": "The Kitchen Studio",
+    "description": "Ανανεώστε τον χώρο της κουζίνας σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική.",
     "icons": [
         {
             "src": "/the-kitchen-studio-192x192.png",

@@ -1,15 +1,18 @@
 ---
+import { Image } from "astro:assets";
+import logoImage from "../assets/images/the-kitchen-studio-logo-header.avif";
+
 const placement = Astro.props.placement;
 ---
 
 <span
   class="self-center ml-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
 >
-  <img
-    src="/assets/the-kitchen-studio-logo-header.avif"
+  <Image
+    src={logoImage}
     alt="the-kitchen-studio-logo"
     height="73"
     width="125"
-    class=`tks-logo-image ${placement} rounded-xl`
+    class={`tks-logo-image ${placement} rounded-xl`}
   /></span
 >

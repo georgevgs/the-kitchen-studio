@@ -5,6 +5,10 @@ import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
 import { getPermalink } from "./../utils/permalinks";
 
+import bathFurnituresImage from '../assets/images/bath/furniture/bath-furniture-2.avif';
+import corianBathroomImage from '../assets/images/bath/corian/corian-bathroom-sink-4.avif';
+import ioannisKaradimasImage from '../assets/images/bath/ioannis-karadimas.avif';
+
 const meta = {
   title: "Bath",
   description:
@@ -25,13 +29,13 @@ const meta = {
         {
           text: "Έπιπλα Μπάνιου",
           href: getPermalink("/bath/bath-furnitures"),
-          src: "/assets/bath/furniture/bath-furniture-2.avif",
+          src: bathFurnituresImage,
           alt: "bath-furniture",
         },
         {
           text: "Corian Bath",
           href: getPermalink("/bath/corian-bath"),
-          src: "/assets/bath/corian/corian-bathroom-sink-4.avif",
+          src: corianBathroomImage,
           alt: "corian-bath",
         },
       ]}
@@ -42,7 +46,7 @@ const meta = {
         {
           text: "Ioannis Karadimas",
           href: "https://ikaradimas.gr",
-          src: "/assets/bath/ioannis-karadimas.avif",
+          src: ioannisKaradimasImage,
           alt: "ioannis-karadimas",
         },
       ]}

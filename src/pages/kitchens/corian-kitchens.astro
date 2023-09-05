@@ -4,6 +4,13 @@ import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
 
+import corianKitchenCountertopImage from "../../assets/images/kitchens/corian/corian-kitchen-countertop.avif";
+import corianKitchenCountertop2Image from "../../assets/images/kitchens/corian/corian-kitchen-countertop-2.avif";
+import corianKitchenCountertop3Image from "../../assets/images/kitchens/corian/corian-kitchen-countertop-3.avif";
+import corianKitchenSinkImage from "../../assets/images/kitchens/corian/corian-kitchen-sink.avif";
+import corianKitchenSink2Image from "../../assets/images/kitchens/corian/corian-kitchen-sink-2.avif";
+import corianKitchenSink3Image from "../../assets/images/kitchens/corian/corian-kitchen-sink-3.avif";
+
 const meta = {
   title: "Corian Kitchens",
   description: "Έπιπλα κουζίνας από Corian",
@@ -21,27 +28,27 @@ const meta = {
     <Carousel
       images={[
         {
-          src: "/assets/kitchens/corian/corian-kitchen-countertop.avif",
+          src: corianKitchenCountertopImage,
           alt: "corian-kitchen-countertop",
         },
         {
-          src: "/assets/kitchens/corian/corian-kitchen-countertop-2.avif",
+          src: corianKitchenCountertop2Image,
           alt: "corian-kitchen-countertop",
         },
         {
-          src: "/assets/kitchens/corian/corian-kitchen-countertop-3.avif",
+          src: corianKitchenCountertop3Image,
           alt: "corian-kitchen-countertop",
         },
         {
-          src: "/assets/kitchens/corian/corian-kitchen-sink.avif",
+          src: corianKitchenSinkImage,
           alt: "corian-kitchen-sink",
         },
         {
-          src: "/assets/kitchens/corian/corian-kitchen-sink-2.avif",
+          src: corianKitchenSink2Image,
           alt: "corian-kitchen-sink",
         },
         {
-          src: "/assets/kitchens/corian/corian-kitchen-sink-3.avif",
+          src: corianKitchenSink3Image,
           alt: "corian-kitchen-sink",
         },
       ]}
@@ -49,5 +56,5 @@ const meta = {
     />
   </div>
 
-  <Spacer/>
+  <Spacer />
 </Layout>
