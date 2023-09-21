@@ -1,0 +1,23 @@
+---
+export interface Props {
+  label?: string;
+  class?: string;
+  iconClass?: string;
+  iconName?: string;
+}
+
+const {
+  label = "Toggle language between EL and EN",
+  class:
+    className = "text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center justify-center w-10 h-10",
+} = Astro.props;
+---
+
+<button
+  type="button"
+  class={className}
+  aria-label={label}
+  data-aw-toggle-language
+>
+  <i class="fa-solid fa-globe"></i>
+</button>

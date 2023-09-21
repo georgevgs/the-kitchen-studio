@@ -1,36 +1,38 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../components/widgets/Carousel.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
+import livingImage from "../assets/images/living/living.avif";
+import living2Image from "../assets/images/living/living-2.avif";
+import living3Image from "../assets/images/living/living-3.avif";
+import living4Image from "../assets/images/living/living-4.avif";
+import living5Image from "../assets/images/living/living-5.avif";
+import living6Image from "../assets/images/living/living-6.avif";
+import living7Image from "../assets/images/living/living-7.avif";
+import living8Image from "../assets/images/living/living-8.avif";
+import living9Image from "../assets/images/living/living-9.avif";
+import living10Image from "../assets/images/living/living-10.avif";
+import living11Image from "../assets/images/living/living-11.avif";
+import living12Image from "../assets/images/living/living-12.avif";
+import living13Image from "../assets/images/living/living-13.avif";
+import living14Image from "../assets/images/living/living-14.avif";
 
-import livingImage from '../assets/images/living/living.avif';
-import living2Image from '../assets/images/living/living-2.avif';
-import living3Image from '../assets/images/living/living-3.avif';
-import living4Image from '../assets/images/living/living-4.avif';
-import living5Image from '../assets/images/living/living-5.avif';
-import living6Image from '../assets/images/living/living-6.avif';
-import living7Image from '../assets/images/living/living-7.avif';
-import living8Image from '../assets/images/living/living-8.avif';
-import living9Image from '../assets/images/living/living-9.avif';
-import living10Image from '../assets/images/living/living-10.avif';
-import living11Image from '../assets/images/living/living-11.avif';
-import living12Image from '../assets/images/living/living-12.avif';
-import living13Image from '../assets/images/living/living-13.avif';
-import living14Image from '../assets/images/living/living-14.avif';
+changeLanguage("el");
 
 const meta = {
-  title: "Living",
-  description: "Μοντέρνα και λειτουργικά έπιπλα καθιστικού",
+    title: t("pages.living.title"),
+    description: t("pages.living.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Living"
-      subtitle="Το μέλλον της αισθητικής στα έπιπλα καθιστικού"
-      description="Ανακαλύψτε τον καινοτόμο και σύγχρονο χαρακτήρα των έπιπλων καθιστικού. Με τον χαρακτηριστικό σχεδιασμό τους και την προηγμένη αισθητική, τα έπιπλα αυτά αναδεικνύουν μια νέα διάσταση στο χώρο σας."
+      title={t("pages.living.title")}
+      subtitle={t("pages.living.subtitle")}
+      description={t("pages.living.description")}
     />
 
     <Carousel
@@ -96,5 +98,5 @@ const meta = {
     />
   </div>
 
-  <Spacer/>
+  <Spacer />
 </Layout>

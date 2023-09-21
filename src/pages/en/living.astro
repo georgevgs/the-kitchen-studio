@@ -1,0 +1,102 @@
+---
+import { t, changeLanguage } from "i18next";
+import Carousel from "../../components/widgets/Carousel.astro";
+import PageDescription from "../../components/widgets/PageDescription.astro";
+import Spacer from "../../components/widgets/Spacer.astro";
+import Layout from "../../layouts/PageLayout.astro";
+import livingImage from "../../assets/images/living/living.avif";
+import living2Image from "../../assets/images/living/living-2.avif";
+import living3Image from "../../assets/images/living/living-3.avif";
+import living4Image from "../../assets/images/living/living-4.avif";
+import living5Image from "../../assets/images/living/living-5.avif";
+import living6Image from "../../assets/images/living/living-6.avif";
+import living7Image from "../../assets/images/living/living-7.avif";
+import living8Image from "../../assets/images/living/living-8.avif";
+import living9Image from "../../assets/images/living/living-9.avif";
+import living10Image from "../../assets/images/living/living-10.avif";
+import living11Image from "../../assets/images/living/living-11.avif";
+import living12Image from "../../assets/images/living/living-12.avif";
+import living13Image from "../../assets/images/living/living-13.avif";
+import living14Image from "../../assets/images/living/living-14.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.living.title"),
+  description: t("pages.living.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="content-container">
+    <PageDescription
+      title={t("pages.living.title")}
+      subtitle={t("pages.living.subtitle")}
+      description={t("pages.living.description")}
+    />
+
+    <Carousel
+      images={[
+        {
+          src: livingImage,
+          alt: "living-furnitures",
+        },
+        {
+          src: living2Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living3Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living4Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living5Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living6Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living7Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living8Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living9Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living10Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living11Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living12Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living13Image,
+          alt: "living-furnitures",
+        },
+        {
+          src: living14Image,
+          alt: "living-furnitures",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer />
+</Layout>

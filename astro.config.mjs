@@ -7,6 +7,7 @@ import mdx from '@astrojs/mdx';
 import partytown from "@astrojs/partytown";
 import { SITE } from './src/config.mjs';
 import serviceWorker from "astrojs-service-worker";
+import astroI18next from "astro-i18next";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const whenExternalScripts = (items = []) =>
@@ -26,6 +27,7 @@ export default defineConfig({
   trailingSlash: "ignore",
   output: "static",
   integrations: [
+    astroI18next(),
     tailwind({
       config: {
         applyBaseStyles: false,

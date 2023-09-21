@@ -1,0 +1,137 @@
+---
+import { t, changeLanguage } from "i18next";
+import Carousel from "../../components/widgets/Carousel.astro";
+import PageDescription from "../../components/widgets/PageDescription.astro";
+import Spacer from "../../components/widgets/Spacer.astro";
+import Layout from "../../layouts/PageLayout.astro";
+import tilesImage from "../../assets/images/tiles/tile.avif";
+import tiles2Image from "../../assets/images/tiles/tile-2.avif";
+import tiles3Image from "../../assets/images/tiles/tile-3.avif";
+import tiles4Image from "../../assets/images/tiles/tile-4.avif";
+import tiles5Image from "../../assets/images/tiles/tile-5.avif";
+import tiles6Image from "../../assets/images/tiles/tile-6.avif";
+import tiles7Image from "../../assets/images/tiles/tile-7.avif";
+import tiles8Image from "../../assets/images/tiles/tile-8.avif";
+import tiles9Image from "../../assets/images/tiles/tile-9.avif";
+import tiles10Image from "../../assets/images/tiles/tile-10.avif";
+import tiles11Image from "../../assets/images/tiles/tile-11.avif";
+import tiles12Image from "../../assets/images/tiles/tile-12.avif";
+import tiles13Image from "../../assets/images/tiles/tile-13.avif";
+import tiles14Image from "../../assets/images/tiles/tile-14.avif";
+import tiles15Image from "../../assets/images/tiles/tile-15.avif";
+import tiles16Image from "../../assets/images/tiles/tile-16.avif";
+import tiles17Image from "../../assets/images/tiles/tile-17.avif";
+import tiles18Image from "../../assets/images/tiles/tile-18.avif";
+import tiles19Image from "../../assets/images/tiles/tile-19.avif";
+import tiles20Image from "../../assets/images/tiles/tile-20.avif";
+import tiles21Image from "../../assets/images/tiles/tile-21.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.tiles.title"),
+  description: t("pages.tiles.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="content-container">
+    <PageDescription
+      title={t("pages.tiles.title")}
+      subtitle={t("pages.tiles.subtitle")}
+      description={t("pages.tiles.description")}
+    />
+
+    <Carousel
+      images={[
+        {
+          src: tilesImage,
+          alt: "tiles",
+        },
+        {
+          src: tiles2Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles3Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles4Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles5Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles6Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles7Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles8Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles9Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles10Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles11Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles12Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles13Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles14Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles15Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles16Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles17Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles18Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles19Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles20Image,
+          alt: "tiles",
+        },
+        {
+          src: tiles21Image,
+          alt: "tiles",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer />
+</Layout>

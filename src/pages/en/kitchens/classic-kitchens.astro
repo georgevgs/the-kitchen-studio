@@ -1,0 +1,117 @@
+---
+import { t, changeLanguage } from "i18next";
+import Carousel from "../../../components/widgets/Carousel.astro";
+import PageDescription from "../../../components/widgets/PageDescription.astro";
+import Spacer from "../../../components/widgets/Spacer.astro";
+import Layout from "../../../layouts/PageLayout.astro";
+import classicKitchenImage from "../../../assets/images/kitchens/classic/classic-kitchen.avif";
+import classicKitchen2Image from "../../../assets/images/kitchens/classic/classic-kitchen-2.avif";
+import classicKitchen3Image from "../../../assets/images/kitchens/classic/classic-kitchen-3.avif";
+import classicKitchen4Image from "../../../assets/images/kitchens/classic/classic-kitchen-4.avif";
+import classicKitchen5Image from "../../../assets/images/kitchens/classic/classic-kitchen-5.avif";
+import classicKitchen6Image from "../../../assets/images/kitchens/classic/classic-kitchen-6.avif";
+import classicKitchen7Image from "../../../assets/images/kitchens/classic/classic-kitchen-7.avif";
+import classicKitchen8Image from "../../../assets/images/kitchens/classic/classic-kitchen-8.avif";
+import classicKitchen9Image from "../../../assets/images/kitchens/classic/classic-kitchen-9.avif";
+import classicKitchen10Image from "../../../assets/images/kitchens/classic/classic-kitchen-10.avif";
+import classicKitchen11Image from "../../../assets/images/kitchens/classic/classic-kitchen-11.avif";
+import classicKitchen12Image from "../../../assets/images/kitchens/classic/classic-kitchen-12.avif";
+import classicKitchen13Image from "../../../assets/images/kitchens/classic/classic-kitchen-13.avif";
+import classicKitchen14Image from "../../../assets/images/kitchens/classic/classic-kitchen-14.avif";
+import classicKitchen15Image from "../../../assets/images/kitchens/classic/classic-kitchen-15.avif";
+import classicKitchen16Image from "../../../assets/images/kitchens/classic/classic-kitchen-16.avif";
+import classicKitchen17Image from "../../../assets/images/kitchens/classic/classic-kitchen-17.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.kitchens.classic_kitchens.title"),
+  description: t("pages.kitchens.classic_kitchens.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="content-container">
+    <PageDescription
+      title={t("pages.kitchens.classic_kitchens.title")}
+      subtitle={t("pages.kitchens.classic_kitchens.subtitle")}
+      description={t("pages.kitchens.classic_kitchens.description")}
+    />
+
+    <Carousel
+      images={[
+        {
+          src: classicKitchenImage,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen2Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen3Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen4Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen5Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen6Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen7Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen8Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen9Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen10Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen11Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen12Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen13Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen14Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen15Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen16Image,
+          alt: "classic-kitchen",
+        },
+        {
+          src: classicKitchen17Image,
+          alt: "classic-kitchen",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer />
+</Layout>

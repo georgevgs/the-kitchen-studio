@@ -1,5 +1,5 @@
 ---
-import { getHomePermalink } from "../../utils/permalinks";
+import { localizePath } from "astro-i18next";
 import Logo from "../Logo.astro";
 
 interface Link {
@@ -52,7 +52,7 @@ const {
     <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
       <div class="col-span-12 lg:col-span-4">
         <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>
+          <a class="inline-block font-bold text-xl" href={localizePath('/')}>
             <Logo placement="footer" />
           </a>
         </div>
@@ -61,7 +61,7 @@ const {
             secondaryLinks.map(({ text, href }) => (
               <a
                 class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out mr-2"
-                href={href}
+                href={localizePath(href)}
                 set:html={text}
               />
             ))
@@ -78,7 +78,7 @@ const {
                   <li class="mb-2">
                     <a
                       class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={href}
+                      href={localizePath(href)}
                       aria-label={ariaLabel}
                     >
                       <Fragment set:html={text} />
@@ -100,7 +100,7 @@ const {
                 <a
                   class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center w-10 h-10"
                   aria-label={ariaLabel}
-                  href={href}
+                  href={localizePath(href)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

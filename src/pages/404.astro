@@ -1,6 +1,14 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Layout from "../layouts/BaseLayout.astro";
-import { getHomePermalink } from "../utils/permalinks";
+import { localizePath } from "astro-i18next";
+
+changeLanguage("el");
+
+const meta = {
+    title: t("not_found.title"),
+    description: t("not_found.title"),
+};
 ---
 
 <style>
@@ -72,18 +80,18 @@ import { getHomePermalink } from "../utils/permalinks";
   }
 </style>
 
-<Layout meta={{ title: "Error 404" }}>
+<Layout meta={meta}>
   <div class="flex items-center justify-center h-screen">
     <div class="container text-center">
       <h1 class="title">
         <span class="text-orange-500">404</span> - Page Not Found
       </h1>
-      <p>Oops! It seems like the kitchen furniture went on a coffee break.</p>
+      <p>{t("not_found.title")}</p>
       <div class="animated-furniture">
         <span style="font-size: 120px;">☕️</span>
       </div>
-      <p>Don't worry, we'll get everything back in order soon!</p>
-      <a class="back-btn" href={getHomePermalink()}>Back to homepage</a>
+      <p>{t("not_found.subtitle")}</p>
+      <a class="back-btn" href={localizePath('/')}>{t("not_found.button")}</a>
     </div>
   </div>
 </Layout>

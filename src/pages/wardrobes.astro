@@ -1,9 +1,9 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../components/widgets/Carousel.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
-
 import wardrobeImage from "../assets/images/wardrobes/wardrobe.avif";
 import wardrobe2Image from "../assets/images/wardrobes/wardrobe-2.avif";
 import wardrobe3Image from "../assets/images/wardrobes/wardrobe-3.avif";
@@ -21,18 +21,20 @@ import wardrobe14Image from "../assets/images/wardrobes/wardrobe-14.avif";
 import wardrobe15Image from "../assets/images/wardrobes/wardrobe-15.avif";
 import wardrobe16Image from "../assets/images/wardrobes/wardrobe-16.avif";
 
+changeLanguage("el");
+
 const meta = {
-  title: "Ντουλάπες Υπνοδωματίου",
-  description: "Ντουλάπες Υπνοδωματίου",
+    title: t("pages.wardrobes.title"),
+    description: t("pages.wardrobes.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Ντουλάπες Υπνοδωματίου"
-      subtitle="Οργανωμένη και χαλαρωτική ατμόσφαιρα στο υπνοδωμάτιό σας"
-      description="Ανακαλύψτε την αρμονία ανάμεσα στη λειτουργικότητα και την αισθητική με τις ντουλάπες υπνοδωματίου."
+      title={t("pages.wardrobes.title")}
+      subtitle={t("pages.wardrobes.subtitle")}
+      description={t("pages.wardrobes.description")}
     />
 
     <Carousel

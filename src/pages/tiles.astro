@@ -1,9 +1,9 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../components/widgets/Carousel.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
-
 import tilesImage from "../assets/images/tiles/tile.avif";
 import tiles2Image from "../assets/images/tiles/tile-2.avif";
 import tiles3Image from "../assets/images/tiles/tile-3.avif";
@@ -26,18 +26,20 @@ import tiles19Image from "../assets/images/tiles/tile-19.avif";
 import tiles20Image from "../assets/images/tiles/tile-20.avif";
 import tiles21Image from "../assets/images/tiles/tile-21.avif";
 
+changeLanguage("el");
+
 const meta = {
-  title: "Πλακάκια",
-  description: "Πλακάκια",
+    title: t("pages.tiles.title"),
+    description: t("pages.tiles.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Πλακάκια"
-      subtitle="Ατελείωτες επιλογές σε σχέδια, χρώματα, υλικά και μεγέθη"
-      description="Ανακαλύψτε την ποικιλία των πλακιδίων που μεταμορφώνουν τον χώρο σας σε έναν χώρο αισθητικής και πρακτικότητας."
+      title={t("pages.tiles.title")}
+      subtitle={t("pages.tiles.subtitle")}
+      description={t("pages.tiles.description")}
     />
 
     <Carousel

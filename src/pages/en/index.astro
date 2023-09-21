@@ -1,0 +1,256 @@
+---
+import { SITE } from "../../config.mjs";
+import Layout from "../../layouts/PageLayout.astro";
+import { t, changeLanguage } from "i18next";
+import modernKitchenImage from "../../assets/images/home-images/modern-kitchen-home.avif";
+import modernKitchenImage2 from "../../assets/images/home-images/modern-kitchen-home-2.avif";
+import classicKitchenImage from "../../assets/images/home-images/classic-kitchen-home.avif";
+import classicKitchenImage2 from "../../assets/images/home-images/classic-kitchen-home-2.avif";
+import wardrobeImage from "../../assets/images/home-images/wardrobe-home.avif";
+import wardrobeImage2 from "../../assets/images/home-images/wardrobe-home-2.avif";
+import wardrobeImage3 from "../../assets/images/home-images/wardrobe-home-3.avif";
+import bedroomBedImage from "../../assets/images/home-images/bedroom-bed-home.avif";
+import modernBathroomImage from "../../assets/images/home-images/modern-bathroom-home.avif";
+import modernBathroomViewImage from "../../assets/images/home-images/modern-bathroom-view-home.avif";
+import showroomBWImage from "../../assets/images/showroom/the-kitchen-studio-showroom-bw.avif";
+import Features from "../../components/widgets/Features.astro";
+import Features2 from "../../components/widgets/Features2.astro";
+import Steps from "../../components/widgets/Steps.astro";
+import FAQs from "../../components/widgets/FAQs.astro";
+import Stats from "../../components/widgets/Stats.astro";
+import CallToAction from "../../components/widgets/CallToAction.astro";
+import Carousel from "../../components/widgets/Carousel.astro";
+import { getPermalink } from "../../utils/permalinks";
+import { localizePath } from "astro-i18next";
+
+changeLanguage("en");
+
+const lang = "EN";
+const meta = {
+  title: SITE.title,
+  description: SITE.description,
+  dontUseTitleTemplate: true,
+};
+---
+
+<Layout {meta} lang={lang}>
+  <!-- Carousel Widget *************** -->
+
+  <Carousel
+    images={[
+      {
+        src: modernKitchenImage,
+        alt: "modern-kitchen-home",
+      },
+      {
+        src: modernKitchenImage2,
+        alt: "modern-kitchen-home",
+      },
+      {
+        src: classicKitchenImage,
+        alt: "classic-kitchen-home",
+      },
+      {
+        src: classicKitchenImage2,
+        alt: "classic-kitchen-home",
+      },
+      {
+        src: wardrobeImage,
+        alt: "wardrobe-home",
+      },
+      {
+        src: wardrobeImage2,
+        alt: "wardrobe-home",
+      },
+      {
+        src: wardrobeImage3,
+        alt: "wardrobe-home",
+      },
+      {
+        src: bedroomBedImage,
+        alt: "bedroom-bed-home",
+      },
+      {
+        src: modernBathroomImage,
+        alt: "modern-bathroom-home",
+      },
+      {
+        src: modernBathroomViewImage,
+        alt: "modern-bathroom-view-home",
+      },
+    ]}
+    widthType="full-width"
+  />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    highlight={t("home.features.highlight")}
+    title=""
+    subtitle={t("home.features.subtitle")}
+    items={[
+      [
+        {
+          title: t("home.features.items.first_title"),
+          description: "",
+          icon: "fa-solid fa-chair",
+        },
+        {
+          title: t("home.features.items.second_title"),
+          description: "",
+          icon: "fa-solid fa-hourglass",
+        },
+        {
+          title: t("home.features.items.third_title"),
+          description: "",
+          icon: "fa-solid fa-tag",
+        },
+      ],
+      [
+        {
+          title: t("home.features.items.fourth_title"),
+          description: "",
+          icon: "fa-solid fa-arrow-up",
+        },
+        {
+          title: t("home.features.items.fith_title"),
+          description: "",
+          icon: "fa-solid fa-headset",
+        },
+      ],
+    ]}
+  />
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title={t("home.steps.title")}
+    items={[
+      {
+        title: t("home.steps.items.first_item.title"),
+        description: t("home.steps.items.first_item.description"),
+        icon: "fa-solid fa-tape",
+      },
+      {
+        title: t("home.steps.items.second_item.title"),
+        description: t("home.steps.items.second_item.description"),
+        icon: "fa-solid fa-pencil",
+      },
+      {
+        title: t("home.steps.items.third_item.title"),
+        description: t("home.steps.items.third_item.description"),
+        icon: "fa-solid fa-screwdriver-wrench",
+      },
+      {
+        title: t("home.steps.items.fourth_item.title"),
+        icon: "fa-solid fa-check",
+      },
+    ]}
+    image={{
+      src: showroomBWImage,
+      alt: "the-kitchen-studio-showroom",
+    }}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title={t("home.features2.title")}
+    subtitle=""
+    highlight={t("home.features2.highlight")}
+    items={[
+      {
+        title: t("home.features2.items.first_item.title"),
+        description: t("home.features2.items.first_item.description"),
+        icon: "fa-solid fa-fire-burner",
+        href: localizePath("/kitchens"),
+      },
+      {
+        title: t("home.features2.items.second_item.title"),
+        description: t("home.features2.items.second_item.description"),
+        icon: "fa-solid fa-bath",
+        href: localizePath("/bath"),
+      },
+      {
+        title: t("home.features2.items.third_item.title"),
+        description: t("home.features2.items.third_item.description"),
+        icon: "fa-solid fa-table-cells",
+        href: localizePath("/tiles"),
+      },
+      {
+        title: t("home.features2.items.fourth_item.title"),
+        description: t("home.features2.items.fourth_item.description"),
+        icon: "fa-solid fa-shirt",
+        href: localizePath("/wardrobes"),
+      },
+      {
+        title: t("home.features2.items.fith_item.title"),
+        description: t("home.features2.items.fith_item.description"),
+        icon: "fa-solid fa-door-closed",
+        href: localizePath("/doors"),
+      },
+      {
+        title: t("home.features2.items.sixth_item.title"),
+        description: t("home.features2.items.sixth_item.description"),
+        icon: "fa-solid fa-couch",
+        href: localizePath("/living"),
+      },
+    ]}
+  />
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title={t("home.faq.title")}
+    ,
+    subtitle=""
+    highlight=""
+    items={[
+      [
+        {
+          question: t("home.faq.items.first_item.question"),
+          answer: t("home.faq.items.first_item.answer"),
+        },
+        {
+          question: t("home.faq.items.second_item.question"),
+          answer: t("home.faq.items.second_item.answer"),
+        },
+      ],
+      [
+        {
+          question: t("home.faq.items.third_item.question"),
+          answer: t("home.faq.items.third_item.answer"),
+        },
+        {
+          question: t("home.faq.items.fourth_item.question"),
+          answer: t("home.faq.items.fourth_item.answer"),
+        },
+      ],
+    ]}
+  />
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    items={[
+      { name: t("home.stats.first_stat"), value: "1K" },
+      { name: t("home.stats.second_stat"), value: "250" },
+      { name: t("home.stats.third_stat"), value: "800" },
+      { name: t("home.stats.fourth_stat"), value: "∞" },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    callToAction={{
+      text: t("home.call_to_action.text"),
+      href: "/assets/leaflets/the-kitchen-studio-leaflet-v1.pdf",
+      icon: "tabler:download",
+    }}
+  >
+    <Fragment slot="title">{t("home.call_to_action.title")}</Fragment>
+
+    <Fragment slot="subtitle">{t("home.call_to_action.subtitle")}</Fragment>
+  </CallToAction>
+</Layout>

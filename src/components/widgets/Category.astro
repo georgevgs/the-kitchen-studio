@@ -1,5 +1,7 @@
 ---
+import { t, changeLanguage } from "i18next";
 import { Image } from "astro:assets";
+import { localizePath } from "astro-i18next";
 
 interface Category {
   text: string;
@@ -33,7 +35,7 @@ const wideCategory = Astro.props.widecategory;
     {
       categories.map((category: Category) => (
         <a
-          href={category.href}
+          href={localizePath(category.href)}
           class="block w-full"
           target={wideCategory ? "_blank" : ""}
           rel={wideCategory ? "noopener noreferrer" : ""}
@@ -57,8 +59,8 @@ const wideCategory = Astro.props.widecategory;
               </div>
               <div class="mb-3 inline-flex items-center px-3 md:px-5 py-2 pb-3 text-sm font-medium text-gray-800 dark:text-white bg-white dark:bg-orange-500 border border-theme rounded-full shadow-sm hover:bg-gray-100 dark:hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300">
                 {wideCategory
-                  ? "Επισκεφτείτε το ikaradimas.gr"
-                  : "Δείτε περισσότερα"}{" "}
+                  ? t("components.category.button_karadimas")
+                  : t("components.category.button_more")}
                 <svg
                   class="w-3.5 h-3.5 ml-2"
                   aria-hidden="true"

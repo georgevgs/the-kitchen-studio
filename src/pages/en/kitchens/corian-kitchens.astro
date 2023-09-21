@@ -1,0 +1,62 @@
+---
+import { t, changeLanguage } from "i18next";
+import Carousel from "../../../components/widgets/Carousel.astro";
+import PageDescription from "../../../components/widgets/PageDescription.astro";
+import Spacer from "../../../components/widgets/Spacer.astro";
+import Layout from "../../../layouts/PageLayout.astro";
+import corianKitchenCountertopImage from "../../../assets/images/kitchens/corian/corian-kitchen-countertop.avif";
+import corianKitchenCountertop2Image from "../../../assets/images/kitchens/corian/corian-kitchen-countertop-2.avif";
+import corianKitchenCountertop3Image from "../../../assets/images/kitchens/corian/corian-kitchen-countertop-3.avif";
+import corianKitchenSinkImage from "../../../assets/images/kitchens/corian/corian-kitchen-sink.avif";
+import corianKitchenSink2Image from "../../../assets/images/kitchens/corian/corian-kitchen-sink-2.avif";
+import corianKitchenSink3Image from "../../../assets/images/kitchens/corian/corian-kitchen-sink-3.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.kitchens.corian_kitchens.title"),
+  description: t("pages.kitchens.corian_kitchens.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="content-container">
+    <PageDescription
+      title={t("pages.kitchens.corian_kitchens.title")}
+      subtitle={t("pages.kitchens.corian_kitchens.subtitle")}
+      description={t("pages.kitchens.corian_kitchens.description")}
+    />
+
+    <Carousel
+      images={[
+        {
+          src: corianKitchenCountertopImage,
+          alt: "corian-kitchen-countertop",
+        },
+        {
+          src: corianKitchenCountertop2Image,
+          alt: "corian-kitchen-countertop",
+        },
+        {
+          src: corianKitchenCountertop3Image,
+          alt: "corian-kitchen-countertop",
+        },
+        {
+          src: corianKitchenSinkImage,
+          alt: "corian-kitchen-sink",
+        },
+        {
+          src: corianKitchenSink2Image,
+          alt: "corian-kitchen-sink",
+        },
+        {
+          src: corianKitchenSink3Image,
+          alt: "corian-kitchen-sink",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer />
+</Layout>

@@ -1,0 +1,214 @@
+{
+    "site": {
+        "title": "The Kitchen Studio",
+        "description": "Kitchen furnitures in Glyfada"
+    },
+    "home": {
+        "features": {
+            "highlight": "RENOVATION AND DECORATION OF YOUR SPACE",
+            "subtitle": "📐 We design to your specifications",
+            "items": {
+                "first_title": "The ultimate specialization in the field of furniture",
+                "second_title": "The flawless aesthetics, the timelessness and the functionality",
+                "third_title": "Renovation with solutions and advantageous offers",
+                "fourth_title": "The provision of high-level services in renovation",
+                "fith_title": "Technical support after the sale"
+            }
+        },
+        "steps": {
+            "title": "The kitchen of your dreams in 3 simple steps",
+            "items": {
+                "first_item": {
+                    "title": "Step 1: Visit our store",
+                    "description": "Come to our store and we discuss your needs."
+                },
+                "second_item": {
+                    "title": "Step 2: Design",
+                    "description": "Based on the measurements from your space, we will design your kitchen in combination with your needs and desires."
+                },
+                "third_item": {
+                    "title": "Step 3: Installation",
+                    "description": "After we finalize the design together and order your kitchen, the installation will begin by our team."
+                },
+                "fourth_item": {
+                    "title": "Ready!"
+                }
+            }
+        },
+        "features2": {
+            "title": "We undertake:",
+            "highlight": "WE DESIGN TO YOUR SPECIFICATIONS",
+            "items": {
+                "first_item": {
+                    "title": "Kitchen Furniture",
+                    "description": "Discover quality kitchen furnitures with functionality, aesthetics, and innovative design. Trust us for the ideal solution for your space."
+                },
+                "second_item": {
+                    "title": "Bath Furniture",
+                    "description": "Discover unique bathroom furnitures that combines quality, functionality, and aesthetics. Be inspired by the innovative design."
+                },
+                "third_item": {
+                    "title": "Tiles",
+                    "description": "Discover unique tiles for impressive and functional style in your space."
+                },
+                "fourth_item": {
+                    "title": "Wardrobes",
+                    "description": "Discover practical and functional wardrobes for organization and storage in your space."
+                },
+                "fith_item": {
+                    "title": "Doors",
+                    "description": "Discover quality doors that add functionality and aesthetics to your space."
+                },
+                "sixth_item": {
+                    "title": "Living",
+                    "description": "Refresh your space with living room furnitures that will upgrade the look and bring a new feel to your living room."
+                }
+            }
+        },
+        "faq": {
+            "title": "FAQ",
+            "items": {
+                "first_item": {
+                    "question": "How can I choose the right kitchen furniture for my space?",
+                    "answer": "To choose the right kitchen furniture for your space, we recommend visiting our store. We have a wide range of kitchen furniture on display to inspire you and help you make the right decision. Additionally, we can arrange an appointment to visit your space and provide personalized advice."
+                },
+                "second_item": {
+                    "question": "What materials are suitable for kitchen furniture?",
+                    "answer": "Kitchen furniture can be made from various materials such as wood, MDF, metal, and Corian®. During your visit to our store, we can present you with different material options and explain their advantages and features, helping you make an informed choice."
+                },
+                "third_item": {
+                    "question": "How can I schedule an appointment to discuss my needs?",
+                    "answer": "To schedule an appointment to discuss your needs and receive personalized advice, please contact us via the phone number or email provided on our website. We will be happy to assist you and arrange a suitable appointment."
+                },
+                "fourth_item": {
+                    "question": "Do you provide a warranty for the kitchen furnitures?",
+                    "answer": "Yes, we provide a warranty for the kitchen furniture you purchase from us. The details of the warranty will be presented to you during your visit to our store, and all the necessary information regarding coverage and duration will be covered."
+                }
+            }
+        },
+        "stats": {
+            "first_stat": "CUSTOMERS",
+            "second_stat": "PROJECTS",
+            "third_stat": "KITCHENS",
+            "fourth_stat": "SMILES"
+        },
+        "call_to_action": {
+            "text": "Take a look",
+            "title": "The Kitchen Studio leaflet",
+            "subtitle": "Browse our brochure!"
+        }
+    },
+    "contact": {
+        "title": "Title",
+        "name": "Full Name",
+        "email": "Email",
+        "message": "Message",
+        "terms_a": " I have read and accept the ",
+        "terms_b": "privacy policy",
+        "send": "Send",
+        "success_message": "Your message has been sent successfully!",
+        "phone": "Phone",
+        "address": "Grigoriou Lampraki 28",
+        "city": "Glyfada",
+        "working_hours": "Operating hours",
+        "mon_wed_sat": "Monday - Wednesday - Saturday",
+        "tue_thu_fri": "Tuesday - Thursday - Friday"
+    },
+    "not_found": {
+        "title": "Oops! It seems like the kitchen furniture went on a coffee break.",
+        "subtitle": "Don't worry, we'll get everything back in order soon!",
+        "button": "Back to homepage"
+    },
+    "pages": {
+        "bath": {
+            "bath_furnitures": {
+                "title": "Bathroom Furniture",
+                "subtitle": "Contemporary clean lines and high-tech materials",
+                "description": "Discover the wonderful variety of bathroom furniture that can transform your space into a place of relaxation and care."
+            },
+            "corian_bath": {
+                "title": "Corian Bath",
+                "subtitle": "The future of bathroom aesthetics",
+                "description": "Explore the innovative and contemporary aesthetics of Corian Bath and indulge in the unique experience it offers."
+            },
+            "bath_category": {
+                "title": "Bath",
+                "subtitle": "Modern sleek lines and high-tech materials",
+                "description": "Create the ideal bathroom with our variety of bathroom furniture and Corian solutions. Refresh your space with modern or classic bathroom furniture designs, designed to combine practicality and aesthetics.",
+                "categories": {
+                    "text_bath_furnitures": "Bathroom Furniture",
+                    "text_corian_bath": "Corian Bath",
+                    "text_karadimas": "Ioannis Karadimas"
+                }
+            }
+        },
+        "kitchens": {
+            "classic_kitchens": {
+                "title": "Classic Kitchens",
+                "subtitle": "The charm of classic kitchen furniture",
+                "description": "Discover the timeless charm of classic kitchen furniture. Classic kitchen furniture combines the harmony of the past with the functionality of the present."
+            },
+            "modern_kitchens": {
+                "title": "Modern Kitchens",
+                "subtitle": "Simple lines and durable high-quality materials",
+                "description": "Discover the aesthetics of the future with modern kitchen furniture. With exceptional design and innovative materials, they incorporate modern technology and functional innovations"
+            },
+            "corian_kitchens": {
+                "title": "Corian Kitchens",
+                "subtitle": "The future of aesthetics in kitchen furniture",
+                "description": "Explore the innovative and contemporary aesthetics of Corian Kitchens"
+            },
+            "kitchens_category": {
+                "title": "Kitchens",
+                "subtitle": "Modern minimalist lines and high-tech materials.",
+                "description": "Discover unique kitchen designs: modern, classic, and Corian. Redefine your space with refined kitchen furniture that combines functionality and aesthetics.",
+                "categories": {
+                    "text_modern_kitchens": "Modern Kitchens",
+                    "text_classic_kitchens": "Classic Kitchens",
+                    "text_corian_kitchens": "Corian Kitchens"
+                }
+            }
+        },
+        "doors": {
+            "title": "Doors",
+            "subtitle": "Endless options with different materials, such as wood, glass, and metal",
+            "description": "Discover doors that can add character and functionality to both the interior and exterior spaces of your home."
+        },
+        "erga": {
+            "title": "Projects",
+            "subtitle": "As unique as you are",
+            "description": "Explore our projects and see the possibilities we offer you."
+        },
+        "living": {
+            "title": "Living",
+            "subtitle": "The future of aesthetics in living room furniture.",
+            "description": "Discover the innovative and contemporary character of living room furniture. With their distinctive design and advanced aesthetics, these pieces bring a new dimension to your space."
+        },
+        "meletes": {
+            "title": "Designs",
+            "subtitle": "Explore our designs",
+            "description": "Our designs are characterized by careful design and thought, taking into account both the aesthetics and functionality of the space."
+        },
+        "showroom": {
+            "title": "Showroom",
+            "subtitle": "Glyfada Showroom",
+            "description": "Visit our Showroom and find the ideal kitchen among a large and unique range of kitchen furniture."
+        },
+        "tiles": {
+            "title": "Tiles",
+            "subtitle": "Endless options in designs, colors, materials, and sizes",
+            "description": "Discover the variety of tiles that transform your space into an area of aesthetics and practicality."
+        },
+        "wardrobes": {
+            "title": "Wardrobes",
+            "subtitle": "Organized and relaxing atmosphere in your bedroom",
+            "description": "Discover the harmony between functionality and aesthetics with bedroom wardrobes."
+        }
+    },
+    "components": {
+        "category": {
+            "button_more": "See More ",
+            "button_karadimas": "Visit ikaradimas.gr "
+        }
+    }
+}

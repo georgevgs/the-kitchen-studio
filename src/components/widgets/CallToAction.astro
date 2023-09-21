@@ -1,4 +1,6 @@
 ---
+import { getPermalink } from "~/utils/permalinks";
+
 interface CallToAction {
   text: string;
   href: string;
@@ -41,7 +43,7 @@ const {
             callToAction.text &&
             callToAction.href && (
               <div class="mt-6 max-w-xs mx-auto">
-                <a class="btn btn-primary w-full sm:w-auto" href={callToAction.href} target="_blank" rel="noopener">
+                <a class="btn btn-primary w-full sm:w-auto" href={getPermalink(callToAction.href)} target="_blank" rel="noopener">
                   {callToAction.icon && <i class="fa-solid fa-download mr-2 -ml-1.5"></i>}
                   {callToAction.text}
                 </a>

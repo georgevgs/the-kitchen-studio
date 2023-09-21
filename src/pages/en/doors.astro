@@ -1,0 +1,87 @@
+---
+import { t, changeLanguage } from "i18next";
+import Carousel from "../../components/widgets/Carousel.astro";
+import PageDescription from "../../components/widgets/PageDescription.astro";
+import Spacer from "../../components/widgets/Spacer.astro";
+import Layout from "../../layouts/PageLayout.astro";
+import doorImage from "../../assets/images/doors/door.avif";
+import door2Image from "../../assets/images/doors/door-2.avif";
+import door3Image from "../../assets/images/doors/door-3.avif";
+import door4Image from "../../assets/images/doors/door-4.avif";
+import door5Image from "../../assets/images/doors/door-5.avif";
+import door6Image from "../../assets/images/doors/door-6.avif";
+import door7Image from "../../assets/images/doors/door-7.avif";
+import door8Image from "../../assets/images/doors/door-8.avif";
+import door9Image from "../../assets/images/doors/door-9.avif";
+import door10Image from "../../assets/images/doors/door-10.avif";
+import door11Image from "../../assets/images/doors/door-11.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.doors.title"),
+  description: t("pages.doors.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="content-container">
+    <PageDescription
+      title={t("pages.doors.title")}
+      subtitle={t("pages.doors.subtitle")}
+      description={t("pages.doors.description")}
+    />
+
+    <Carousel
+      images={[
+        {
+          src: doorImage,
+          alt: "doors",
+        },
+        {
+          src: door2Image,
+          alt: "doors",
+        },
+        {
+          src: door3Image,
+          alt: "doors",
+        },
+        {
+          src: door4Image,
+          alt: "doors",
+        },
+        {
+          src: door5Image,
+          alt: "doors",
+        },
+        {
+          src: door6Image,
+          alt: "doors",
+        },
+        {
+          src: door7Image,
+          alt: "doors",
+        },
+        {
+          src: door8Image,
+          alt: "doors",
+        },
+        {
+          src: door9Image,
+          alt: "doors",
+        },
+        {
+          src: door10Image,
+          alt: "doors",
+        },
+        {
+          src: door11Image,
+          alt: "doors",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer />
+</Layout>

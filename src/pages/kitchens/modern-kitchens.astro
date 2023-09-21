@@ -1,9 +1,9 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
-
 import modernKitchenImage from "../../assets/images/kitchens/modern/modern-kitchen.avif";
 import modernKitchen2Image from "../../assets/images/kitchens/modern/modern-kitchen-2.avif";
 import modernKitchen3Image from "../../assets/images/kitchens/modern/modern-kitchen-3.avif";
@@ -22,18 +22,20 @@ import modernKitchen15Image from "../../assets/images/kitchens/modern/modern-kit
 import modernKitchen16Image from "../../assets/images/kitchens/modern/modern-kitchen-16.avif";
 import modernKitchen17Image from "../../assets/images/kitchens/modern/modern-kitchen-17.avif";
 
+changeLanguage("el");
+
 const meta = {
-  title: "Modern Kitchens",
-  description: "Μοντέρνα έπιπλα κουζίνας",
+    title: t("pages.kitchens.modern_kitchens.title"),
+    description: t("pages.kitchens.modern_kitchens.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Modern Kitchens"
-      subtitle="Απλές γραμμές και ανθεκτικά υλικά υψηλής ποιότητας"
-      description="Ανακαλύψτε την αισθητική του μέλλοντος με τα μοντέρνα έπιπλα κουζίνας. Με εξαιρετικό design και πρωτοποριακά υλικά, ενσωματώνουν τη σύγχρονη τεχνολογία και τις λειτουργικές καινοτομίες."
+    title={t("pages.kitchens.modern_kitchens.title")}
+    subtitle={t("pages.kitchens.modern_kitchens.subtitle")}
+    description={t("pages.kitchens.modern_kitchens.description")}
     />
 
     <Carousel

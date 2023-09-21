@@ -2,8 +2,10 @@
 import Logo from "../../components/Logo.astro";
 import ToggleTheme from "../../components/common/ToggleTheme.astro";
 import ToggleMenu from "../../components/common/ToggleMenu.astro";
+import ToggleLanguage from "../common/ToggleLanguage.astro";
 
-import { getHomePermalink, getPermalink, getAsset } from "../../utils/permalinks";
+import { getAsset } from "../../utils/permalinks";
+import { localizePath } from "astro-i18next";
 
 interface Link {
   text?: string;
@@ -54,10 +56,11 @@ const {
     <div
       class:list={[{ "mr-auto": position === "right" }, "flex justify-between"]}
     >
-      <a class="flex items-center" href={getHomePermalink()}>
+      <a class="flex items-center" href={localizePath("/")}>
         <Logo placement="header" />
       </a>
       <div class="flex items-center md:hidden">
+        <ToggleLanguage iconClass="w-5 h-5" />
         <ToggleTheme />
         <ToggleMenu />
       </div>
@@ -78,8 +81,7 @@ const {
               {links?.length ? (
                 <>
                   <button class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out">
-                    {text}{" "}
-                    <i class="fa-solid fa-chevron-down ml-1"></i>
+                    {text} <i class="fa-solid fa-chevron-down ml-1" />
                   </button>
                   <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
                     {links.map(
@@ -100,7 +102,7 @@ const {
                             <>
                               <button class="rotate-icon font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out">
                                 {text2}{" "}
-                                <i class="fa-solid fa-chevron-down icon ml-1"></i>
+                                <i class="fa-solid fa-chevron-down icon ml-1" />
                               </button>
                               <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
                                 {subLinks.map(
@@ -112,7 +114,7 @@ const {
                                     <li>
                                       <a
                                         class="first:rounded-t last:rounded-b md:hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap"
-                                        href={href3}
+                                        href={localizePath(href3)}
                                         target={newtab3 ? "_blank" : ""}
                                         rel={
                                           newtab3 ? "noopener noreferrer" : ""
@@ -128,7 +130,7 @@ const {
                           ) : (
                             <a
                               class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-                              href={href2}
+                              href={localizePath(href2)}
                             >
                               {text2}
                             </a>
@@ -141,7 +143,7 @@ const {
               ) : (
                 <a
                   class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-                  href={href}
+                  href={localizePath(href)}
                 >
                   {text}
                 </a>
@@ -151,7 +153,7 @@ const {
         }
         <li class="md:hidden">
           <a
-            href={getPermalink("/contact")}
+            href={localizePath("/contact")}
             class="font-medium hover:text-gray-900 dark:hover:text-white px-0 py-2 pr-4 mt-4 flex items-center"
           >
             <span class="border-2 border-gray-500 rounded-xl px-4 py-2">
@@ -168,8 +170,8 @@ const {
       ]}
     >
       <div class="hidden items-center md:flex">
+        <ToggleLanguage iconClass="w-5 h-5" />
         {showToggleTheme && <ToggleTheme iconClass="w-5 h-5" />}
-
         {
           showRssFeed && (
             <a
@@ -177,7 +179,7 @@ const {
               aria-label="RSS Feed"
               href={getAsset("/rss.xml")}
             >
-              <i class="fa-solid fa-rss"></i>
+              <i class="fa-solid fa-rss" />
             </a>
           )
         }
@@ -193,7 +195,7 @@ const {
                       "btn-primary": type === "primary",
                     },
                   ]}
-                  href={href}
+                  href={localizePath(href)}
                 >
                   <Fragment set:html={text} />
                 </a>

@@ -1,0 +1,59 @@
+---
+import { t, changeLanguage } from "i18next";
+import Category from "../../components/widgets/Category.astro";
+import PageDescription from "../../components/widgets/PageDescription.astro";
+import Spacer from "../../components/widgets/Spacer.astro";
+import Layout from "../../layouts/PageLayout.astro";
+import { localizePath } from "astro-i18next";
+import bathFurnituresImage from "../../assets/images/bath/furniture/bath-furniture-2.avif";
+import corianBathroomImage from "../../assets/images/bath/corian/corian-bathroom-sink-4.avif";
+import ioannisKaradimasImage from "../../assets/images/bath/ioannis-karadimas.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.bath.bath_category.title"),
+  description: t("pages.bath.bath_category.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="category-container">
+    <PageDescription
+      title={t("pages.bath.bath_category.title")}
+      subtitle={t("pages.bath.bath_category.subtitle")}
+      description={t("pages.bath.bath_category.description")}
+    />
+
+    <Category
+      categories={[
+        {
+          text: t("pages.bath.bath_category.categories.text_bath_furnitures"),
+          href: localizePath("/bath/bath-furnitures"),
+          src: bathFurnituresImage,
+          alt: "bath-furniture",
+        },
+        {
+          text: t("pages.bath.bath_category.categories.text_corian_bath"),
+          href: localizePath("/bath/corian-bath"),
+          src: corianBathroomImage,
+          alt: "corian-bath",
+        },
+      ]}
+      widecategory={false}
+    />
+    <Category
+      categories={[
+        {
+          text: t("pages.bath.bath_category.categories.text_karadimas"),
+          href: "https://ikaradimas.gr",
+          src: ioannisKaradimasImage,
+          alt: "ioannis-karadimas",
+        },
+      ]}
+      widecategory={true}
+    />
+  </div>
+
+  <Spacer />
+</Layout>

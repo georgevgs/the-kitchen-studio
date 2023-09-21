@@ -7,8 +7,8 @@ interface Item {
 
 export interface Props {
   title?: string;
-  subtitle?: string;
-  highlight?: string;
+  subtitle?: string | null;
+  highlight?: string | null;
   items: Array<Array<Item>>;
 }
 

@@ -1,9 +1,9 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../components/widgets/Carousel.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
-
 import ergaImage from "../assets/images/erga/erga.avif";
 import erga2Image from "../assets/images/erga/erga-2.avif";
 import erga3Image from "../assets/images/erga/erga-3.avif";
@@ -44,18 +44,20 @@ import erga38Image from "../assets/images/erga/erga-38.avif";
 import erga39Image from "../assets/images/erga/erga-39.avif";
 import erga40Image from "../assets/images/erga/erga-40.avif";
 
+changeLanguage("el");
+
 const meta = {
-  title: "Έργα",
-  description: "Εξερευνήστε τα έργα μας",
+    title: t("pages.erga.title"),
+    description: t("pages.erga.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Έργα"
-      subtitle="Ξεχωριστά όσο εσείς"
-      description="Εξερευνήστε τα έργα μας και δείτε τις δυνατότητες που σας προσφέρουμε."
+      title={t("pages.erga.title")}
+      subtitle={t("pages.erga.subtitle")}
+      description={t("pages.erga.description")}
     />
 
     <Carousel

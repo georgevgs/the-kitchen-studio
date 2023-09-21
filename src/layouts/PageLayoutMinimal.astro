@@ -3,15 +3,24 @@ import Layout from "../layouts/BaseLayout.astro";
 import Header from "../components/widgets/Header.astro";
 import MinimalFooter from "../components/widgets/MinimalFooter.astro";
 
-import { headerData, footerData } from "../data";
+import {
+  headerDataEL,
+  footerDataEL,
+  headerDataEN,
+  footerDataEN,
+} from "../data";
 
 import { type MetaSEO } from "../types";
 
 export interface Props {
   meta?: MetaSEO;
+  lang?: 'EN' | 'EL';
 }
 
-const { meta } = Astro.props;
+const { meta, lang } = Astro.props;
+
+const headerData = lang === 'EN' ? headerDataEN : headerDataEL;
+const footerData = lang === 'EN' ? footerDataEN : footerDataEL;
 ---
 
 <Layout {meta}>

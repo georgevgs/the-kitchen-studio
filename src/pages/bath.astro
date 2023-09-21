@@ -1,40 +1,41 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Category from "../components/widgets/Category.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
-import { getPermalink } from "./../utils/permalinks";
+import { localizePath } from "astro-i18next";
+import bathFurnituresImage from "../assets/images/bath/furniture/bath-furniture-2.avif";
+import corianBathroomImage from "../assets/images/bath/corian/corian-bathroom-sink-4.avif";
+import ioannisKaradimasImage from "../assets/images/bath/ioannis-karadimas.avif";
 
-import bathFurnituresImage from '../assets/images/bath/furniture/bath-furniture-2.avif';
-import corianBathroomImage from '../assets/images/bath/corian/corian-bathroom-sink-4.avif';
-import ioannisKaradimasImage from '../assets/images/bath/ioannis-karadimas.avif';
+changeLanguage("el");
 
 const meta = {
-  title: "Bath",
-  description:
-    "Δημιουργήστε το ιδανικό μπάνιο με την ποικιλία μας σε έπιπλα μπάνιου και Corian λύσεις. Ανανεώστε τον χώρο σας με μοντέρνα ή κλασικά σχέδια έπιπλων μπάνιου, σχεδιασμένα για να συνδυάζουν πρακτικότητα και αισθητική.",
+    title: t("pages.bath.bath_category.title"),
+    description: t("pages.bath.bath_category.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="category-container">
     <PageDescription
-      title="Bath"
-      subtitle="Σύγχρονες λιτές γραμμές και υψηλής τεχνολογίας υλικά"
-      description="Δημιουργήστε το ιδανικό μπάνιο με την ποικιλία μας σε έπιπλα μπάνιου και Corian λύσεις. Ανανεώστε τον χώρο σας με μοντέρνα ή κλασικά σχέδια έπιπλων μπάνιου, σχεδιασμένα για να συνδυάζουν πρακτικότητα και αισθητική."
+      title={t("pages.bath.bath_category.title")}
+      subtitle={t("pages.bath.bath_category.subtitle")}
+      description={t("pages.bath.bath_category.description")}
     />
 
     <Category
       categories={[
         {
-          text: "Έπιπλα Μπάνιου",
-          href: getPermalink("/bath/bath-furnitures"),
+          text: t("pages.bath.bath_category.categories.text_bath_furnitures"),
+          href: localizePath("/bath/bath-furnitures"),
           src: bathFurnituresImage,
           alt: "bath-furniture",
         },
         {
-          text: "Corian Bath",
-          href: getPermalink("/bath/corian-bath"),
+          text: t("pages.bath.bath_category.categories.text_corian_bath"),
+          href: localizePath("/bath/corian-bath"),
           src: corianBathroomImage,
           alt: "corian-bath",
         },
@@ -44,7 +45,7 @@ const meta = {
     <Category
       categories={[
         {
-          text: "Ioannis Karadimas",
+          text: t("pages.bath.bath_category.categories.text_karadimas"),
           href: "https://ikaradimas.gr",
           src: ioannisKaradimasImage,
           alt: "ioannis-karadimas",

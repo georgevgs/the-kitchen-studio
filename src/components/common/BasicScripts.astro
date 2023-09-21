@@ -100,6 +100,24 @@ window.onload = function () {
 		});
 	});
 
+	attachEvent("[data-aw-toggle-language]", "click", function () {
+		const EN_URL = '/en'
+		const currentUrl = window.location.pathname;
+
+		if (currentUrl.includes(EN_URL)) {
+			const url = window.location.pathname.toString();
+			let newURL = url.replace("/en", "");
+
+			if (!newURL) {
+				newURL = "/";
+			}
+
+			document.location.href = newURL;
+		} else {
+			document.location.href = EN_URL + currentUrl;
+		}
+	});
+
 	attachEvent("[data-aw-social-share]", "click", function (_, elem) {
 		const network = elem.getAttribute("data-aw-social-share");
 		const url = encodeURIComponent(elem.getAttribute("data-aw-url"));

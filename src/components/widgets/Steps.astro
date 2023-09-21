@@ -3,14 +3,19 @@ import { Image } from "astro:assets";
 
 interface Item {
   title: string;
-  description?: string;
+  description?: string | null;
   icon?: string;
 }
 
+export interface Image {
+  src: string;
+  alt: string;
+}
+
 export interface Props {
-  title?: string;
+  title?: string | null;
   items: Array<Item>;
-  image?: string | any; // TODO: find HTMLElementProps
+  image?: Image;
 }
 
 const {

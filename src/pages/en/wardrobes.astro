@@ -1,0 +1,112 @@
+---
+import { t, changeLanguage } from "i18next";
+import Carousel from "../../components/widgets/Carousel.astro";
+import PageDescription from "../../components/widgets/PageDescription.astro";
+import Spacer from "../../components/widgets/Spacer.astro";
+import Layout from "../../layouts/PageLayout.astro";
+import wardrobeImage from "../../assets/images/wardrobes/wardrobe.avif";
+import wardrobe2Image from "../../assets/images/wardrobes/wardrobe-2.avif";
+import wardrobe3Image from "../../assets/images/wardrobes/wardrobe-3.avif";
+import wardrobe4Image from "../../assets/images/wardrobes/wardrobe-4.avif";
+import wardrobe5Image from "../../assets/images/wardrobes/wardrobe-5.avif";
+import wardrobe6Image from "../../assets/images/wardrobes/wardrobe-6.avif";
+import wardrobe7Image from "../../assets/images/wardrobes/wardrobe-7.avif";
+import wardrobe8Image from "../../assets/images/wardrobes/wardrobe-8.avif";
+import wardrobe9Image from "../../assets/images/wardrobes/wardrobe-9.avif";
+import wardrobe10Image from "../../assets/images/wardrobes/wardrobe-10.avif";
+import wardrobe11Image from "../../assets/images/wardrobes/wardrobe-11.avif";
+import wardrobe12Image from "../../assets/images/wardrobes/wardrobe-12.avif";
+import wardrobe13Image from "../../assets/images/wardrobes/wardrobe-13.avif";
+import wardrobe14Image from "../../assets/images/wardrobes/wardrobe-14.avif";
+import wardrobe15Image from "../../assets/images/wardrobes/wardrobe-15.avif";
+import wardrobe16Image from "../../assets/images/wardrobes/wardrobe-16.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.wardrobes.title"),
+  description: t("pages.wardrobes.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="content-container">
+    <PageDescription
+      title={t("pages.wardrobes.title")}
+      subtitle={t("pages.wardrobes.subtitle")}
+      description={t("pages.wardrobes.description")}
+    />
+
+    <Carousel
+      images={[
+        {
+          src: wardrobeImage,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe2Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe3Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe4Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe5Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe6Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe7Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe8Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe9Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe10Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe11Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe12Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe13Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe14Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe15Image,
+          alt: "wardrobe",
+        },
+        {
+          src: wardrobe16Image,
+          alt: "wardrobe",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer />
+</Layout>

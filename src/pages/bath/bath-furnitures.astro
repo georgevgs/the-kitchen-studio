@@ -1,37 +1,39 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
+import bathFurnituresImage from "../../assets/images/bath/furniture/bath-furniture.avif";
+import bathFurnitures2Image from "../../assets/images/bath/furniture/bath-furniture-2.avif";
+import bathFurnitures3Image from "../../assets/images/bath/furniture/bath-furniture-3.avif";
+import bathFurnitures4Image from "../../assets/images/bath/furniture/bath-furniture-4.avif";
+import bathFurnitures5Image from "../../assets/images/bath/furniture/bath-furniture-5.avif";
+import bathFurnitures6Image from "../../assets/images/bath/furniture/bath-furniture-6.avif";
+import bathFurnitures7Image from "../../assets/images/bath/furniture/bath-furniture-7.avif";
+import bathFurnitures8Image from "../../assets/images/bath/furniture/bath-furniture-8.avif";
+import bathFurnitures9Image from "../../assets/images/bath/furniture/bath-furniture-9.avif";
+import bathFurnitures10Image from "../../assets/images/bath/furniture/bath-furniture-10.avif";
+import bathFurnitures11Image from "../../assets/images/bath/furniture/bath-furniture-11.avif";
+import bathFurnitures12Image from "../../assets/images/bath/furniture/bath-furniture-12.avif";
+import bathFurnitures13Image from "../../assets/images/bath/furniture/bath-furniture-13.avif";
+import bathFurnitures14Image from "../../assets/images/bath/furniture/bath-furniture-14.avif";
+import bathFurnitures15Image from "../../assets/images/bath/furniture/bath-furniture-15.avif";
 
-import bathFurnituresImage from '../../assets/images/bath/furniture/bath-furniture.avif';
-import bathFurnitures2Image from '../../assets/images/bath/furniture/bath-furniture-2.avif';
-import bathFurnitures3Image from '../../assets/images/bath/furniture/bath-furniture-3.avif';
-import bathFurnitures4Image from '../../assets/images/bath/furniture/bath-furniture-4.avif';
-import bathFurnitures5Image from '../../assets/images/bath/furniture/bath-furniture-5.avif';
-import bathFurnitures6Image from '../../assets/images/bath/furniture/bath-furniture-6.avif';
-import bathFurnitures7Image from '../../assets/images/bath/furniture/bath-furniture-7.avif';
-import bathFurnitures8Image from '../../assets/images/bath/furniture/bath-furniture-8.avif';
-import bathFurnitures9Image from '../../assets/images/bath/furniture/bath-furniture-9.avif';
-import bathFurnitures10Image from '../../assets/images/bath/furniture/bath-furniture-10.avif';
-import bathFurnitures11Image from '../../assets/images/bath/furniture/bath-furniture-11.avif';
-import bathFurnitures12Image from '../../assets/images/bath/furniture/bath-furniture-12.avif';
-import bathFurnitures13Image from '../../assets/images/bath/furniture/bath-furniture-13.avif';
-import bathFurnitures14Image from '../../assets/images/bath/furniture/bath-furniture-14.avif';
-import bathFurnitures15Image from '../../assets/images/bath/furniture/bath-furniture-15.avif';
+changeLanguage("el");
 
 const meta = {
-  title: "Έπιπλα Μπάνιου",
-  description: "Έπιπλα μπάνιου",
+    title: t("pages.bath.bath_furnitures.title"),
+    description: t("pages.bath.bath_furnitures.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Έπιπλα Μπάνιου"
-      subtitle="Σύγχρονες λιτές γραμμές και υψηλής τεχνολογίας υλικά"
-      description="Ανακαλύψτε την υπέροχη ποικιλία των επίπλων μπάνιου που μπορούν να μεταμορφώσουν τον χώρο σας σε έναν χώρο χαλάρωσης και περιποίησης."
+      title={t("pages.bath.bath_furnitures.title")}
+      subtitle={t("pages.bath.bath_furnitures.subtitle")}
+      description={t("pages.bath.bath_furnitures.description")}
     />
 
     <Carousel

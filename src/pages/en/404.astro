@@ -1,0 +1,97 @@
+---
+import { t, changeLanguage } from "i18next";
+import Layout from "../../layouts/BaseLayout.astro";
+import { localizePath } from "astro-i18next";
+
+changeLanguage("en");
+
+const meta = {
+    title: t("not_found.title"),
+    description: t("not_found.title"),
+};
+---
+
+<style>
+  body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .title {
+    font-size: 4em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  p {
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .animated-furniture {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1em;
+    animation-name: bounce;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .dark .title,
+  .dark p {
+    color: white;
+  }
+
+  .back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    margin-top: 1em;
+    transition: background-color 0.3s;
+  }
+
+  .back-btn:hover {
+    background-color: #555;
+  }
+</style>
+
+<Layout meta={meta}>
+  <div class="flex items-center justify-center h-screen">
+    <div class="container text-center">
+      <h1 class="title">
+        <span class="text-orange-500">404</span> - Page Not Found
+      </h1>
+      <p>{t("not_found.title")}</p>
+      <div class="animated-furniture">
+        <span style="font-size: 120px;">☕️</span>
+      </div>
+      <p>{t("not_found.subtitle")}</p>
+      <a class="back-btn" href={localizePath('/')}>{t("not_found.button")}</a>
+    </div>
+  </div>
+</Layout>

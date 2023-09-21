@@ -1,9 +1,9 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../components/widgets/Carousel.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
-
 import showroomImage from "../assets/images/showroom/showroom.avif";
 import showroom2Image from "../assets/images/showroom/showroom-2.avif";
 import showroom3Image from "../assets/images/showroom/showroom-3.avif";
@@ -32,18 +32,20 @@ import showroom25Image from "../assets/images/showroom/showroom-25.avif";
 import showroom26Image from "../assets/images/showroom/showroom-26.avif";
 import showroom27Image from "../assets/images/showroom/showroom-27.avif";
 
+changeLanguage("el");
+
 const meta = {
-  title: "Showroom",
-  description: "Glyfada Showroom",
+    title: t("pages.showroom.title"),
+    description: t("pages.showroom.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Showroom"
-      subtitle="Glyfada Showroom"
-      description="Επισκεφθείτε το Showroom μας και αναζητήστε την ιδανική κουζίνα ανάμεσα σε μια μεγάλη και μοναδική γκάμα επίπλων κουζίνας."
+      title={t("pages.showroom.title")}
+      subtitle={t("pages.showroom.subtitle")}
+      description={t("pages.showroom.description")}
     />
 
     <Carousel

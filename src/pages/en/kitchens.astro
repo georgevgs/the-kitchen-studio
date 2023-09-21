@@ -1,0 +1,60 @@
+---
+import { t, changeLanguage } from "i18next";
+import Category from "../../components/widgets/Category.astro";
+import PageDescription from "../../components/widgets/PageDescription.astro";
+import Spacer from "../../components/widgets/Spacer.astro";
+import Layout from "../../layouts/PageLayout.astro";
+import { localizePath } from "astro-i18next";
+import modernKitchenImage from "../../assets/images/kitchens/modern/modern-kitchen.avif";
+import classicKitchenImage from "../../assets/images/kitchens/classic/classic-kitchen-5.avif";
+import corianKitchenImage from "../../assets/images/kitchens/corian/corian-kitchen-countertop.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.kitchens.kitchens_category.title"),
+  description: t("pages.kitchens.kitchens_category.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="category-container">
+    <PageDescription
+      title={t("pages.kitchens.kitchens_category.title")}
+      subtitle={t("pages.kitchens.kitchens_category.subtitle")}
+      description={t("pages.kitchens.kitchens_category.description")}
+    />
+
+    <Category
+      categories={[
+        {
+          text: t(
+            "pages.kitchens.kitchens_category.categories.text_modern_kitchens"
+          ),
+          href: localizePath("/kitchens/modern-kitchens"),
+          src: modernKitchenImage,
+          alt: "modern-kitchens",
+        },
+        {
+          text: t(
+            "pages.kitchens.kitchens_category.categories.text_classic_kitchens"
+          ),
+          href: localizePath("/kitchens/classic-kitchens"),
+          src: classicKitchenImage,
+          alt: "classic-kitchens",
+        },
+        {
+          text: t(
+            "pages.kitchens.kitchens_category.categories.text_corian_kitchens"
+          ),
+          href: localizePath("/kitchens/corian-kitchens"),
+          src: corianKitchenImage,
+          alt: "corian-kitchens",
+        },
+      ]}
+      widecategory={false}
+    />
+  </div>
+
+  <Spacer />
+</Layout>

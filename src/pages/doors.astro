@@ -1,33 +1,35 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../components/widgets/Carousel.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
+import doorImage from "../assets/images/doors/door.avif";
+import door2Image from "../assets/images/doors/door-2.avif";
+import door3Image from "../assets/images/doors/door-3.avif";
+import door4Image from "../assets/images/doors/door-4.avif";
+import door5Image from "../assets/images/doors/door-5.avif";
+import door6Image from "../assets/images/doors/door-6.avif";
+import door7Image from "../assets/images/doors/door-7.avif";
+import door8Image from "../assets/images/doors/door-8.avif";
+import door9Image from "../assets/images/doors/door-9.avif";
+import door10Image from "../assets/images/doors/door-10.avif";
+import door11Image from "../assets/images/doors/door-11.avif";
 
-import doorImage from '../assets/images/doors/door.avif';
-import door2Image from '../assets/images/doors/door-2.avif';
-import door3Image from '../assets/images/doors/door-3.avif';
-import door4Image from '../assets/images/doors/door-4.avif';
-import door5Image from '../assets/images/doors/door-5.avif';
-import door6Image from '../assets/images/doors/door-6.avif';
-import door7Image from '../assets/images/doors/door-7.avif';
-import door8Image from '../assets/images/doors/door-8.avif';
-import door9Image from '../assets/images/doors/door-9.avif';
-import door10Image from '../assets/images/doors/door-10.avif';
-import door11Image from '../assets/images/doors/door-11.avif';
+changeLanguage("el");
 
 const meta = {
-  title: "Πόρτες",
-  description: "Πόρτες",
+    title: t("pages.doors.title"),
+    description: t("pages.doors.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Πόρτες"
-      subtitle="Ατελείωτες επιλογές με διαφορετικά υλικά, όπως ξύλο, γυαλί και μέταλλο"
-      description="Ανακαλύψτε πόρτες που μπορούν να δώσουν χαρακτήρα και λειτουργικότητα στον εσωτερικό και εξωτερικό χώρο του σπιτιού σας."
+      title={t("pages.doors.title")}
+      subtitle={t("pages.doors.subtitle")}
+      description={t("pages.doors.description")}
     />
 
     <Carousel
@@ -81,5 +83,5 @@ const meta = {
     />
   </div>
 
-  <Spacer/>
+  <Spacer />
 </Layout>

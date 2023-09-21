@@ -1,9 +1,9 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
-
 import classicKitchenImage from "../../assets/images/kitchens/classic/classic-kitchen.avif";
 import classicKitchen2Image from "../../assets/images/kitchens/classic/classic-kitchen-2.avif";
 import classicKitchen3Image from "../../assets/images/kitchens/classic/classic-kitchen-3.avif";
@@ -22,18 +22,20 @@ import classicKitchen15Image from "../../assets/images/kitchens/classic/classic-
 import classicKitchen16Image from "../../assets/images/kitchens/classic/classic-kitchen-16.avif";
 import classicKitchen17Image from "../../assets/images/kitchens/classic/classic-kitchen-17.avif";
 
+changeLanguage("el");
+
 const meta = {
-  title: "Classic Kitchens",
-  description: "Κλασικά έπιπλα κουζίνας",
+    title: t("pages.kitchens.classic_kitchens.title"),
+    description: t("pages.kitchens.classic_kitchens.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Classic Kitchens"
-      subtitle="Η γοητεία των κλασικών επίπλων κουζίνας"
-      description="Ανακαλύψτε την αιώνια γοητεία των κλασικών έπιπλων κουζίνας. Τα κλασικά έπιπλα κουζίνας συνδυάζουν την αρμονία του παρελθόντος με τη λειτουργικότητα του παρόντος."
+      title={t("pages.kitchens.classic_kitchens.title")}
+      subtitle={t("pages.kitchens.classic_kitchens.subtitle")}
+      description={t("pages.kitchens.classic_kitchens.description")}
     />
 
     <Carousel

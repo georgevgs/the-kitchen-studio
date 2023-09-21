@@ -1,9 +1,9 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../components/widgets/Carousel.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
-
 import meletesImage from "../assets/images/meletes/meletes.avif";
 import meletes1Image from "../assets/images/meletes/meletes-1.avif";
 import meletes2Image from "../assets/images/meletes/meletes-2.avif";
@@ -17,18 +17,20 @@ import meletes10Image from "../assets/images/meletes/meletes-10.avif";
 import meletes11Image from "../assets/images/meletes/meletes-11.avif";
 import meletes12Image from "../assets/images/meletes/meletes-12.avif";
 
+changeLanguage("el");
+
 const meta = {
-  title: "Μελέτες",
-  description: "Εξερευνήστε τις μελέτες μας",
+    title: t("pages.meletes.title"),
+    description: t("pages.meletes.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Μελέτες"
-      subtitle="Εξερευνήστε τις μελέτες μας"
-      description="Οι μελέτες μας διακατέχονται από προσεκτική σχεδίαση και σκέψη, λαμβάνοντας υπόψη τόσο την αισθητική όσο και τη λειτουργικότητα του χώρου."
+      title={t("pages.meletes.title")}
+      subtitle={t("pages.meletes.subtitle")}
+      description={t("pages.meletes.description")}
     />
 
     <Carousel

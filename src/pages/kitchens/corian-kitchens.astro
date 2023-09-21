@@ -1,9 +1,9 @@
 ---
+import { t, changeLanguage } from "i18next";
 import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
-
 import corianKitchenCountertopImage from "../../assets/images/kitchens/corian/corian-kitchen-countertop.avif";
 import corianKitchenCountertop2Image from "../../assets/images/kitchens/corian/corian-kitchen-countertop-2.avif";
 import corianKitchenCountertop3Image from "../../assets/images/kitchens/corian/corian-kitchen-countertop-3.avif";
@@ -11,18 +11,20 @@ import corianKitchenSinkImage from "../../assets/images/kitchens/corian/corian-k
 import corianKitchenSink2Image from "../../assets/images/kitchens/corian/corian-kitchen-sink-2.avif";
 import corianKitchenSink3Image from "../../assets/images/kitchens/corian/corian-kitchen-sink-3.avif";
 
+changeLanguage("el");
+
 const meta = {
-  title: "Corian Kitchens",
-  description: "Έπιπλα κουζίνας από Corian",
+    title: t("pages.kitchens.corian_kitchens.title"),
+    description: t("pages.kitchens.corian_kitchens.description"),
 };
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} lang={"EL"}>
   <div class="content-container">
     <PageDescription
-      title="Corian Kitchens"
-      subtitle="Το μέλλον της αισθητικής στα έπιπλα κουζίνας"
-      description="Εξερευνήστε την πρωτοποριακή και σύγχρονη αισθητική των Corian Kitchens."
+      title={t("pages.kitchens.corian_kitchens.title")}
+      subtitle={t("pages.kitchens.corian_kitchens.subtitle")}
+      description={t("pages.kitchens.corian_kitchens.description")}
     />
 
     <Carousel

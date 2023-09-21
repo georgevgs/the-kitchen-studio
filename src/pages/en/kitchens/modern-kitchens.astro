@@ -1,0 +1,117 @@
+---
+import { t, changeLanguage } from "i18next";
+import Carousel from "../../../components/widgets/Carousel.astro";
+import PageDescription from "../../../components/widgets/PageDescription.astro";
+import Spacer from "../../../components/widgets/Spacer.astro";
+import Layout from "../../../layouts/PageLayout.astro";
+import modernKitchenImage from "../../../assets/images/kitchens/modern/modern-kitchen.avif";
+import modernKitchen2Image from "../../../assets/images/kitchens/modern/modern-kitchen-2.avif";
+import modernKitchen3Image from "../../../assets/images/kitchens/modern/modern-kitchen-3.avif";
+import modernKitchen4Image from "../../../assets/images/kitchens/modern/modern-kitchen-4.avif";
+import modernKitchen5Image from "../../../assets/images/kitchens/modern/modern-kitchen-5.avif";
+import modernKitchen6Image from "../../../assets/images/kitchens/modern/modern-kitchen-6.avif";
+import modernKitchen7Image from "../../../assets/images/kitchens/modern/modern-kitchen-7.avif";
+import modernKitchen8Image from "../../../assets/images/kitchens/modern/modern-kitchen-8.avif";
+import modernKitchen9Image from "../../../assets/images/kitchens/modern/modern-kitchen-9.avif";
+import modernKitchen10Image from "../../../assets/images/kitchens/modern/modern-kitchen-10.avif";
+import modernKitchen11Image from "../../../assets/images/kitchens/modern/modern-kitchen-11.avif";
+import modernKitchen12Image from "../../../assets/images/kitchens/modern/modern-kitchen-12.avif";
+import modernKitchen13Image from "../../../assets/images/kitchens/modern/modern-kitchen-13.avif";
+import modernKitchen14Image from "../../../assets/images/kitchens/modern/modern-kitchen-14.avif";
+import modernKitchen15Image from "../../../assets/images/kitchens/modern/modern-kitchen-15.avif";
+import modernKitchen16Image from "../../../assets/images/kitchens/modern/modern-kitchen-16.avif";
+import modernKitchen17Image from "../../../assets/images/kitchens/modern/modern-kitchen-17.avif";
+
+changeLanguage("en");
+
+const meta = {
+  title: t("pages.kitchens.modern_kitchens.title"),
+  description: t("pages.kitchens.modern_kitchens.description"),
+};
+---
+
+<Layout meta={meta} lang={"EN"}>
+  <div class="content-container">
+    <PageDescription
+      title={t("pages.kitchens.modern_kitchens.title")}
+      subtitle={t("pages.kitchens.modern_kitchens.subtitle")}
+      description={t("pages.kitchens.modern_kitchens.description")}
+    />
+
+    <Carousel
+      images={[
+        {
+          src: modernKitchenImage,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen2Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen3Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen4Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen5Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen6Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen7Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen8Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen9Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen10Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen11Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen12Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen13Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen14Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen15Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen16Image,
+          alt: "modern-kitchen",
+        },
+        {
+          src: modernKitchen17Image,
+          alt: "modern-kitchen",
+        },
+      ]}
+      widthType="normal"
+    />
+  </div>
+
+  <Spacer />
+</Layout>
