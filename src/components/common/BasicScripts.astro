@@ -10,6 +10,30 @@ import { SITE } from "../../config.mjs";
 <script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
 const logoImages = document.querySelectorAll(".tks-logo-image");
 const themeToggleButtonIcon = document.querySelectorAll(".theme-toggle");
+const languageToggleButton = document.querySelectorAll(".language-selector");
+const EN_URL = "/en";
+const localLanguage = localStorage.getItem("lang");
+const currentUrl = window.location.pathname;
+
+languageToggleButton.forEach((button) => {
+	if (window.location.pathname.includes(EN_URL)) {
+		button.textContent = "EL";
+	}
+});
+
+if (localLanguage === "EN" && !currentUrl.includes(EN_URL)) {
+	document.location.href = EN_URL + currentUrl;
+	localStorage.setItem("lang", "EN");
+} else if (localLanguage === "EL" && currentUrl.includes(EN_URL)) {
+	let newURL = currentUrl.replace("/en", "");
+
+	if (!newURL) {
+		newURL = "/";
+	}
+
+	document.location.href = newURL;
+	localStorage.setItem("lang", "EL");
+}
 
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 let vh = window.innerHeight * 0.01;
@@ -101,9 +125,6 @@ window.onload = function () {
 	});
 
 	attachEvent("[data-aw-toggle-language]", "click", function () {
-		const EN_URL = '/en'
-		const currentUrl = window.location.pathname;
-
 		if (currentUrl.includes(EN_URL)) {
 			const url = window.location.pathname.toString();
 			let newURL = url.replace("/en", "");
@@ -113,8 +134,10 @@ window.onload = function () {
 			}
 
 			document.location.href = newURL;
+			localStorage.setItem("lang", "EL");
 		} else {
 			document.location.href = EN_URL + currentUrl;
+			localStorage.setItem("lang", "EN");
 		}
 	});
 
@@ -382,5 +405,5 @@ if (carousel) {
 
 		movedX = 0;
 	});
-  }
+}
 </script>
