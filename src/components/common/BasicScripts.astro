@@ -386,24 +386,36 @@ const prevButton = document.querySelector("[data-carousel-prev]");
 const nextButton = document.querySelector("[data-carousel-next]");
 
 if (carousel) {
-	carousel.addEventListener("touchstart", (event) => {
-		startX = event.touches[0].clientX;
-	});
+	carousel.addEventListener(
+		"touchstart",
+		(event) => {
+			startX = event.touches[0].clientX;
+		},
+		{ passive: true }
+	);
 
-	carousel.addEventListener("touchmove", (event) => {
-		movedX = event.touches[0].clientX - startX;
-	});
+	carousel.addEventListener(
+		"touchmove",
+		(event) => {
+			movedX = event.touches[0].clientX - startX;
+		},
+		{ passive: true }
+	);
 
-	carousel.addEventListener("touchend", () => {
-		const threshold = 50;
+	carousel.addEventListener(
+		"touchend",
+		() => {
+			const threshold = 50;
 
-		if (movedX > threshold && prevButton) {
-			prevButton.click();
-		} else if (movedX < -threshold && nextButton) {
-			nextButton.click();
-		}
+			if (movedX > threshold && prevButton) {
+				prevButton.click();
+			} else if (movedX < -threshold && nextButton) {
+				nextButton.click();
+			}
 
-		movedX = 0;
-	});
+			movedX = 0;
+		},
+		{ passive: true }
+	);
 }
 </script>
