@@ -17,7 +17,7 @@
     "@astrojs/tailwind": "^5.0.0",
     "@astrolib/seo": "^0.6.0",
     "@fontsource/inter": "^5.0.8",
-    "astro": "^3.0.6",
+    "astro": "^3.2.2",
     "astro-eslint-parser": "^0.15.0",
     "astro-google-analytics": "^1.0.3",
     "astro-i18next": "^1.0.0-beta.21",
