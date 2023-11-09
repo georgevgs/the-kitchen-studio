@@ -35,7 +35,11 @@ const wideCategory = Astro.props.widecategory;
     {
       categories.map((category: Category) => (
         <a
-          href={localizePath(category.href)}
+          href={
+            category.href?.startsWith("https://")
+              ? category.href
+              : localizePath(category.href ?? "")
+          }
           class="block w-full"
           target={wideCategory ? "_blank" : ""}
           rel={wideCategory ? "noopener noreferrer" : ""}
