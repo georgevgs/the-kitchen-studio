@@ -1,6 +1,5 @@
 ---
-import { AstroSeo } from "@astrolib/seo";
-import { GoogleAnalytics } from "astro-google-analytics";
+import { SEO } from "astro-seo";
 import { getImage } from "astro:assets";
 
 import { SITE } from "../../config.mjs";
@@ -53,34 +52,33 @@ const image =
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#000000" />
 
-<AstroSeo
-  title={title}
-  titleTemplate={dontUseTitleTemplate ? "%s" : `%s — ${SITE.name}`}
-  description={description}
-  canonical={String(canonical)}
-  noindex={noindex}
-  nofollow={nofollow}
-  openGraph={{
-    url: String(canonical),
-    title: ogTitle,
-    description: description,
-    type: ogType,
-    images: image
-      ? [
+<SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: "The Kitchen Studio",
+          type: ogType,
+          image: "/assets/logo/the-kitchen-studio-logo.png",
+        }
+      }}
+      twitter={{
+        creator: "@jonasmerlins1"
+      }}
+      extend={{
+        // extending the default link tags
+        link: [{ rel: "icon", href: "/favicon.ico" }],
+        // extending the default meta tags
+        meta: [
           {
-            url: image.toString(),
-            alt: ogTitle,
+            name: "twitter:image",
+            content: "/assets/logo/the-kitchen-studio-logo.png",
           },
-        ]
-      : undefined,
-    site_name: "The Kitchen Studio",
-  }}
-  twitter={{
-    // handle: '@handle',
-    // site: '@site',
-    cardType: image ? "summary_large_image" : undefined,
-  }}
-/>
+          { name: "twitter:title", content: "The Kitchen Studio" },
+          { name: "twitter:description", content: "Ανανεώστε τον χώρο της κουζίνας σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική." },
+        ],
+      }}
+    />
 
 <CustomStyles />
 
@@ -93,13 +91,6 @@ const image =
     />
   )
 }
-
-<!-- Google Analytics -->
-<!-- {
-  SITE.googleAnalyticsId && (
-    <GoogleAnalytics id={String(SITE.googleAnalyticsId)} />
-  )
-} -->
 
 <script src="https://kit.fontawesome.com/a0c9def029.js" crossorigin="anonymous"></script>
 <script async src="https://analytics.eu.umami.is/script.js" data-website-id="843ce01a-95ae-4c93-b1c7-3b6ef36d3842"></script>
