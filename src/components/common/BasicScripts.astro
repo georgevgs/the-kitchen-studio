@@ -314,68 +314,68 @@ function hideMenu(button, menu) {
 	}, 300);
 }
 
-let headerHidden = false; // flag to track header visibility state
+// let headerHidden = false; // flag to track header visibility state
 
-if (!touchDevice) {
-	function isElementPartiallyInViewport(el) {
-		const rect = el.getBoundingClientRect();
-		const windowHeight =
-			window.innerHeight || document.documentElement.clientHeight;
-		const windowWidth =
-			window.innerWidth || document.documentElement.clientWidth;
+// if (!touchDevice) {
+// 	function isElementPartiallyInViewport(el) {
+// 		const rect = el.getBoundingClientRect();
+// 		const windowHeight =
+// 			window.innerHeight || document.documentElement.clientHeight;
+// 		const windowWidth =
+// 			window.innerWidth || document.documentElement.clientWidth;
 
-		return (
-			((rect.top >= 0 && rect.top < windowHeight) ||
-				(rect.bottom > 0 && rect.bottom <= windowHeight)) &&
-			((rect.left >= 0 && rect.left < windowWidth) ||
-				(rect.right > 0 && rect.right <= windowWidth))
-		);
-	}
+// 		return (
+// 			((rect.top >= 0 && rect.top < windowHeight) ||
+// 				(rect.bottom > 0 && rect.bottom <= windowHeight)) &&
+// 			((rect.left >= 0 && rect.left < windowWidth) ||
+// 				(rect.right > 0 && rect.right <= windowWidth))
+// 		);
+// 	}
 
-	window.addEventListener("scroll", function () {
-		const footerLogoElement = document.querySelector(
-			".tks-logo-image.footer"
-		);
-		const headerLogoElement = document.querySelector(
-			".tks-logo-image.header"
-		);
+// 	window.addEventListener("scroll", function () {
+// 		const footerLogoElement = document.querySelector(
+// 			".tks-logo-image.footer"
+// 		);
+// 		const headerLogoElement = document.querySelector(
+// 			".tks-logo-image.header"
+// 		);
 
-		if (footerLogoElement) {
-			if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
-				// If the footer logo is in the viewport and header logo is not already hidden
-				headerHidden = true; // Update the flag
-				headerLogoElement.animate(
-					[
-						{ transform: "translateY(0)", opacity: 1 },
-						{ transform: "translateY(50px)", opacity: 0 },
-					],
-					{
-						duration: 500,
-						easing: "ease",
-						fill: "forwards",
-					}
-				);
-			} else if (
-				!isElementPartiallyInViewport(footerLogoElement) &&
-				headerHidden
-			) {
-				// If the footer logo is not in the viewport and the header logo is hidden
-				headerHidden = false; // Update the flag
-				headerLogoElement.animate(
-					[
-						{ transform: "translateY(50px)", opacity: 0 },
-						{ transform: "translateY(0)", opacity: 1 },
-					],
-					{
-						duration: 500,
-						easing: "ease",
-						fill: "forwards",
-					}
-				);
-			}
-		}
-	});
-}
+// 		if (footerLogoElement) {
+// 			if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
+// 				// If the footer logo is in the viewport and header logo is not already hidden
+// 				headerHidden = true; // Update the flag
+// 				headerLogoElement.animate(
+// 					[
+// 						{ transform: "translateY(0)", opacity: 1 },
+// 						{ transform: "translateY(50px)", opacity: 0 },
+// 					],
+// 					{
+// 						duration: 500,
+// 						easing: "ease",
+// 						fill: "forwards",
+// 					}
+// 				);
+// 			} else if (
+// 				!isElementPartiallyInViewport(footerLogoElement) &&
+// 				headerHidden
+// 			) {
+// 				// If the footer logo is not in the viewport and the header logo is hidden
+// 				headerHidden = false; // Update the flag
+// 				headerLogoElement.animate(
+// 					[
+// 						{ transform: "translateY(50px)", opacity: 0 },
+// 						{ transform: "translateY(0)", opacity: 1 },
+// 					],
+// 					{
+// 						duration: 500,
+// 						easing: "ease",
+// 						fill: "forwards",
+// 					}
+// 				);
+// 			}
+// 		}
+// 	});
+// }
 
 // Mobile image carousel controls
 let startX = 0;
