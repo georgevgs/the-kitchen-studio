@@ -8,414 +8,433 @@ import { SITE } from "../../config.mjs";
 ></script>
 
 <script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
-const logoImages = document.querySelectorAll(".tks-logo-image");
-const themeToggleButtonIcon = document.querySelectorAll(".theme-toggle");
-const languageToggleButton = document.querySelectorAll(".language-selector");
-const EN_URL = "/en";
-const localLanguage = localStorage.getItem("lang");
-const currentUrl = window.location.pathname;
+  const logoImages = document.querySelectorAll(".tks-logo-image");
+  const themeToggleButtonIcon = document.querySelectorAll(".theme-toggle");
+  const languageToggleButton = document.querySelectorAll(".language-selector");
+  const EN_URL = "/en";
+  const localLanguage = localStorage.getItem("lang");
+  const currentUrl = window.location.pathname;
 
-languageToggleButton.forEach((button) => {
-	if (window.location.pathname.includes(EN_URL)) {
-		button.textContent = "EL";
-	}
-});
+  languageToggleButton.forEach((button) => {
+    if (window.location.pathname.includes(EN_URL)) {
+      button.textContent = "EL";
+    }
+  });
 
-if (localLanguage === "EN" && !currentUrl.includes(EN_URL)) {
-	document.location.href = EN_URL + currentUrl;
-	localStorage.setItem("lang", "EN");
-} else if (localLanguage === "EL" && currentUrl.includes(EN_URL)) {
-	let newURL = currentUrl.replace("/en", "");
+  if (localLanguage === "EN" && !currentUrl.includes(EN_URL)) {
+    document.location.href = EN_URL + currentUrl;
+    localStorage.setItem("lang", "EN");
+  } else if (localLanguage === "EL" && currentUrl.includes(EN_URL)) {
+    let newURL = currentUrl.replace("/en", "");
 
-	if (!newURL) {
-		newURL = "/";
-	}
+    if (!newURL) {
+      newURL = "/";
+    }
 
-	document.location.href = newURL;
-	localStorage.setItem("lang", "EL");
-}
+    document.location.href = newURL;
+    localStorage.setItem("lang", "EL");
+  }
 
-// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-let vh = window.innerHeight * 0.01;
-// Then we set the value in the --vh custom property to the root of the document
-document.documentElement.style.setProperty("--vh", `${vh}px`);
+  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+  let vh = window.innerHeight * 0.01;
+  // Then we set the value in the --vh custom property to the root of the document
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-let touchDevice =
-	navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
+  let touchDevice =
+    navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
 
-function applyTheme(theme) {
-	const isDark = theme === "dark";
+  function applyTheme(theme) {
+    const isDark = theme === "dark";
 
-	// Add or remove "dark" class on the document element
-	document.documentElement.classList.toggle("dark", isDark);
+    // Add or remove "dark" class on the document element
+    document.documentElement.classList.toggle("dark", isDark);
 
-	// Update logo images using a ternary expression
-	const filterValue = isDark ? "" : "brightness(0)";
-	logoImages.forEach((element) => {
-		element.style.filter = filterValue;
-	});
+    // Update logo images using a ternary expression
+    const filterValue = isDark ? "" : "brightness(0)";
+    logoImages.forEach((element) => {
+      element.style.filter = filterValue;
+    });
 
-	themeToggleButtonIcon.forEach((icon) => {
-		const shouldHide =
-			(icon.classList.contains("fa-sun") && !isDark) ||
-			(icon.classList.contains("fa-moon") && isDark);
-		icon.classList.toggle("hidden", shouldHide);
-	});
-}
+    themeToggleButtonIcon.forEach((icon) => {
+      const shouldHide =
+        (icon.classList.contains("fa-sun") && !isDark) ||
+        (icon.classList.contains("fa-moon") && isDark);
+      icon.classList.toggle("hidden", shouldHide);
+    });
 
-if (
-	(defaultTheme && defaultTheme.endsWith(":only")) ||
-	(!localStorage.theme && defaultTheme !== "system")
-) {
-	applyTheme(defaultTheme.replace(":only", ""));
-} else if (
-	localStorage.theme === "dark" ||
-	(!("theme" in localStorage) &&
-		window.matchMedia("(prefers-color-scheme: dark)").matches)
-) {
-	applyTheme("dark");
-} else {
-	applyTheme("light");
-}
+    decideFeatureImageLogo();
+  }
 
-function attachEvent(selector, event, fn) {
-	const matches =
-		typeof selector === "string"
-			? document.querySelectorAll(selector)
-			: selector;
-	if (matches && matches.length) {
-		matches.forEach((elem) => {
-			elem.addEventListener(event, (e) => fn(e, elem), false);
-		});
-	}
-}
+  if (
+    (defaultTheme && defaultTheme.endsWith(":only")) ||
+    (!localStorage.theme && defaultTheme !== "system")
+  ) {
+    applyTheme(defaultTheme.replace(":only", ""));
+  } else if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    applyTheme("dark");
+  } else {
+    applyTheme("light");
+  }
 
-window.onload = function () {
-	let lastKnownScrollPosition = window.scrollY;
-	let ticking = true;
+  function attachEvent(selector, event, fn) {
+    const matches =
+      typeof selector === "string"
+        ? document.querySelectorAll(selector)
+        : selector;
+    if (matches && matches.length) {
+      matches.forEach((elem) => {
+        elem.addEventListener(event, (e) => fn(e, elem), false);
+      });
+    }
+  }
 
-	attachEvent("[data-aw-toggle-menu]", "click", function (_, elem) {
-		elem.classList.toggle("expanded");
-		document.body.classList.toggle("overflow-hidden");
-		document.getElementById("header")?.classList.toggle("h-screen");
-		document.querySelector("#header nav")?.classList.toggle("hidden");
-	});
+  window.onload = function () {
+    let lastKnownScrollPosition = window.scrollY;
+    let ticking = true;
 
-	attachEvent("[data-aw-toggle-color-scheme]", "click", function () {
-		if (defaultTheme.endsWith(":only")) {
-			return;
-		}
+    attachEvent("[data-aw-toggle-menu]", "click", function (_, elem) {
+      elem.classList.toggle("expanded");
+      document.body.classList.toggle("overflow-hidden");
+      document.getElementById("header")?.classList.toggle("h-screen");
+      document.querySelector("#header nav")?.classList.toggle("hidden");
+    });
 
-		// Toggle dark class on the document element and update localStorage
-		const isDark = document.documentElement.classList.toggle("dark");
-		localStorage.theme = isDark ? "dark" : "light";
+    attachEvent("[data-aw-toggle-color-scheme]", "click", function () {
+      if (defaultTheme.endsWith(":only")) {
+        return;
+      }
 
-		// Update logo images using a ternary expression
-		const filterValue = isDark ? "" : "brightness(0)";
-		logoImages.forEach((element) => {
-			element.style.filter = filterValue;
-		});
+      // Toggle dark class on the document element and update localStorage
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.theme = isDark ? "dark" : "light";
 
-		themeToggleButtonIcon.forEach((icon) => {
-			const shouldHide =
-				(icon.classList.contains("fa-sun") && !isDark) ||
-				(icon.classList.contains("fa-moon") && isDark);
-			icon.classList.toggle("hidden", shouldHide);
-		});
-	});
+      // Update logo images using a ternary expression
+      const filterValue = isDark ? "" : "brightness(0)";
+      logoImages.forEach((element) => {
+        element.style.filter = filterValue;
+      });
 
-	attachEvent("[data-aw-toggle-language]", "click", function () {
-		if (currentUrl.includes(EN_URL)) {
-			const url = window.location.pathname.toString();
-			let newURL = url.replace("/en", "");
+      themeToggleButtonIcon.forEach((icon) => {
+        const shouldHide =
+          (icon.classList.contains("fa-sun") && !isDark) ||
+          (icon.classList.contains("fa-moon") && isDark);
+        icon.classList.toggle("hidden", shouldHide);
+      });
 
-			if (!newURL) {
-				newURL = "/";
-			}
+      decideFeatureImageLogo();
+    });
 
-			document.location.href = newURL;
-			localStorage.setItem("lang", "EL");
-		} else {
-			document.location.href = EN_URL + currentUrl;
-			localStorage.setItem("lang", "EN");
-		}
-	});
+    attachEvent("[data-aw-toggle-language]", "click", function () {
+      if (currentUrl.includes(EN_URL)) {
+        const url = window.location.pathname.toString();
+        let newURL = url.replace("/en", "");
 
-	attachEvent("[data-aw-social-share]", "click", function (_, elem) {
-		const network = elem.getAttribute("data-aw-social-share");
-		const url = encodeURIComponent(elem.getAttribute("data-aw-url"));
-		const text = encodeURIComponent(elem.getAttribute("data-aw-text"));
+        if (!newURL) {
+          newURL = "/";
+        }
 
-		let href;
-		switch (network) {
-			case "facebook":
-				href = `https://www.facebook.com/sharer.php?u=${url}`;
-				break;
-			case "twitter":
-				href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-				break;
-			case "linkedin":
-				href = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
-				break;
-			case "whatsapp":
-				href = `https://wa.me/?text=${text}%20${url}`;
-				break;
-			case "mail":
-				href = `mailto:?subject=%22${text}%22&body=${text}%20${url}`;
-				break;
+        document.location.href = newURL;
+        localStorage.setItem("lang", "EL");
+      } else {
+        document.location.href = EN_URL + currentUrl;
+        localStorage.setItem("lang", "EN");
+      }
+    });
 
-			default:
-				return;
-		}
+    attachEvent("[data-aw-social-share]", "click", function (_, elem) {
+      const network = elem.getAttribute("data-aw-social-share");
+      const url = encodeURIComponent(elem.getAttribute("data-aw-url"));
+      const text = encodeURIComponent(elem.getAttribute("data-aw-text"));
 
-		const newlink = document.createElement("a");
-		newlink.target = "_blank";
-		newlink.href = href;
-		newlink.click();
-	});
+      let href;
+      switch (network) {
+        case "facebook":
+          href = `https://www.facebook.com/sharer.php?u=${url}`;
+          break;
+        case "twitter":
+          href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+          break;
+        case "linkedin":
+          href = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
+          break;
+        case "whatsapp":
+          href = `https://wa.me/?text=${text}%20${url}`;
+          break;
+        case "mail":
+          href = `mailto:?subject=%22${text}%22&body=${text}%20${url}`;
+          break;
 
-	function applyHeaderStylesOnScroll() {
-		const header = document.getElementById("header");
-		if (
-			lastKnownScrollPosition > 25 &&
-			!header?.classList.contains("scroll")
-		) {
-			document.getElementById("header").classList.add("scroll");
-		} else if (
-			lastKnownScrollPosition <= 25 &&
-			header?.classList.contains("scroll")
-		) {
-			document.getElementById("header").classList.remove("scroll");
-		}
-		ticking = false;
-	}
-	applyHeaderStylesOnScroll();
+        default:
+          return;
+      }
 
-	attachEvent([document], "scroll", function () {
-		lastKnownScrollPosition = window.scrollY;
+      const newlink = document.createElement("a");
+      newlink.target = "_blank";
+      newlink.href = href;
+      newlink.click();
+    });
 
-		if (!ticking) {
-			window.requestAnimationFrame(() => {
-				applyHeaderStylesOnScroll();
-			});
-			ticking = true;
-		}
-	});
-};
+    function applyHeaderStylesOnScroll() {
+      const header = document.getElementById("header");
+      if (
+        lastKnownScrollPosition > 25 &&
+        !header?.classList.contains("scroll")
+      ) {
+        document.getElementById("header").classList.add("scroll");
+      } else if (
+        lastKnownScrollPosition <= 25 &&
+        header?.classList.contains("scroll")
+      ) {
+        document.getElementById("header").classList.remove("scroll");
+      }
+      ticking = false;
+    }
+    applyHeaderStylesOnScroll();
 
-window.onpageshow = function () {
-	document.documentElement.classList.add("motion-safe:scroll-smooth");
-	const elem = document.querySelector("[data-aw-toggle-menu]");
-	if (elem) {
-		elem.classList.remove("expanded");
-	}
-	document.body.classList.remove("overflow-hidden");
-	document.getElementById("header")?.classList.remove("h-screen");
-	document.querySelector("#header nav")?.classList.add("hidden");
-};
+    attachEvent([document], "scroll", function () {
+      lastKnownScrollPosition = window.scrollY;
 
-document.addEventListener("DOMContentLoaded", () => {
-	applySlideInAnimation();
-	setupDropdownMenus();
-});
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          applyHeaderStylesOnScroll();
+        });
+        ticking = true;
+      }
+    });
+  };
 
-// Slide in animation
-function applySlideInAnimation() {
-	let scrollPos;
-	const slidingElements = document.querySelectorAll(".slide-in");
+  window.onpageshow = function () {
+    document.documentElement.classList.add("motion-safe:scroll-smooth");
+    const elem = document.querySelector("[data-aw-toggle-menu]");
+    if (elem) {
+      elem.classList.remove("expanded");
+    }
+    document.body.classList.remove("overflow-hidden");
+    document.getElementById("header")?.classList.remove("h-screen");
+    document.querySelector("#header nav")?.classList.add("hidden");
+  };
 
-	function checkPosition() {
-		scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+  document.addEventListener("DOMContentLoaded", () => {
+    applySlideInAnimation();
+    setupDropdownMenus();
+  });
 
-		slidingElements.forEach((elem) => {
-			const elemPos = elem.getBoundingClientRect().top + scrollPos;
+  // Slide in animation
+  function applySlideInAnimation() {
+    let scrollPos;
+    const slidingElements = document.querySelectorAll(".slide-in");
 
-			if (scrollPos + window.innerHeight > elemPos) {
-				elem.classList.add("active");
-			}
-		});
-	}
+    function checkPosition() {
+      scrollPos = window.pageYOffset || document.documentElement.scrollTop;
 
-	window.addEventListener("scroll", checkPosition);
-}
+      slidingElements.forEach((elem) => {
+        const elemPos = elem.getBoundingClientRect().top + scrollPos;
 
-// Dropdown menu
-function setupDropdownMenus() {
-	const dropdowns = document.querySelectorAll(".dropdown");
+        if (scrollPos + window.innerHeight > elemPos) {
+          elem.classList.add("active");
+        }
+      });
+    }
 
-	dropdowns.forEach((dropdown) => {
-		const menu = dropdown.querySelector(".dropdown-menu");
-		setMenuStyles(menu);
-		setMenuPosition(menu, dropdown);
-		const button = dropdown.querySelector("button");
-		setupMenuButton(button, menu);
-		handleMenuHover(dropdown, button, menu);
-	});
-}
+    window.addEventListener("scroll", checkPosition);
+  }
 
-function setMenuStyles(menu) {
-	menu.style.marginLeft = "5px";
-	menu.style.opacity = "0";
-	menu.style.transform = "translateX(-10px)";
-	menu.style.transition = "all 0.3s ease";
-}
+  // Dropdown menu
+  function setupDropdownMenus() {
+    const dropdowns = document.querySelectorAll(".dropdown");
 
-function setMenuPosition(menu, dropdown) {
-	if (dropdown.parentElement?.classList.contains("dropdown-menu")) {
-		menu.style.top = "0";
-		menu.style.left = "100%";
-	}
-}
+    dropdowns.forEach((dropdown) => {
+      const menu = dropdown.querySelector(".dropdown-menu");
+      setMenuStyles(menu);
+      setMenuPosition(menu, dropdown);
+      const button = dropdown.querySelector("button");
+      setupMenuButton(button, menu);
+      handleMenuHover(dropdown, button, menu);
+    });
+  }
 
-function setupMenuButton(button, menu) {
-	if (button) {
-		button.addEventListener("click", (event) => {
-			if (window.innerWidth < 768) {
-				event.stopPropagation();
-				if (menu.style.display !== "block") {
-					showMenu(button, menu);
-				} else {
-					hideMenu(button, menu);
-				}
-			}
-		});
-	}
+  function setMenuStyles(menu) {
+    menu.style.marginLeft = "5px";
+    menu.style.opacity = "0";
+    menu.style.transform = "translateX(-10px)";
+    menu.style.transition = "all 0.3s ease";
+  }
 
-	document.addEventListener("click", () => {
-		if (window.innerWidth < 768) {
-			hideMenu(button, menu);
-		}
-	});
-}
+  function setMenuPosition(menu, dropdown) {
+    if (dropdown.parentElement?.classList.contains("dropdown-menu")) {
+      menu.style.top = "0";
+      menu.style.left = "100%";
+    }
+  }
 
-function handleMenuHover(dropdown, button, menu) {
-	if (window.innerWidth >= 768) {
-		dropdown.addEventListener("mouseenter", () => showMenu(button, menu));
-		dropdown.addEventListener("mouseleave", () => hideMenu(button, menu));
-	}
-}
+  function setupMenuButton(button, menu) {
+    if (button) {
+      button.addEventListener("click", (event) => {
+        if (window.innerWidth < 768) {
+          event.stopPropagation();
+          if (menu.style.display !== "block") {
+            showMenu(button, menu);
+          } else {
+            hideMenu(button, menu);
+          }
+        }
+      });
+    }
 
-function showMenu(button, menu) {
-	menu.style.display = "block";
-	menu.style.opacity = "1";
-	menu.style.transform = "translateX(0)";
-	menu.style.maxHeight = "500px";
-	button?.classList.add("open");
-}
+    document.addEventListener("click", () => {
+      if (window.innerWidth < 768) {
+        hideMenu(button, menu);
+      }
+    });
+  }
 
-function hideMenu(button, menu) {
-	menu.style.opacity = "0";
-	menu.style.transform = "translateX(-10px)";
-	menu.style.maxHeight = "0";
-	button?.classList.remove("open");
+  function handleMenuHover(dropdown, button, menu) {
+    if (window.innerWidth >= 768) {
+      dropdown.addEventListener("mouseenter", () => showMenu(button, menu));
+      dropdown.addEventListener("mouseleave", () => hideMenu(button, menu));
+    }
+  }
 
-	setTimeout(() => {
-		menu.style.display = "none";
-	}, 300);
-}
+  function showMenu(button, menu) {
+    menu.style.display = "block";
+    menu.style.opacity = "1";
+    menu.style.transform = "translateX(0)";
+    menu.style.maxHeight = "500px";
+    button?.classList.add("open");
+  }
 
-// let headerHidden = false; // flag to track header visibility state
+  function hideMenu(button, menu) {
+    menu.style.opacity = "0";
+    menu.style.transform = "translateX(-10px)";
+    menu.style.maxHeight = "0";
+    button?.classList.remove("open");
 
-// if (!touchDevice) {
-// 	function isElementPartiallyInViewport(el) {
-// 		const rect = el.getBoundingClientRect();
-// 		const windowHeight =
-// 			window.innerHeight || document.documentElement.clientHeight;
-// 		const windowWidth =
-// 			window.innerWidth || document.documentElement.clientWidth;
+    setTimeout(() => {
+      menu.style.display = "none";
+    }, 300);
+  }
 
-// 		return (
-// 			((rect.top >= 0 && rect.top < windowHeight) ||
-// 				(rect.bottom > 0 && rect.bottom <= windowHeight)) &&
-// 			((rect.left >= 0 && rect.left < windowWidth) ||
-// 				(rect.right > 0 && rect.right <= windowWidth))
-// 		);
-// 	}
+  // let headerHidden = false; // flag to track header visibility state
 
-// 	window.addEventListener("scroll", function () {
-// 		const footerLogoElement = document.querySelector(
-// 			".tks-logo-image.footer"
-// 		);
-// 		const headerLogoElement = document.querySelector(
-// 			".tks-logo-image.header"
-// 		);
+  // if (!touchDevice) {
+  // 	function isElementPartiallyInViewport(el) {
+  // 		const rect = el.getBoundingClientRect();
+  // 		const windowHeight =
+  // 			window.innerHeight || document.documentElement.clientHeight;
+  // 		const windowWidth =
+  // 			window.innerWidth || document.documentElement.clientWidth;
 
-// 		if (footerLogoElement) {
-// 			if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
-// 				// If the footer logo is in the viewport and header logo is not already hidden
-// 				headerHidden = true; // Update the flag
-// 				headerLogoElement.animate(
-// 					[
-// 						{ transform: "translateY(0)", opacity: 1 },
-// 						{ transform: "translateY(50px)", opacity: 0 },
-// 					],
-// 					{
-// 						duration: 500,
-// 						easing: "ease",
-// 						fill: "forwards",
-// 					}
-// 				);
-// 			} else if (
-// 				!isElementPartiallyInViewport(footerLogoElement) &&
-// 				headerHidden
-// 			) {
-// 				// If the footer logo is not in the viewport and the header logo is hidden
-// 				headerHidden = false; // Update the flag
-// 				headerLogoElement.animate(
-// 					[
-// 						{ transform: "translateY(50px)", opacity: 0 },
-// 						{ transform: "translateY(0)", opacity: 1 },
-// 					],
-// 					{
-// 						duration: 500,
-// 						easing: "ease",
-// 						fill: "forwards",
-// 					}
-// 				);
-// 			}
-// 		}
-// 	});
-// }
+  // 		return (
+  // 			((rect.top >= 0 && rect.top < windowHeight) ||
+  // 				(rect.bottom > 0 && rect.bottom <= windowHeight)) &&
+  // 			((rect.left >= 0 && rect.left < windowWidth) ||
+  // 				(rect.right > 0 && rect.right <= windowWidth))
+  // 		);
+  // 	}
 
-// Mobile image carousel controls
-let startX = 0;
-let movedX = 0;
+  // 	window.addEventListener("scroll", function () {
+  // 		const footerLogoElement = document.querySelector(
+  // 			".tks-logo-image.footer"
+  // 		);
+  // 		const headerLogoElement = document.querySelector(
+  // 			".tks-logo-image.header"
+  // 		);
 
-const carousel = document.getElementById("default-carousel");
-const prevButton = document.querySelector("[data-carousel-prev]");
-const nextButton = document.querySelector("[data-carousel-next]");
+  // 		if (footerLogoElement) {
+  // 			if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
+  // 				// If the footer logo is in the viewport and header logo is not already hidden
+  // 				headerHidden = true; // Update the flag
+  // 				headerLogoElement.animate(
+  // 					[
+  // 						{ transform: "translateY(0)", opacity: 1 },
+  // 						{ transform: "translateY(50px)", opacity: 0 },
+  // 					],
+  // 					{
+  // 						duration: 500,
+  // 						easing: "ease",
+  // 						fill: "forwards",
+  // 					}
+  // 				);
+  // 			} else if (
+  // 				!isElementPartiallyInViewport(footerLogoElement) &&
+  // 				headerHidden
+  // 			) {
+  // 				// If the footer logo is not in the viewport and the header logo is hidden
+  // 				headerHidden = false; // Update the flag
+  // 				headerLogoElement.animate(
+  // 					[
+  // 						{ transform: "translateY(50px)", opacity: 0 },
+  // 						{ transform: "translateY(0)", opacity: 1 },
+  // 					],
+  // 					{
+  // 						duration: 500,
+  // 						easing: "ease",
+  // 						fill: "forwards",
+  // 					}
+  // 				);
+  // 			}
+  // 		}
+  // 	});
+  // }
 
-if (carousel) {
-	carousel.addEventListener(
-		"touchstart",
-		(event) => {
-			startX = event.touches[0].clientX;
-		},
-		{ passive: true }
-	);
+  // Mobile image carousel controls
+  let startX = 0;
+  let movedX = 0;
 
-	carousel.addEventListener(
-		"touchmove",
-		(event) => {
-			movedX = event.touches[0].clientX - startX;
-		},
-		{ passive: true }
-	);
+  const carousel = document.getElementById("default-carousel");
+  const prevButton = document.querySelector("[data-carousel-prev]");
+  const nextButton = document.querySelector("[data-carousel-next]");
 
-	carousel.addEventListener(
-		"touchend",
-		() => {
-			const threshold = 50;
+  if (carousel) {
+    carousel.addEventListener(
+      "touchstart",
+      (event) => {
+        startX = event.touches[0].clientX;
+      },
+      { passive: true }
+    );
 
-			if (movedX > threshold && prevButton) {
-				prevButton.click();
-			} else if (movedX < -threshold && nextButton) {
-				nextButton.click();
-			}
+    carousel.addEventListener(
+      "touchmove",
+      (event) => {
+        movedX = event.touches[0].clientX - startX;
+      },
+      { passive: true }
+    );
 
-			movedX = 0;
-		},
-		{ passive: true }
-	);
-}
+    carousel.addEventListener(
+      "touchend",
+      () => {
+        const threshold = 50;
+
+        if (movedX > threshold && prevButton) {
+          prevButton.click();
+        } else if (movedX < -threshold && nextButton) {
+          nextButton.click();
+        }
+
+        movedX = 0;
+      },
+      { passive: true }
+    );
+  }
+
+  function decideFeatureImageLogo() {
+    const featureImageLogo = document.querySelector(".feature-logo-img");
+
+    if (
+      featureImageLogo &&
+      document.documentElement.classList.contains("dark")
+    ) {
+      featureImageLogo.src =
+        "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524859/karadimas-logo-darkmode_qfuxja.avif";
+    } else {
+      featureImageLogo.src =
+        "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif";
+    }
+  }
 </script>

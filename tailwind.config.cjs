@@ -28,6 +28,9 @@ module.exports = {
         "1/3vh": "33vh",
         screenMinusHeader: "calc((var(--vh, 1vh) * 100) - 5.5rem)",
       },
+      margin: {
+        22: "5.5rem",
+      },
       animation: {
         "fade-in": "fade-in 0.5s forwards",
         "slide-in-from-left": "slide-in 0.5s forwards",
