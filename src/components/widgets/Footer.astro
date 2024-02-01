@@ -52,7 +52,7 @@ const {
     <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
       <div class="col-span-12 lg:col-span-4">
         <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={localizePath('/')}>
+          <a class="inline-block font-bold text-xl" href={localizePath("/")}>
             <Logo placement="footer" />
           </a>
         </div>
@@ -92,9 +92,10 @@ const {
       }
     </div>
     <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
+      <!-- Social Links -->
       {
         socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0">
+          <ul class="flex mb-4 md:mb-0 -ml-2 md:ml-0">
             {socialLinks.map(({ ariaLabel, href, text, icon }) => (
               <li>
                 <a
@@ -104,7 +105,7 @@ const {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {icon && <i class={`${icon} fa-xl`}></i>}
+                  {icon && <i class={`${icon} fa-xl`} />}
                   <Fragment set:html={text} />
                 </a>
               </li>
@@ -115,7 +116,8 @@ const {
         )
       }
 
-      <div class="text-sm mr-4 dark:text-slate-400">
+      <!-- Footnote -->
+      <div class="text-sm mr-4 dark:text-slate-400 md:ml-auto">
         <Fragment set:html={footNote} />
       </div>
     </div>
