@@ -426,15 +426,19 @@ import { SITE } from "../../config.mjs";
   function decideFeatureImageLogo() {
     const featureImageLogo = document.querySelector(".feature-logo-img");
 
-    if (
-      featureImageLogo &&
-      document.documentElement.classList.contains("dark")
-    ) {
-      featureImageLogo.src =
-        "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524859/karadimas-logo-darkmode_qfuxja.avif";
+    if (null === featureImageLogo) {
+      return;
+    }
+
+    const darkModeImage =
+      "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524859/karadimas-logo-darkmode_qfuxja.avif";
+    const lightModeImage =
+      "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif";
+
+    if (document.documentElement.classList.contains("dark")) {
+      featureImageLogo.src = darkModeImage;
     } else {
-      featureImageLogo.src =
-        "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif";
+      featureImageLogo.src = lightModeImage;
     }
   }
 </script>
