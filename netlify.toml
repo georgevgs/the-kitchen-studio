@@ -1,16 +1,17 @@
 [build]
   publish = "dist"
   command = "npm run build"
+
 [[headers]]
   for = "/*"
   [headers.values]
   Content-Security-Policy = """
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https://eu.umami.is https://cdnjs.cloudflare.com https://static.cloudflareinsights.com;
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' https://res.cloudinary.com;
-    connect-src 'self' https://ikaradimas.gr https://eu.umami.is;
-    font-src 'self';
+    script-src 'self' 'unsafe-inline' https://eu.umami.is https://cdnjs.cloudflare.com https://static.cloudflareinsights.com https://kit.fontawesome.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    img-src 'self' https://res.cloudinary.com https://kit.fontawesome.com;
+    connect-src 'self' https://thekitchenstudio.gr https://eu.umami.is;
+    font-src 'self' https://fonts.gstatic.com;
     frame-src 'self';
   """
   X-Frame-Options = "SAMEORIGIN"
