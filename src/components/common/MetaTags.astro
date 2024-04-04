@@ -8,6 +8,7 @@ import { getCanonical, getAsset } from "../../utils/permalinks";
 import { getRelativeUrlByFilePath } from "../../utils/directories";
 
 import CustomStyles from "../../components/CustomStyles.astro";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export interface Props extends MetaSEO {
   dontUseTitleTemplate?: boolean;
@@ -43,9 +44,9 @@ const image =
   typeof _image === "string"
     ? new URL(_image, Astro.site)
     : _image && typeof _image["src"] !== "undefined"
-    ? // @ts-ignore
-      new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
-    : null;
+      ? // @ts-ignore
+        new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
+      : null;
 ---
 
 <meta charset="UTF-8" />
@@ -53,32 +54,36 @@ const image =
 <meta name="theme-color" content="#000000" />
 
 <SEO
-      title={title}
-      description={description}
-      openGraph={{
-        basic: {
-          title: "The Kitchen Studio",
-          type: ogType,
-          image: "/assets/logo/the-kitchen-studio-logo.png",
-        }
-      }}
-      twitter={{
-        creator: "@jonasmerlins1"
-      }}
-      extend={{
-        // extending the default link tags
-        link: [{ rel: "icon", href: "/favicon.ico" }],
-        // extending the default meta tags
-        meta: [
-          {
-            name: "twitter:image",
-            content: "/assets/logo/the-kitchen-studio-logo.png",
-          },
-          { name: "twitter:title", content: "The Kitchen Studio" },
-          { name: "twitter:description", content: "Ανανεώστε τον χώρο της κουζίνας σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική." },
-        ],
-      }}
-    />
+  title={title}
+  description={description}
+  openGraph={{
+    basic: {
+      title: "The Kitchen Studio",
+      type: ogType,
+      image: "/assets/logo/the-kitchen-studio-logo.png",
+    },
+  }}
+  twitter={{
+    creator: "@jonasmerlins1",
+  }}
+  extend={{
+    // extending the default link tags
+    link: [{ rel: "icon", href: "/favicon.ico" }],
+    // extending the default meta tags
+    meta: [
+      {
+        name: "twitter:image",
+        content: "/assets/logo/the-kitchen-studio-logo.png",
+      },
+      { name: "twitter:title", content: "The Kitchen Studio" },
+      {
+        name: "twitter:description",
+        content:
+          "Ανανεώστε τον χώρο της κουζίνας σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική.",
+      },
+    ],
+  }}
+/>
 
 <CustomStyles />
 
@@ -92,8 +97,10 @@ const image =
   )
 }
 
-<script src="https://kit.fontawesome.com/a0c9def029.js" crossorigin="anonymous"></script>
-<script async src="https://analytics.eu.umami.is/script.js" data-website-id="843ce01a-95ae-4c93-b1c7-3b6ef36d3842"></script>
+<script
+  async
+  src="https://analytics.eu.umami.is/script.js"
+  data-website-id="843ce01a-95ae-4c93-b1c7-3b6ef36d3842"></script>
 
 <link rel="shortcut icon" href={getAsset("/favicon.ico")} />
 <link rel="icon" type="image/svg+xml" href={getAsset("/favicon.svg")} />
