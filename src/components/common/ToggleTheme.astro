@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../../config.mjs';
+import { SITE } from "../../config.mjs";
 
 export interface Props {
   label?: string;
@@ -9,16 +9,22 @@ export interface Props {
 }
 
 const {
-  label = 'Toggle between Dark and Light mode',
-  class: className = 'text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center justify-center w-10 h-10',
+  label = "Toggle between Dark and Light mode",
+  class:
+    className = "text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center justify-center w-10 h-10",
 } = Astro.props;
 ---
 
 {
-  !(SITE?.defaultTheme && SITE.defaultTheme.endsWith(':only')) && (
-    <button type="button" class={className} aria-label={label} data-aw-toggle-color-scheme>
-      <i class="theme-toggle fa-solid fa-sun fa-lg"></i>
-      <i class="theme-toggle fa-solid fa-moon fa-lg hidden"></i>
+  !(SITE?.defaultTheme && SITE.defaultTheme.endsWith(":only")) && (
+    <button
+      type="button"
+      class={className}
+      aria-label={label}
+      data-aw-toggle-color-scheme
+    >
+      <i class="theme-toggle fa-solid fa-sun fa-lg" />
+      <i class="theme-toggle fa-solid fa-moon fa-lg" />
     </button>
   )
 }
