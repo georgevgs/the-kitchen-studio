@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 interface Images {
   src: string;
   alt: string;
@@ -33,27 +32,26 @@ const widthType = Astro.props.widthType as WidthType;
         widthType === "normal"
           ? "h-screenMinusHeader md:h-152"
           : widthType === "full-width"
-          ? "h-128 md:h-152"
-          : "h-96"
+            ? "h-128 md:h-152"
+            : "h-96"
       } overflow-hidden flex justify-center`}
     >
       {
         images.map((image: any, index: number) => (
           <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <Image
+            <img
               src={image.src}
               class={`${
                 widthType === "normal"
                   ? "md:object-scale-down object-cover"
                   : widthType === "full-width"
-                  ? "object-cover md:object-cover" // md:object-contain
-                  : "object-cover"
+                    ? "object-cover md:object-cover" // md:object-contain
+                    : "object-cover"
               } h-full w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 block`}
               alt={image.alt}
               height="1200"
               width="1080"
               loading={widthType === "full-width" ? "eager" : "lazy"}
-              format="avif"
             />
           </div>
         ))
