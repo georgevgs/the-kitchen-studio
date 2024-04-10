@@ -12,7 +12,7 @@
     img-src 'self' https://res.cloudinary.com https://ka-f.fontawesome.com;
     connect-src 'self' https://thekitchenstudio.gr https://ka-f.fontawesome.com https://analytics.eu.umami.is;
     font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com;
-    frame-src 'self';
+    frame-src 'self' https://www.google.com; 
   """
   X-Frame-Options = "SAMEORIGIN"
   X-Content-Type-Options = "nosniff"
