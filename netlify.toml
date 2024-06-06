@@ -3,19 +3,19 @@
   command = "npm run build"
 
 [[headers]]
-  for = "/*"
-  [headers.values]
-  Content-Security-Policy = """
-    default-src 'self';
-    script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com https://kit.fontawesome.com https://analytics.eu.umami.is;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://ka-f.fontawesome.com;
-    img-src 'self' https://res.cloudinary.com https://ka-f.fontawesome.com;
-    connect-src 'self' https://thekitchenstudio.gr https://ka-f.fontawesome.com https://analytics.eu.umami.is https://api-gateway.umami.dev;
-    font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com;
-    frame-src 'self' https://www.google.com; 
-  """
-  X-Frame-Options = "SAMEORIGIN"
-  X-Content-Type-Options = "nosniff"
-  Referrer-Policy = "no-referrer-when-downgrade"
-  Permissions-Policy = "geolocation=(self), microphone=()"
-  X-XSS-Protection = "1; mode=block"
+for = "/*"
+[headers.values]
+Content-Security-Policy = """
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com https://kit.fontawesome.com https://analytics.eu.umami.is;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://ka-f.fontawesome.com;
+  img-src 'self' https://res.cloudinary.com https://ka-f.fontawesome.com;
+  connect-src 'self' https://thekitchenstudio.gr https://ka-f.fontawesome.com https://analytics.eu.umami.is https://api-gateway.umami.dev;
+  font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com;
+  frame-src 'self' https://www.google.com;
+"""
+X-Frame-Options = "SAMEORIGIN"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "geolocation=(self), microphone=()"
+X-XSS-Protection = "1; mode=block"

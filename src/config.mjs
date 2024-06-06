@@ -22,9 +22,6 @@ const CONFIG = {
     day: "numeric",
     timeZone: "UTC",
   }),
-
-  googleAnalyticsId: "G-80QQFP5723",
-  googleSiteVerificationId: "",
 };
 
 export const SITE = { ...CONFIG };
