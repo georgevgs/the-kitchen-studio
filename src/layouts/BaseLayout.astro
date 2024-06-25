@@ -6,6 +6,7 @@ import MetaTags from "./../components/common/MetaTags.astro";
 import BasicScripts from "./../components/common/BasicScripts.astro";
 import { type MetaSEO } from "./../types";
 import { SITE } from "./../config.mjs";
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 
 export interface Props {
   meta?: MetaSEO;
@@ -25,6 +26,7 @@ const { language = "el", textDirection = "ltr" } = SITE;
   >
     <slot />
     <BasicScripts />
+    <SpeedInsights />
     <style is:global>
       img {
         content-visibility: auto;
