@@ -1,95 +1,66 @@
 ---
 import { SEO } from "astro-seo";
-import { getImage } from "astro:assets";
-
 import { SITE } from "../../config.mjs";
-import { type MetaSEO } from "../../types";
-import { getCanonical, getAsset } from "../../utils/permalinks";
-import { getRelativeUrlByFilePath } from "../../utils/directories";
-
+import type { MetaSEO } from "../../types";
+import { getAsset } from "../../utils/permalinks";
 import CustomStyles from "../../components/CustomStyles.astro";
 
 export interface Props extends MetaSEO {
   dontUseTitleTemplate?: boolean;
 }
 
-const defaultImage = SITE.defaultImage
-  ? (
-      await getImage({
-        src: SITE.defaultImage,
-        alt: "the-kitchen-studio-logo",
-        width: 1200,
-        height: 628,
-      })
-    ).src
-  : "";
+const getImageUrl = (img) => {
+  if (typeof img === "string") {
+    return new URL(img, Astro.site);
+  }
+
+  if (img && typeof img === "object" && "src" in img) {
+    return new URL(img.src, Astro.site);
+  }
+
+  return null;
+};
 
 const {
-  title = SITE.name,
-  description = "Ανανεώστε τον χώρο της κουζίνας σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική.",
-  image: _image = defaultImage,
-
-  canonical = getCanonical(String(Astro.url.pathname)),
-  noindex = false,
-  nofollow = false,
-
-  ogTitle = title,
+  title = SITE.title,
+  description = SITE.description,
+  image = SITE.defaultImage,
   ogType = "website",
-
-  dontUseTitleTemplate = false,
 } = Astro.props;
 
-const image =
-  typeof _image === "string"
-    ? new URL(_image, Astro.site)
-    : _image && typeof _image["src"] !== "undefined"
-      ? // @ts-ignore
-        new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
-      : null;
+const imageUrl = getImageUrl(image);
+
+const seoConfig = {
+  title,
+  description,
+  openGraph: {
+    basic: {
+      title: SITE.name,
+      type: ogType,
+      image: imageUrl,
+    },
+  },
+  twitter: {
+    creator: "@jonasmerlins1",
+    card: "summary_large_image",
+    image: imageUrl,
+    title: SITE.name,
+    description,
+  },
+  extend: {
+    meta: [
+      { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+      { name: "theme-color", content: "#000000" },
+    ],
+  },
+};
 ---
 
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#000000" />
 
-<SEO
-  title={title}
-  description={description}
-  openGraph={{
-    basic: {
-      title: "The Kitchen Studio",
-      type: ogType,
-      image: "/assets/logo/the-kitchen-studio-logo.png",
-    },
-  }}
-  twitter={{
-    creator: "@jonasmerlins1",
-  }}
-  extend={{
-    // extending the default link tags
-    link: [{ rel: "icon", href: "/favicon.ico" }],
-    // extending the default meta tags
-    meta: [
-      {
-        name: "twitter:image",
-        content: "/assets/logo/the-kitchen-studio-logo.png",
-      },
-      { name: "twitter:title", content: "The Kitchen Studio" },
-      {
-        name: "twitter:description",
-        content:
-          "Ανανεώστε τον χώρο της κουζίνας σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική.",
-      },
-    ],
-  }}
-/>
+<SEO {...seoConfig} />
 
 <CustomStyles />
-
-<script
-  async
-  src="https://analytics.eu.umami.is/script.js"
-  data-website-id="843ce01a-95ae-4c93-b1c7-3b6ef36d3842"></script>
 
 <link rel="shortcut icon" href={getAsset("/favicon.ico")} />
 <link rel="icon" type="image/svg+xml" href={getAsset("/favicon.svg")} />
