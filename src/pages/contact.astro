@@ -14,7 +14,6 @@ const meta = {
 
 <Layout meta={meta} lang={lang}>
   <section class="contact-form">
-    <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div class="container mx-auto p-8 max-w-3xl">
         <form
           id="contact-form"
@@ -34,8 +33,9 @@ const meta = {
                 {t("contact.title")}
               </label>
               <input
-                name="person-title"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+                  id="person-title"
+                  name="person-title"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
               />
             </div>
             <div class="mb-4">
@@ -46,7 +46,7 @@ const meta = {
                 {t("contact.name")}
               </label>
               <input
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
                 id="name"
                 type="text"
                 name="name"
@@ -61,7 +61,7 @@ const meta = {
                 {t("contact.email")}
               </label>
               <input
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
                 id="email"
                 type="email"
                 name="email"
@@ -76,7 +76,7 @@ const meta = {
                 {t("contact.message")}
               </label>
               <textarea
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
                 id="message"
                 name="message"
                 required></textarea>
@@ -112,7 +112,6 @@ const meta = {
           </div>
         </form>
       </div>
-    </body>
   </section>
   <hr
     class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"
