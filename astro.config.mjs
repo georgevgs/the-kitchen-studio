@@ -14,10 +14,7 @@ export default defineConfig({
   site: SITE.origin,
   base: SITE.basePathname,
   trailingSlash: "ignore",
-  output: 'server',
-  adapter: vercel({
-    webAnalytics: { enabled: true }
-  }),
+  output: 'static',
   integrations: [astroI18next(), tailwind({
     config: {
       applyBaseStyles: false
