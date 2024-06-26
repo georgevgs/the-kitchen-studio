@@ -20,9 +20,11 @@ export default defineConfig({
             enabled: true,
         },
     }),
-    integrations: [astroI18next(), tailwind({
-        config: {
-            applyBaseStyles: false
-        }
-    }), sitemap(), mdx(), serviceWorker()],
+    integrations: [
+        astroI18next(),
+        tailwind(),
+        sitemap(),
+        mdx(),
+        serviceWorker()
+    ],
 });
