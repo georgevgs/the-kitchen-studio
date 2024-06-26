@@ -1,128 +1,161 @@
 ---
-import { Image } from "astro:assets";
-interface Images {
-  src: string;
-  alt: string;
+import {Image} from "astro:assets";
+
+interface ImageProps {
+    src: string;
+    alt: string;
 }
 
-export type WidthType = "normal" | "full-width";
+export type WidthType = "normal" | "full-width" | "default";
 
 export interface Props {
-  images: Images[];
-  widthType: WidthType;
+    images: ImageProps[];
+    widthType: WidthType;
 }
 
-const images = Astro.props.images as Images[];
-const widthType = Astro.props.widthType as WidthType;
+const {images, widthType} = Astro.props;
+
+const getHeightClass = (type: WidthType): string => {
+    switch (type) {
+        case "normal":
+            return "h-screenMinusHeader md:h-152";
+        case "full-width":
+            return "h-128 md:h-152";
+        default:
+            return "h-96";
+    }
+};
+
+const getImageClass = (type: WidthType): string => {
+    switch (type) {
+        case "normal":
+            return "md:object-scale-down object-cover";
+        case "full-width":
+            return "object-cover md:object-cover";
+        default:
+            return "object-cover";
+    }
+};
+
+const heightClass = getHeightClass(widthType);
+const imageClass = getImageClass(widthType);
+const containerClass = widthType === "normal" ? "max-w-[1280px] w-full" : "w-full";
 ---
 
-<section
-  class={`${
-    widthType === "normal" ? "max-w-[1280px] w-full" : "w-full"
-  } mx-auto`}
-  id="carousel"
->
-  <div
-    id="default-carousel"
-    class="relative max-w-full mx-auto"
-    data-carousel="slide"
-  >
-    <div
-      id="carousel-wrapper"
-      class={`relative ${
-        widthType === "normal"
-          ? "h-screenMinusHeader md:h-152"
-          : widthType === "full-width"
-            ? "h-128 md:h-152"
-            : "h-96"
-      } overflow-hidden flex justify-center`}
-    >
-      {
-        images.map((image: any) => (
-          <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <Image
-              src={image.src}
-              class={`${
-                widthType === "normal"
-                  ? "md:object-scale-down object-cover"
-                  : widthType === "full-width"
-                    ? "object-cover md:object-cover" // md:object-contain
-                    : "object-cover"
-              } h-full w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 block`}
-              alt={image.alt}
-              loading={widthType === "full-width" ? "eager" : "lazy"}
-            />
-          </div>
-        ))
-      }
-    </div>
-    <!-- Slider indicators -->
-    <div
-      class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2"
-      id="slide-indicators"
-    >
-      {
-        images.map((image: Images, index: number) => (
-          <button
-            type="button"
-            class={`${images.length > 10 ? "w-0 h-0" : "w-4 h-4"} rounded-full`}
-            aria-current={index === 0 ? "true" : "false"}
-            aria-label={`Slide ${index + 1}`}
-            data-carousel-slide-to={index}
-          />
-        ))
-      }
-    </div>
-    <!-- Slider controls -->
-    <button
-      type="button"
-      class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-      data-carousel-prev
-    >
+<section class={`${containerClass} mx-auto`} id="carousel">
+    <div id="default-carousel" class="relative max-w-full mx-auto" data-carousel="slide">
+        <div id="skeleton-loader"
+                class={`custom-skeleton absolute inset-0 z-30 rounded-lg ${heightClass}`}>
+        </div>
+
+        <div id="carousel-wrapper"
+                class={`relative hidden ${heightClass} overflow-hidden flex justify-center`}>
+            {images.map((image) => (
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <Image
+                                src={image.src}
+                                class={`${imageClass} h-full w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 block`}
+                                alt={image.alt}
+                                loading={widthType === "full-width" ? "eager" : "lazy"}
+                        />
+                    </div>
+            ))}
+        </div>
+
+        <!-- Slider indicators -->
+        <div class="absolute z-40 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 opacity-0 transition-opacity duration-300 ease-in-out"
+                id="slide-indicators">
+            {images.map((_, index) => (
+                    <button
+                            type="button"
+                            class={`${images.length > 10 ? "w-0 h-0" : "w-4 h-4"} rounded-full`}
+                            aria-current={index === 0 ? "true" : "false"}
+                            aria-label={`Slide ${index + 1}`}
+                            data-carousel-slide-to={index}
+                    />
+            ))}
+        </div>
+
+        <!-- Slider controls -->
+        <button
+                type="button"
+                class="absolute top-0 left-0 z-40 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none opacity-0 transition-opacity duration-300 ease-in-out"
+                data-carousel-prev
+        >
       <span
-        class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-black bg-opacity-20 dark:bg-white dark:bg-opacity-20 hover:bg-opacity-30 dark:hover:bg-opacity-30 group-focus:ring-2 group-focus:ring-black dark:group-focus:ring-white group-focus:ring-opacity-30 dark:group-focus:ring-opacity-30 group-focus:outline-none"
+              class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-black bg-opacity-20 dark:bg-white dark:bg-opacity-20 hover:bg-opacity-30 dark:hover:bg-opacity-30 group-focus:ring-2 group-focus:ring-black dark:group-focus:ring-white group-focus:ring-opacity-30 dark:group-focus:ring-opacity-30 group-focus:outline-none"
       >
         <svg
-          aria-hidden="true"
-          class="w-5 h-5 text-gray-800 dark:text-white sm:w-6 sm:h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="w-5 h-5 text-gray-800 dark:text-white sm:w-6 sm:h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"></path>
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"></path>
         </svg>
         <span class="sr-only">Previous</span>
       </span>
-    </button>
-    <button
-      type="button"
-      class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-      data-carousel-next
-    >
+        </button>
+        <button
+                type="button"
+                class="absolute top-0 right-0 z-40 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none opacity-0 transition-opacity duration-300 ease-in-out"
+                data-carousel-next
+        >
       <span
-        class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-black bg-opacity-20 dark:bg-white dark:bg-opacity-20 hover:bg-opacity-30 dark:hover:bg-opacity-30 group-focus:ring-2 group-focus:ring-black dark:group-focus:ring-white group-focus:ring-opacity-30 dark:group-focus:ring-opacity-30 group-focus:outline-none"
+              class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-black bg-opacity-20 dark:bg-white dark:bg-opacity-20 hover:bg-opacity-30 dark:hover:bg-opacity-30 group-focus:ring-2 group-focus:ring-black dark:group-focus:ring-white group-focus:ring-opacity-30 dark:group-focus:ring-opacity-30 group-focus:outline-none"
       >
         <svg
-          aria-hidden="true"
-          class="w-5 h-5 text-gray-800 dark:text-white sm:w-6 sm:h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="w-5 h-5 text-gray-800 dark:text-white sm:w-6 sm:h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"></path>
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"></path>
         </svg>
         <span class="sr-only">Next</span>
       </span>
-    </button>
-  </div>
+        </button>
+    </div>
 </section>
+
+<style>
+    .custom-skeleton {
+        background-color: #f3f4f6;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .custom-skeleton::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+                90deg,
+                rgba(243, 244, 246, 0) 0,
+                rgba(209, 213, 219, 0.8) 50%,
+                rgba(243, 244, 246, 0) 100%
+        );
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        100% {
+            transform: translateX(100%);
+        }
+    }
+</style>
+
+<script src="../../js/carousel.ts"></script>
