@@ -22,5 +22,5 @@ window.addEventListener("load", () => {
     navButtons.forEach((button) => {
       button.classList.remove("opacity-0");
     });
-  }, 750);
+  }, 500);
 });
