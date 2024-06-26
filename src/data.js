@@ -214,7 +214,7 @@ export const footerDataEL = {
     },
   ],
   footNote: `
-    Web magic by <a class="text-orange-500 hover:underline dark:text-gray-200 font-bold" href="https://vagdas.eu/" target="_blank" rel="noopener noreferrer"> VAGDAS</a>
+    Web magic by <a class="text-grey-500 hover:underline dark:text-gray-200 font-bold" href="https://vagdas.eu/" target="_blank" rel="noopener noreferrer"> VAGDAS</a>
   `,
 };
 
@@ -274,6 +274,6 @@ export const footerDataEN = {
     },
   ],
   footNote: `
-    Web magic by <a class="text-orange-500 hover:underline dark:text-gray-200 font-bold" href="https://vagdas.eu/" target="_blank" rel="noopener noreferrer"> VAGDAS</a>
+    Web magic by <a class="text-grey-500 hover:underline dark:text-gray-200 font-bold" href="https://vagdas.eu/" target="_blank" rel="noopener noreferrer"> VAGDAS</a>
   `,
 };
