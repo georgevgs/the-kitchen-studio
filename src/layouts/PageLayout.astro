@@ -16,13 +16,13 @@ import { type MetaSEO } from "../types";
 
 export interface Props {
   meta?: MetaSEO;
-  lang?: 'EN' | 'EL';
+  lang?: "EN" | "EL";
 }
 
 const { meta, lang } = Astro.props;
 
-const headerData = lang === 'EN' ? headerDataEN : headerDataEL;
-const footerData = lang === 'EN' ? footerDataEN : footerDataEL;
+const headerData = lang === "EN" ? headerDataEN : headerDataEL;
+const footerData = lang === "EN" ? footerDataEN : footerDataEL;
 ---
 
 <Layout {meta}>
@@ -30,6 +30,7 @@ const footerData = lang === 'EN' ? footerDataEN : footerDataEL;
     <Header {...headerData} isSticky showToggleTheme />
   </slot>
   <main>
+    <Announcement />
     <slot />
   </main>
   <slot name="footer">
