@@ -5,12 +5,7 @@ import Footer from "../components/widgets/Footer.astro";
 import MinimalFooter from "../components/widgets/MinimalFooter.astro";
 import Announcement from "../components/widgets/Announcement.astro";
 
-import {
-  headerDataEL,
-  footerDataEL,
-  headerDataEN,
-  footerDataEN,
-} from "../data";
+import { headerDataEL, footerDataEL, headerDataEN, footerDataEN } from "../data";
 
 import { type MetaSEO } from "../types";
 
@@ -30,7 +25,7 @@ const footerData = lang === "EN" ? footerDataEN : footerDataEL;
     <Header {...headerData} isSticky showToggleTheme />
   </slot>
   <main>
-    <Announcement />
+    <!-- <Announcement /> -->
     <slot />
   </main>
   <slot name="footer">
