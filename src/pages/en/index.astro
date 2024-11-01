@@ -3,21 +3,11 @@ import { SITE } from "../../config.mjs";
 import Layout from "../../layouts/PageLayout.astro";
 import { t, changeLanguage } from "i18next";
 import { localizePath } from "astro-i18next";
-
-import modernKitchenImage from "../../assets/images/home-images/modern-kitchen-home.avif";
-import modernKitchenImage2 from "../../assets/images/home-images/modern-kitchen-home-2.avif";
-import modernKitchenImage3 from "../../assets/images/home-images/modern-kitchen-home-3.avif";
-import modernKitchenImage4 from "../../assets/images/home-images/modern-kitchen-home-4.avif";
-import modernKitchenImage5 from "../../assets/images/home-images/modern-kitchen-home-5.avif";
-import classicKitchenImage from "../../assets/images/home-images/classic-kitchen-home.avif";
-import bedroomBedImage from "../../assets/images/home-images/bedroom-bed-home.avif";
-import modernBathroomImage from "../../assets/images/home-images/modern-bathroom-home.avif";
-import modernBathroomImage2 from "../../assets/images/home-images/modern-bathroom-home-2.avif";
-import livingImage from "../../assets/images/home-images/living-home.avif";
-import showroomBWImage from "../../assets/images/showroom/the-kitchen-studio-showroom-bw.avif";
+import { processImagesForCarousel } from "~/utils/images";
 
 import Features from "../../components/widgets/Features.astro";
 import Features2 from "../../components/widgets/Features2.astro";
+import MediaRecognition from "~/components/widgets/MediaRecognition.astro";
 import Steps from "../../components/widgets/Steps.astro";
 import FAQs from "../../components/widgets/FAQs.astro";
 import Stats from "../../components/widgets/Stats.astro";
@@ -26,6 +16,21 @@ import Carousel from "../../components/widgets/Carousel.astro";
 
 changeLanguage("en");
 
+import showroomBWImage from "../../assets/images/showroom/the-kitchen-studio-showroom-bw.avif";
+const images = processImagesForCarousel("home-images");
+
+const mediaTexts = {
+  title: t("home.media.title"),
+  subtitle: t("home.media.subtitle"),
+  featureTitle: t("home.media.villas.title"),
+  featureDescription: t("home.media.villas.description"),
+  featurePoints: {
+    first: t("home.media.villas.features.first"),
+    second: t("home.media.villas.features.second"),
+    third: t("home.media.villas.features.third"),
+  },
+  imageAlt: t("home.media.villas.alt"),
+};
 const lang = "EN";
 const meta = {
   title: SITE.title,
@@ -37,51 +42,7 @@ const meta = {
 <Layout {meta} lang={lang}>
   <!-- Carousel Widget *************** -->
 
-  <Carousel
-    images={[
-      {
-        src: modernKitchenImage,
-        alt: "modern-kitchen-home",
-      },
-      {
-        src: modernKitchenImage2,
-        alt: "modern-kitchen-home",
-      },
-      {
-        src: modernKitchenImage3,
-        alt: "modern-kitchen-home-3",
-      },
-      {
-        src: modernKitchenImage4,
-        alt: "modern-kitchen-home",
-      },
-      {
-        src: modernKitchenImage5,
-        alt: "modern-kitchen-home",
-      },
-      {
-        src: classicKitchenImage,
-        alt: "classic-kitchen-home",
-      },
-      {
-        src: modernBathroomImage,
-        alt: "modern-bathroom-home",
-      },
-      {
-        src: modernBathroomImage2,
-        alt: "modern-bathroom-home",
-      },
-      {
-        src: livingImage,
-        alt: "living-home",
-      },
-      {
-        src: bedroomBedImage,
-        alt: "bedroom-wardrobe",
-      },
-    ]}
-    widthType="full-width"
-  />
+  <Carousel images={images} widthType="full-width" />
 
   <!-- Features Widget *************** -->
 
@@ -123,12 +84,15 @@ const meta = {
           description: "",
           icon: "fa-solid fa-bath",
           logo: true,
-          imageURL:
-            "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif",
+          imageURL: "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif",
         },
       ],
     ]}
   />
+
+  <!-- MediaRecognition Widget *************** -->
+
+  <MediaRecognition {...mediaTexts} />
 
   <!-- Steps Widget ****************** -->
 
@@ -255,8 +219,7 @@ const meta = {
       text: t("home.call_to_action.text"),
       href: "/assets/leaflets/the-kitchen-studio-leaflet-v1.pdf",
       icon: "tabler:download",
-    }}
-  >
+    }}>
     <Fragment slot="title">{t("home.call_to_action.title")}</Fragment>
 
     <Fragment slot="subtitle">{t("home.call_to_action.subtitle")}</Fragment>

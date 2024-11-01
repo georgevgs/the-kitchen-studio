@@ -16,6 +16,20 @@
                 "sixth_title": "In cooperation with"
             }
         },
+        "media": {
+            "title": "Featured in Press",
+            "subtitle": "Our work has been recognized by leading publications",
+            "villas": {
+                "title": "Villas Magazine Feature",
+                "description": "Our kitchen project was showcased in the prestigious Villas by ek magazine, highlighting our commitment to excellence in design and craftsmanship.",
+                "alt": "Villas Magazine Feature",
+                "features": {
+                    "first": "Modern Design Showcase",
+                    "second": "Featured Project Details",
+                    "third": "Professional Recognition"
+                }
+            }
+        },
         "steps": {
             "title": "The kitchen of your dreams in 3 simple steps",
             "items": {
