@@ -4,26 +4,15 @@ import Carousel from "../components/widgets/Carousel.astro";
 import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
-import meletesImage from "../assets/images/meletes/meletes.avif";
-import meletes2Image from "../assets/images/meletes/meletes-2.avif";
-import meletes3Image from "../assets/images/meletes/meletes-3.avif";
-import meletes3BImage from "../assets/images/meletes/meletes-3b.avif";
-import meletes3CImage from "../assets/images/meletes/meletes-3c.avif";
-import meletes3DImage from "../assets/images/meletes/meletes-3d.avif";
-import meletes4Image from "../assets/images/meletes/meletes-4.avif";
-import meletes5Image from "../assets/images/meletes/meletes-5.avif";
-import meletes6Image from "../assets/images/meletes/meletes-6.avif";
-import meletes8Image from "../assets/images/meletes/meletes-8.avif";
-import meletes9Image from "../assets/images/meletes/meletes-9.avif";
-import meletes10Image from "../assets/images/meletes/meletes-10.avif";
-import meletes11Image from "../assets/images/meletes/meletes-11.avif";
-import meletes12Image from "../assets/images/meletes/meletes-12.avif";
+import { processImagesForCarousel } from "~/utils/images";
 
 changeLanguage("el");
 
+const images = processImagesForCarousel("meletes");
+
 const meta = {
-    title: t("pages.meletes.title"),
-    description: t("pages.meletes.description"),
+  title: t("pages.meletes.title"),
+  description: t("pages.meletes.description"),
 };
 ---
 
@@ -35,68 +24,7 @@ const meta = {
       description={t("pages.meletes.description")}
     />
 
-    <Carousel
-      images={[
-        {
-          src: meletesImage,
-          alt: "meletes",
-        },
-        {
-          src: meletes2Image,
-          alt: "meletes-2",
-        },
-        {
-          src: meletes3Image,
-          alt: "meletes-3",
-        },
-        {
-          src: meletes3BImage,
-          alt: "meletes-3b",
-        },
-        {
-          src: meletes3CImage,
-          alt: "meletes-3c",
-        },
-        {
-          src: meletes3DImage,
-          alt: "meletes-3d",
-        },
-        {
-          src: meletes4Image,
-          alt: "meletes-4",
-        },
-        {
-          src: meletes5Image,
-          alt: "meletes-5",
-        },
-        {
-          src: meletes6Image,
-          alt: "meletes-6",
-        },
-        {
-          src: meletes8Image,
-          alt: "meletes-8",
-        },
-        {
-          src: meletes9Image,
-          alt: "meletes-9",
-        },
-        {
-          src: meletes10Image,
-          alt: "meletes-10",
-        },
-        {
-          src: meletes11Image,
-          alt: "meletes-11",
-        },
-        {
-          src: meletes12Image,
-          alt: "meletes-12",
-        },
-      ]}
-      widthType="normal"
-    />
+    <Carousel images={images} widthType="normal" />
   </div>
-
   <Spacer />
 </Layout>
