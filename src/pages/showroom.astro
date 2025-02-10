@@ -1,6 +1,6 @@
 ---
 import { t, changeLanguage } from "i18next";
-import Carousel from "~/components/widgets/Carousel.astro";
+import Carousel from "~/components/widgets/Carousel.tsx";
 import PageDescription from "~/components/widgets/PageDescription.astro";
 import Spacer from "~/components/widgets/Spacer.astro";
 import Layout from "~/layouts/PageLayout.astro";
@@ -24,7 +24,7 @@ const meta = {
       description={t("pages.showroom.description")}
     />
 
-    <Carousel images={images} widthType="normal" />
+    <Carousel images={images} widthType="normal" client:load />
   </div>
 
   <Spacer />
