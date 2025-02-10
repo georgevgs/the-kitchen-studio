@@ -1,70 +1,119 @@
 ---
 import { SEO } from "astro-seo";
 import { SITE } from "../../config.mjs";
-import type { MetaSEO } from "../../types";
 import { getAsset } from "../../utils/permalinks";
 import CustomStyles from "../../components/CustomStyles.astro";
 
-export interface Props extends MetaSEO {
-  dontUseTitleTemplate?: boolean;
-}
-
 const getImageUrl = (img) => {
-  if (typeof img === "string") {
-    return new URL(img, Astro.site);
-  }
+    if (typeof img === "string") {
+        return new URL(img, Astro.site);
+    }
 
-  if (img && typeof img === "object" && "src" in img) {
-    return new URL(img.src, Astro.site);
-  }
+    if (img && typeof img === "object" && "src" in img) {
+        return new URL(img.src, Astro.site);
+    }
 
-  return null;
+    return null;
 };
 
 const {
-  title = SITE.title,
-  description = SITE.description,
-  image = SITE.defaultImage,
-  ogType = "website",
+    title = SITE.title,
+    description = SITE.description,
+    image = SITE.defaultImage,
+    ogType = "website",
 } = Astro.props;
 
 const imageUrl = getImageUrl(image);
 
-const seoConfig = {
-  title,
-  description,
-  openGraph: {
-    basic: {
-      title: SITE.name,
-      type: ogType,
-      image: imageUrl,
+// Business Schema
+const businessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "The Kitchen Studio",
+    "@id": "https://www.thekitchenstudio.gr",
+    "url": "https://www.thekitchenstudio.gr",
+    "image": getAsset("./assets/images/the-kitchen-studio-logo.png"),
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Grigoriou Lampraki 28",
+        "addressLocality": "Glyfada",
+        "addressRegion": "Attica",
+        "postalCode": "16675",
+        "addressCountry": "GR"
     },
-  },
-  twitter: {
-    creator: "@jonasmerlins1",
-    card: "summary_large_image",
-    image: imageUrl,
-    title: SITE.name,
-    description,
-  },
-  extend: {
-    meta: [
-      { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-      { name: "theme-color", content: "#000000" },
-    ],
-  },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.86350802540611,
+        "longitude": 23.754075789949074
+    },
+    "telephone": "+30 210 8981423",
+    "openingHoursSpecification": [
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Wednesday", "Saturday"],
+            "opens": "10:00",
+            "closes": "14:00"
+        },
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Tuesday", "Thursday", "Friday"],
+            "opens": "10:00",
+            "closes": "14:00"
+        },
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Tuesday", "Thursday", "Friday"],
+            "opens": "17:30",
+            "closes": "20:30"
+        }
+    ]
 };
+
+const seoProps = {
+    title: title,
+    description: description,
+    openGraph: {
+        basic: {
+            title: title,
+            type: ogType,
+            image: imageUrl?.toString() || ""
+        },
+        optional: {
+            locale: "el_GR",
+            siteName: SITE.name
+        }
+    },
+    twitter: {
+        creator: "@jonasmerlins1",
+        card: "summary_large_image",
+        image: imageUrl?.toString() || "",
+        title: title,
+        description: description
+    },
+    extend: {
+        meta: [
+            { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+            { name: "theme-color", content: "#000000" },
+            { name: "msapplication-TileColor", content: "#000000" },
+            { name: "generator", content: Astro.generator }
+        ]
+    }
+} as const;
 ---
 
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<SEO {...seoConfig} />
+<SEO {...seoProps} />
 
 <CustomStyles />
 
 <link rel="shortcut icon" href={getAsset("/favicon.ico")} />
 <link rel="icon" type="image/svg+xml" href={getAsset("/favicon.svg")} />
-<link rel="mask-icon" href={getAsset("/favicon.svg")} color="#8D46E7" />
+<link rel="mask-icon" href={getAsset("/favicon.svg")} color="#000000" />
 <link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png")} />
 <link rel="manifest" href={getAsset("/site.webmanifest")} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- Add the structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />

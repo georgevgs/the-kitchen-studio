@@ -1,7 +1,7 @@
 {
     "name": "The Kitchen Studio",
-    "short_name": "The Kitchen Studio",
-    "description": "Ανανεώστε τον χώρο της κουζίνας σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική.",
+    "short_name": "Kitchen Studio",
+    "description": "Σχεδιάζουμε την κουζίνα στα μέτρα σας. Εξατομικευμένα έπιπλα κουζίνας στη Γλυφάδα για λειτουργικότητα, ποιότητα και στυλ που ανταποκρίνονται στις ανάγκες σας.",
     "icons": [
         {
             "src": "/the-kitchen-studio-192x192.png",
@@ -24,10 +24,9 @@
             "type": "image/png",
             "purpose": "maskable"
         }
-          
     ],
-    "start_url": "/index.html",
+    "start_url": "/",
     "display": "standalone",
     "theme_color": "#000000",
-    "background_color": "#000000"
+    "background_color": "#ffffff"
 }
