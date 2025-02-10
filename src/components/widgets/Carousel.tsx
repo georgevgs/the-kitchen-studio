@@ -8,9 +8,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import { Dialog, DialogContent } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { X } from 'lucide-react'
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 import type { ImageMetadata } from 'astro'
 
@@ -60,14 +58,10 @@ const ImageLightbox = ({
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="max-w-4xl w-full p-0 bg-transparent border-none">
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-4 top-4 text-white"
-                    onClick={onClose}
-                >
-                    <X className="h-6 w-6" />
-                </Button>
+                <DialogTitle className="sr-only">Image Preview</DialogTitle>
+                <DialogDescription className="sr-only">
+                    A larger view of the selected image
+                </DialogDescription>
                 <img
                     src={image.src.src}
                     alt={image.alt}
@@ -81,13 +75,12 @@ const ImageLightbox = ({
 const CarouselComponent = ({ images, widthType }: CarouselProps) => {
     const [lightboxOpen, setLightboxOpen] = React.useState(false)
     const [lightboxImage, setLightboxImage] = React.useState<ImageType | null>(null)
-
-    const plugin = React.useRef(
+    const [autoplayPlugin] = React.useState(() =>
         Autoplay({
             delay: 5000,
-            stopOnInteraction: true,
+            stopOnInteraction: false,
             stopOnMouseEnter: true,
-            stopOnFocusIn: true
+            stopOnFocusIn: false
         })
     )
 
@@ -97,21 +90,33 @@ const CarouselComponent = ({ images, widthType }: CarouselProps) => {
     const handleImageClick = (image: ImageType) => {
         setLightboxImage(image)
         setLightboxOpen(true)
-        plugin.current.stop()
+        autoplayPlugin.stop()
     }
 
     const handleLightboxClose = () => {
         setLightboxOpen(false)
-        plugin.current.reset()
+        autoplayPlugin.reset()
+    }
+
+    const handleMouseEnter = () => {
+        if (autoplayPlugin) {
+            autoplayPlugin.stop()
+        }
+    }
+
+    const handleMouseLeave = () => {
+        if (autoplayPlugin) {
+            autoplayPlugin.reset()
+        }
     }
 
     return (
         <section className={cn(containerClass, 'mx-auto')} id="carousel">
             <Carousel
-                plugins={[plugin.current]}
+                plugins={[autoplayPlugin]}
                 className="w-full"
-                onMouseEnter={plugin.current.stop}
-                onMouseLeave={plugin.current.reset}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
                 opts={{
                     align: "start",
                     loop: true,
