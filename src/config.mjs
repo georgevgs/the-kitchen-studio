@@ -8,7 +8,7 @@ const CONFIG = {
   trailingSlash: "",
 
   title: "The Kitchen Studio",
-  description: "Σχεδιάζουμε την κουζίνα στα μέτρα σας",
+  description: "Σχεδιάζουμε την κουζίνα στα μέτρα σας. Εξατομικευμένα έπιπλα κουζίνας στη Γλυφάδα για λειτουργικότητα, ποιότητα και στυλ που ανταποκρίνονται στις ανάγκες σας.",
   defaultImage: defaultImage,
 
   defaultTheme: "system", // Values: "system" | "light" | "dark" | "light:only" | "dark:only"

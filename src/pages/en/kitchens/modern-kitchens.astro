@@ -21,11 +21,12 @@ import modernKitchen14Image from "../../../assets/images/kitchens/modern/modern-
 import modernKitchen15Image from "../../../assets/images/kitchens/modern/modern-kitchen-15.avif";
 import modernKitchen16Image from "../../../assets/images/kitchens/modern/modern-kitchen-16.avif";
 import modernKitchen17Image from "../../../assets/images/kitchens/modern/modern-kitchen-17.avif";
+import {SITE} from "../../../config.mjs";
 
 changeLanguage("en");
 
 const meta = {
-  title: t("pages.kitchens.modern_kitchens.title"),
+  title: `${t("pages.kitchens.modern_kitchens.title")} | ${SITE.title}`,
   description: t("pages.kitchens.modern_kitchens.description"),
 };
 ---

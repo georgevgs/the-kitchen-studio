@@ -10,7 +10,7 @@ interface Item {
 }
 
 export interface Props {
-    title?: string;
+    title?: string | null;
     subtitle?: string | null;
     highlight?: string | null;
     items: Array<Array<Item>>;
@@ -28,23 +28,22 @@ const {
     <div class="px-4 py-16 mx-auto max-w-6xl lg:px-8 lg:py-20">
         {
             (title || subtitle || highlight) && (
-                        <div class="mb-10 md:mx-auto text-center md:mb-12 max-w-3xl">
+                        <div class="mb-8 md:mx-auto text-center md:mb-10 max-w-3xl">
                             {highlight && (
-                                    <p
-                                            class="text-base text-primary dark:text-orange-500 mb-4 font-semibold tracking-wide uppercase"
+                                    <h1
+                                            class="text-lg font-bold text-gray-900 dark:text-white mb-4 tracking-wide leading-snug md:text-lg lg:text-xl"
                                             set:html={highlight}
                                     />
                             )}
                             {title && (
                                     <h2
-                                            class="text-4xl md:text-5xl text-primary font-bold leading-tighter tracking-tighter mb-4 font-heading"
+                                            class="text-base text-gray-700 dark:text-orange-400 mb-3 font-medium tracking-wide uppercase"
                                             set:html={title}
                                     />
                             )}
-
                             {subtitle && (
                                     <p
-                                            class="max-w-3xl mx-auto sm:text-center text-xl text-slate-600 dark:text-gray-100"
+                                            class="max-w-2xl mx-auto sm:text-center text-base text-gray-600 dark:text-gray-200"
                                             set:html={subtitle}
                                     />
                             )}
