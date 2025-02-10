@@ -5,8 +5,16 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"],
-      "@images/*": ["src/assets/images/*"]
-    }
+      "~/*": [
+        "src/*"
+      ],"@/*": [
+        "./src/*"
+      ],
+      "@images/*": [
+        "src/assets/images/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
