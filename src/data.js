@@ -4,15 +4,15 @@ export const headerDataEL = {
       text: "Έπιπλα Κουζίνας",
       links: [
         {
-          text: "Modern Kitchens",
+          text: "Μοντέρνες Κουζίνες",
           href: "/kitchens/modern-kitchens",
         },
         {
-          text: "Classic Kitchens",
+          text: "Κλασσικές Κουζίνες",
           href: "/kitchens/classic-kitchens",
         },
         {
-          text: "Corian Kitchens",
+          text: "Κουζίνες Corian",
           href: "/kitchens/corian-kitchens",
         },
       ],
@@ -21,14 +21,14 @@ export const headerDataEL = {
       text: "Προϊόντα",
       links: [
         {
-          text: "Bath",
+          text: "Μπάνιο",
           links: [
             {
               text: "Έπιπλα Μπάνιου",
               href: "/bath/bath-furnitures",
             },
             {
-              text: "Corian Bath",
+              text: "Μπάνιο Corian",
               href: "/bath/corian-bath",
             },
             {
@@ -164,15 +164,15 @@ export const footerDataEL = {
       title: "Έπιπλα Κουζίνας",
       links: [
         {
-          text: "Modern Kitchens",
+          text: "Μοντέρνες Κουζίνες",
           href: "/kitchens/modern-kitchens",
         },
         {
-          text: "Classic Kitchens",
+          text: "Κλασσικές Κουζίνες",
           href: "/kitchens/classic-kitchens",
         },
         {
-          text: "Corian Kitchens",
+          text: "Κουζίνες Corian",
           href: "/kitchens/corian-kitchens",
         },
       ],
@@ -180,7 +180,7 @@ export const footerDataEL = {
     {
       title: "Προϊόντα",
       links: [
-        { text: "Bath", href: "/bath" },
+        { text: "Μπάνιο", href: "/bath" },
         { text: "Πλακάκια", href: "/tiles" },
         { text: "Ντουλάπες", href: "/wardrobes" },
         { text: "Living", href: "/living" },
@@ -198,8 +198,8 @@ export const footerDataEL = {
     },
   ],
   secondaryLinks: [
-    { text: "Terms", href: "/terms" },
-    { text: "Privacy Policy", href: "/privacy" },
+    { text: "Όροι και Προϋποθέσεις", href: "/terms" },
+    { text: "Πολιτική Απορρήτου", href: "/privacy" },
   ],
   socialLinks: [
     {

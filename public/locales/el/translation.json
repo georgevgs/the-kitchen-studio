@@ -160,28 +160,28 @@
         },
         "kitchens": {
             "classic_kitchens": {
-                "title": "Classic Kitchens",
+                "title": "Κλασσικές Κουζίνες",
                 "subtitle": "Η γοητεία των κλασικών επίπλων κουζίνας",
                 "description": "Ανακαλύψτε την αιώνια γοητεία των κλασικών έπιπλων κουζίνας. Τα κλασικά έπιπλα κουζίνας συνδυάζουν την αρμονία του παρελθόντος με τη λειτουργικότητα του παρόντος."
             },
             "modern_kitchens": {
-                "title": "Modern Kitchens",
+                "title": "Μοντέρνες Κουζίνες",
                 "subtitle": "Απλές γραμμές και ανθεκτικά υλικά υψηλής ποιότητας",
                 "description": "Ανακαλύψτε την αισθητική του μέλλοντος με τα μοντέρνα έπιπλα κουζίνας. Με εξαιρετικό design και πρωτοποριακά υλικά, ενσωματώνουν τη σύγχρονη τεχνολογία και τις λειτουργικές καινοτομίες."
             },
             "corian_kitchens": {
-                "title": "Corian Kitchens",
+                "title": "Κουζίνες Corian",
                 "subtitle": "Το μέλλον της αισθητικής στα έπιπλα κουζίνας",
-                "description": "Εξερευνήστε την πρωτοποριακή και σύγχρονη αισθητική των Corian Kitchens."
+                "description": "Εξερευνήστε την πρωτοποριακή και σύγχρονη αισθητική των Κουζινών Corian."
             },
             "kitchens_category": {
-                "title": "Kitchens",
+                "title": "Κουζίνες",
                 "subtitle": "Σύγχρονες λιτές γραμμές και υψηλής τεχνολογίας υλικά",
                 "description": "Ανακαλύψτε μοναδικά σχέδια κουζινών: μοντέρνες, κλασικές και Corian. Επαναπροσδιορίστε τον χώρο σας με εκλεπτυσμένα έπιπλα κουζίνας που συνδυάζουν λειτουργικότητα και αισθητική.",
                 "categories": {
-                    "text_modern_kitchens": "Modern Kitchens",
-                    "text_classic_kitchens": "Classic Kitchens",
-                    "text_corian_kitchens": "Corian Kitchens"
+                    "text_modern_kitchens": "Μοντέρνες Κουζίνες",
+                    "text_classic_kitchens": "Κλασσικές Κουζίνες",
+                    "text_corian_kitchens": "Κουζίνες Corian"
                 }
             }
         },
