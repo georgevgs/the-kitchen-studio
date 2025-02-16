@@ -1,24 +1,90 @@
 ---
 export interface Props {
   label?: string;
-  class?: string;
-  iconClass?: string;
-  iconName?: string;
+  className?: string;
 }
 
 const {
-  label = "Toggle language between EL and EN",
-  class:
-    className = "text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-base font-semibold p-2.5 inline-flex items-center justify-center w-10 h-10 language-selector",
+  label = "Toggle language",
+  className = "text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-base font-semibold p-2.5 inline-flex items-center justify-center w-10 h-10 language-selector"
 } = Astro.props;
 ---
 
 <button
-  type="button"
-  class={className}
-  aria-label={label}
-  data-aw-toggle-language
+    type="button"
+    class={className}
+    aria-label={label}
+    data-aw-toggle-language
 >
-  <p class="">EN</p>
-  <p class="hidden">EL</p>
+  <span class="block">EN</span>
+  <span class="hidden">EL</span>
 </button>
+
+<script>
+  const EN_URL = "/en";
+  const languageToggleButton = document.querySelectorAll(".language-selector");
+  const currentUrl = window.location.pathname;
+  const localLanguage = localStorage.getItem("lang");
+
+  const updateButtonDisplay = (button: Element) => {
+    if (!window.location.pathname.includes(EN_URL)) {
+      return;
+    }
+
+    const enSpan = button.querySelector("span:first-child") as HTMLSpanElement;
+    const elSpan = button.querySelector("span:last-child") as HTMLSpanElement;
+
+    enSpan.classList.add("hidden");
+    enSpan.classList.remove("block");
+    elSpan.classList.add("block");
+    elSpan.classList.remove("hidden");
+  }
+
+  const getNewUrl = (currentPath: string) => {
+    if (currentPath.includes(EN_URL)) {
+      let newPath = currentPath.replace("/en", "");
+
+      if (!newPath) {
+        return "/";
+      }
+
+      return newPath;
+    }
+
+    return EN_URL + currentPath;
+  }
+
+  const handleLanguageRedirect = () => {
+    if (localLanguage === "EN" && !currentUrl.includes(EN_URL)) {
+      document.location.href = EN_URL + currentUrl;
+      localStorage.setItem("lang", "EN");
+      
+      return;
+    }
+
+    if (localLanguage === "EL" && currentUrl.includes(EN_URL)) {
+      const newURL = getNewUrl(currentUrl);
+      document.location.href = newURL;
+      localStorage.setItem("lang", "EL");
+    }
+  }
+
+  const handleLanguageToggle = () => {
+    const newURL = getNewUrl(currentUrl);
+    const newLang = currentUrl.includes(EN_URL) ? "EL" : "EN";
+
+    document.location.href = newURL;
+    localStorage.setItem("lang", newLang);
+  }
+
+  // Initialize buttons
+  languageToggleButton.forEach(updateButtonDisplay);
+
+  // Handle initial redirect
+  handleLanguageRedirect();
+
+  // Add click handlers
+  languageToggleButton.forEach((button) => {
+    button.addEventListener("click", handleLanguageToggle);
+  });
+</script>
