@@ -4,26 +4,11 @@ import Carousel from "../../components/widgets/Carousel.tsx";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
-import wardrobeImage from "../../assets/images/wardrobes/wardrobe.avif";
-import wardrobe2Image from "../../assets/images/wardrobes/wardrobe-2.avif";
-import wardrobe3Image from "../../assets/images/wardrobes/wardrobe-3.avif";
-import wardrobe4Image from "../../assets/images/wardrobes/wardrobe-4.avif";
-import wardrobe5Image from "../../assets/images/wardrobes/wardrobe-5.avif";
-import wardrobe6Image from "../../assets/images/wardrobes/wardrobe-6.avif";
-import wardrobe7Image from "../../assets/images/wardrobes/wardrobe-7.avif";
-import wardrobe8Image from "../../assets/images/wardrobes/wardrobe-8.avif";
-import wardrobe9Image from "../../assets/images/wardrobes/wardrobe-9.avif";
-import wardrobe10Image from "../../assets/images/wardrobes/wardrobe-10.avif";
-import wardrobe11Image from "../../assets/images/wardrobes/wardrobe-11.avif";
-import wardrobe12Image from "../../assets/images/wardrobes/wardrobe-12.avif";
-import wardrobe13Image from "../../assets/images/wardrobes/wardrobe-13.avif";
-import wardrobe14Image from "../../assets/images/wardrobes/wardrobe-14.avif";
-import wardrobe15Image from "../../assets/images/wardrobes/wardrobe-15.avif";
-import wardrobe16Image from "../../assets/images/wardrobes/wardrobe-16.avif";
-import wardrobe17Image from "../../assets/images/wardrobes/wardrobe-17.avif";
-import wardrobe18Image from "../../assets/images/wardrobes/wardrobe-18.avif";
+import { processImagesForCarousel } from "~/utils/images";
 
 changeLanguage("en");
+
+const images = processImagesForCarousel("wardrobes");
 
 const meta = {
   title: t("pages.wardrobes.title"),
@@ -39,84 +24,7 @@ const meta = {
       description={t("pages.wardrobes.description")}
     />
 
-    <Carousel
-      images={[
-        {
-          src: wardrobeImage,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe2Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe3Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe4Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe5Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe6Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe7Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe8Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe9Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe10Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe11Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe12Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe13Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe14Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe15Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe16Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe17Image,
-          alt: "wardrobe",
-        },
-        {
-          src: wardrobe18Image,
-          alt: "wardrobe",
-        },
-      ]}
-      widthType="normal"
-      client:load
-    />
+    <Carousel images={images} widthType="normal" client:load />
   </div>
 
   <Spacer />
