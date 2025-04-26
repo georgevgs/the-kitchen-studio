@@ -16,11 +16,7 @@ export default defineConfig({
     trailingSlash: "ignore",
     output: "static",
 
-    adapter: vercel({
-        webAnalytics: {
-            enabled: true,
-        },
-    }),
+    adapter: vercel(),
 
     integrations: [astroI18next(), tailwind({
         applyBaseStyles: false,
