@@ -8,6 +8,8 @@ import astroI18next from "astro-i18next";
 import vercel from "@astrojs/vercel";
 import react from "@astrojs/react";
 
+import partytown from "@astrojs/partytown";
+
 export default defineConfig({
     site: SITE.origin,
     base: SITE.basePathname,
@@ -20,14 +22,7 @@ export default defineConfig({
         },
     }),
 
-    integrations: [
-        astroI18next(),
-        tailwind({
-            applyBaseStyles: false,
-        }),
-        sitemap(),
-        mdx(),
-        serviceWorker(),
-        react(),
-    ],
+    integrations: [astroI18next(), tailwind({
+        applyBaseStyles: false,
+    }), sitemap(), mdx(), serviceWorker(), react(), partytown()],
 });

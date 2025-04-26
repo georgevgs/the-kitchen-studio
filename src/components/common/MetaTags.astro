@@ -5,99 +5,99 @@ import { getAsset } from "../../utils/permalinks";
 import CustomStyles from "../../components/CustomStyles.astro";
 
 const getImageUrl = (img) => {
-    if (typeof img === "string") {
-        return new URL(img, Astro.site);
-    }
+  if (typeof img === "string") {
+    return new URL(img, Astro.site);
+  }
 
-    if (img && typeof img === "object" && "src" in img) {
-        return new URL(img.src, Astro.site);
-    }
+  if (img && typeof img === "object" && "src" in img) {
+    return new URL(img.src, Astro.site);
+  }
 
-    return null;
+  return null;
 };
 
 const {
-    title = SITE.title,
-    description = SITE.description,
-    image = SITE.defaultImage,
-    ogType = "website",
+  title = SITE.title,
+  description = SITE.description,
+  image = SITE.defaultImage,
+  ogType = "website",
 } = Astro.props;
 
 const imageUrl = getImageUrl(image);
 
 // Business Schema
 const businessSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "The Kitchen Studio",
-    "@id": "https://www.thekitchenstudio.gr",
-    "url": "https://www.thekitchenstudio.gr",
-    "image": getAsset("./assets/images/the-kitchen-studio-logo.png"),
-    "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Grigoriou Lampraki 28",
-        "addressLocality": "Glyfada",
-        "addressRegion": "Attica",
-        "postalCode": "16675",
-        "addressCountry": "GR"
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "The Kitchen Studio",
+  "@id": "https://www.thekitchenstudio.gr",
+  url: "https://www.thekitchenstudio.gr",
+  image: getAsset("./assets/images/the-kitchen-studio-logo.png"),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Grigoriou Lampraki 28",
+    addressLocality: "Glyfada",
+    addressRegion: "Attica",
+    postalCode: "16675",
+    addressCountry: "GR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 37.86350802540611,
+    longitude: 23.754075789949074,
+  },
+  telephone: "+30 210 8981423",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Wednesday", "Saturday"],
+      opens: "10:00",
+      closes: "14:00",
     },
-    "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 37.86350802540611,
-        "longitude": 23.754075789949074
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Tuesday", "Thursday", "Friday"],
+      opens: "10:00",
+      closes: "14:00",
     },
-    "telephone": "+30 210 8981423",
-    "openingHoursSpecification": [
-        {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Wednesday", "Saturday"],
-            "opens": "10:00",
-            "closes": "14:00"
-        },
-        {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Tuesday", "Thursday", "Friday"],
-            "opens": "10:00",
-            "closes": "14:00"
-        },
-        {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Tuesday", "Thursday", "Friday"],
-            "opens": "17:30",
-            "closes": "20:30"
-        }
-    ]
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Tuesday", "Thursday", "Friday"],
+      opens: "17:30",
+      closes: "20:30",
+    },
+  ],
 };
 
 const seoProps = {
+  title: title,
+  description: description,
+  openGraph: {
+    basic: {
+      title: title,
+      type: ogType,
+      image: imageUrl?.toString() || "",
+    },
+    optional: {
+      locale: "el_GR",
+      siteName: SITE.name,
+    },
+  },
+  twitter: {
+    creator: "@jonasmerlins1",
+    card: "summary_large_image",
+    image: imageUrl?.toString() || "",
     title: title,
     description: description,
-    openGraph: {
-        basic: {
-            title: title,
-            type: ogType,
-            image: imageUrl?.toString() || ""
-        },
-        optional: {
-            locale: "el_GR",
-            siteName: SITE.name
-        }
-    },
-    twitter: {
-        creator: "@jonasmerlins1",
-        card: "summary_large_image",
-        image: imageUrl?.toString() || "",
-        title: title,
-        description: description
-    },
-    extend: {
-        meta: [
-            { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-            { name: "theme-color", content: "#000000" },
-            { name: "msapplication-TileColor", content: "#000000" },
-            { name: "generator", content: Astro.generator }
-        ]
-    }
+  },
+  extend: {
+    meta: [
+      { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+      { name: "theme-color", content: "#000000" },
+      { name: "msapplication-TileColor", content: "#000000" },
+      { name: "generator", content: Astro.generator },
+    ],
+  },
 } as const;
 ---
 
@@ -117,3 +117,16 @@ const seoProps = {
 
 <!-- Add the structured data -->
 <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+
+<!-- Google tag (gtag.js) -->
+<script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-J18XYTZ2CK"></script>
+
+<script is:inline type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-J18XYTZ2CK");
+</script>
