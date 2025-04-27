@@ -161,7 +161,7 @@ export const headerDataEN = {
 export const footerDataEL = {
   links: [
     {
-      title: "Έπιπλα Κουζίνας",
+      title: "ΕΠΙΠΛΑ ΚΟΥΖΙΝΑΣ",
       links: [
         {
           text: "Μοντέρνες Κουζίνες",
@@ -178,7 +178,7 @@ export const footerDataEL = {
       ],
     },
     {
-      title: "Προϊόντα",
+      title: "ΠΡΟΪΟΝΤΑ",
       links: [
         { text: "Μπάνιο", href: "/bath" },
         { text: "Πλακάκια", href: "/tiles" },
@@ -188,7 +188,7 @@ export const footerDataEL = {
       ],
     },
     {
-      title: "The Kitchen Studio",
+      title: "THE KITCHEN STUDIO",
       links: [
         { text: "About us", href: "/about-us" },
         { text: "Showroom", href: "/showroom" },
@@ -213,6 +213,11 @@ export const footerDataEL = {
       href: "https://www.facebook.com/kitchenstudio/",
     },
   ],
+  showroomInfo: {
+    title: "SHOWROOM GLYFADA",
+    address: "Γρηγορίου Λαμπράκη 28, Γλυφάδα",
+    phone: "210 8981423"
+  },
   footNote: `
     Web magic by <a class="text-grey-500 hover:underline dark:text-gray-200 font-bold" href="https://vagdas.eu/" target="_blank" rel="noopener noreferrer"> VAGDAS</a>
   `,
@@ -221,7 +226,7 @@ export const footerDataEL = {
 export const footerDataEN = {
   links: [
     {
-      title: "Kitchen Furniture",
+      title: "KITCHEN FURNITURE",
       links: [
         {
           text: "Modern Kitchens",
@@ -238,7 +243,7 @@ export const footerDataEN = {
       ],
     },
     {
-      title: "Products",
+      title: "PRODUCTS",
       links: [
         { text: "Bath", href: "/bath" },
         { text: "Tiles", href: "/tiles" },
@@ -248,7 +253,7 @@ export const footerDataEN = {
       ],
     },
     {
-      title: "The Kitchen Studio",
+      title: "THE KITCHEN STUDIO",
       links: [
         { text: "About us", href: "/about-us" },
         { text: "Showroom", href: "/showroom" },
@@ -273,6 +278,11 @@ export const footerDataEN = {
       href: "https://www.facebook.com/kitchenstudio/",
     },
   ],
+  showroomInfo: {
+    title: "SHOWROOM GLYFADA",
+    address: "28 Grigoriou Lampraki, Glyfada",
+    phone: "210 8981423"
+  },
   footNote: `
     Web magic by <a class="text-grey-500 hover:underline dark:text-gray-200 font-bold" href="https://vagdas.eu/" target="_blank" rel="noopener noreferrer"> VAGDAS</a>
   `,
