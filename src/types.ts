@@ -34,3 +34,12 @@ export interface MetaSEO {
   ogTitle?: string;
   ogType?: string;
 }
+
+export interface SiteConfig {
+  name: string;
+  description: string;
+  defaultLanguage: string;
+  url: string;
+  themeColorLight?: string;
+  themeColorDark?: string;
+}

@@ -1,0 +1,130 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "~/utils/blog";
+
+export interface Props {
+  post: CollectionEntry<"blog">;
+  variant?: "compact" | "normal" | "featured";
+}
+
+const { post, variant = "normal" } = Astro.props;
+const { data } = post;
+
+const getImageHeight = () => {
+  if (variant === "compact") return "h-40";
+  if (variant === "featured") return "h-72 sm:h-80";
+  return "h-56 sm:h-64";
+};
+
+const getTitleSize = () => {
+  if (variant === "compact") return "text-lg sm:text-xl";
+  if (variant === "featured") return "text-2xl sm:text-3xl";
+  return "text-xl sm:text-2xl";
+};
+
+const getTitleColor = () => {
+  return "group-hover:text-orange-500 dark:group-hover:text-orange-500";
+};
+
+const hasTags = data.tags && data.tags.length > 0;
+---
+
+<article
+  class={`blog-card group p-4 sm:p-6 rounded-xl ${variant === "featured" ? "border-b pb-8 mb-8 lg:pb-12 lg:mb-12 border-gray-200 dark:border-gray-800" : ""}`}>
+  <a href={`/blog/${post.slug}`} class="block">
+    {
+      data.image && (
+        <div
+          class={`image-zoom-container mb-5 overflow-hidden rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300`}>
+          <img src={data.image} alt={data.title} class={`image-zoom w-full ${getImageHeight()} object-cover`} />
+        </div>
+      )
+    }
+
+    <div>
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <time datetime={data.pubDate.toISOString()} class="date-badge inline-block">
+          {formatDate(data.pubDate)}
+        </time>
+
+        {
+          data.readingTime && (
+            <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              {data.readingTime} λεπτά
+            </span>
+          )
+        }
+      </div>
+
+      <h3 class={`${getTitleSize()} font-bold leading-snug mb-3 ${getTitleColor()} transition-colors`}>
+        {data.title}
+      </h3>
+
+      <p class="text-gray-700 dark:text-gray-300 line-clamp-2 leading-relaxed mb-4">
+        {data.description}
+      </p>
+
+      {
+        hasTags && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {data.tags.slice(0, 3).map((tag) => (
+              <span class="text-xs px-2.5 py-1 rounded-full bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+                {tag}
+              </span>
+            ))}
+            {data.tags.length > 3 && (
+              <span class="text-xs px-2.5 py-1 rounded-full bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+                +{data.tags.length - 3}
+              </span>
+            )}
+          </div>
+        )
+      }
+
+      <span
+        class="fancy-link inline-flex items-center text-orange-500 dark:text-orange-500 font-medium group-hover:translate-x-1 transition-transform duration-300">
+        Διαβάστε περισσότερα
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 ml-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </span>
+    </div>
+  </a>
+</article>
+
+<style>
+  .blog-card {
+    background-color: white;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .dark .blog-card {
+    background-color: #1e293b;
+  }
+
+  .blog-card:hover {
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+</style>

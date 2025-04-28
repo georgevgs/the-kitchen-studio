@@ -1,0 +1,234 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
+import { formatDate, calculateReadingTime, getRelatedPosts } from "../../utils/blog";
+import type { BlogFrontmatter } from "../../content/config";
+import BlogCard from "~/components/BlogCard.astro";
+
+// Define the type for props
+export interface Props {
+  post: CollectionEntry<"blog">;
+  relatedPosts?: CollectionEntry<"blog">[];
+}
+
+// Generate static paths for all blog posts
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog");
+
+  return Promise.all(
+    blogEntries.map(async (post) => {
+      // Get related posts if post has tags
+      const relatedPosts = post.data.tags?.length ? await getRelatedPosts(post, 2) : [];
+
+      return {
+        params: { slug: post.slug },
+        props: { post, relatedPosts },
+      };
+    })
+  );
+}
+
+// Get the current post and related posts from props
+const { post, relatedPosts = [] } = Astro.props;
+const { Content } = await post.render();
+
+// Get post content for reading time calculation
+const { remarkPluginFrontmatter } = await post.render();
+const postContent = remarkPluginFrontmatter?.content || "";
+
+// Calculate reading time if not provided in frontmatter
+const readingTime = post.data.readingTime || calculateReadingTime(postContent);
+
+// Get metadata for SEO
+const meta = {
+  title: `${post.data.title} | The Kitchen Studio`,
+  description: post.data.description,
+  image: post.data.image,
+  articlePublishTime: post.data.pubDate,
+  ogType: "article",
+};
+
+const hasRelatedPosts = relatedPosts && relatedPosts.length > 0;
+const hasTags = post.data.tags && post.data.tags.length > 0;
+---
+
+<MarkdownLayout {meta}>
+  <div class="mx-auto max-w-3xl">
+    <nav class="mb-10">
+      <a
+        href="/blog"
+        class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-orange-500 font-medium transition-colors group">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Επιστροφή στο Blog
+      </a>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <time datetime={post.data.pubDate.toISOString()} class="date-badge inline-block">
+            {formatDate(post.data.pubDate)}
+          </time>
+
+          <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            {readingTime} λεπτά ανάγνωσης
+          </span>
+        </div>
+
+        <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tight tracking-tight mb-6">
+          {post.data.title}
+        </h1>
+
+        <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+          {post.data.description}
+        </p>
+
+        {
+          hasTags && (
+            <div class="flex flex-wrap gap-2 mt-6">
+              {post.data.tags.map((tag) => (
+                <a
+                  href={`/blog?tag=${tag}`}
+                  class="text-sm px-3 py-1 rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 transition-colors">
+                  #{tag}
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </header>
+
+      {
+        post.data.image && (
+          <div class="mb-12 overflow-hidden rounded-xl shadow-lg">
+            <img src={post.data.image} alt={post.data.title} class="w-full h-auto object-cover" />
+          </div>
+        )
+      }
+
+      <div
+        class="blog-content prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-headings:scroll-mt-20 prose-a:text-black dark:prose-a:text-orange-500 hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md max-w-none">
+        <Content />
+      </div>
+
+      {
+        post.data.author && (
+          <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 mr-4">
+                <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg font-bold text-gray-600 dark:text-gray-300">
+                  {post.data.author.charAt(0)}
+                </div>
+              </div>
+              <div>
+                <p class="font-medium">{post.data.author}</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">The Kitchen Studio Team</p>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </article>
+
+    {
+      hasRelatedPosts && (
+        <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <h3 class="text-xl font-bold mb-8">Σχετικά Άρθρα</h3>
+          <div class="grid sm:grid-cols-2 gap-8">
+            {relatedPosts.map((relatedPost) => (
+              <BlogCard post={relatedPost} variant="compact" />
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
+      <h3 class="text-xl font-semibold mb-4">Σας άρεσε αυτό το άρθρο;</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-6">
+        Επισκεφθείτε την έκθεσή μας για να δείτε τις κουζίνες μας από κοντά
+      </p>
+      <a
+        href="/contact"
+        class="inline-block px-6 py-3 bg-black hover:bg-gray-800 dark:bg-orange-500 dark:hover:bg-orange-600 text-white font-medium rounded-lg transition-colors">
+        Επικοινωνήστε μαζί μας
+      </a>
+    </div>
+
+    <button
+      id="back-to-top"
+      class="fixed bottom-8 right-8 p-2 rounded-full bg-black dark:bg-orange-500 text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-gray-800 dark:hover:bg-orange-600"
+      aria-label="Back to top">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
+  </div>
+</MarkdownLayout>
+
+<script>
+  // Back to top button functionality
+  const backToTopButton = document.getElementById("back-to-top");
+
+  if (backToTopButton) {
+    // Show button when user scrolls down
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.remove("opacity-0", "invisible");
+        backToTopButton.classList.add("opacity-100", "visible");
+      } else {
+        backToTopButton.classList.remove("opacity-100", "visible");
+        backToTopButton.classList.add("opacity-0", "invisible");
+      }
+    });
+
+    // Scroll to top when button is clicked
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  // Add heading IDs for better navigation
+  document.querySelectorAll(".blog-content h2, .blog-content h3").forEach((heading) => {
+    if (!heading.id) {
+      // Create ID from heading text
+      const id = heading.textContent
+        ?.toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+
+      if (id) {
+        heading.id = id;
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
