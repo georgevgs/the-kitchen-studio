@@ -4,12 +4,18 @@ import { type MetaSEO } from "../types";
 
 export interface Props {
   meta: MetaSEO;
+  canonicalURL?: string;
 }
 
-const { meta } = Astro.props;
+const { meta, canonicalURL } = Astro.props;
 ---
 
-<Layout {meta}>
+<Layout {meta} {canonicalURL}>
+  <!-- Pass through any structured data to the MetaTags component -->
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
     <div class="fadeIn animate-slide-up">
       <slot />

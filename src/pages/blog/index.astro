@@ -3,23 +3,47 @@ import Layout from "../../layouts/PageLayout.astro";
 import { getAllPosts, getAllTags } from "../../utils/blog";
 import type { MetaSEO } from "../../types";
 import BlogCard from "~/components/BlogCard.astro";
+import { generateBreadcrumbSchema } from "../../utils/schema";
 
 // Get all blog posts and tags
 const posts = await getAllPosts();
 const allTags = await getAllTags();
 
+// Site config
+const SITE = {
+  name: "The Kitchen Studio",
+  url: import.meta.env.SITE || "https://thekitchenstudio.gr",
+};
+
+// Get canonical URL
+const canonicalURL = new URL("/blog", Astro.site).toString();
+
 const meta: MetaSEO = {
   title: "Blog | The Kitchen Studio",
   description: "Διαβάστε τα τελευταία άρθρα και συμβουλές για την κουζίνα σας.",
   ogType: "website",
+  canonicalURL: canonicalURL,
+  keywords: ["blog", "κουζίνα", "συμβουλές", "διακόσμηση", "σχεδιασμός", "ανακαίνιση"],
 };
+
+// Generate breadcrumb structured data
+const breadcrumbSchema = generateBreadcrumbSchema(
+  [
+    { name: "Home", item: "/" },
+    { name: "Blog", item: "/blog" },
+  ],
+  SITE.url
+);
 
 // Define render helpers
 const hasFeaturedPost = posts.length > 0 && posts[0].data.featured;
 const mainPosts = hasFeaturedPost ? posts.slice(1) : posts;
 ---
 
-<Layout {meta}>
+<Layout {meta} canonicalURL={canonicalURL}>
+  <!-- Add JSON-LD structured data for breadcrumbs -->
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
+
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl">
     <div class="text-center mb-16 fadeIn">
       <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tight tracking-tight mb-4">

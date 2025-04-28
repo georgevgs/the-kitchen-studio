@@ -1,38 +1,45 @@
 ---
 import { SEO } from "astro-seo";
-import { SITE } from "../../config.mjs";
 import { getAsset } from "../../utils/permalinks";
 import CustomStyles from "../../components/CustomStyles.astro";
+import type { MetaSEO } from "../../types";
+import { getImageUrl, generateWebsiteSchema } from "../../utils/schema";
+import { SITE } from "~/config.mjs";
 
-const getImageUrl = (img) => {
-  if (typeof img === "string") {
-    return new URL(img, Astro.site);
-  }
-
-  if (img && typeof img === "object" && "src" in img) {
-    return new URL(img.src, Astro.site);
-  }
-
-  return null;
-};
+/**
+ * MetaTags Component Properties
+ */
+export interface MetaTagsProps extends MetaSEO {}
 
 const {
   title = SITE.title,
   description = SITE.description,
   image = SITE.defaultImage,
   ogType = "website",
-} = Astro.props;
+  canonicalURL,
+  articlePublishTime,
+  keywords = SITE.keywords,
+  author = SITE.name, // Fallback to site name if author not specified
+  language = SITE.language, // Use SITE.language instead of defaultLanguage
+}: MetaTagsProps = Astro.props;
 
-const imageUrl = getImageUrl(image);
+// Get image URL as string
+const imageUrl = getImageUrl(image, SITE.origin);
 
-// Business Schema
+// Format canonical URL
+const ogCanonicalURL = canonicalURL ? new URL(canonicalURL, Astro.site) : new URL(Astro.url.pathname, Astro.site);
+
+// Format publish date for articles
+const articlePublishDate = articlePublishTime ? new Date(articlePublishTime).toISOString() : undefined;
+
+// Business Schema - using your actual business info
 const businessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "The Kitchen Studio",
   "@id": "https://www.thekitchenstudio.gr",
   url: "https://www.thekitchenstudio.gr",
-  image: getAsset("./assets/images/the-kitchen-studio-logo.png"),
+  image: getAsset("./assets/images/logo/the-kitchen-studio-logo.png"),
   address: {
     "@type": "PostalAddress",
     streetAddress: "Grigoriou Lampraki 28",
@@ -69,36 +76,81 @@ const businessSchema = {
   ],
 };
 
+// Website Schema
+// Convert defaultImage to a string URL for compatibility
+const siteConfig = {
+  ...SITE,
+  defaultImage: getImageUrl(SITE.defaultImage, SITE.origin),
+};
+const websiteSchema = generateWebsiteSchema(siteConfig);
+
+// Define types for meta and link tags
+interface MetaTag {
+  name: string;
+  content: string;
+  media?: string;
+}
+
+interface LinkTag {
+  rel: string;
+  href: string;
+  color?: string;
+}
+
+// Process keywords into a string if they're an array
+const keywordsString = Array.isArray(keywords) ? keywords.join(", ") : keywords || "";
+
+// Configure SEO props
 const seoProps = {
   title: title,
   description: description,
+  canonical: ogCanonicalURL.toString(),
   openGraph: {
     basic: {
       title: title,
       type: ogType,
-      image: imageUrl?.toString() || "",
+      image: imageUrl || "",
+      url: ogCanonicalURL.toString(),
     },
     optional: {
-      locale: "el_GR",
+      locale: language || "el-GR",
       siteName: SITE.name,
+      description: description,
     },
+    article:
+      ogType === "article"
+        ? {
+            publishedTime: articlePublishDate,
+            authors: [author || SITE.name],
+            tags: Array.isArray(keywords) ? keywords : keywords?.split(",").map((k) => k.trim()) || [],
+          }
+        : undefined,
   },
   twitter: {
-    creator: "@jonasmerlins1",
+    creator: "@thekitchenstudio",
     card: "summary_large_image",
-    image: imageUrl?.toString() || "",
+    image: imageUrl || "",
     title: title,
     description: description,
   },
   extend: {
     meta: [
       { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-      { name: "theme-color", content: "#000000" },
       { name: "msapplication-TileColor", content: "#000000" },
       { name: "generator", content: Astro.generator },
-    ],
+      { name: "format-detection", content: "telephone=no" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-title", content: SITE.name },
+      { name: "application-name", content: SITE.name },
+      ...(keywordsString ? [{ name: "keywords", content: keywordsString }] : []),
+      ...(author ? [{ name: "author", content: author }] : []),
+    ] as MetaTag[],
+    link: [{ rel: "canonical", href: ogCanonicalURL.toString() }] as LinkTag[],
   },
 } as const;
+
+// Define the type for the asset paths
+type AssetPath = string;
 ---
 
 <meta charset="UTF-8" />
@@ -108,15 +160,19 @@ const seoProps = {
 
 <CustomStyles />
 
-<link rel="shortcut icon" href={getAsset("/favicon.ico")} />
-<link rel="icon" type="image/svg+xml" href={getAsset("/favicon.svg")} />
-<link rel="mask-icon" href={getAsset("/favicon.svg")} color="#000000" />
-<link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png")} />
-<link rel="manifest" href={getAsset("/site.webmanifest")} />
+<link rel="shortcut icon" href={getAsset("/favicon.ico") as AssetPath} />
+<link rel="icon" type="image/svg+xml" href={getAsset("/favicon.svg") as AssetPath} />
+<link rel="mask-icon" href={getAsset("/favicon.svg") as AssetPath} color="#000000" />
+<link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png") as AssetPath} />
+<link rel="manifest" href={getAsset("/site.webmanifest") as AssetPath} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- Add the structured data -->
 <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+<!-- Allow for additional structured data from page templates -->
+<slot />
 
 <!-- Google tag (gtag.js) -->
 <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-J18XYTZ2CK"></script>

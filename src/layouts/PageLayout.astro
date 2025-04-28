@@ -12,22 +12,40 @@ import { type MetaSEO } from "../types";
 export interface Props {
   meta?: MetaSEO;
   lang?: "EN" | "EL";
+  canonicalURL?: string;
 }
 
-const { meta, lang } = Astro.props;
+const { meta = {}, lang = "EL", canonicalURL } = Astro.props;
 
 const headerData = lang === "EN" ? headerDataEN : headerDataEL;
 const footerData = lang === "EN" ? footerDataEN : footerDataEL;
+
+// Pass canonicalURL to MetaTags component
+if (canonicalURL && meta) {
+  meta.canonicalURL = canonicalURL;
+}
+
+// Set language based on page lang
+if (lang && meta) {
+  meta.language = lang === "EN" ? "en" : "el-GR";
+}
 ---
 
 <Layout {meta}>
+  <!-- Pass any structured data to head -->
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
   <slot name="header">
     <Header {...headerData} isSticky showToggleTheme />
   </slot>
+
   <main>
-     <!--<Announcement />-->
+    <!--<Announcement />-->
     <slot />
   </main>
+
   <slot name="footer">
     <Footer {...footerData} class="hidden sm:block" />
     <MinimalFooter {...footerData} class="block sm:hidden" />
