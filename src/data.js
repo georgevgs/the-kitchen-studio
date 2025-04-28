@@ -68,6 +68,10 @@ export const headerDataEL = {
       text: "Showroom",
       href: "/showroom",
     },
+    {
+      text: "Blog",
+      href: "/blog",
+    },
   ],
   actions: [
     {
@@ -194,6 +198,7 @@ export const footerDataEL = {
         { text: "Showroom", href: "/showroom" },
         { text: "Έργα", href: "/erga" },
         { text: "Μελέτες", href: "/meletes" },
+        { text: "Blog", href: "/blog" },
       ],
     },
   ],
