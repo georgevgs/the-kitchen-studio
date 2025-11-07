@@ -11,8 +11,7 @@ import { SITE } from "../../config.mjs";
   // Then we set the value in the --vh custom property to the root of the document
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-  let touchDevice =
-    navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
+  let touchDevice = navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
 
   function applyTheme(theme) {
     const isDark = theme === "dark";
@@ -28,23 +27,18 @@ import { SITE } from "../../config.mjs";
 
     themeToggleButtonIcon.forEach((icon) => {
       const shouldHide =
-        (icon.classList.contains("fa-sun") && !isDark) ||
-        (icon.classList.contains("fa-moon") && isDark);
+        (icon.classList.contains("fa-sun") && !isDark) || (icon.classList.contains("fa-moon") && isDark);
       icon.classList.toggle("hidden", shouldHide);
     });
 
     decideFeatureImageLogo();
   }
 
-  if (
-    (defaultTheme && defaultTheme.endsWith(":only")) ||
-    (!localStorage.theme && defaultTheme !== "system")
-  ) {
+  if ((defaultTheme && defaultTheme.endsWith(":only")) || (!localStorage.theme && defaultTheme !== "system")) {
     applyTheme(defaultTheme.replace(":only", ""));
   } else if (
     localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
+    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     applyTheme("dark");
   } else {
@@ -52,10 +46,7 @@ import { SITE } from "../../config.mjs";
   }
 
   function attachEvent(selector, event, fn) {
-    const matches =
-      typeof selector === "string"
-        ? document.querySelectorAll(selector)
-        : selector;
+    const matches = typeof selector === "string" ? document.querySelectorAll(selector) : selector;
     if (matches && matches.length) {
       matches.forEach((elem) => {
         elem.addEventListener(event, (e) => fn(e, elem), false);
@@ -91,8 +82,7 @@ import { SITE } from "../../config.mjs";
 
       themeToggleButtonIcon.forEach((icon) => {
         const shouldHide =
-          (icon.classList.contains("fa-sun") && !isDark) ||
-          (icon.classList.contains("fa-moon") && isDark);
+          (icon.classList.contains("fa-sun") && !isDark) || (icon.classList.contains("fa-moon") && isDark);
         icon.classList.toggle("hidden", shouldHide);
       });
 
@@ -134,15 +124,9 @@ import { SITE } from "../../config.mjs";
 
     function applyHeaderStylesOnScroll() {
       const header = document.getElementById("header");
-      if (
-        lastKnownScrollPosition > 25 &&
-        !header?.classList.contains("scroll")
-      ) {
+      if (lastKnownScrollPosition > 25 && !header?.classList.contains("scroll")) {
         document.getElementById("header").classList.add("scroll");
-      } else if (
-        lastKnownScrollPosition <= 25 &&
-        header?.classList.contains("scroll")
-      ) {
+      } else if (lastKnownScrollPosition <= 25 && header?.classList.contains("scroll")) {
         document.getElementById("header").classList.remove("scroll");
       }
       ticking = false;
@@ -386,8 +370,7 @@ import { SITE } from "../../config.mjs";
 
     const darkModeImage =
       "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524859/karadimas-logo-darkmode_qfuxja.avif";
-    const lightModeImage =
-      "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif";
+    const lightModeImage = "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif";
 
     if (document.documentElement.classList.contains("dark")) {
       featureImageLogo.src = darkModeImage;
