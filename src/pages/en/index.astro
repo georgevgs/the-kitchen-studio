@@ -12,7 +12,7 @@ import Steps from "../../components/widgets/Steps.astro";
 import FAQs from "../../components/widgets/FAQs.astro";
 import Stats from "../../components/widgets/Stats.astro";
 import CallToAction from "../../components/widgets/CallToAction.astro";
-import Carousel from "../../components/widgets/Carousel.tsx";
+import Carousel from "../../components/widgets/Carousel.astro";
 
 changeLanguage("en");
 
@@ -42,7 +42,7 @@ const meta = {
 <Layout {meta} lang={lang}>
   <!-- Carousel Widget *************** -->
 
-  <Carousel images={images} widthType="full-width" client:load />
+  <Carousel images={images} displayMode="cover" />
 
   <!-- Features Widget *************** -->
 

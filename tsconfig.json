@@ -13,8 +13,6 @@
       "@images/*": [
         "src/assets/images/*"
       ]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    }
   }
 }

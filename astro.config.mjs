@@ -6,7 +6,6 @@ import { SITE } from "./src/config.mjs";
 import serviceWorker from "astrojs-service-worker";
 import astroI18next from "astro-i18next";
 import vercel from "@astrojs/vercel";
-import react from "@astrojs/react";
 
 import partytown from "@astrojs/partytown";
 
@@ -20,5 +19,5 @@ export default defineConfig({
 
     integrations: [astroI18next(), tailwind({
         applyBaseStyles: false,
-    }), sitemap(), mdx(), serviceWorker(), react(), partytown()],
+    }), sitemap(), mdx(), serviceWorker(), partytown()],
 });
