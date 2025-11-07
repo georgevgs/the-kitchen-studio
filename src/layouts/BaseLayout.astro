@@ -19,6 +19,38 @@ const { language = "el", textDirection = "ltr" } = SITE;
 <html lang={language} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <MetaTags {...meta} />
+    <style is:inline>
+      /* Critical CSS to prevent FOUC */
+      html {
+        background-color: rgb(255 255 255);
+      }
+      html.dark {
+        background-color: rgb(15 23 42);
+      }
+      body {
+        background-color: rgb(255 255 255);
+        color: rgb(17 24 39);
+        opacity: 0;
+        transition: opacity 0.15s ease-in;
+      }
+      html.dark body {
+        background-color: rgb(15 23 42);
+        color: rgb(229 236 246);
+      }
+      body.loaded {
+        opacity: 1;
+      }
+    </style>
+    <script is:inline>
+      // Immediately add loaded class when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.classList.add('loaded');
+        });
+      } else {
+        document.body.classList.add('loaded');
+      }
+    </script>
   </head>
   <body class="antialiased text-page bg-light dark:text-slate-300 tracking-tight dark:bg-dark min-h-screen">
     <slot />
