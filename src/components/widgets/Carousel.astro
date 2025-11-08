@@ -46,7 +46,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
       <div class={`overflow-hidden rounded-lg ${heightClass}`} data-carousel-viewport style="touch-action: pan-y pinch-zoom;">
         <div class="flex -ml-4 h-full" style="touch-action: pan-y pinch-zoom;">
           {images.map((image, index) => (
-            <div class="min-w-0 shrink-0 grow-0 basis-full pl-4" data-carousel-slide>
+            <div class="min-w-0 shrink-0 grow-0 basis-full pl-4" data-carousel-slide style="will-change: transform;">
               <button
                 type="button"
                 class="block h-full w-full overflow-hidden"
@@ -58,6 +58,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                   <div
                     class="relative h-full w-full overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-800 animate-pulse"
                     data-carousel-skeleton
+                    style="will-change: transform;"
                   >
                     <img
                       src={image.src.src}
@@ -65,7 +66,8 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                       aria-hidden="true"
                       loading={eagerLoading}
                       decoding="async"
-                      class="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl opacity-40 transition-opacity duration-500 pointer-events-none"
+                      style="will-change: opacity; transform: translateZ(0);"
+                      class="absolute inset-0 h-full w-full scale-110 object-cover md:blur-2xl opacity-40 transition-opacity duration-500 pointer-events-none"
                     />
                     <img
                       src={image.src.src}
@@ -74,6 +76,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                       height={image.src?.height}
                       loading={eagerLoading}
                       decoding="async"
+                      style="will-change: opacity; transform: translateZ(0);"
                       class="relative h-full w-full object-contain opacity-0 transition-opacity duration-500 pointer-events-none"
                       data-carousel-image
                     />
@@ -82,6 +85,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                   <div
                     class="relative h-full w-full overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-800 animate-pulse"
                     data-carousel-skeleton
+                    style="will-change: transform;"
                   >
                     <img
                       src={image.src.src}
@@ -90,6 +94,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                       height={image.src?.height}
                       loading={eagerLoading}
                       decoding="async"
+                      style="will-change: opacity; transform: translateZ(0);"
                       class="h-full w-full object-cover opacity-0 transition-opacity duration-500 pointer-events-none"
                       data-carousel-image
                     />
