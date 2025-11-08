@@ -10,9 +10,10 @@ interface Props {
   images: ImageType[];
   widthType?: "normal" | "default";
   displayMode?: "contain" | "cover";
+  removeBottomMargin?: boolean;
 }
 
-const { images = [], widthType = "default", displayMode = "contain" }: Props =
+const { images = [], widthType = "default", displayMode = "contain", removeBottomMargin = false }: Props =
   Astro.props;
 
 const getHeightClass = (type: Props["widthType"]): string => {
@@ -20,7 +21,7 @@ const getHeightClass = (type: Props["widthType"]): string => {
     return "h-[calc(100vh-64px)] md:h-[38rem]";
   }
 
-  return "h-[calc(100vh-80px)] md:h-[36rem]";
+  return "h-[calc(100vh-120px)] md:h-[36rem]";
 };
 
 const getContainerClass = (type: Props["widthType"]): string => {
@@ -31,14 +32,22 @@ const getContainerClass = (type: Props["widthType"]): string => {
   return "max-w-screen-2xl w-full px-4 sm:px-6 lg:px-8";
 };
 
+const getMarginClass = (removeMargin: boolean): string => {
+  if (removeMargin) {
+    return "";
+  }
+  return "mb-6 md:mb-14";
+};
+
 const heightClass = getHeightClass(widthType);
 const containerClass = getContainerClass(widthType);
+const marginClass = getMarginClass(removeBottomMargin);
 const eagerLoading = widthType === "default" ? "eager" : "lazy";
 ---
 
 {images.length ? (
   <section
-    class={`mx-auto ${containerClass} mb-6 md:mb-14`}
+    class={`mx-auto ${containerClass} ${marginClass}`}
     data-carousel-root
     aria-roledescription="carousel"
   >
