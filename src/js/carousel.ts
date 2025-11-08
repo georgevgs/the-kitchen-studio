@@ -31,6 +31,9 @@ const initCarousel = (root: HTMLElement) => {
     {
       loop: true,
       align: "start",
+      skipSnaps: false,
+      dragFree: false,
+      containScroll: "trimSnaps",
     },
     autoplay ? [autoplay] : undefined
   );

@@ -43,8 +43,8 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
     aria-roledescription="carousel"
   >
     <div class="relative">
-      <div class={`overflow-hidden rounded-lg ${heightClass}`} data-carousel-viewport>
-        <div class="flex -ml-4 h-full">
+      <div class={`overflow-hidden rounded-lg ${heightClass}`} data-carousel-viewport style="touch-action: pan-y pinch-zoom;">
+        <div class="flex -ml-4 h-full" style="touch-action: pan-y pinch-zoom;">
           {images.map((image, index) => (
             <div class="min-w-0 shrink-0 grow-0 basis-full pl-4" data-carousel-slide>
               <button
@@ -65,7 +65,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                       aria-hidden="true"
                       loading={eagerLoading}
                       decoding="async"
-                      class="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl opacity-40 transition-opacity duration-500"
+                      class="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl opacity-40 transition-opacity duration-500 pointer-events-none"
                     />
                     <img
                       src={image.src.src}
@@ -74,7 +74,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                       height={image.src?.height}
                       loading={eagerLoading}
                       decoding="async"
-                      class="relative h-full w-full object-contain opacity-0 transition-opacity duration-500"
+                      class="relative h-full w-full object-contain opacity-0 transition-opacity duration-500 pointer-events-none"
                       data-carousel-image
                     />
                   </div>
@@ -90,7 +90,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                       height={image.src?.height}
                       loading={eagerLoading}
                       decoding="async"
-                      class="h-full w-full object-cover opacity-0 transition-opacity duration-500"
+                      class="h-full w-full object-cover opacity-0 transition-opacity duration-500 pointer-events-none"
                       data-carousel-image
                     />
                   </div>
