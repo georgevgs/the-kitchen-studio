@@ -20,7 +20,7 @@ const getHeightClass = (type: Props["widthType"]): string => {
     return "h-[calc(100vh-64px)] md:h-[38rem]";
   }
 
-  return "h-[30rem] md:h-[36rem]";
+  return "h-[calc(100vh-80px)] md:h-[36rem]";
 };
 
 const getContainerClass = (type: Props["widthType"]): string => {
@@ -38,7 +38,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
 
 {images.length ? (
   <section
-    class={`mx-auto ${containerClass} mb-10 md:mb-14`}
+    class={`mx-auto ${containerClass} mb-6 md:mb-14`}
     data-carousel-root
     aria-roledescription="carousel"
   >
