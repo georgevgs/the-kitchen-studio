@@ -20,6 +20,8 @@ const meta = {
         method="POST"
         id="contact-form"
         name="contact"
+        aria-label="Φόρμα Επικοινωνίας"
+        novalidate
         class="bg-white dark:bg-neutral-900 rounded-lg shadow-md p-6">
         <div id="form-inputs">
           <input type="hidden" name="form-name" value="contact" />
@@ -38,38 +40,48 @@ const meta = {
               {t("contact.name")}
             </label>
             <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black aria-[invalid=true]:border-red-500"
               id="name"
               type="text"
               name="name"
               required
+              aria-required="true"
+              aria-describedby="name-error"
             />
+            <p id="name-error" class="hidden text-red-500 text-xs mt-1" role="alert"></p>
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="email">
               {t("contact.email")}
             </label>
             <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black aria-[invalid=true]:border-red-500"
               id="email"
               type="email"
               name="email"
               required
+              aria-required="true"
+              aria-describedby="email-error"
             />
+            <p id="email-error" class="hidden text-red-500 text-xs mt-1" role="alert"></p>
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="message">
               {t("contact.message")}
             </label>
             <textarea
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black aria-[invalid=true]:border-red-500"
               id="message"
               name="message"
-              required></textarea>
+              required
+              aria-required="true"
+              aria-describedby="message-error"
+            ></textarea>
+            <p id="message-error" class="hidden text-red-500 text-xs mt-1" role="alert"></p>
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
-              <input type="checkbox" name="terms" class="rounded" required />
+              <input type="checkbox" name="terms" id="terms" class="rounded" required aria-required="true" />
               {t("contact.terms_a")}
               <a href={localizePath("/privacy")} target="_blank" class="text-orange-500">
                 {t("contact.terms_b")}
@@ -78,9 +90,11 @@ const meta = {
           </div>
           <div class="flex items-center justify-between">
             <button
-              class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              id="submit-btn"
+              class="bg-orange-500 hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit">
-              {t("contact.send")}
+              <span id="submit-text">{t("contact.send")}</span>
+              <span id="submit-loading" class="hidden" aria-live="polite">Αποστολή...</span>
             </button>
           </div>
         </div>

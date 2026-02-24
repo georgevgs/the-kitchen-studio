@@ -4,6 +4,7 @@ import Carousel from "../../../components/widgets/Carousel.astro";
 import PageDescription from "../../../components/widgets/PageDescription.astro";
 import Spacer from "../../../components/widgets/Spacer.astro";
 import Layout from "../../../layouts/PageLayout.astro";
+import { generateBreadcrumbSchema } from "../../../utils/schema";
 import classicKitchenImage from "../../../assets/images/kitchens/classic/classic-kitchen.avif";
 import classicKitchen2Image from "../../../assets/images/kitchens/classic/classic-kitchen-2.avif";
 import classicKitchen3Image from "../../../assets/images/kitchens/classic/classic-kitchen-3.avif";
@@ -28,9 +29,16 @@ const meta = {
   title: t("pages.kitchens.classic_kitchens.title"),
   description: t("pages.kitchens.classic_kitchens.description"),
 };
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", item: "/en" },
+  { name: "Kitchens", item: "/en/kitchens" },
+  { name: "Classic Kitchens", item: "/en/kitchens/classic-kitchens" },
+]);
 ---
 
 <Layout meta={meta} lang={"EN"}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.kitchens.classic_kitchens.title")}
@@ -42,75 +50,75 @@ const meta = {
       images={[
         {
           src: classicKitchenImage,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 1",
         },
         {
           src: classicKitchen2Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 2",
         },
         {
           src: classicKitchen3Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 3",
         },
         {
           src: classicKitchen4Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 4",
         },
         {
           src: classicKitchen5Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 5",
         },
         {
           src: classicKitchen6Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 6",
         },
         {
           src: classicKitchen7Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 7",
         },
         {
           src: classicKitchen8Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 8",
         },
         {
           src: classicKitchen9Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 9",
         },
         {
           src: classicKitchen10Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 10",
         },
         {
           src: classicKitchen11Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 11",
         },
         {
           src: classicKitchen12Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 12",
         },
         {
           src: classicKitchen13Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 13",
         },
         {
           src: classicKitchen14Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 14",
         },
         {
           src: classicKitchen15Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 15",
         },
         {
           src: classicKitchen16Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 16",
         },
         {
           src: classicKitchen17Image,
-          alt: "classic-kitchen",
+          alt: "Classic kitchen by The Kitchen Studio, photo 17",
         },
       ]}
       widthType="normal"
-     
+
     />
   </div>
 

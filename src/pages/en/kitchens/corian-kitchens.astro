@@ -4,6 +4,7 @@ import Carousel from "../../../components/widgets/Carousel.astro";
 import PageDescription from "../../../components/widgets/PageDescription.astro";
 import Spacer from "../../../components/widgets/Spacer.astro";
 import Layout from "../../../layouts/PageLayout.astro";
+import { generateBreadcrumbSchema } from "../../../utils/schema";
 import corianKitchenCountertopImage from "../../../assets/images/kitchens/corian/corian-kitchen-countertop.avif";
 import corianKitchenCountertop2Image from "../../../assets/images/kitchens/corian/corian-kitchen-countertop-2.avif";
 import corianKitchenCountertop3Image from "../../../assets/images/kitchens/corian/corian-kitchen-countertop-3.avif";
@@ -17,9 +18,16 @@ const meta = {
   title: t("pages.kitchens.corian_kitchens.title"),
   description: t("pages.kitchens.corian_kitchens.description"),
 };
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", item: "/en" },
+  { name: "Kitchens", item: "/en/kitchens" },
+  { name: "Corian Kitchens", item: "/en/kitchens/corian-kitchens" },
+]);
 ---
 
 <Layout meta={meta} lang={"EN"}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.kitchens.corian_kitchens.title")}
@@ -31,31 +39,31 @@ const meta = {
       images={[
         {
           src: corianKitchenCountertopImage,
-          alt: "corian-kitchen-countertop",
+          alt: "Corian kitchen countertop by The Kitchen Studio, photo 1",
         },
         {
           src: corianKitchenCountertop2Image,
-          alt: "corian-kitchen-countertop",
+          alt: "Corian kitchen countertop by The Kitchen Studio, photo 2",
         },
         {
           src: corianKitchenCountertop3Image,
-          alt: "corian-kitchen-countertop",
+          alt: "Corian kitchen countertop by The Kitchen Studio, photo 3",
         },
         {
           src: corianKitchenSinkImage,
-          alt: "corian-kitchen-sink",
+          alt: "Corian kitchen sink by The Kitchen Studio, photo 1",
         },
         {
           src: corianKitchenSink2Image,
-          alt: "corian-kitchen-sink",
+          alt: "Corian kitchen sink by The Kitchen Studio, photo 2",
         },
         {
           src: corianKitchenSink3Image,
-          alt: "corian-kitchen-sink",
+          alt: "Corian kitchen sink by The Kitchen Studio, photo 3",
         },
       ]}
       widthType="normal"
-     
+
     />
   </div>
 

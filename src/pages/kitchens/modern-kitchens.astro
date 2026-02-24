@@ -4,6 +4,7 @@ import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
+import { generateBreadcrumbSchema } from "../../utils/schema";
 import modernKitchenImage from "../../assets/images/kitchens/modern/modern-kitchen.avif";
 import modernKitchen2Image from "../../assets/images/kitchens/modern/modern-kitchen-2.avif";
 import modernKitchen3Image from "../../assets/images/kitchens/modern/modern-kitchen-3.avif";
@@ -29,9 +30,16 @@ const meta = {
     title: `${t("pages.kitchens.modern_kitchens.title")} | ${SITE.title}`,
     description: t("pages.kitchens.modern_kitchens.description"),
 };
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Αρχική", item: "/" },
+  { name: "Κουζίνες", item: "/kitchens" },
+  { name: "Μοντέρνες Κουζίνες", item: "/kitchens/modern-kitchens" },
+]);
 ---
 
 <Layout meta={meta} lang={"EL"}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="content-container">
     <PageDescription
     title={t("pages.kitchens.modern_kitchens.title")}
@@ -43,75 +51,75 @@ const meta = {
       images={[
         {
           src: modernKitchenImage,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 1",
         },
         {
           src: modernKitchen2Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 2",
         },
         {
           src: modernKitchen3Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 3",
         },
         {
           src: modernKitchen4Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 4",
         },
         {
           src: modernKitchen5Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 5",
         },
         {
           src: modernKitchen6Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 6",
         },
         {
           src: modernKitchen7Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 7",
         },
         {
           src: modernKitchen8Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 8",
         },
         {
           src: modernKitchen9Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 9",
         },
         {
           src: modernKitchen10Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 10",
         },
         {
           src: modernKitchen11Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 11",
         },
         {
           src: modernKitchen12Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 12",
         },
         {
           src: modernKitchen13Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 13",
         },
         {
           src: modernKitchen14Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 14",
         },
         {
           src: modernKitchen15Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 15",
         },
         {
           src: modernKitchen16Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 16",
         },
         {
           src: modernKitchen17Image,
-          alt: "modern-kitchen",
+          alt: "Μοντέρνα κουζίνα The Kitchen Studio, φωτογραφία 17",
         },
       ]}
       widthType="normal"
-     
+
     />
   </div>
 

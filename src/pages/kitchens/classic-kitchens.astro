@@ -4,6 +4,7 @@ import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
+import { generateBreadcrumbSchema } from "../../utils/schema";
 import classicKitchenImage from "../../assets/images/kitchens/classic/classic-kitchen.avif";
 import classicKitchen2Image from "../../assets/images/kitchens/classic/classic-kitchen-2.avif";
 import classicKitchen3Image from "../../assets/images/kitchens/classic/classic-kitchen-3.avif";
@@ -28,9 +29,16 @@ const meta = {
     title: t("pages.kitchens.classic_kitchens.title"),
     description: t("pages.kitchens.classic_kitchens.description"),
 };
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Αρχική", item: "/" },
+  { name: "Κουζίνες", item: "/kitchens" },
+  { name: "Κλασικές Κουζίνες", item: "/kitchens/classic-kitchens" },
+]);
 ---
 
 <Layout meta={meta} lang={"EL"}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.kitchens.classic_kitchens.title")}
@@ -42,75 +50,75 @@ const meta = {
       images={[
         {
           src: classicKitchenImage,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 1",
         },
         {
           src: classicKitchen2Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 2",
         },
         {
           src: classicKitchen3Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 3",
         },
         {
           src: classicKitchen4Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 4",
         },
         {
           src: classicKitchen5Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 5",
         },
         {
           src: classicKitchen6Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 6",
         },
         {
           src: classicKitchen7Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 7",
         },
         {
           src: classicKitchen8Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 8",
         },
         {
           src: classicKitchen9Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 9",
         },
         {
           src: classicKitchen10Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 10",
         },
         {
           src: classicKitchen11Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 11",
         },
         {
           src: classicKitchen12Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 12",
         },
         {
           src: classicKitchen13Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 13",
         },
         {
           src: classicKitchen14Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 14",
         },
         {
           src: classicKitchen15Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 15",
         },
         {
           src: classicKitchen16Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 16",
         },
         {
           src: classicKitchen17Image,
-          alt: "classic-kitchen",
+          alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 17",
         },
       ]}
       widthType="normal"
-     
+
     />
   </div>
 

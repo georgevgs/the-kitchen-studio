@@ -56,6 +56,28 @@ const submitForm = async (form: ContactForm): Promise<Response> => {
   });
 };
 
+// Submit button loading state
+const setSubmitLoading = (loading: boolean): void => {
+  const btn = getElement("submit-btn") as HTMLButtonElement | null;
+  const submitText = getElement("submit-text");
+  const submitLoading = getElement("submit-loading");
+  if (btn) btn.disabled = loading;
+  if (submitText) submitText.classList.toggle("hidden", loading);
+  if (submitLoading) submitLoading.classList.toggle("hidden", !loading);
+};
+
+// Field validation with ARIA
+const validateField = (field: HTMLInputElement | HTMLTextAreaElement): boolean => {
+  const valid = field.value.trim() !== "";
+  field.setAttribute("aria-invalid", valid ? "false" : "true");
+  const errorEl = getElement(`${field.id}-error`);
+  if (errorEl) {
+    errorEl.textContent = valid ? "" : "Αυτό το πεδίο είναι υποχρεωτικό";
+    errorEl.classList.toggle("hidden", valid);
+  }
+  return valid;
+};
+
 // Main Handler
 const handleSubmit = async (event: Event): Promise<void> => {
   event.preventDefault();
@@ -69,17 +91,29 @@ const handleSubmit = async (event: Event): Promise<void> => {
     return;
   }
 
+  // Validate individual fields with ARIA feedback
+  const nameValid = validateField(form.elements.name);
+  const emailValid = validateField(form.elements.email);
+  const messageValid = validateField(form.elements.message);
+
   if (!isFormValid(form)) {
+    if (!nameValid || !emailValid || !messageValid) {
+      // Focus first invalid field
+      if (!nameValid) form.elements.name.focus();
+      else if (!emailValid) form.elements.email.focus();
+      else form.elements.message.focus();
+    }
     displayMessage(
       formStatus,
       "Παρακαλώ συμπληρώστε όλα τα απαιτούμενα πεδία",
       true,
     );
+    showElement(formStatus);
     return;
   }
 
   try {
-    displayMessage(formStatus, "Αποστολή...");
+    setSubmitLoading(true);
     hideElement(formInputs);
 
     const response = await submitForm(form);
@@ -97,6 +131,7 @@ const handleSubmit = async (event: Event): Promise<void> => {
       true,
     );
     showElement(formInputs);
+    setSubmitLoading(false);
     console.error("Error submitting form:", error);
   }
 };

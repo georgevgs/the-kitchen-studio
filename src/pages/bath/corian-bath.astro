@@ -4,6 +4,7 @@ import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
+import { generateBreadcrumbSchema } from "../../utils/schema";
 import corianBathroomSinkImage from "../../assets/images/bath/corian/corian-bathroom-sink.avif";
 import corianBathroomSink2Image from "../../assets/images/bath/corian/corian-bathroom-sink-2.avif";
 import corianBathroomSink3Image from "../../assets/images/bath/corian/corian-bathroom-sink-3.avif";
@@ -18,9 +19,16 @@ const meta = {
     title: t("pages.bath.corian_bath.title"),
     description: t("pages.bath.corian_bath.description")
 };
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Αρχική", item: "/" },
+  { name: "Μπάνιο", item: "/bath" },
+  { name: "Νεροχύτες Corian", item: "/bath/corian-bath" },
+]);
 ---
 
 <Layout meta={meta} lang={"EL"}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.bath.corian_bath.title")}
@@ -32,35 +40,35 @@ const meta = {
       images={[
         {
           src: corianBathroomSinkImage,
-          alt: "corian-bathroom-sink",
+          alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 1",
         },
         {
           src: corianBathroomSink2Image,
-          alt: "corian-bathroom-sink",
+          alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 2",
         },
         {
           src: corianBathroomSink3Image,
-          alt: "corian-bathroom-sink",
+          alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 3",
         },
         {
           src: corianBathroomSink4Image,
-          alt: "corian-bathroom-sink",
+          alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 4",
         },
         {
           src: corianBathroomSink5Image,
-          alt: "corian-bathroom-sink",
+          alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 5",
         },
         {
           src: corianBathroomSink6Image,
-          alt: "corian-bathroom-sink",
+          alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 6",
         },
         {
           src: corianBathroomSink7Image,
-          alt: "corian-bathroom-sink",
+          alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 7",
         },
       ]}
       widthType="normal"
-     
+
     />
   </div>
 

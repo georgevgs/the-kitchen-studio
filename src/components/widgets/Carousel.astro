@@ -55,13 +55,14 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
       <div class={`overflow-hidden rounded-lg ${heightClass}`} data-carousel-viewport style="touch-action: pan-y pinch-zoom;">
         <div class="flex -ml-4 h-full" style="touch-action: pan-y pinch-zoom;">
           {images.map((image, index) => (
-            <div class="min-w-0 shrink-0 grow-0 basis-full pl-4" data-carousel-slide style="will-change: transform;">
+            <div class="min-w-0 shrink-0 grow-0 basis-full pl-4" data-carousel-slide role="group" aria-label={`Slide ${index + 1} of ${images.length}`} style="will-change: transform;">
               <button
                 type="button"
                 class="block h-full w-full overflow-hidden"
                 data-carousel-open-lightbox
                 data-src={image.src.src}
                 data-alt={image.alt || `Carousel image ${index + 1}`}
+                aria-label={`${image.alt || `Slide ${index + 1}`} - Άνοιγμα σε μεγάλη προβολή`}
               >
                 {displayMode === "contain" ? (
                   <div
@@ -158,7 +159,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
       data-carousel-lightbox
       aria-modal="true"
       role="dialog"
-      aria-label="Image preview"
+      aria-label="Προβολή εικόνας gallery"
       tabindex="-1"
     >
       <div class="relative w-full max-w-[90vw]">

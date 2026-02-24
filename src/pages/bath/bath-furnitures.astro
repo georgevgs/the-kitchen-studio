@@ -4,6 +4,7 @@ import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
+import { generateBreadcrumbSchema } from "../../utils/schema";
 import bathFurnituresImage from "../../assets/images/bath/furniture/bath-furniture.avif";
 import bathFurnitures2Image from "../../assets/images/bath/furniture/bath-furniture-2.avif";
 import bathFurnitures3Image from "../../assets/images/bath/furniture/bath-furniture-3.avif";
@@ -27,9 +28,16 @@ const meta = {
   title: t("pages.bath.bath_furnitures.title"),
   description: t("pages.bath.bath_furnitures.description"),
 };
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Αρχική", item: "/" },
+  { name: "Μπάνιο", item: "/bath" },
+  { name: "Έπιπλα Μπάνιου", item: "/bath/bath-furnitures" },
+]);
 ---
 
 <Layout meta={meta} lang={"EL"}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.bath.bath_furnitures.title")}
@@ -41,71 +49,71 @@ const meta = {
       images={[
         {
           src: bathFurnituresImage,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 1",
         },
         {
           src: bathFurnitures2Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 2",
         },
         {
           src: bathFurnitures3Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 3",
         },
         {
           src: bathFurnitures4Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 4",
         },
         {
           src: bathFurnitures4BImage,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 5",
         },
         {
           src: bathFurnitures5Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 6",
         },
         {
           src: bathFurnitures6Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 7",
         },
         {
           src: bathFurnitures7Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 8",
         },
         {
           src: bathFurnitures8Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 9",
         },
         {
           src: bathFurnitures9Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 10",
         },
         {
           src: bathFurnitures10Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 11",
         },
         {
           src: bathFurnitures11Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 12",
         },
         {
           src: bathFurnitures12Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 13",
         },
         {
           src: bathFurnitures13Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 14",
         },
         {
           src: bathFurnitures14Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 15",
         },
         {
           src: bathFurnitures15Image,
-          alt: "bath-furniture",
+          alt: "Έπιπλα μπάνιου The Kitchen Studio, φωτογραφία 16",
         },
       ]}
       widthType="normal"
-     
+
     />
   </div>
 
