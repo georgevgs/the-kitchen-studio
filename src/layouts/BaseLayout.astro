@@ -1,7 +1,7 @@
 ---
 import "@/styles/globals.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./../assets/styles/base.css";
+import fontAwesomeCssUrl from "@fortawesome/fontawesome-free/css/all.min.css?url";
 
 import MetaTags from "./../components/common/MetaTags.astro";
 import BasicScripts from "./../components/common/BasicScripts.astro";
@@ -20,6 +20,9 @@ const { language = "el", textDirection = "ltr" } = SITE;
   <head>
     <MetaTags {...meta} />
     <slot name="head" />
+    <!-- Load FontAwesome asynchronously to avoid render-blocking -->
+    <link rel="preload" href={fontAwesomeCssUrl} as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href={fontAwesomeCssUrl} /></noscript>
     <style is:inline>
       /* Critical CSS to prevent FOUC */
       html {

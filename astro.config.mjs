@@ -18,4 +18,17 @@ export default defineConfig({
     integrations: [astroI18next(), tailwind({
         applyBaseStyles: false,
     }), sitemap(), mdx(), serviceWorker()],
+
+    vite: {
+        plugins: [
+            {
+                name: "fontawesome-font-display",
+                transform(code, id) {
+                    if (id.includes("fontawesome-free") && id.includes(".css")) {
+                        return code.replace(/font-display:block/g, "font-display:swap");
+                    }
+                },
+            },
+        ],
+    },
 });
