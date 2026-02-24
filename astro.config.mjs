@@ -17,7 +17,11 @@ export default defineConfig({
 
     integrations: [astroI18next(), tailwind({
         applyBaseStyles: false,
-    }), sitemap(), mdx(), serviceWorker()],
+    }), sitemap({
+        filter: (page) => !page.includes('/404'),
+        changefreq: 'weekly',
+        priority: 0.7,
+    }), mdx(), serviceWorker()],
 
     vite: {
         plugins: [

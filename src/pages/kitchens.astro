@@ -5,6 +5,7 @@ import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
 import { localizePath } from "astro-i18next";
+import { generateKitchenDisplaySchema } from "../utils/schema";
 import modernKitchenImage from "../assets/images/kitchens/modern/modern-kitchen.avif";
 import classicKitchenImage from "../assets/images/kitchens/classic/classic-kitchen-5.avif";
 import corianKitchenImage from "../assets/images/kitchens/corian/corian-kitchen-countertop.avif";
@@ -15,9 +16,36 @@ const meta = {
     title: t("pages.kitchens.kitchens_category.title"),
     description: t("pages.kitchens.kitchens_category.description"),
 };
+
+const modernSchema = generateKitchenDisplaySchema({
+    name: "Modern Kitchens - The Kitchen Studio",
+    description: "Contemporary modern kitchen designs with clean lines, minimalist aesthetics and premium finishes",
+    image: modernKitchenImage,
+    url: "/kitchens/modern-kitchens",
+    category: "Modern Kitchens",
+});
+
+const classicSchema = generateKitchenDisplaySchema({
+    name: "Classic Kitchens - The Kitchen Studio",
+    description: "Timeless classic kitchen designs with traditional wood cabinetry and elegant detailing",
+    image: classicKitchenImage,
+    url: "/kitchens/classic-kitchens",
+    category: "Classic Kitchens",
+});
+
+const corianSchema = generateKitchenDisplaySchema({
+    name: "Corian Kitchens - The Kitchen Studio",
+    description: "Premium Corian kitchen designs with seamless integrated countertops and surfaces",
+    image: corianKitchenImage,
+    url: "/kitchens/corian-kitchens",
+    category: "Corian Kitchens",
+});
 ---
 
 <Layout meta={meta} lang={"EL"}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(modernSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(classicSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(corianSchema)} />
   <div class="category-container">
     <PageDescription
       title={t("pages.kitchens.kitchens_category.title")}
@@ -31,19 +59,19 @@ const meta = {
           text: t("pages.kitchens.kitchens_category.categories.text_modern_kitchens"),
           href: localizePath("/kitchens/modern-kitchens"),
           src: modernKitchenImage,
-          alt: "modern-kitchens",
+          alt: "Modern kitchen design with clean lines and minimalist aesthetic",
         },
         {
           text: t("pages.kitchens.kitchens_category.categories.text_classic_kitchens"),
           href: localizePath("/kitchens/classic-kitchens"),
           src: classicKitchenImage,
-          alt: "classic-kitchens",
+          alt: "Classic kitchen with traditional wood cabinetry and elegant details",
         },
         {
           text: t("pages.kitchens.kitchens_category.categories.text_corian_kitchens"),
           href: localizePath("/kitchens/corian-kitchens"),
           src: corianKitchenImage,
-          alt: "corian-kitchens",
+          alt: "Corian kitchen with seamless integrated countertops and surfaces",
         },
       ]}
       widecategory={false}
