@@ -97,7 +97,12 @@ export function generateBlogPostSchema(
     "@type": "BlogPosting",
     "headline": post.title || "",
     "description": post.description || post.excerpt || "",
-    "image": post.image ? [getImageUrl(post.image, siteInfo.url || "")] : undefined,
+    "image": post.image ? {
+      "@type": "ImageObject",
+      "url": getImageUrl(post.image, siteInfo.url || ""),
+      "width": 1200,
+      "height": 630
+    } : undefined,
     "datePublished": publishDate ? publishDate.toISOString() : new Date().toISOString(),
     "dateModified": publishDate ? publishDate.toISOString() : new Date().toISOString(),
     "author": {

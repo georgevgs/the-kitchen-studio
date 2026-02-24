@@ -41,6 +41,10 @@ const meta = {
 ---
 
 <Layout {meta} lang={lang}>
+  {images[0] && (
+    <link rel="preload" as="image" href={images[0].src.src} fetchpriority="high" slot="head" />
+  )}
+
   <!-- Carousel Widget *************** -->
 
     <Carousel images={images} displayMode="cover" removeBottomMargin={true} />

@@ -19,6 +19,7 @@ const { language = "el", textDirection = "ltr" } = SITE;
 <html lang={language} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <MetaTags {...meta} />
+    <slot name="head" />
     <style is:inline>
       /* Critical CSS to prevent FOUC */
       html {

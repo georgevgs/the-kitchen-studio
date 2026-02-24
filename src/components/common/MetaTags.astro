@@ -26,6 +26,21 @@ const {
 // Get image URL as string
 const imageUrl = getImageUrl(image, SITE.origin);
 
+// Extract OG image dimensions from Astro ImageMetadata if available
+const imageMetadata = image && typeof image === "object" && "width" in image && "height" in image
+  ? image as { width: number; height: number }
+  : null;
+const ogImageWidth = imageMetadata?.width ?? 1200;
+const ogImageHeight = imageMetadata?.height ?? 630;
+const ogImageType = imageUrl?.toLowerCase().includes(".webp")
+  ? "image/webp"
+  : imageUrl?.toLowerCase().includes(".avif")
+  ? "image/avif"
+  : imageUrl?.toLowerCase().includes(".png")
+  ? "image/png"
+  : "image/jpeg";
+const ogImageAlt = description || title || SITE.name;
+
 // Format canonical URL
 const ogCanonicalURL = canonicalURL ? new URL(canonicalURL, Astro.site) : new URL(Astro.url.pathname, Astro.site);
 
@@ -117,6 +132,13 @@ const seoProps = {
       siteName: SITE.name,
       description: description,
     },
+    image: {
+      url: imageUrl || "",
+      type: ogImageType,
+      width: ogImageWidth,
+      height: ogImageHeight,
+      alt: ogImageAlt,
+    },
     article:
       ogType === "article"
         ? {
@@ -130,6 +152,7 @@ const seoProps = {
     creator: "@thekitchenstudio",
     card: "summary_large_image",
     image: imageUrl || "",
+    imageAlt: ogImageAlt,
     title: title,
     description: description,
   },

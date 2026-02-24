@@ -58,11 +58,59 @@ import { SITE } from "../../config.mjs";
     let lastKnownScrollPosition = window.scrollY;
     let ticking = true;
 
+    let menuFocusTrapHandler = null;
+
+    function closeMobileMenu(toggleBtn) {
+      toggleBtn.classList.remove("expanded");
+      toggleBtn.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("overflow-hidden");
+      document.getElementById("header")?.classList.remove("h-screen");
+      document.querySelector("#header nav")?.classList.add("hidden");
+      if (menuFocusTrapHandler) {
+        document.removeEventListener("keydown", menuFocusTrapHandler);
+        menuFocusTrapHandler = null;
+      }
+      toggleBtn.focus();
+    }
+
     attachEvent("[data-aw-toggle-menu]", "click", function (_, elem) {
+      const isOpen = elem.classList.contains("expanded");
       elem.classList.toggle("expanded");
+      elem.setAttribute("aria-expanded", isOpen ? "false" : "true");
       document.body.classList.toggle("overflow-hidden");
       document.getElementById("header")?.classList.toggle("h-screen");
-      document.querySelector("#header nav")?.classList.toggle("hidden");
+      const nav = document.querySelector("#header nav");
+      nav?.classList.toggle("hidden");
+
+      if (!isOpen && nav) {
+        // Focus first focusable element when menu opens
+        const firstFocusable = nav.querySelector("a[href], button:not([disabled])");
+        if (firstFocusable) firstFocusable.focus();
+
+        // Focus trap + ESC handler
+        const focusable = Array.from(nav.querySelectorAll("a[href], button:not([disabled])"));
+        menuFocusTrapHandler = function (e) {
+          if (e.key === "Escape") {
+            closeMobileMenu(elem);
+          } else if (e.key === "Tab" && focusable.length) {
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        };
+        document.addEventListener("keydown", menuFocusTrapHandler);
+      } else if (isOpen) {
+        if (menuFocusTrapHandler) {
+          document.removeEventListener("keydown", menuFocusTrapHandler);
+          menuFocusTrapHandler = null;
+        }
+      }
     });
 
     attachEvent("[data-aw-toggle-color-scheme]", "click", function () {
@@ -243,6 +291,7 @@ import { SITE } from "../../config.mjs";
     menu.style.transform = "translateX(0)";
     menu.style.maxHeight = "500px";
     button?.classList.add("open");
+    button?.setAttribute("aria-expanded", "true");
   }
 
   function hideMenu(button, menu) {
@@ -250,6 +299,7 @@ import { SITE } from "../../config.mjs";
     menu.style.transform = "translateX(-10px)";
     menu.style.maxHeight = "0";
     button?.classList.remove("open");
+    button?.setAttribute("aria-expanded", "false");
 
     setTimeout(() => {
       menu.style.display = "none";

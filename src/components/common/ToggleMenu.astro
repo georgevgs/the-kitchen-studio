@@ -13,6 +13,6 @@ const {
 } = Astro.props;
 ---
 
-<button type="button" class={className} aria-label={label} data-aw-toggle-menu>
-  <i class="fa-solid fa-bars fa-xl"></i>
+<button type="button" class={className} aria-label={label} aria-expanded="false" aria-controls="main-nav" data-aw-toggle-menu>
+  <i class="fa-solid fa-bars fa-xl" aria-hidden="true"></i>
 </button>
