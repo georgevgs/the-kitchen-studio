@@ -149,6 +149,14 @@ const seoProps = {
   },
 } as const;
 
+// Generate hrefLang alternate URLs for bilingual el/en site
+const currentPath = Astro.url.pathname;
+const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
+const elPath = isEnglish ? currentPath.replace(/^\/en/, '') || '/' : currentPath;
+const enPath = isEnglish ? currentPath : `/en${currentPath === '/' ? '' : currentPath}`;
+const elUrl = `${SITE.origin}${elPath}`;
+const enUrl = `${SITE.origin}${enPath}`;
+
 // Define the type for the asset paths
 type AssetPath = string;
 ---
@@ -166,6 +174,9 @@ type AssetPath = string;
 <link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png") as AssetPath} />
 <link rel="manifest" href={getAsset("/site.webmanifest") as AssetPath} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" hreflang="el" href={elUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="x-default" href={elUrl} />
 
 <!-- Add the structured data -->
 <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
