@@ -2,7 +2,7 @@
 import { SITE } from "../../config.mjs";
 ---
 
-<script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
+<script is:inline data-cfasync="false" define:vars={{ defaultTheme: SITE.defaultTheme }}>
   const logoImages = document.querySelectorAll(".tks-logo-image");
   const themeToggleButtonIcon = document.querySelectorAll(".theme-toggle");
 
