@@ -1,14 +1,15 @@
 # Dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp
 .pnp.js
 
-# Testing
-/coverage
+# Build output
+dist/
+build/
+.vercel/
 
-# Production
-/dist
-/build
+# Astro
+.astro/
 
 # Vite
 .vite/
@@ -20,24 +21,29 @@
 .env.test.local
 .env.production.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
+
+# Testing
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# Editor directories
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # OS generated files
 .DS_Store
@@ -48,11 +54,9 @@ lerna-debug.log*
 ehthumbs.db
 Thumbs.db
 
-# Optional npm cache directory
+# Claude Code
+.claude/
+
+# npm cache
 .npm
-
-# Optional eslint cache
 .eslintcache
-
-# TypeScript cache
-*.tsbuildinfo
