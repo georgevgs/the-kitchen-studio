@@ -24,10 +24,13 @@ const footerData = lang === 'EN' ? footerDataEN : footerDataEL;
 ---
 
 <Layout {meta}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
   <slot name="header">
     <Header {...headerData} isSticky showToggleTheme />
   </slot>
-  <main>
+  <main id="main-content">
     <slot />
   </main>
   <slot name="footer">

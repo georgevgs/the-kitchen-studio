@@ -167,6 +167,7 @@ const seoProps = {
       { name: "application-name", content: SITE.name },
       ...(keywordsString ? [{ name: "keywords", content: keywordsString }] : []),
       ...(author ? [{ name: "author", content: author }] : []),
+      { name: "robots", content: "max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
     ] as MetaTag[],
     link: [{ rel: "canonical", href: ogCanonicalURL.toString() }] as LinkTag[],
   },
@@ -197,6 +198,9 @@ type AssetPath = string;
 <link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png") as AssetPath} />
 <link rel="manifest" href={getAsset("/site.webmanifest") as AssetPath} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+<link rel="dns-prefetch" href="https://res.cloudinary.com" />
+<link rel="dns-prefetch" href="https://formspree.io" />
 <link rel="alternate" hreflang="el" href={elUrl} />
 <link rel="alternate" hreflang="en" href={enUrl} />
 <link rel="alternate" hreflang="x-default" href={elUrl} />

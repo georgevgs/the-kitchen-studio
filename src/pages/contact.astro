@@ -13,6 +13,8 @@ const meta = {
 ---
 
 <Layout meta={meta} lang={lang}>
+  <link rel="preconnect" href="https://maps.googleapis.com" crossorigin slot="head" />
+  <link rel="preconnect" href="https://maps.gstatic.com" crossorigin slot="head" />
   <section class="contact-form">
     <div class="container mx-auto p-8 max-w-3xl">
       <form
@@ -40,7 +42,7 @@ const meta = {
               {t("contact.name")}
             </label>
             <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black aria-[invalid=true]:border-red-500"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black transition-colors aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-200 dark:aria-[invalid=true]:ring-red-900"
               id="name"
               type="text"
               name="name"
@@ -55,7 +57,7 @@ const meta = {
               {t("contact.email")}
             </label>
             <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black aria-[invalid=true]:border-red-500"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black transition-colors aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-200 dark:aria-[invalid=true]:ring-red-900"
               id="email"
               type="email"
               name="email"
@@ -70,7 +72,7 @@ const meta = {
               {t("contact.message")}
             </label>
             <textarea
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black aria-[invalid=true]:border-red-500"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black transition-colors aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-200 dark:aria-[invalid=true]:ring-red-900"
               id="message"
               name="message"
               required
