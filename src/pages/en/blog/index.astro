@@ -1,12 +1,12 @@
 ---
 import { t, changeLanguage } from "i18next";
-import Layout from "../../layouts/PageLayout.astro";
-import { getAllPosts, getAllTags } from "../../utils/blog";
-import type { MetaSEO } from "../../types";
+import Layout from "../../../layouts/PageLayout.astro";
+import { getAllPosts, getAllTags } from "../../../utils/blog";
+import type { MetaSEO } from "../../../types";
 import BlogCard from "~/components/BlogCard.astro";
-import { generateBreadcrumbSchema } from "../../utils/schema";
+import { generateBreadcrumbSchema } from "../../../utils/schema";
 
-changeLanguage("el");
+changeLanguage("en");
 
 // Get all blog posts and tags
 const posts = await getAllPosts();
@@ -19,21 +19,21 @@ const SITE = {
 };
 
 // Get canonical URL
-const canonicalURL = new URL("/blog", Astro.site).toString();
+const canonicalURL = new URL("/en/blog", Astro.site).toString();
 
 const meta: MetaSEO = {
   title: t("pages.blog.index.meta_title"),
   description: t("pages.blog.index.meta_description"),
   ogType: "website",
   canonicalURL: canonicalURL,
-  keywords: ["blog", "κουζίνα", "συμβουλές", "διακόσμηση", "σχεδιασμός", "ανακαίνιση"],
+  keywords: ["blog", "kitchen", "tips", "design", "renovation", "interior"],
 };
 
 // Generate breadcrumb structured data
 const breadcrumbSchema = generateBreadcrumbSchema(
   [
-    { name: "Home", item: "/" },
-    { name: "Blog", item: "/blog" },
+    { name: "Home", item: "/en" },
+    { name: "Blog", item: "/en/blog" },
   ],
   SITE.url
 );
@@ -43,7 +43,7 @@ const hasFeaturedPost = posts.length > 0 && posts[0].data.featured;
 const mainPosts = hasFeaturedPost ? posts.slice(1) : posts;
 ---
 
-<Layout {meta} canonicalURL={canonicalURL}>
+<Layout {meta} canonicalURL={canonicalURL} lang={"EN"}>
   <!-- Add JSON-LD structured data for breadcrumbs -->
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
 
@@ -174,21 +174,16 @@ const mainPosts = hasFeaturedPost ? posts.slice(1) : posts;
 
   tagButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      // Remove active class from all buttons
       tagButtons.forEach((btn) => btn.classList.remove("active"));
-
-      // Add active class to the clicked button
       button.classList.add("active");
 
       const selectedTag = (button as HTMLElement).dataset.tag;
 
       if (!selectedTag) {
-        // Show all posts for "All" tag
         postItems?.forEach((item) => {
           (item as HTMLElement).style.display = "block";
         });
       } else {
-        // Filter posts based on tag
         postItems?.forEach((item) => {
           const itemTags = (item as HTMLElement).dataset.tags?.split(",") || [];
           if (itemTags.includes(selectedTag)) {

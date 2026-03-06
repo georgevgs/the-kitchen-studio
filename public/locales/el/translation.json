@@ -221,6 +221,28 @@
             "description": "Ανακαλύψτε την αρμονία ανάμεσα στη λειτουργικότητα και την αισθητική με τις ντουλάπες υπνοδωματίου."
         }
     },
+    "blog": {
+            "index": {
+                "title": "The Kitchen Studio Journal",
+                "subtitle": "Σκέψεις, ιδέες και συμβουλές για την κουζίνα των ονείρων σας",
+                "meta_title": "Blog | The Kitchen Studio",
+                "meta_description": "Διαβάστε τα τελευταία άρθρα και συμβουλές για την κουζίνα σας.",
+                "all_tags": "Όλα",
+                "latest_articles": "Τελευταία Άρθρα",
+                "no_articles_title": "Δεν υπάρχουν ακόμη άρθρα",
+                "no_articles_desc": "Σύντομα θα προστεθούν νέα άρθρα στο blog μας."
+            },
+            "post": {
+                "back_to_blog": "Επιστροφή στο Blog",
+                "reading_time": "λεπτά ανάγνωσης",
+                "related_articles": "Σχετικά Άρθρα",
+                "cta_title": "Σας άρεσε αυτό το άρθρο;",
+                "cta_desc": "Επισκεφθείτε την έκθεσή μας για να δείτε τις κουζίνες μας από κοντά",
+                "cta_button": "Επικοινωνήστε μαζί μας",
+                "author_label": "The Kitchen Studio Team"
+            }
+        }
+    },
     "components": {
         "category": {
             "button_more": "Δείτε περισσότερα ",

@@ -221,6 +221,28 @@
             "description": "Discover the harmony between functionality and aesthetics with bedroom wardrobes."
         }
     },
+    "blog": {
+            "index": {
+                "title": "The Kitchen Studio Journal",
+                "subtitle": "Thoughts, ideas and tips for your dream kitchen",
+                "meta_title": "Blog | The Kitchen Studio",
+                "meta_description": "Read the latest articles and tips for your kitchen design.",
+                "all_tags": "All",
+                "latest_articles": "Latest Articles",
+                "no_articles_title": "No articles yet",
+                "no_articles_desc": "New articles will be added to our blog soon."
+            },
+            "post": {
+                "back_to_blog": "Back to Blog",
+                "reading_time": "min read",
+                "related_articles": "Related Articles",
+                "cta_title": "Did you enjoy this article?",
+                "cta_desc": "Visit our showroom to see our kitchens in person",
+                "cta_button": "Contact Us",
+                "author_label": "The Kitchen Studio Team"
+            }
+        }
+    },
     "components": {
         "category": {
             "button_more": "See More ",

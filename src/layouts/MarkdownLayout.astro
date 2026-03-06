@@ -5,12 +5,13 @@ import { type MetaSEO } from "../types";
 export interface Props {
   meta: MetaSEO;
   canonicalURL?: string;
+  lang?: "EN" | "EL";
 }
 
-const { meta, canonicalURL } = Astro.props;
+const { meta, canonicalURL, lang } = Astro.props;
 ---
 
-<Layout {meta} {canonicalURL}>
+<Layout {meta} {canonicalURL} {lang}>
   <!-- Pass through any structured data to the MetaTags component -->
   <Fragment slot="head">
     <slot name="head" />
