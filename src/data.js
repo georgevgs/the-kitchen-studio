@@ -152,6 +152,10 @@ export const headerDataEN = {
       text: "Showroom",
       href: "/showroom",
     },
+    {
+      text: "Blog",
+      href: "/blog",
+    },
   ],
   actions: [
     {
@@ -264,6 +268,7 @@ export const footerDataEN = {
         { text: "Showroom", href: "/showroom" },
         { text: "Projects", href: "/erga" },
         { text: "Designs", href: "/meletes" },
+        { text: "Blog", href: "/blog" },
       ],
     },
   ],
