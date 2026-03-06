@@ -1,6 +1,7 @@
 ---
+import { t } from "i18next";
 import type { CollectionEntry } from "astro:content";
-import { formatDate } from "~/utils/blog";
+import { formatDate, getUrlSlug } from "~/utils/blog";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -9,6 +10,11 @@ export interface Props {
 
 const { post, variant = "normal" } = Astro.props;
 const { data } = post;
+
+const isEnglish = Astro.url.pathname.startsWith("/en/");
+const urlSlug = getUrlSlug(post);
+const href = isEnglish ? `/en/blog/${urlSlug}` : `/blog/${urlSlug}`;
+const locale = isEnglish ? "en-GB" : "el-GR";
 
 const getImageHeight = () => {
   if (variant === "compact") return "h-40";
@@ -22,16 +28,12 @@ const getTitleSize = () => {
   return "text-xl sm:text-2xl";
 };
 
-const getTitleColor = () => {
-  return "group-hover:text-orange-500 dark:group-hover:text-orange-500";
-};
-
 const hasTags = data.tags && data.tags.length > 0;
 ---
 
 <article
   class={`blog-card group p-4 sm:p-6 rounded-xl ${variant === "featured" ? "border-b pb-8 mb-8 lg:pb-12 lg:mb-12 border-gray-200 dark:border-gray-800" : ""}`}>
-  <a href={`/blog/${post.slug}`} class="block">
+  <a href={href} class="block">
     {
       data.image && (
         <div
@@ -44,7 +46,7 @@ const hasTags = data.tags && data.tags.length > 0;
     <div>
       <div class="flex flex-wrap items-center gap-3 mb-3">
         <time datetime={data.pubDate.toISOString()} class="date-badge inline-block">
-          {formatDate(data.pubDate)}
+          {formatDate(data.pubDate, locale)}
         </time>
 
         {
@@ -63,13 +65,13 @@ const hasTags = data.tags && data.tags.length > 0;
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              {data.readingTime} λεπτά
+              {data.readingTime} {t("pages.blog.card.reading_time_unit")}
             </span>
           )
         }
       </div>
 
-      <h3 class={`${getTitleSize()} font-bold leading-snug mb-3 ${getTitleColor()} transition-colors`}>
+      <h3 class={`${getTitleSize()} font-bold leading-snug mb-3 group-hover:text-orange-500 dark:group-hover:text-orange-500 transition-colors`}>
         {data.title}
       </h3>
 
@@ -96,7 +98,7 @@ const hasTags = data.tags && data.tags.length > 0;
 
       <span
         class="fancy-link inline-flex items-center text-orange-500 dark:text-orange-500 font-medium group-hover:translate-x-1 transition-transform duration-300">
-        Διαβάστε περισσότερα
+        {t("pages.blog.card.read_more")}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-4 w-4 ml-1"

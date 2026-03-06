@@ -2,7 +2,7 @@
 import { t, changeLanguage } from "i18next";
 import { getCollection, type CollectionEntry } from "astro:content";
 import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
-import { formatDate, calculateReadingTime, getRelatedPosts } from "../../../utils/blog";
+import { formatDate, calculateReadingTime, getRelatedPosts, getUrlSlug } from "../../../utils/blog";
 import type { MetaSEO, SiteConfig } from "../../../types";
 import { collectionEntryToPost } from "../../../types";
 import BlogCard from "~/components/BlogCard.astro";
@@ -29,14 +29,14 @@ const SITE = {
 
 // Generate static paths for all blog posts
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog");
+  const blogEntries = await getCollection("blog", (p) => (p.data.lang ?? "el") === "en");
 
   return Promise.all(
     blogEntries.map(async (post) => {
       const relatedPosts = post.data.tags?.length ? await getRelatedPosts(post, 2) : [];
 
       return {
-        params: { slug: post.slug },
+        params: { slug: getUrlSlug(post) },
         props: { post, relatedPosts },
       };
     })
@@ -118,7 +118,7 @@ const hasTags = post.data.tags && post.data.tags.length > 0;
       <header class="mb-10">
         <div class="flex flex-wrap items-center gap-3 mb-4">
           <time datetime={post.data.pubDate.toISOString()} class="date-badge inline-block">
-            {formatDate(post.data.pubDate)}
+            {formatDate(post.data.pubDate, "en-GB")}
           </time>
 
           <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">

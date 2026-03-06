@@ -9,8 +9,8 @@ import { generateBreadcrumbSchema } from "../../utils/schema";
 changeLanguage("el");
 
 // Get all blog posts and tags
-const posts = await getAllPosts();
-const allTags = await getAllTags();
+const posts = await getAllPosts("el");
+const allTags = await getAllTags("el");
 
 // Site config
 const SITE = {

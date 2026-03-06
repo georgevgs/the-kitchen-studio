@@ -4,8 +4,8 @@ import type { BlogFrontmatter } from "../content/config";
 /**
  * Format a date into a readable string
  */
-export function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat("el-GR", {
+export function formatDate(date: Date, locale = "el-GR"): string {
+  return new Intl.DateTimeFormat(locale, {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -26,8 +26,8 @@ export function calculateReadingTime(content: string): number {
 /**
  * Get all blog posts, sorted by date
  */
-export async function getAllPosts(): Promise<CollectionEntry<"blog">[]> {
-  const posts = await getCollection("blog");
+export async function getAllPosts(lang = "el"): Promise<CollectionEntry<"blog">[]> {
+  const posts = await getCollection("blog", (post) => (post.data.lang ?? "el") === lang);
 
   return posts.sort((a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => {
     const dateA: Date = a.data.pubDate;
@@ -37,10 +37,17 @@ export async function getAllPosts(): Promise<CollectionEntry<"blog">[]> {
 }
 
 /**
+ * Derive the URL slug from a post (strips the -en suffix used for English posts)
+ */
+export function getUrlSlug(post: CollectionEntry<"blog">): string {
+  return post.slug.replace(/-en$/, "");
+}
+
+/**
  * Get featured blog posts
  */
-export async function getFeaturedPosts(): Promise<CollectionEntry<"blog">[]> {
-  const allPosts = await getAllPosts();
+export async function getFeaturedPosts(lang = "el"): Promise<CollectionEntry<"blog">[]> {
+  const allPosts = await getAllPosts(lang);
 
   return allPosts.filter((post) => post.data.featured);
 }
@@ -48,8 +55,8 @@ export async function getFeaturedPosts(): Promise<CollectionEntry<"blog">[]> {
 /**
  * Get posts by tag
  */
-export async function getPostsByTag(tag: string): Promise<CollectionEntry<"blog">[]> {
-  const allPosts = await getAllPosts();
+export async function getPostsByTag(tag: string, lang = "el"): Promise<CollectionEntry<"blog">[]> {
+  const allPosts = await getAllPosts(lang);
 
   return allPosts.filter((post) => {
     if (!post.data.tags) return false;
@@ -60,8 +67,8 @@ export async function getPostsByTag(tag: string): Promise<CollectionEntry<"blog"
 /**
  * Get all unique tags from blog posts
  */
-export async function getAllTags(): Promise<string[]> {
-  const allPosts = await getAllPosts();
+export async function getAllTags(lang = "el"): Promise<string[]> {
+  const allPosts = await getAllPosts(lang);
 
   const allTags = allPosts.flatMap((post) => post.data.tags || []);
 
@@ -75,7 +82,8 @@ export async function getRelatedPosts(
   currentPost: CollectionEntry<"blog">,
   limit = 3
 ): Promise<CollectionEntry<"blog">[]> {
-  const allPosts = await getAllPosts();
+  const lang = currentPost.data.lang ?? "el";
+  const allPosts = await getAllPosts(lang);
 
   // Filter out the current post and posts without tags
   const otherPosts = allPosts.filter(

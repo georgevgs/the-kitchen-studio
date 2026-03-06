@@ -232,6 +232,10 @@
                 "no_articles_title": "No articles yet",
                 "no_articles_desc": "New articles will be added to our blog soon."
             },
+            "card": {
+                "read_more": "Read more",
+                "reading_time_unit": "min"
+            },
             "post": {
                 "back_to_blog": "Back to Blog",
                 "reading_time": "min read",

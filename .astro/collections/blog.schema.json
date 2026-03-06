@@ -46,6 +46,10 @@
         "readingTime": {
           "type": "number"
         },
+        "lang": {
+          "type": "string",
+          "default": "el"
+        },
         "$schema": {
           "type": "string"
         }

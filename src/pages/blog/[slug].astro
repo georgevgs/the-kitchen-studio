@@ -2,7 +2,7 @@
 import { t, changeLanguage } from "i18next";
 import { getCollection, type CollectionEntry } from "astro:content";
 import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
-import { formatDate, calculateReadingTime, getRelatedPosts } from "../../utils/blog";
+import { formatDate, calculateReadingTime, getRelatedPosts, getUrlSlug } from "../../utils/blog";
 import type { MetaSEO, SiteConfig } from "../../types";
 import { collectionEntryToPost } from "../../types";
 import BlogCard from "~/components/BlogCard.astro";
@@ -29,7 +29,7 @@ const SITE = {
 
 // Generate static paths for all blog posts
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog");
+  const blogEntries = await getCollection("blog", (p) => (p.data.lang ?? "el") === "el");
 
   return Promise.all(
     blogEntries.map(async (post) => {

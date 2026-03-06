@@ -10,6 +10,7 @@ const blogSchema = z.object({
   tags: z.array(z.string()).optional().default([]),
   author: z.string().optional(),
   readingTime: z.number().optional(),
+  lang: z.string().optional().default("el"),
 });
 
 // Define blog collection with schema

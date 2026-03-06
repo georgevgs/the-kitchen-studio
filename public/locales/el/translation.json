@@ -232,6 +232,10 @@
                 "no_articles_title": "Δεν υπάρχουν ακόμη άρθρα",
                 "no_articles_desc": "Σύντομα θα προστεθούν νέα άρθρα στο blog μας."
             },
+            "card": {
+                "read_more": "Διαβάστε περισσότερα",
+                "reading_time_unit": "λεπτά"
+            },
             "post": {
                 "back_to_blog": "Επιστροφή στο Blog",
                 "reading_time": "λεπτά ανάγνωσης",
