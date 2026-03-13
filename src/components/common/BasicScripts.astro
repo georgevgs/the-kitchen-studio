@@ -28,7 +28,7 @@ import { SITE } from "../../config.mjs";
     themeToggleButtonIcon.forEach((icon) => {
       const shouldHide =
         (icon.classList.contains("fa-sun") && !isDark) || (icon.classList.contains("fa-moon") && isDark);
-      icon.classList.toggle("hidden", shouldHide);
+      icon.style.display = shouldHide ? "none" : "";
     });
 
     decideFeatureImageLogo();
@@ -131,7 +131,7 @@ import { SITE } from "../../config.mjs";
       themeToggleButtonIcon.forEach((icon) => {
         const shouldHide =
           (icon.classList.contains("fa-sun") && !isDark) || (icon.classList.contains("fa-moon") && isDark);
-        icon.classList.toggle("hidden", shouldHide);
+        icon.style.display = shouldHide ? "none" : "";
       });
 
       decideFeatureImageLogo();
