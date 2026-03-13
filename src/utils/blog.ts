@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import type { BlogFrontmatter } from "../content/config";
+import type { BlogFrontmatter } from "../content.config";
 
 /**
  * Format a date into a readable string
@@ -40,7 +40,7 @@ export async function getAllPosts(lang = "el"): Promise<CollectionEntry<"blog">[
  * Derive the URL slug from a post (strips the -en suffix used for English posts)
  */
 export function getUrlSlug(post: CollectionEntry<"blog">): string {
-  return post.slug.replace(/-en$/, "");
+  return post.id.replace(/-en$/, "");
 }
 
 /**

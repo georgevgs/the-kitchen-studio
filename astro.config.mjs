@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import { SITE } from "./src/config.mjs";
@@ -15,9 +15,7 @@ export default defineConfig({
 
     adapter: vercel(),
 
-    integrations: [astroI18next(), tailwind({
-        applyBaseStyles: false,
-    }), sitemap({
+    integrations: [astroI18next(), sitemap({
         filter: (page) => !page.includes('/404'),
         changefreq: 'weekly',
         priority: 0.7,
@@ -25,6 +23,7 @@ export default defineConfig({
 
     vite: {
         plugins: [
+            tailwindcss(),
             {
                 name: "fontawesome-font-display",
                 transform(code, id) {

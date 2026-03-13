@@ -93,7 +93,7 @@ export interface BreadcrumbItem {
 export function collectionEntryToPost(entry: CollectionEntry<"blog">): Post {
   return {
     id: entry.id,
-    slug: entry.slug,
+    slug: entry.id,
     publishDate: entry.data.pubDate,
     title: entry.data.title,
     description: entry.data.description,

@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 // Define schema for blog posts using Zod
 const blogSchema = z.object({
@@ -13,9 +14,9 @@ const blogSchema = z.object({
   lang: z.string().optional().default("el"),
 });
 
-// Define blog collection with schema
+// Define blog collection with glob loader
 const blogCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: blogSchema,
 });
 

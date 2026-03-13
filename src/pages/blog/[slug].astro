@@ -1,6 +1,6 @@
 ---
 import { t, changeLanguage } from "i18next";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
 import { formatDate, calculateReadingTime, getRelatedPosts, getUrlSlug } from "../../utils/blog";
 import type { MetaSEO, SiteConfig } from "../../types";
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
       const relatedPosts = post.data.tags?.length ? await getRelatedPosts(post, 2) : [];
 
       return {
-        params: { slug: post.slug },
+        params: { slug: post.id },
         props: { post, relatedPosts },
       };
     })
@@ -45,17 +45,14 @@ export async function getStaticPaths() {
 
 // Get the current post and related posts from props
 const { post, relatedPosts = [] } = Astro.props;
-const { Content } = await post.render();
-
-// Get post content for reading time calculation
-const { remarkPluginFrontmatter } = await post.render();
+const { Content, remarkPluginFrontmatter } = await render(post);
 const postContent = remarkPluginFrontmatter?.content || "";
 
 // Calculate reading time if not provided in frontmatter
 const readingTime = post.data.readingTime || calculateReadingTime(postContent);
 
 // Get canonical URL
-const canonicalURL = new URL(`/blog/${post.slug}`, Astro.site).toString();
+const canonicalURL = new URL(`/blog/${post.id}`, Astro.site).toString();
 
 // Format the post data to match MetaSEO interface
 const meta: MetaSEO = {
@@ -83,7 +80,7 @@ const breadcrumbSchema = generateBreadcrumbSchema(
   [
     { name: "Home", item: "/" },
     { name: "Blog", item: "/blog" },
-    { name: post.data.title, item: `/blog/${post.slug}` },
+    { name: post.data.title, item: `/blog/${post.id}` },
   ],
   SITE.url
 );
