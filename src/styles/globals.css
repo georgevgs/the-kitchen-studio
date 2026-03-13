@@ -91,6 +91,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  button, [role="button"], a, select, summary {
+    cursor: pointer;
+  }
 }
 
 /* src/styles/blog.css */
