@@ -1,5 +1,4 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import type { BlogFrontmatter } from "../content.config";
 
 /**
  * Format a date into a readable string
@@ -41,27 +40,6 @@ export async function getAllPosts(lang = "el"): Promise<CollectionEntry<"blog">[
  */
 export function getUrlSlug(post: CollectionEntry<"blog">): string {
   return post.id.replace(/-en$/, "");
-}
-
-/**
- * Get featured blog posts
- */
-export async function getFeaturedPosts(lang = "el"): Promise<CollectionEntry<"blog">[]> {
-  const allPosts = await getAllPosts(lang);
-
-  return allPosts.filter((post) => post.data.featured);
-}
-
-/**
- * Get posts by tag
- */
-export async function getPostsByTag(tag: string, lang = "el"): Promise<CollectionEntry<"blog">[]> {
-  const allPosts = await getAllPosts(lang);
-
-  return allPosts.filter((post) => {
-    if (!post.data.tags) return false;
-    return post.data.tags.includes(tag);
-  });
 }
 
 /**

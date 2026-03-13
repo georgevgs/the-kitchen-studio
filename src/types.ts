@@ -64,30 +64,6 @@ export interface Post {
 }
 
 /**
- * Blog Post Frontmatter Interface
- */
-export interface BlogFrontmatter {
-  title: string;
-  description?: string;
-  pubDate: Date;
-  updatedDate?: Date;
-  image?: string;
-  tags?: string[];
-  author?: string;
-  readingTime?: string;
-  featured?: boolean;
-  draft?: boolean;
-}
-
-/**
- * Interface for Breadcrumb Items
- */
-export interface BreadcrumbItem {
-  name: string;
-  item: string;
-}
-
-/**
  * Helper function to convert CollectionEntry to Post
  */
 export function collectionEntryToPost(entry: CollectionEntry<"blog">): Post {

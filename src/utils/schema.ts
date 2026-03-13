@@ -1,47 +1,12 @@
 import type { ImageMetadata } from "astro";
-import type { Post, SiteConfig, MetaSEO } from "../types";
+import type { Post, SiteConfig } from "../types";
 
-/**
- * Business information interface
- */
-export interface BusinessInfo {
-  name: string;
-  url: string;
-  logo?: string | ImageMetadata;
-  description?: string;
-  address: {
-    streetAddress: string;
-    addressLocality: string;
-    postalCode: string;
-    addressCountry: string;
-    addressRegion?: string;
-  };
-  geo?: {
-    latitude: number;
-    longitude: number;
-  };
-  telephone: string;
-  email?: string;
-  openingHours?: Array<{
-    dayOfWeek: string[] | string;
-    opens: string;
-    closes: string;
-  }>;
-  priceRange?: string;
-}
-
-/**
- * Breadcrumb item interface
- */
-export interface BreadcrumbItem {
+interface BreadcrumbItem {
   name: string;
   item: string;
 }
 
-/**
- * Kitchen display/showroom item interface
- */
-export interface KitchenDisplayInfo {
+interface KitchenDisplayInfo {
   name: string;
   description: string;
   image?: string | ImageMetadata;
@@ -81,14 +46,12 @@ export function getImageUrl(
 
 /**
  * Generate JSON-LD schema for a blog post
- * Added flexibility to handle different post formats
  */
 export function generateBlogPostSchema(
   post: Partial<Post>,
   url: string,
   siteInfo: Partial<SiteConfig>
 ): Record<string, any> {
-  // Handle both publishDate and pubDate for flexibility
   const publishDate = post.publishDate || (post as any).pubDate;
   const postUrl = post.permalink || `${siteInfo.url}/blog/${post.slug}`;
 
@@ -168,55 +131,7 @@ export function generateWebsiteSchema(siteInfo: Partial<SiteConfig>): Record<str
 }
 
 /**
- * Generate local business schema
- */
-export function generateLocalBusinessSchema(
-  businessInfo: BusinessInfo
-): Record<string, any> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "HomeGoodsStore",
-    "name": businessInfo.name,
-    "url": businessInfo.url,
-    "logo": businessInfo.logo ? getImageUrl(businessInfo.logo, businessInfo.url) : undefined,
-    "description": businessInfo.description,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": businessInfo.address.streetAddress,
-      "addressLocality": businessInfo.address.addressLocality,
-      "postalCode": businessInfo.address.postalCode,
-      "addressCountry": businessInfo.address.addressCountry,
-      "addressRegion": businessInfo.address.addressRegion
-    },
-    ...(businessInfo.geo ? {
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": businessInfo.geo.latitude,
-        "longitude": businessInfo.geo.longitude
-      }
-    } : {}),
-    "telephone": businessInfo.telephone,
-    ...(businessInfo.email ? { "email": businessInfo.email } : {}),
-    "openingHoursSpecification": businessInfo.openingHours || [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "10:00",
-        "closes": "15:00"
-      }
-    ],
-    "priceRange": businessInfo.priceRange || "€€€"
-  };
-}
-
-/**
- * Generate kitchen display schema - better than product schema for showroom items
+ * Generate kitchen display schema
  */
 export function generateKitchenDisplaySchema(
   item: KitchenDisplayInfo,

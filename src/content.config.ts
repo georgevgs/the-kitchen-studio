@@ -24,6 +24,3 @@ const blogCollection = defineCollection({
 export const collections = {
   'blog': blogCollection,
 };
-
-// Define TypeScript interface that matches the schema
-export type BlogFrontmatter = z.infer<typeof blogSchema>;

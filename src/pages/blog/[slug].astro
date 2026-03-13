@@ -2,7 +2,7 @@
 import { t, changeLanguage } from "i18next";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
-import { formatDate, calculateReadingTime, getRelatedPosts, getUrlSlug } from "../../utils/blog";
+import { formatDate, calculateReadingTime, getRelatedPosts } from "../../utils/blog";
 import type { MetaSEO, SiteConfig } from "../../types";
 import { collectionEntryToPost } from "../../types";
 import BlogCard from "~/components/BlogCard.astro";
