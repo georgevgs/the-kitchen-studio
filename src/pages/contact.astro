@@ -85,7 +85,7 @@ const meta = {
             <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
               <input type="checkbox" name="terms" id="terms" class="rounded" required aria-required="true" />
               {t("contact.terms_a")}
-              <a href={localizePath("/privacy")} target="_blank" class="text-orange-500">
+              <a href={localizePath("/privacy")} target="_blank" class="text-accent">
                 {t("contact.terms_b")}
               </a>
             </label>
@@ -93,7 +93,7 @@ const meta = {
           <div class="flex items-center justify-between">
             <button
               id="submit-btn"
-              class="bg-orange-500 hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              class="bg-accent hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit">
               <span id="submit-text">{t("contact.send")}</span>
               <span id="submit-loading" class="hidden" aria-live="polite">Αποστολή...</span>
@@ -112,13 +112,13 @@ const meta = {
       <div class="pl-4 pr-4 mb-4 md:mb-0 md:justify-self-start">
         <p class="font-bold text-2xl">{t("site.title")}</p>
         <p class="font-bold text-lg">
-          {t("contact.email")} : <a href="mailto:info@thekitchenstudio.gr" class="text-orange-500"
+          {t("contact.email")} : <a href="mailto:info@thekitchenstudio.gr" class="text-accent"
             ><span class="blockspam invisible" aria-hidden="true">Hello!</span>
             info@<!-- sdfjsdhfkjypcs --> thekitchenstudio.gr</a
           >
         </p>
         <p class="font-bold text-lg">
-          {t("contact.phone")} : <a href="tel:+302108981423" class="text-orange-500">210 8981423</a>
+          {t("contact.phone")} : <a href="tel:+302108981423" class="text-accent">210 8981423</a>
         </p>
         <p class="font-bold text-lg">{t("contact.address")}</p>
         <p class="font-bold text-lg">{t("contact.city")}</p>
@@ -127,10 +127,10 @@ const meta = {
       <div class="pl-4 pr-4 md:justify-self-end">
         <p class="font-bold text-2xl">{t("contact.working_hours")}</p>
         <p class="font-bold text-lg">
-          {t("contact.mon_wed_sat")}: <br /><span class="text-orange-500">10:00 - 14:00</span>
+          {t("contact.mon_wed_sat")}: <br /><span class="text-accent">10:00 - 14:00</span>
         </p>
         <p class="font-bold text-lg">
-          {t("contact.tue_thu_fri")}: <br /><span class="text-orange-500">10:00 - 14:00 & 17:30 - 20:30</span>
+          {t("contact.tue_thu_fri")}: <br /><span class="text-accent">10:00 - 14:00 & 17:30 - 20:30</span>
         </p>
       </div>
     </div>

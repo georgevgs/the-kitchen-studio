@@ -29,7 +29,7 @@ const displayMessage = (
   message: string,
   isError: boolean = false,
 ): void => {
-  const colorClass = isError ? "text-orange-500" : "text-green-500";
+  const colorClass = isError ? "text-red-500" : "text-green-500";
   setElementContent(
     element,
     `<p class="text-center text-lg ${colorClass} animate-bounce">${message}</p>`,

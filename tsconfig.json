@@ -5,14 +5,8 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "src/*"
-      ],"@/*": [
-        "./src/*"
-      ],
-      "@images/*": [
-        "src/assets/images/*"
-      ]
+      "~/*": ["src/*"],
+      "@images/*": ["src/assets/images/*"]
     }
   }
 }

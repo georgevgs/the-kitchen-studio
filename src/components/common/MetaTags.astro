@@ -1,15 +1,10 @@
 ---
 import { SEO } from "astro-seo";
-import { getAsset } from "../../utils/permalinks";
-import CustomStyles from "../../components/CustomStyles.astro";
-import type { MetaSEO } from "../../types";
-import { getImageUrl, generateWebsiteSchema } from "../../utils/schema";
-import { SITE } from "~/config.mjs";
-
-/**
- * MetaTags Component Properties
- */
-export interface MetaTagsProps extends MetaSEO {}
+import { getAsset } from "~/utils/permalinks";
+import CustomStyles from "~/components/CustomStyles.astro";
+import type { MetaSEO } from "~/types";
+import { getImageUrl, generateWebsiteSchema } from "~/utils/schema";
+import { SITE } from "~/config";
 
 const {
   title = SITE.title,
@@ -181,8 +176,6 @@ const enPath = isEnglish ? currentPath : `/en${currentPath === '/' ? '' : curren
 const elUrl = `${SITE.origin}${elPath}`;
 const enUrl = `${SITE.origin}${enPath}`;
 
-// Define the type for the asset paths
-type AssetPath = string;
 ---
 
 <meta charset="UTF-8" />
@@ -192,11 +185,11 @@ type AssetPath = string;
 
 <CustomStyles />
 
-<link rel="shortcut icon" href={getAsset("/favicon.ico") as AssetPath} />
-<link rel="icon" type="image/svg+xml" href={getAsset("/favicon.svg") as AssetPath} />
-<link rel="mask-icon" href={getAsset("/favicon.svg") as AssetPath} color="#000000" />
-<link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png") as AssetPath} />
-<link rel="manifest" href={getAsset("/site.webmanifest") as AssetPath} />
+<link rel="shortcut icon" href={getAsset("/favicon.ico")} />
+<link rel="icon" type="image/svg+xml" href={getAsset("/favicon.svg")} />
+<link rel="mask-icon" href={getAsset("/favicon.svg")} color="#000000" />
+<link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png")} />
+<link rel="manifest" href={getAsset("/site.webmanifest")} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
 <link rel="dns-prefetch" href="https://res.cloudinary.com" />

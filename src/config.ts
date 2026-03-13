@@ -1,6 +1,22 @@
+import type { ImageMetadata } from "astro";
 import defaultImage from "./assets/images/the-kitchen-studio-logo.png";
 
-const CONFIG = {
+export interface SiteConfig {
+  name: string;
+  origin: string;
+  basePathname: string;
+  trailingSlash: string;
+  title: string;
+  description: string;
+  defaultImage: ImageMetadata;
+  defaultTheme: "system" | "light" | "dark" | "light:only" | "dark:only";
+  language: string;
+  textDirection: "ltr" | "rtl";
+  dateFormatter: Intl.DateTimeFormat;
+  keywords: string[];
+}
+
+const CONFIG: SiteConfig = {
   name: "The Kitchen Studio",
 
   origin: "https://www.thekitchenstudio.gr",
@@ -11,7 +27,7 @@ const CONFIG = {
   description: "Σχεδιάζουμε την κουζίνα στα μέτρα σας. Εξατομικευμένα έπιπλα κουζίνας στη Γλυφάδα για λειτουργικότητα, ποιότητα και στυλ που ανταποκρίνονται στις ανάγκες σας.",
   defaultImage: defaultImage,
 
-  defaultTheme: "system", // Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  defaultTheme: "system",
 
   language: "el",
   textDirection: "ltr",
@@ -38,5 +54,4 @@ const CONFIG = {
   ],
 };
 
-export const SITE = { ...CONFIG };
-export const DATE_FORMATTER = CONFIG.dateFormatter;
+export const SITE = CONFIG;

@@ -1,13 +1,12 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
-import Header from "../components/widgets/Header.astro";
-import Footer from "../components/widgets/Footer.astro";
-import MinimalFooter from "../components/widgets/MinimalFooter.astro";
-import Announcement from "../components/widgets/Announcement.astro";
+import Layout from "~/layouts/BaseLayout.astro";
+import Header from "~/components/widgets/Header.astro";
+import Footer from "~/components/widgets/Footer.astro";
+import MinimalFooter from "~/components/widgets/MinimalFooter.astro";
 
-import { headerDataEL, footerDataEL, headerDataEN, footerDataEN } from "../data";
+import { headerDataEL, footerDataEL, headerDataEN, footerDataEN } from "~/data";
 
-import { type MetaSEO } from "../types";
+import type { MetaSEO } from "~/types";
 
 export interface Props {
   meta?: MetaSEO;

@@ -1,5 +1,6 @@
 import type { ImageMetadata } from "astro";
-import type { Post, SiteConfig } from "../types";
+import type { Post } from "../types";
+import type { SiteConfig } from "../config";
 
 interface BreadcrumbItem {
   name: string;

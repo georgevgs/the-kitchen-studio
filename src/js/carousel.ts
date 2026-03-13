@@ -68,8 +68,8 @@ const initCarousel = (root: HTMLElement) => {
         const reveal = () => {
           wrapper.classList.remove(
             "animate-pulse",
-            "bg-slate-200",
-            "dark:bg-slate-800"
+            "bg-neutral-200",
+            "dark:bg-neutral-800"
           );
           image.classList.remove("opacity-0");
           image.classList.add("opacity-100");

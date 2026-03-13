@@ -1,25 +1,19 @@
 ---
-import { SITE } from "../../config.mjs";
+import { SITE } from "~/config";
 ---
 
 <script is:inline data-cfasync="false" define:vars={{ defaultTheme: SITE.defaultTheme }}>
   const logoImages = document.querySelectorAll(".tks-logo-image");
   const themeToggleButtonIcon = document.querySelectorAll(".theme-toggle");
 
-  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
   let vh = window.innerHeight * 0.01;
-  // Then we set the value in the --vh custom property to the root of the document
   document.documentElement.style.setProperty("--vh", `${vh}px`);
-
-  let touchDevice = navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
 
   function applyTheme(theme) {
     const isDark = theme === "dark";
 
-    // Add or remove "dark" class on the document element
     document.documentElement.classList.toggle("dark", isDark);
 
-    // Update logo images using a ternary expression
     const filterValue = isDark ? "" : "brightness(0)";
     logoImages.forEach((element) => {
       element.style.filter = filterValue;
@@ -83,11 +77,9 @@ import { SITE } from "../../config.mjs";
       nav?.classList.toggle("hidden");
 
       if (!isOpen && nav) {
-        // Focus first focusable element when menu opens
         const firstFocusable = nav.querySelector("a[href], button:not([disabled])");
         if (firstFocusable) firstFocusable.focus();
 
-        // Focus trap + ESC handler
         const focusable = Array.from(nav.querySelectorAll("a[href], button:not([disabled])"));
         menuFocusTrapHandler = function (e) {
           if (e.key === "Escape") {
@@ -118,11 +110,9 @@ import { SITE } from "../../config.mjs";
         return;
       }
 
-      // Toggle dark class on the document element and update localStorage
       const isDark = document.documentElement.classList.toggle("dark");
       localStorage.theme = isDark ? "dark" : "light";
 
-      // Update logo images using a ternary expression
       const filterValue = isDark ? "" : "brightness(0)";
       logoImages.forEach((element) => {
         element.style.filter = filterValue;
@@ -173,9 +163,9 @@ import { SITE } from "../../config.mjs";
     function applyHeaderStylesOnScroll() {
       const header = document.getElementById("header");
       if (lastKnownScrollPosition > 25 && !header?.classList.contains("scroll")) {
-        document.getElementById("header").classList.add("scroll");
+        header?.classList.add("scroll");
       } else if (lastKnownScrollPosition <= 25 && header?.classList.contains("scroll")) {
-        document.getElementById("header").classList.remove("scroll");
+        header?.classList.remove("scroll");
       }
       ticking = false;
     }
@@ -209,13 +199,11 @@ import { SITE } from "../../config.mjs";
     setupDropdownMenus();
   });
 
-  // Slide in animation
   function applySlideInAnimation() {
-    let scrollPos;
     const slidingElements = document.querySelectorAll(".slide-in");
 
     function checkPosition() {
-      scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
 
       slidingElements.forEach((elem) => {
         const elemPos = elem.getBoundingClientRect().top + scrollPos;
@@ -229,7 +217,6 @@ import { SITE } from "../../config.mjs";
     window.addEventListener("scroll", checkPosition);
   }
 
-  // Dropdown menu
   function setupDropdownMenus() {
     const dropdowns = document.querySelectorAll(".dropdown");
 
@@ -304,111 +291,6 @@ import { SITE } from "../../config.mjs";
     setTimeout(() => {
       menu.style.display = "none";
     }, 300);
-  }
-
-  // let headerHidden = false; // flag to track header visibility state
-
-  // if (!touchDevice) {
-  // 	function isElementPartiallyInViewport(el) {
-  // 		const rect = el.getBoundingClientRect();
-  // 		const windowHeight =
-  // 			window.innerHeight || document.documentElement.clientHeight;
-  // 		const windowWidth =
-  // 			window.innerWidth || document.documentElement.clientWidth;
-
-  // 		return (
-  // 			((rect.top >= 0 && rect.top < windowHeight) ||
-  // 				(rect.bottom > 0 && rect.bottom <= windowHeight)) &&
-  // 			((rect.left >= 0 && rect.left < windowWidth) ||
-  // 				(rect.right > 0 && rect.right <= windowWidth))
-  // 		);
-  // 	}
-
-  // 	window.addEventListener("scroll", function () {
-  // 		const footerLogoElement = document.querySelector(
-  // 			".tks-logo-image.footer"
-  // 		);
-  // 		const headerLogoElement = document.querySelector(
-  // 			".tks-logo-image.header"
-  // 		);
-
-  // 		if (footerLogoElement) {
-  // 			if (isElementPartiallyInViewport(footerLogoElement) && !headerHidden) {
-  // 				// If the footer logo is in the viewport and header logo is not already hidden
-  // 				headerHidden = true; // Update the flag
-  // 				headerLogoElement.animate(
-  // 					[
-  // 						{ transform: "translateY(0)", opacity: 1 },
-  // 						{ transform: "translateY(50px)", opacity: 0 },
-  // 					],
-  // 					{
-  // 						duration: 500,
-  // 						easing: "ease",
-  // 						fill: "forwards",
-  // 					}
-  // 				);
-  // 			} else if (
-  // 				!isElementPartiallyInViewport(footerLogoElement) &&
-  // 				headerHidden
-  // 			) {
-  // 				// If the footer logo is not in the viewport and the header logo is hidden
-  // 				headerHidden = false; // Update the flag
-  // 				headerLogoElement.animate(
-  // 					[
-  // 						{ transform: "translateY(50px)", opacity: 0 },
-  // 						{ transform: "translateY(0)", opacity: 1 },
-  // 					],
-  // 					{
-  // 						duration: 500,
-  // 						easing: "ease",
-  // 						fill: "forwards",
-  // 					}
-  // 				);
-  // 			}
-  // 		}
-  // 	});
-  // }
-
-  // Mobile image carousel controls
-  let startX = 0;
-  let movedX = 0;
-
-  const carousel = document.getElementById("default-carousel");
-  const prevButton = document.querySelector("[data-carousel-prev]");
-  const nextButton = document.querySelector("[data-carousel-next]");
-
-  if (carousel) {
-    carousel.addEventListener(
-      "touchstart",
-      (event) => {
-        startX = event.touches[0].clientX;
-      },
-      { passive: true }
-    );
-
-    carousel.addEventListener(
-      "touchmove",
-      (event) => {
-        movedX = event.touches[0].clientX - startX;
-      },
-      { passive: true }
-    );
-
-    carousel.addEventListener(
-      "touchend",
-      () => {
-        const threshold = 50;
-
-        if (movedX > threshold && prevButton) {
-          prevButton.click();
-        } else if (movedX < -threshold && nextButton) {
-          nextButton.click();
-        }
-
-        movedX = 0;
-      },
-      { passive: true }
-    );
   }
 
   function decideFeatureImageLogo() {

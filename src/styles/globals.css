@@ -35,52 +35,54 @@
 
     --radius: 0.5rem;
 
-    /* Your website variables */
+    /* Brand system */
     --aw-font-sans: 'InterVariable';
     --aw-font-serif: var(--aw-font-sans);
     --aw-font-heading: var(--aw-font-sans);
 
     --aw-color-primary: rgb(0 0 0);
-    --aw-color-secondary: rgb(59 130 246);
-    --aw-color-accent: rgb(249 115 22);
+    --aw-color-accent: rgb(184 132 72);
+    --aw-color-accent-hover: rgb(156 112 60);
     --aw-color-text-page: rgb(17 24 39);
     --aw-color-text-muted: rgb(75 85 99);
     --aw-color-bg-page: rgb(255 255 255);
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 9%;
+    --foreground: 0 0% 95%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 95%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 84%;
 
-    /* Your website variables dark mode */
-    --aw-color-text-page: rgb(229 236 246);
-    --aw-color-text-muted: rgb(148 163 184);
-    --aw-color-bg-page: rgb(15 23 42);
+    /* Brand dark mode */
+    --aw-color-accent: rgb(210 168 108);
+    --aw-color-accent-hover: rgb(224 182 128);
+    --aw-color-text-page: rgb(229 229 229);
+    --aw-color-text-muted: rgb(163 163 163);
+    --aw-color-bg-page: rgb(23 23 23);
   }
 }
 
@@ -139,7 +141,7 @@
 }
 
 .blog-content blockquote {
-  border-left: 4px solid #f97316; /* orange-500 */
+  border-left: 4px solid var(--aw-color-accent);
   padding-left: 1rem;
   margin-left: 0;
   margin-right: 0;
@@ -148,8 +150,8 @@
 }
 
 .dark .blog-content blockquote {
-  border-left-color: #60a5fa; /* blue-400 */
-  color: #d1d5db; /* gray-300 */
+  border-left-color: var(--aw-color-accent);
+  color: #d1d5db;
 }
 
 /* Fancy link underline animation */
@@ -213,7 +215,7 @@
 }
 
 .dark .date-badge {
-  background-color: #1e293b; /* slate-800 */
-  border-color: #334155; /* slate-700 */
-  color: #94a3b8; /* slate-400 */
+  background-color: #262626; /* neutral-800 */
+  border-color: #404040; /* neutral-700 */
+  color: #a3a3a3; /* neutral-400 */
 }

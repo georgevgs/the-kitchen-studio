@@ -1,12 +1,12 @@
 ---
-import "@/styles/globals.css";
-import "./../assets/styles/base.css";
+import "~/styles/globals.css";
+import "~/assets/styles/base.css";
 import fontAwesomeCssUrl from "@fortawesome/fontawesome-free/css/all.min.css?url";
 
-import MetaTags from "./../components/common/MetaTags.astro";
-import BasicScripts from "./../components/common/BasicScripts.astro";
-import { type MetaSEO } from "./../types";
-import { SITE } from "./../config.mjs";
+import MetaTags from "~/components/common/MetaTags.astro";
+import BasicScripts from "~/components/common/BasicScripts.astro";
+import type { MetaSEO } from "~/types";
+import { SITE } from "~/config";
 export interface Props {
   meta?: MetaSEO;
 }
@@ -29,15 +29,15 @@ const { language = "el", textDirection = "ltr" } = SITE;
         background-color: rgb(255 255 255);
       }
       html.dark {
-        background-color: rgb(15 23 42);
+        background-color: rgb(23 23 23);
       }
       body {
         background-color: rgb(255 255 255);
         color: rgb(17 24 39);
       }
       html.dark body {
-        background-color: rgb(15 23 42);
-        color: rgb(229 236 246);
+        background-color: rgb(23 23 23);
+        color: rgb(229 229 229);
       }
     </style>
     <script is:inline data-cfasync="false">
@@ -52,10 +52,10 @@ const { language = "el", textDirection = "ltr" } = SITE;
       })();
     </script>
   </head>
-  <body class="antialiased text-page bg-light dark:text-slate-300 tracking-tight dark:bg-dark min-h-screen">
+  <body class="antialiased text-page bg-light dark:text-neutral-300 tracking-tight dark:bg-dark min-h-screen">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:shadow-lg focus:outline-none dark:focus:bg-slate-800 dark:focus:text-white"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:shadow-lg focus:outline-none dark:focus:bg-neutral-800 dark:focus:text-white"
     >
       Μετάβαση στο κύριο περιεχόμενο
     </a>

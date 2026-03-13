@@ -15,9 +15,10 @@ module.exports = {
     extend: {
       colors: {
         primary: "var(--aw-color-primary)",
-        secondary: "var(--aw-color-secondary)",
-        accent: "var(--aw-color-accent)",
-        default: "var(--aw-color-text-default)",
+        accent: {
+          DEFAULT: "var(--aw-color-accent)",
+          hover: "var(--aw-color-accent-hover)",
+        },
         muted: "var(--aw-color-text-muted)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

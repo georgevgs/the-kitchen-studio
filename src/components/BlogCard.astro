@@ -71,7 +71,7 @@ const hasTags = data.tags && data.tags.length > 0;
         }
       </div>
 
-      <h3 class={`${getTitleSize()} font-bold leading-snug mb-3 group-hover:text-orange-500 dark:group-hover:text-orange-500 transition-colors`}>
+      <h3 class={`${getTitleSize()} font-bold leading-snug mb-3 group-hover:text-accent dark:group-hover:text-accent transition-colors`}>
         {data.title}
       </h3>
 
@@ -97,7 +97,7 @@ const hasTags = data.tags && data.tags.length > 0;
       }
 
       <span
-        class="fancy-link inline-flex items-center text-orange-500 dark:text-orange-500 font-medium group-hover:translate-x-1 transition-transform duration-300">
+        class="fancy-link inline-flex items-center text-accent dark:text-accent font-medium group-hover:translate-x-1 transition-transform duration-300">
         {t("blog.card.read_more")}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +121,7 @@ const hasTags = data.tags && data.tags.length > 0;
   }
 
   .dark .blog-card {
-    background-color: #1e293b;
+    background-color: #262626;
   }
 
   .blog-card:hover {

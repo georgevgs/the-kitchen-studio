@@ -22,7 +22,6 @@
     "astrojs-service-worker": "^2.0.0",
     "embla-carousel": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
-    "limax": "^4.2.2",
     "tailwindcss": "^4.2.1",
     "tailwindcss-animate": "^1.0.7"
   },

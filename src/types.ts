@@ -1,9 +1,7 @@
 import type { ImageMetadata } from "astro";
 import type { CollectionEntry } from "astro:content";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
-/**
- * SEO Metadata Interface
- */
 export interface MetaSEO {
   title?: string;
   description?: string;
@@ -17,32 +15,6 @@ export interface MetaSEO {
   language?: string;
 }
 
-/**
- * Site Configuration Interface
- */
-export interface SiteConfig {
-  name: string;
-  title: string;
-  description: string;
-  language: string;
-  url: string;
-  origin: string;
-  basePathname?: string;
-  trailingSlash?: string;
-  defaultImage?: string;
-  defaultTheme?: string;
-  textDirection?: string;
-  themeColorLight?: string;
-  themeColorDark?: string;
-  logo?: string;
-  twitterHandle?: string;
-  keywords?: string[] | string;
-  dateFormatter?: Intl.DateTimeFormat;
-}
-
-/**
- * Blog Post Interface
- */
 export interface Post {
   id: string;
   slug: string;
@@ -55,17 +27,12 @@ export interface Post {
   draft?: boolean;
   excerpt?: string;
   category?: string;
-  tags?: Array<string>;
+  tags?: string[];
   author?: string;
-  Content?: any;
+  Content?: AstroComponentFactory;
   content?: string;
-  // For compatibility with collection entries
-  data?: any;
 }
 
-/**
- * Helper function to convert CollectionEntry to Post
- */
 export function collectionEntryToPost(entry: CollectionEntry<"blog">): Post {
   return {
     id: entry.id,
@@ -77,6 +44,5 @@ export function collectionEntryToPost(entry: CollectionEntry<"blog">): Post {
     tags: entry.data.tags,
     author: entry.data.author,
     content: "",
-    data: entry.data
   };
 }
