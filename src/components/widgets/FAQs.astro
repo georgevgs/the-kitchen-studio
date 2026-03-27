@@ -17,13 +17,15 @@ const {
   highlight,
   items = [],
 } = Astro.props;
+
+const allItems = items.flat();
 ---
 
-<div class="px-4 py-16 mx-auto max-w-6xl lg:py-20 slide-in">
+<div class="px-4 py-20 mx-auto max-w-3xl lg:py-28" data-faq-root>
   <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
     {
       (title || subtitle || highlight) && (
-        <div class="max-w-xl mb-10 md:mx-auto md:text-center lg:max-w-2xl md:mb-12">
+        <div class="max-w-xl mb-12 md:mx-auto md:text-center lg:max-w-2xl reveal-up">
           {highlight && (
             <p
               class="text-base text-primary dark:text-accent font-semibold tracking-wide uppercase"
@@ -41,24 +43,137 @@ const {
       )
     }
   </div>
-  <div class="max-w-screen-xl sm:mx-auto">
-    <div class="grid grid-cols-1 gap-x-8 gap-y-8 lg:gap-x-16 md:grid-cols-2">
-      {
-        items &&
-          items.map((subitems) => (
-            <div class="space-y-8">
-              {subitems.map(({ question, answer }) => (
-                <div>
-                  <h3 class="mb-4 text-xl font-bold">
-                    <i class="fa-regular fa-circle-question text-primary inline-block dark:text-accent mr-2"></i>
-                    {question}
-                  </h3>
-                  {answer && <div class="text-muted dark:text-gray-400" set:html={answer} />}
-                </div>
-              ))}
-            </div>
-          ))
-      }
-    </div>
+  <div class="space-y-3 reveal-up reveal-delay-1">
+    {
+      allItems.map(({ question, answer }) => (
+        <details class="faq-item group" data-faq-item>
+          <summary class="faq-summary">
+            <span class="faq-question">{question}</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path class="faq-icon-v" d="M10 4v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" set:html={answer} />
+          </div>
+        </details>
+      ))
+    }
   </div>
 </div>
+
+<style>
+  .faq-item {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.875rem;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :global(.dark) .faq-item {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .faq-item[open] {
+    border-color: rgba(184, 132, 72, 0.3);
+    box-shadow: 0 4px 20px rgba(184, 132, 72, 0.06);
+  }
+
+  :global(.dark) .faq-item[open] {
+    border-color: rgba(184, 132, 72, 0.3);
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: background 0.2s ease;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-summary:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  :global(.dark) .faq-summary:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .faq-question {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--aw-color-text-muted);
+    transition: all 0.3s ease;
+  }
+
+  :global(.dark) .faq-icon {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .faq-item[open] .faq-icon {
+    background: rgb(184 132 72);
+    color: white;
+  }
+
+  .faq-icon-v {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .faq-item[open] .faq-icon-v {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  .faq-answer-inner {
+    padding: 0 1.5rem 1.25rem;
+    color: var(--aw-color-text-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+</style>
+
+<script>
+  function initFaq() {
+    document.querySelectorAll<HTMLElement>('[data-faq-root]').forEach((root) => {
+      root.querySelectorAll<HTMLDetailsElement>('[data-faq-item]').forEach((item) => {
+        item.addEventListener('click', () => {
+          root.querySelectorAll<HTMLDetailsElement>('[data-faq-item]').forEach((other) => {
+            if (other !== item && other.open) {
+              other.open = false;
+            }
+          });
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaq);
+  } else {
+    initFaq();
+  }
+  document.addEventListener('astro:page-load', initFaq);
+</script>

@@ -12,7 +12,7 @@ import Steps from "../../components/widgets/Steps.astro";
 import FAQs from "../../components/widgets/FAQs.astro";
 import Stats from "../../components/widgets/Stats.astro";
 import CallToAction from "../../components/widgets/CallToAction.astro";
-import Carousel from "../../components/widgets/Carousel.astro";
+import Hero from "../../components/widgets/Hero.astro";
 
 changeLanguage("en");
 
@@ -40,9 +40,28 @@ const meta = {
 ---
 
 <Layout {meta} lang={lang}>
-  <!-- Carousel Widget *************** -->
+  {images[0] && (
+    <link rel="preload" as="image" href={images[0].src.src} fetchpriority="high" slot="head" />
+  )}
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" as="style" slot="head" />
 
-  <Carousel images={images} displayMode="cover" />
+  <!-- Hero Widget *************** -->
+
+  <Hero
+    images={images}
+    headline={t("home.hero.headline")}
+    subtitle={t("home.hero.subtitle")}
+    ctaText={t("home.hero.cta")}
+    ctaHref={localizePath("/showroom")}
+    categories={[
+      { title: t("home.features2.items.first_item.title"), href: localizePath("/kitchens") },
+      { title: t("home.features2.items.second_item.title"), href: localizePath("/bath") },
+      { title: t("home.features2.items.third_item.title"), href: localizePath("/tiles") },
+      { title: t("home.features2.items.fourth_item.title"), href: localizePath("/wardrobes") },
+      { title: t("home.features2.items.fith_item.title"), href: localizePath("/doors") },
+      { title: t("home.features2.items.sixth_item.title"), href: localizePath("/living") },
+    ]}
+  />
 
   <!-- Features Widget *************** -->
 
@@ -121,7 +140,7 @@ const meta = {
     ]}
     image={{
       src: showroomBWImage,
-      alt: "the-kitchen-studio-showroom",
+      alt: "The Kitchen Studio showroom in Glyfada",
     }}
   />
 

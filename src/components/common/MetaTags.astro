@@ -153,7 +153,6 @@ const seoProps = {
   },
   extend: {
     meta: [
-      { name: "viewport", content: "width=device-width, initial-scale=1.0" },
       { name: "msapplication-TileColor", content: "#000000" },
       { name: "generator", content: Astro.generator },
       { name: "format-detection", content: "telephone=no" },
@@ -191,6 +190,8 @@ const enUrl = `${SITE.origin}${enPath}`;
 <link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png")} />
 <link rel="manifest" href={getAsset("/site.webmanifest")} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
 <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 <link rel="dns-prefetch" href="https://formspree.io" />

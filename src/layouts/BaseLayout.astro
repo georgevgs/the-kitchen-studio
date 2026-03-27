@@ -60,9 +60,23 @@ const { language = "el", textDirection = "ltr" } = SITE;
       Μετάβαση στο κύριο περιεχόμενο
     </a>
     <slot />
+
+    <!-- Floating CTA -->
+    <a
+      href="/contact"
+      class="floating-cta"
+      data-floating-cta
+      aria-label="Επικοινωνία"
+    >
+      <i class="fa-solid fa-comment-dots"></i>
+    </a>
+
     <BasicScripts />
     <script>
       import "~/js/carousel.ts";
+    </script>
+    <script>
+      import "~/js/scroll-reveal.ts";
     </script>
   </body>
 </html>

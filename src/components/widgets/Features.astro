@@ -22,75 +22,213 @@ const {
     highlight,
     items = [],
 } = Astro.props;
+
+const allItems = items.flat();
 ---
 
 <section class="scroll-mt-16" id="features">
-    <div class="px-4 py-16 mx-auto max-w-6xl lg:px-8 lg:py-20">
+    <div class="px-4 py-20 mx-auto max-w-6xl lg:px-8 lg:py-28">
         {
             (title || subtitle || highlight) && (
-                        <div class="mb-8 md:mx-auto text-center md:mb-10 max-w-3xl">
-                            {highlight && (
-                                    <h2
-                                            class="text-lg font-bold text-gray-900 dark:text-white mb-4 tracking-wide leading-snug md:text-lg lg:text-xl"
-                                            set:html={highlight}
-                                    />
-                            )}
-                            {title && (
-                                    <h3
-                                            class="text-base text-gray-700 dark:text-accent mb-3 font-medium tracking-wide uppercase"
-                                            set:html={title}
-                                    />
-                            )}
-                            {subtitle && (
-                                    <p
-                                            class="max-w-2xl mx-auto sm:text-center text-base text-gray-600 dark:text-gray-200"
-                                            set:html={subtitle}
-                                    />
-                            )}
-                        </div>
+                <div class="mb-14 md:mx-auto text-center max-w-3xl reveal-up">
+                    {title && (
+                        <p
+                            class="text-sm text-gray-500 dark:text-accent mb-3 font-medium tracking-[0.2em] uppercase"
+                            set:html={title}
+                        />
+                    )}
+                    {highlight && (
+                        <h2
+                            class="text-xl font-bold text-gray-900 dark:text-white mb-4 tracking-wide leading-snug md:text-2xl"
+                            set:html={highlight}
+                        />
+                    )}
+                    {subtitle && (
+                        <p
+                            class="max-w-2xl mx-auto text-base text-gray-500 dark:text-gray-300"
+                            set:html={subtitle}
+                        />
+                    )}
+                </div>
             )
         }
-        <div class="grid mx-auto space-y-6 md:grid-cols-2 md:space-y-0">
+        <div class="bento-grid">
             {
-                items.map((subitems) => (
-                        <div class="space-y-8 sm:px-8">
-                            {subitems.map(({title, description, icon, logo, imageURL}) => (
-                                    <div class="flex flex-col justify-between max-w-md max-h-16 md:flex-row">
-                                        <div class="flex flex-row items-center">
-                                            <div class="mb-4 mr-4">
-                                                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary dark:bg-accent">
-                                                    {icon && <i class={`${icon} text-white icon-light`}/>}
-                                                </div>
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <h3 class="text-xl font-bold">{title}</h3>
-                                                <p
-                                                        class="text-muted dark:text-neutral-400"
-                                                        set:html={description}
-                                                />
-                                            </div>
-                                        </div>
-                                        {logo && imageURL && (
-                                                <a
-                                                        href="https://ikaradimas.gr"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                >
-                                                    <Image
-                                                            src={imageURL}
-                                                            alt="Karadimas logo"
-                                                            height="75"
-                                                            width="150"
-                                                            class="mx-auto lg:mr-12 2xl:mr-22 2xl:mt-1 feature-logo-img"
-                                                            format="avif"
-                                                    />
-                                                </a>
-                                        )}
+                allItems.map(({title, description, icon, logo, imageURL}, index) => (
+                    <div class:list={[
+                        "bento-card group",
+                        `reveal-up reveal-delay-${(index % 3) + 1}`,
+                        { "bento-wide": (index === 0 || index === 5) && !(logo && imageURL) },
+                        { "bento-logo-card": logo && imageURL }
+                    ]}>
+                        {logo && imageURL ? (
+                            <div class="bento-logo-row">
+                                <div class="flex items-center gap-3">
+                                    <div class="bento-icon">
+                                        {icon && <i class={`${icon} text-lg`} aria-hidden="true"/>}
                                     </div>
-                            ))}
-                        </div>
+                                    <h3 class="bento-title" style="margin-bottom:0">{title}</h3>
+                                </div>
+                                <a
+                                    href="https://ikaradimas.gr"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Image
+                                        src={imageURL}
+                                        alt="Karadimas logo"
+                                        height="50"
+                                        width="120"
+                                        class="opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                                        format="avif"
+                                    />
+                                </a>
+                            </div>
+                        ) : (
+                            <Fragment>
+                                <div class="bento-icon">
+                                    {icon && <i class={`${icon} text-lg`} aria-hidden="true"/>}
+                                </div>
+                                <h3 class="bento-title">{title}</h3>
+                                {description && (
+                                    <p class="bento-desc" set:html={description} />
+                                )}
+                            </Fragment>
+                        )}
+                        <div class="bento-glow"></div>
+                    </div>
                 ))
             }
         </div>
     </div>
 </section>
+
+<style>
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .bento-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+    }
+
+    .bento-wide {
+        grid-column: span 2;
+    }
+
+    @media (max-width: 767px) {
+        .bento-wide {
+            grid-column: span 2;
+        }
+    }
+
+    .bento-card {
+        position: relative;
+        overflow: hidden;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    :global(.dark) .bento-card {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .bento-card:hover {
+        border-color: rgba(184, 132, 72, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(184, 132, 72, 0.08);
+    }
+
+    :global(.dark) .bento-card:hover {
+        border-color: rgba(184, 132, 72, 0.4);
+        box-shadow: 0 8px 30px rgba(184, 132, 72, 0.12);
+    }
+
+    .bento-icon {
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgb(184 132 72 / 0.1), rgb(184 132 72 / 0.05));
+        color: rgb(184 132 72);
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .bento-card:hover .bento-icon {
+        background: linear-gradient(135deg, rgb(184 132 72), rgb(156 112 60));
+        color: white;
+        transform: scale(1.05);
+    }
+
+    .bento-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        line-height: 1.3;
+    }
+
+    @media (min-width: 768px) {
+        .bento-title {
+            font-size: 1.1rem;
+        }
+    }
+
+    .bento-desc {
+        font-size: 0.85rem;
+        color: var(--aw-color-text-muted);
+        line-height: 1.5;
+    }
+
+    .bento-logo-card {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: center;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .bento-logo-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .bento-logo-card .bento-icon {
+        margin-bottom: 0;
+        width: 2.25rem;
+        height: 2.25rem;
+        flex-shrink: 0;
+    }
+
+    .bento-glow {
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(184, 132, 72, 0.06) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+    }
+
+    .bento-card:hover .bento-glow {
+        opacity: 1;
+    }
+</style>

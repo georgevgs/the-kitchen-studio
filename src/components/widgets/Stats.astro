@@ -19,10 +19,10 @@ const {
 } = Astro.props;
 ---
 
-<div class="px-4 py-4 md:py-16 sm:px-6 mx-auto md:px-24 lg:px-8 lg:py-20 max-w-6xl">
+<div class="px-4 py-20 sm:px-6 mx-auto lg:px-8 lg:py-28 max-w-6xl" data-stats-root>
   {
     (title || subtitle || highlight) && (
-      <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+      <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12 reveal-up">
         {highlight && (
           <p class="text-base text-primary dark:text-accent font-semibold tracking-wide uppercase">
             {highlight}
@@ -40,14 +40,17 @@ const {
       </div>
     )
   }
-  <div class="grid grid-cols-2 row-gap-8 md:grid-cols-4">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 reveal-up">
     {
       items.map(({ name, value }) => (
-        <div class="text-center md:border-r md:last:border-none dark:md:border-neutral-500 mb-12 md:mb-0">
-          <div class="text-[2.6rem] font-bold lg:text-5xl xl:text-6xl text-primary dark:text-accent font-heading">
+        <div class="stat-item text-center md:border-r md:last:border-none dark:md:border-neutral-700">
+          <div
+            class="stat-value text-[2.6rem] font-bold lg:text-5xl xl:text-6xl text-primary dark:text-accent font-heading"
+            data-stat-value={value}
+          >
             {value}
           </div>
-          <p class="text-sm font-medium tracking-widest text-gray-800 dark:text-neutral-400 uppercase lg:text-base">
+          <p class="text-sm font-medium tracking-widest text-gray-800 dark:text-neutral-400 uppercase lg:text-base mt-2">
             {name}
           </p>
         </div>
@@ -55,3 +58,74 @@ const {
     }
   </div>
 </div>
+
+<script>
+  function animateCounter(el: HTMLElement, target: string) {
+    // Parse the numeric part
+    const match = target.match(/^(\d+)(.*)/);
+    if (!match) {
+      el.textContent = target;
+      return;
+    }
+
+    const endValue = parseInt(match[1], 10);
+    const suffix = match[2] || '';
+    const duration = 2000;
+    const startTime = performance.now();
+
+    function easeOutExpo(t: number): number {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function update(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutExpo(progress);
+      const currentValue = Math.round(easedProgress * endValue);
+
+      el.textContent = currentValue + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame((time) => {
+      el.textContent = '0' + suffix;
+      update(time);
+    });
+  }
+
+  function initStats() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll<HTMLElement>('[data-stats-root]').forEach((root) => {
+      const statEls = root.querySelectorAll<HTMLElement>('[data-stat-value]');
+      let animated = false;
+
+      if (prefersReducedMotion) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !animated) {
+            animated = true;
+            statEls.forEach((el, i) => {
+              const value = el.dataset.statValue || '';
+              setTimeout(() => animateCounter(el, value), i * 150);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(root);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStats);
+  } else {
+    initStats();
+  }
+  document.addEventListener('astro:page-load', initStats);
+</script>

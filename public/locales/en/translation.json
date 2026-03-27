@@ -4,6 +4,11 @@
         "description": "Kitchen furnitures in Glyfada"
     },
     "home": {
+        "hero": {
+            "headline": "We Design Spaces That Inspire",
+            "subtitle": "Custom kitchen, bath & living furniture crafted with precision and elegance in Glyfada.",
+            "cta": "Explore"
+        },
         "features": {
             "highlight": "Kitchen Furniture in Glyfada | Quality & Custom Solutions",
             "title": "Renovation and decoration of your space",

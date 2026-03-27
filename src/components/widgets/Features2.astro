@@ -25,7 +25,7 @@ const {
 
 <section class="relative">
   <div
-    class="absolute inset-0 bg-gray-700 dark:bg-gray-400 pointer-events-none mb-32"
+    class="absolute inset-0 pointer-events-none mb-32 bg-[#0a0a0a] dark:bg-neutral-800"
     aria-hidden="true"
   >
   </div>
@@ -33,7 +33,7 @@ const {
     <div class="py-4 pt-8 sm:py-6 lg:py-8 lg:pt-12">
       {
         (title || subtitle || highlight) && (
-          <div class="mb-8 md:mx-auto text-center max-w-3xl">
+          <div class="mb-8 md:mx-auto text-center max-w-3xl reveal-up">
             {highlight && (
               <p
                 class="text-base text-white dark:text-black font-semibold tracking-wide uppercase"
@@ -57,23 +57,33 @@ const {
         )
       }
       <div
-        class={`grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 dark:text-white items-stretch align-stretch`}
+        class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 dark:text-white items-stretch"
       >
         {
-          items.map(({ title, description, icon, href }) => (
-            <a href={localizePath(href)} class="block relative hover:no-underline h-full">
-              <div class="flex flex-col p-6 bg-white dark:bg-black rounded shadow-lg hover:shadow-md transition border border-transparent dark:border-neutral-800 h-full">
-                <div class="flex items-center mb-4">
-                  <i class={`${icon} fa-xl`}></i>
-                  <div class="ml-4 text-xl font-bold">{title}</div>
+          items.map(({ title, description, icon, href }, index) => (
+            <a
+              href={localizePath(href)}
+              class:list={[
+                "block relative hover:no-underline h-full",
+                `reveal-up reveal-delay-${(index % 3) + 1}`
+              ]}
+            >
+              <div class="f2-card flex flex-col p-6 bg-white dark:bg-black rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-neutral-800 h-full group">
+                <div class="f2-icon-wrap mb-4">
+                  <i class={`${icon} fa-xl`} aria-hidden="true"></i>
                 </div>
+                <div class="text-xl font-bold mb-2">{title}</div>
 
                 {description && (
                   <p
-                    class="text-muted dark:text-gray-400 text-md mt-4"
+                    class="text-muted dark:text-gray-400 text-md"
                     set:html={description}
                   />
                 )}
+
+                <div class="mt-auto pt-4 flex items-center gap-2 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`color: rgb(184 132 72);`}>
+                  <span>&#8594;</span>
+                </div>
               </div>
             </a>
           ))
@@ -82,3 +92,45 @@ const {
     </div>
   </div>
 </section>
+
+<style>
+  .f2-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .f2-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgb(184 132 72);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .f2-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .f2-icon-wrap {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    background: rgba(184, 132, 72, 0.08);
+    color: rgb(184 132 72);
+    transition: all 0.3s ease;
+  }
+
+  .f2-card:hover .f2-icon-wrap {
+    background: rgb(184 132 72);
+    color: white;
+    transform: scale(1.05);
+  }
+</style>
