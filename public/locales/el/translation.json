@@ -113,10 +113,21 @@
             "third_stat": "ΚΟΥΖΙΝΕΣ",
             "fourth_stat": "ΧΑΜΟΓΕΛΑ"
         },
+        "social_proof": {
+            "rating": "4.9",
+            "reviews": "50+",
+            "source": "Google Reviews",
+            "cta": "Δείτε τις κριτικές μας"
+        },
+        "portfolio": {
+            "title": "Τα Έργα μας",
+            "subtitle": "Κάθε χώρος είναι μια μοναδική ιστορία",
+            "cta": "Δείτε όλα τα έργα"
+        },
         "call_to_action": {
-            "text": "Δείτε το",
-            "title": "The Kitchen Studio leaflet",
-            "subtitle": "Ξεφυλλίστε το φυλλάδιό μας!"
+            "text": "Κλείστε Ραντεβού",
+            "title": "Ελάτε να γνωριστούμε",
+            "subtitle": "Επισκεφθείτε το showroom μας στη Γλυφάδα για μια δωρεάν συμβουλευτική συνάντηση."
         }
     },
     "contact": {

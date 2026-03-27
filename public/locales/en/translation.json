@@ -113,10 +113,21 @@
             "third_stat": "KITCHENS",
             "fourth_stat": "SMILES"
         },
+        "social_proof": {
+            "rating": "4.9",
+            "reviews": "50+",
+            "source": "Google Reviews",
+            "cta": "See our reviews"
+        },
+        "portfolio": {
+            "title": "Our Projects",
+            "subtitle": "Every space tells a unique story",
+            "cta": "View all projects"
+        },
         "call_to_action": {
-            "text": "Take a look",
-            "title": "The Kitchen Studio leaflet",
-            "subtitle": "Browse our brochure!"
+            "text": "Book a Visit",
+            "title": "Let's meet",
+            "subtitle": "Visit our showroom in Glyfada for a free design consultation."
         }
     },
     "contact": {

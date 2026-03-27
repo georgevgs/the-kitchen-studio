@@ -10,14 +10,15 @@ import Features2 from "../components/widgets/Features2.astro";
 import MediaRecognition from "~/components/widgets/MediaRecognition.astro";
 import Steps from "../components/widgets/Steps.astro";
 import FAQs from "../components/widgets/FAQs.astro";
-import Stats from "../components/widgets/Stats.astro";
 import CallToAction from "../components/widgets/CallToAction.astro";
 import Hero from "../components/widgets/Hero.astro";
+import PortfolioTeaser from "../components/widgets/PortfolioTeaser.astro";
 
 changeLanguage("el");
 
 import showroomBWImage from "../assets/images/showroom/the-kitchen-studio-showroom-bw.avif";
 const images = processImagesForCarousel("home-images");
+const ergaImages = processImagesForCarousel("erga");
 
 const mediaTexts = {
   title: t("home.media.title"),
@@ -191,6 +192,16 @@ const meta = {
     ]}
   />
 
+  <!-- Portfolio Teaser ************** -->
+
+  <PortfolioTeaser
+    title={t("home.portfolio.title")}
+    subtitle={t("home.portfolio.subtitle")}
+    ctaText={t("home.portfolio.cta")}
+    ctaHref={localizePath("/erga")}
+    images={ergaImages}
+  />
+
   <!-- FAQs Widget ******************* -->
 
   <FAQs
@@ -221,24 +232,12 @@ const meta = {
     ]}
   />
 
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    items={[
-      { name: t("home.stats.first_stat"), value: "1K" },
-      { name: t("home.stats.second_stat"), value: "250" },
-      { name: t("home.stats.third_stat"), value: "800" },
-      { name: t("home.stats.fourth_stat"), value: "∞" },
-    ]}
-  />
-
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
     callToAction={{
       text: t("home.call_to_action.text"),
-      href: "/assets/leaflets/the-kitchen-studio-leaflet-v1.pdf",
-      icon: "tabler:download",
+      href: localizePath("/contact"),
     }}>
     <Fragment slot="title">{t("home.call_to_action.title")}</Fragment>
 

@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="px-4 py-20 sm:px-6 mx-auto lg:px-8 lg:py-28 max-w-6xl">
+<section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl">
   <div class="grid gap-6 row-gap-10 md:grid-cols-2">
     <div class="md:py-4 md:pr-16 mb-4 md:mb-0 reveal-up">
       {title && <h2 class="mb-8 text-3xl lg:text-4xl font-bold font-heading" set:html={title} />}
@@ -56,16 +56,14 @@ const {
           ))
       }
     </div>
-    <div class="flex items-center justify-center reveal-up reveal-delay-2">
+    <div class="flex items-start reveal-up reveal-delay-2">
       {
         image &&
           (typeof image === "string" ? (
             <Fragment set:html={image} />
           ) : (
             <Image
-              class="w-full h-auto max-h-[500px] object-contain rounded-xl shadow-lg"
-              height="432"
-              width="768"
+              class="w-full max-h-[600px] object-cover object-top rounded-xl shadow-lg"
               format="avif"
               {...image}
             />
