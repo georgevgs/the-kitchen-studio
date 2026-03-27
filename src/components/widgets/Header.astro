@@ -46,6 +46,7 @@ const {
     "top-0 z-40 flex-none mx-auto w-full transition-all ease-in duration-100",
   ]}
   id="header"
+  data-header
 >
   <div
     class="py-3 px-3 md:py-3.5 md:px-4 mx-auto w-full md:flex md:justify-between max-w-screen-xl"
@@ -218,3 +219,19 @@ const {
     </div>
   </div>
 </header>
+
+<script>
+  function setHeaderHeight() {
+    const header = document.querySelector('[data-header]');
+    if (header) {
+      document.documentElement.style.setProperty(
+        '--header-height',
+        `${header.offsetHeight}px`
+      );
+    }
+  }
+
+  setHeaderHeight();
+  window.addEventListener('resize', setHeaderHeight);
+  document.addEventListener('astro:page-load', setHeaderHeight);
+</script>
