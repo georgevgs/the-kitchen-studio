@@ -49,7 +49,11 @@ const businessSchema = {
   name: "The Kitchen Studio",
   "@id": "https://www.thekitchenstudio.gr",
   url: "https://www.thekitchenstudio.gr",
-  image: getAsset("./assets/images/logo/the-kitchen-studio-logo.png"),
+  image: `${SITE.origin}/assets/logo/the-kitchen-studio-logo.png`,
+  sameAs: [
+    "https://www.instagram.com/thekitchenstudiogr/",
+    "https://www.facebook.com/kitchenstudio/",
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "Grigoriou Lampraki 28",

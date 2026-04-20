@@ -43,10 +43,6 @@
   "required": [
     "title",
     "description",
-    "pubDate",
-    "featured",
-    "tags",
-    "lang"
-  ],
-  "additionalProperties": false
+    "pubDate"
+  ]
 }

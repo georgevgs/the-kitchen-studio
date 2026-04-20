@@ -120,14 +120,6 @@ export function generateWebsiteSchema(siteInfo: Partial<SiteConfig>): Record<str
     "name": siteInfo.name || "",
     "url": siteInfo.url || siteInfo.origin || "",
     "description": siteInfo.description || "",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${siteInfo.url || siteInfo.origin || ""}/search?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
-    }
   };
 }
 

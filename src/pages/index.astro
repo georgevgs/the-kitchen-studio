@@ -39,9 +39,49 @@ const meta = {
   description: SITE.description,
   dontUseTitleTemplate: true,
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: t("home.faq.items.first_item.question"),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: t("home.faq.items.first_item.answer"),
+      },
+    },
+    {
+      "@type": "Question",
+      name: t("home.faq.items.second_item.question"),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: t("home.faq.items.second_item.answer"),
+      },
+    },
+    {
+      "@type": "Question",
+      name: t("home.faq.items.third_item.question"),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: t("home.faq.items.third_item.answer"),
+      },
+    },
+    {
+      "@type": "Question",
+      name: t("home.faq.items.fourth_item.question"),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: t("home.faq.items.fourth_item.answer"),
+      },
+    },
+  ],
+};
 ---
 
 <Layout {meta} lang={lang}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
   {images[0] && (
     <link rel="preload" as="image" href={images[0].src.src} fetchpriority="high" slot="head" />
   )}
