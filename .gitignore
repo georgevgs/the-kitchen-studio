@@ -3,6 +3,9 @@ node_modules/
 .pnp
 .pnp.js
 
+# Lockfiles — npm is the source of truth
+bun.lockb
+
 # Build output
 dist/
 build/
