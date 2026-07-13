@@ -65,6 +65,8 @@ const {
             <Image
               class="w-full max-h-[600px] object-cover object-top rounded-xl shadow-lg"
               format="avif"
+              widths={[640, image.src.width]}
+              sizes="(min-width: 768px) 40vw, calc(100vw - 32px)"
               {...image}
             />
           ))

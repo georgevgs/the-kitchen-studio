@@ -58,9 +58,11 @@ const {
                     src={image}
                     alt={image.alt}
                     class="w-full h-auto object-cover"
+                    widths={[384, 768]}
+                    sizes="(max-width: 416px) calc(100vw - 32px), 384px"
                     quality={80}
                     format="avif"
-                    loading="eager"
+                    loading="lazy"
                   />
                 )
               ) : (
@@ -68,9 +70,11 @@ const {
                   src={villasMagazine}
                   alt={imageAlt}
                   class="w-full h-auto object-cover"
+                  widths={[384, 768]}
+                  sizes="(max-width: 416px) calc(100vw - 32px), 384px"
                   quality={80}
                   format="avif"
-                  loading="eager"
+                  loading="lazy"
                 />
               )
             }

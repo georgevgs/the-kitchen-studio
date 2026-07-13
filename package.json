@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "node scripts/generate-fa-subset.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "fa:subset": "node scripts/generate-fa-subset.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.3",
@@ -27,6 +29,7 @@
     "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^24.13.3",
     "prettier": "3.9.5",
+    "subset-font": "^2.5.0",
     "typescript": "^5.9.3"
   },
   "overrides": {

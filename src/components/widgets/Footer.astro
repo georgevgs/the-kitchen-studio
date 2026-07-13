@@ -95,12 +95,12 @@ const {
             href={`https://maps.google.com/?q=${showroomInfo?.address}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out">
+            class="inline-block py-1 hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out">
             {showroomInfo?.address}
           </a><br />
           <a
             href={`tel:+30${showroomInfo?.phone?.replace(/\s+/g, "")}`}
-            class="hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out">
+            class="inline-block py-1 hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out">
             Τ {showroomInfo?.phone}
           </a>
         </div>
