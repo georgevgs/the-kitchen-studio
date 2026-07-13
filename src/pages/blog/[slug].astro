@@ -34,8 +34,8 @@ export async function getStaticPaths() {
 
 // Get the current post and related posts from props
 const { post, relatedPosts = [] } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await render(post);
-const postContent = remarkPluginFrontmatter?.content || "";
+const { Content } = await render(post);
+const postContent = post.body ?? "";
 
 // Calculate reading time if not provided in frontmatter
 const readingTime = post.data.readingTime || calculateReadingTime(postContent);
@@ -45,6 +45,7 @@ const readingTime = post.data.readingTime || calculateReadingTime(postContent);
 const HERO_DIMENSIONS: Record<string, { width: number; height: number }> = {
   "/assets/images/blog/kitchen-island.avif": { width: 1920, height: 1078 },
   "/assets/images/blog/modern-grey-and-terracotta-kitchen-2025.avif": { width: 1920, height: 1256 },
+  "/assets/images/blog/kitchen-renovation-guide.avif": { width: 1920, height: 2363 },
 };
 const heroDims = post.data.image ? HERO_DIMENSIONS[post.data.image] : undefined;
 

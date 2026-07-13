@@ -32,7 +32,7 @@ const hasTags = data.tags && data.tags.length > 0;
 ---
 
 <article
-  class={`blog-card group p-4 sm:p-6 rounded-xl ${variant === "featured" ? "border-b pb-8 mb-8 lg:pb-12 lg:mb-12 border-gray-200 dark:border-gray-800" : ""}`}>
+  class={`blog-card group p-4 sm:p-6 rounded-xl bg-white dark:bg-neutral-800 ${variant === "featured" ? "border-b pb-8 mb-8 lg:pb-12 lg:mb-12 border-gray-200 dark:border-gray-800" : ""}`}>
   <a href={href} class="block">
     {
       data.image && (
@@ -71,7 +71,8 @@ const hasTags = data.tags && data.tags.length > 0;
         }
       </div>
 
-      <h3 class={`${getTitleSize()} font-bold leading-snug mb-3 group-hover:text-accent dark:group-hover:text-accent transition-colors`}>
+      <h3
+        class={`${getTitleSize()} font-bold leading-snug mb-3 text-gray-900 dark:text-gray-100 group-hover:text-accent dark:group-hover:text-accent transition-colors`}>
         {data.title}
       </h3>
 
@@ -111,22 +112,3 @@ const hasTags = data.tags && data.tags.length > 0;
     </div>
   </a>
 </article>
-
-<style>
-  .blog-card {
-    background-color: white;
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  .dark .blog-card {
-    background-color: #262626;
-  }
-
-  .blog-card:hover {
-    box-shadow:
-      0 10px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-</style>
