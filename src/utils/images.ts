@@ -59,7 +59,7 @@ const createAltText = (src: string, prefix: string, lang: Lang, position: number
 
   if (template) {
     const suffix = lang === 'el' ? `φωτογραφία ${position}` : `photo ${position}`;
-    return `${template[lang]} — ${suffix}`;
+    return `${template[lang]}, ${suffix}`;
   }
 
   const filename = src.split('?')[0];

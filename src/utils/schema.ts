@@ -274,7 +274,7 @@ export function generateContactPageSchema(
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": isEnglish ? "Contact The Kitchen Studio" : "Επικοινωνία — The Kitchen Studio",
+    "name": isEnglish ? "Contact The Kitchen Studio" : "Επικοινωνία με το The Kitchen Studio",
     "url": isEnglish ? `${siteUrl}/en/contact` : `${siteUrl}/contact`,
     "inLanguage": lang,
     "mainEntity": { "@id": BUSINESS_ID },

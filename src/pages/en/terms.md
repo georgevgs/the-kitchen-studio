@@ -9,7 +9,7 @@ Welcome to our website. Please read these terms and conditions carefully before 
 
 ## Intellectual Property Rights
 
-All intellectual property rights, including copyrights, pertaining to our website—this includes content, logo, graphics, and design—are owned by us or our partners. Copying, reproducing, distributing, transmitting, or any other use is prohibited without our written permission.
+All intellectual property rights, including copyrights, pertaining to our website (this includes content, logo, graphics, and design) are owned by us or our partners. Copying, reproducing, distributing, transmitting, or any other use is prohibited without our written permission.
 
 ## User Content
 
