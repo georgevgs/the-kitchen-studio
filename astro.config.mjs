@@ -3,7 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import { SITE } from "./src/config";
-import astroI18next from "astro-i18next";
 import vercel from "@astrojs/vercel";
 
 export default defineConfig({
@@ -14,7 +13,15 @@ export default defineConfig({
 
     adapter: vercel(),
 
-    integrations: [astroI18next(), sitemap({
+    i18n: {
+        defaultLocale: "el",
+        locales: ["el", "en"],
+        routing: {
+            prefixDefaultLocale: false,
+        },
+    },
+
+    integrations: [sitemap({
         filter: (page) => !page.includes('/404'),
         changefreq: 'weekly',
         priority: 0.7,

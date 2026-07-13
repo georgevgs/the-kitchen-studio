@@ -13,6 +13,13 @@ export interface ActionLink {
   href: string;
 }
 
+export interface SocialLink {
+  ariaLabel: string;
+  icon: string;
+  href: string;
+  text?: string;
+}
+
 export interface HeaderData {
   links: NavLink[];
   actions: ActionLink[];
@@ -32,7 +39,7 @@ export interface ShowroomInfo {
 export interface FooterData {
   links: FooterLinkGroup[];
   secondaryLinks: NavLink[];
-  socialLinks: NavLink[];
+  socialLinks: SocialLink[];
   showroomInfo: ShowroomInfo;
   footNote: string;
 }
