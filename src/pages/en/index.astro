@@ -1,5 +1,7 @@
 ---
 import { SITE } from "~/config";
+import { getImage } from "astro:assets";
+import { HERO_IMAGE } from "~/utils/heroImage";
 import Layout from "../../layouts/PageLayout.astro";
 import { t, changeLanguage } from "~/i18n";
 import { localizePath } from "~/i18n";
@@ -19,6 +21,12 @@ changeLanguage("en");
 import showroomBWImage from "../../assets/images/showroom/the-kitchen-studio-showroom-bw.avif";
 const images = processImagesForCarousel("home-images", "en");
 const ergaImages = processImagesForCarousel("erga", "en");
+
+// Preload the exact responsive variant the Hero <Image> will render (same options
+// via HERO_IMAGE) so the LCP image is discovered early and no unused image is fetched.
+const heroPreload = images[0]
+  ? await getImage({ src: images[0].src, ...HERO_IMAGE })
+  : null;
 
 const mediaTexts = {
   title: t("home.media.title"),
@@ -85,8 +93,14 @@ const faqSchema = {
       sibling breaks Astro's named-slot assignment for the other elements. */}
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-    {images[0] && (
-      <link rel="preload" as="image" href={images[0].src.src} fetchpriority="high" />
+    {heroPreload && (
+      <link
+        rel="preload"
+        as="image"
+        imagesrcset={heroPreload.srcSet.attribute}
+        imagesizes={HERO_IMAGE.sizes}
+        fetchpriority="high"
+      />
     )}
   </Fragment>
 
