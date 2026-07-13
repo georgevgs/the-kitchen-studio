@@ -2,7 +2,6 @@
 import Layout from "../layouts/PageLayout.astro";
 import { changeLanguage } from "i18next";
 import { localizePath } from "astro-i18next";
-import { SITE } from "~/config";
 
 changeLanguage("el");
 
@@ -17,48 +16,8 @@ const aboutSchema = {
   name: "Ποιοι Είμαστε — The Kitchen Studio",
   url: "https://www.thekitchenstudio.gr/about-us",
   description: meta.description,
-  mainEntity: {
-    "@type": "LocalBusiness",
-    "@id": "https://www.thekitchenstudio.gr",
-    name: "The Kitchen Studio",
-    url: "https://www.thekitchenstudio.gr",
-    image: `${SITE.origin}/assets/logo/the-kitchen-studio-logo.png`,
-    description: meta.description,
-    telephone: "+30 210 8981423",
-    email: "info@thekitchenstudio.gr",
-    foundingDate: "2000",
-    areaServed: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: 37.86350802540611,
-        longitude: 23.754075789949074,
-      },
-      geoRadius: "30000",
-    },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Γρηγορίου Λαμπράκη 28",
-      addressLocality: "Γλυφάδα",
-      addressRegion: "Αττική",
-      postalCode: "16675",
-      addressCountry: "GR",
-    },
-    sameAs: [
-      "https://www.instagram.com/thekitchenstudiogr/",
-      "https://www.facebook.com/kitchenstudio/",
-    ],
-    knowsAbout: [
-      "Σχεδιασμός επίπλων κουζίνας",
-      "Ντουλάπες υπνοδωματίου",
-      "Επιφάνειες Corian",
-      "Έπιπλα μπάνιου",
-      "Πλακάκια",
-      "Εσωτερική διακόσμηση",
-      "Ανακαίνιση κουζίνας",
-      "Εργονομία κουζίνας",
-    ],
-  },
+  // Reference the canonical business entity rendered by MetaTags on every page
+  mainEntity: { "@id": "https://www.thekitchenstudio.gr/#business" },
 };
 ---
 
@@ -176,7 +135,7 @@ const aboutSchema = {
         <div class="grid md:grid-cols-2 gap-6 p-6 bg-gray-50 dark:bg-neutral-900 rounded-xl mb-6">
           <div>
             <p class="font-semibold mb-1">Διεύθυνση</p>
-            <p class="text-gray-700 dark:text-gray-300 text-sm">Γρηγορίου Λαμπράκη 28, Γλυφάδα 166 75</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">Γρηγορίου Λαμπράκη 28, Γλυφάδα 166 74</p>
             <p class="font-semibold mt-3 mb-1">Τηλέφωνο</p>
             <a href="tel:+302108981423" class="text-accent hover:underline text-sm">210 8981423</a>
             <p class="font-semibold mt-3 mb-1">Email</p>

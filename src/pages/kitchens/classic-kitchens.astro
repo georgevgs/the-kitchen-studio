@@ -4,7 +4,7 @@ import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
-import { generateBreadcrumbSchema } from "../../utils/schema";
+import { generateBreadcrumbSchema, generateServiceSchema } from "../../utils/schema";
 import classicKitchenImage from "../../assets/images/kitchens/classic/classic-kitchen.avif";
 import classicKitchen2Image from "../../assets/images/kitchens/classic/classic-kitchen-2.avif";
 import classicKitchen3Image from "../../assets/images/kitchens/classic/classic-kitchen-3.avif";
@@ -26,7 +26,7 @@ import classicKitchen17Image from "../../assets/images/kitchens/classic/classic-
 changeLanguage("el");
 
 const meta = {
-    title: t("pages.kitchens.classic_kitchens.title"),
+    title: t("pages.kitchens.classic_kitchens.meta_title"),
     description: t("pages.kitchens.classic_kitchens.description"),
 };
 
@@ -35,10 +35,18 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Κουζίνες", item: "/kitchens" },
   { name: "Κλασικές Κουζίνες", item: "/kitchens/classic-kitchens" },
 ]);
+
+const serviceSchema = generateServiceSchema({
+  name: t("pages.kitchens.classic_kitchens.title"),
+  description: t("pages.kitchens.classic_kitchens.description"),
+  url: "/kitchens/classic-kitchens",
+  serviceType: "Σχεδιασμός και κατασκευή κλασικής κουζίνας",
+});
 ---
 
 <Layout meta={meta} lang={"EL"}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.kitchens.classic_kitchens.title")}

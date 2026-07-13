@@ -5,7 +5,7 @@ import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
 import { localizePath } from "astro-i18next";
-import { generateKitchenDisplaySchema } from "../utils/schema";
+import { generateItemListSchema } from "../utils/schema";
 import modernKitchenImage from "../assets/images/kitchens/modern/modern-kitchen.avif";
 import classicKitchenImage from "../assets/images/kitchens/classic/classic-kitchen-5.avif";
 import corianKitchenImage from "../assets/images/kitchens/corian/corian-kitchen-countertop.avif";
@@ -13,39 +13,34 @@ import corianKitchenImage from "../assets/images/kitchens/corian/corian-kitchen-
 changeLanguage("el");
 
 const meta = {
-    title: t("pages.kitchens.kitchens_category.title"),
+    title: t("pages.kitchens.kitchens_category.meta_title"),
     description: t("pages.kitchens.kitchens_category.description"),
 };
 
-const modernSchema = generateKitchenDisplaySchema({
-    name: "Modern Kitchens - The Kitchen Studio",
-    description: "Contemporary modern kitchen designs with clean lines, minimalist aesthetics and premium finishes",
-    image: modernKitchenImage,
-    url: "/kitchens/modern-kitchens",
-    category: "Modern Kitchens",
-});
-
-const classicSchema = generateKitchenDisplaySchema({
-    name: "Classic Kitchens - The Kitchen Studio",
-    description: "Timeless classic kitchen designs with traditional wood cabinetry and elegant detailing",
-    image: classicKitchenImage,
-    url: "/kitchens/classic-kitchens",
-    category: "Classic Kitchens",
-});
-
-const corianSchema = generateKitchenDisplaySchema({
-    name: "Corian Kitchens - The Kitchen Studio",
-    description: "Premium Corian kitchen designs with seamless integrated countertops and surfaces",
-    image: corianKitchenImage,
-    url: "/kitchens/corian-kitchens",
-    category: "Corian Kitchens",
-});
+const kitchensListSchema = generateItemListSchema([
+    {
+        name: t("pages.kitchens.kitchens_category.categories.text_modern_kitchens"),
+        description: t("pages.kitchens.modern_kitchens.description"),
+        url: "/kitchens/modern-kitchens",
+        image: modernKitchenImage,
+    },
+    {
+        name: t("pages.kitchens.kitchens_category.categories.text_classic_kitchens"),
+        description: t("pages.kitchens.classic_kitchens.description"),
+        url: "/kitchens/classic-kitchens",
+        image: classicKitchenImage,
+    },
+    {
+        name: t("pages.kitchens.kitchens_category.categories.text_corian_kitchens"),
+        description: t("pages.kitchens.corian_kitchens.description"),
+        url: "/kitchens/corian-kitchens",
+        image: corianKitchenImage,
+    },
+]);
 ---
 
 <Layout meta={meta} lang={"EL"}>
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(modernSchema)} />
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(classicSchema)} />
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(corianSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(kitchensListSchema)} />
   <div class="category-container">
     <PageDescription
       title={t("pages.kitchens.kitchens_category.title")}

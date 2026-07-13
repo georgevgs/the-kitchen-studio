@@ -5,39 +5,36 @@ import PageDescription from "../components/widgets/PageDescription.astro";
 import Spacer from "../components/widgets/Spacer.astro";
 import Layout from "../layouts/PageLayout.astro";
 import { localizePath } from "astro-i18next";
-import { generateKitchenDisplaySchema } from "../utils/schema";
+import { generateItemListSchema } from "../utils/schema";
 import bathFurnituresImage from "../assets/images/bath/furniture/bath-furniture-2.avif";
 import corianBathroomImage from "../assets/images/bath/corian/corian-bathroom-sink-4.avif";
 import ioannisKaradimasImage from "../assets/images/bath/ioannis-karadimas.avif";
-import { SITE } from "~/config";
 
 changeLanguage("el");
 
 const meta = {
-    title: `${t("pages.bath.bath_category.title")} | ${SITE.title}`,
+    title: t("pages.bath.bath_category.meta_title"),
     description: t("pages.bath.bath_category.description"),
 };
 
-const bathFurnitureSchema = generateKitchenDisplaySchema({
-    name: "Bath Furniture - The Kitchen Studio",
-    description: "Custom bathroom furniture with modern vanity units and integrated storage solutions",
-    image: bathFurnituresImage,
-    url: "/bath/bath-furnitures",
-    category: "Bath Furniture",
-});
-
-const corianBathSchema = generateKitchenDisplaySchema({
-    name: "Corian Bath - The Kitchen Studio",
-    description: "Premium Corian bathroom sinks and countertops with seamless integrated surfaces",
-    image: corianBathroomImage,
-    url: "/bath/corian-bath",
-    category: "Corian Bath",
-});
+const bathListSchema = generateItemListSchema([
+    {
+        name: t("pages.bath.bath_category.categories.text_bath_furnitures"),
+        description: t("pages.bath.bath_furnitures.description"),
+        url: "/bath/bath-furnitures",
+        image: bathFurnituresImage,
+    },
+    {
+        name: t("pages.bath.bath_category.categories.text_corian_bath"),
+        description: t("pages.bath.corian_bath.description"),
+        url: "/bath/corian-bath",
+        image: corianBathroomImage,
+    },
+]);
 ---
 
 <Layout meta={meta} lang={"EL"}>
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(bathFurnitureSchema)} />
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(corianBathSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(bathListSchema)} />
   <div class="category-container">
     <PageDescription
       title={t("pages.bath.bath_category.title")}

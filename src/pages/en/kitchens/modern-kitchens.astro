@@ -4,7 +4,7 @@ import Carousel from "../../../components/widgets/Carousel.astro";
 import PageDescription from "../../../components/widgets/PageDescription.astro";
 import Spacer from "../../../components/widgets/Spacer.astro";
 import Layout from "../../../layouts/PageLayout.astro";
-import { generateBreadcrumbSchema } from "../../../utils/schema";
+import { generateBreadcrumbSchema, generateServiceSchema } from "../../../utils/schema";
 import modernKitchenImage from "../../../assets/images/kitchens/modern/modern-kitchen.avif";
 import modernKitchen2Image from "../../../assets/images/kitchens/modern/modern-kitchen-2.avif";
 import modernKitchen3Image from "../../../assets/images/kitchens/modern/modern-kitchen-3.avif";
@@ -22,12 +22,11 @@ import modernKitchen14Image from "../../../assets/images/kitchens/modern/modern-
 import modernKitchen15Image from "../../../assets/images/kitchens/modern/modern-kitchen-15.avif";
 import modernKitchen16Image from "../../../assets/images/kitchens/modern/modern-kitchen-16.avif";
 import modernKitchen17Image from "../../../assets/images/kitchens/modern/modern-kitchen-17.avif";
-import { SITE } from "~/config";
 
 changeLanguage("en");
 
 const meta = {
-  title: `${t("pages.kitchens.modern_kitchens.title")} | ${SITE.title}`,
+  title: t("pages.kitchens.modern_kitchens.meta_title"),
   description: t("pages.kitchens.modern_kitchens.description"),
 };
 
@@ -36,10 +35,18 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Kitchens", item: "/en/kitchens" },
   { name: "Modern Kitchens", item: "/en/kitchens/modern-kitchens" },
 ]);
+
+const serviceSchema = generateServiceSchema({
+  name: t("pages.kitchens.modern_kitchens.title"),
+  description: t("pages.kitchens.modern_kitchens.description"),
+  url: "/en/kitchens/modern-kitchens",
+  serviceType: "Modern kitchen design and manufacturing",
+});
 ---
 
 <Layout meta={meta} lang={"EN"}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.kitchens.modern_kitchens.title")}

@@ -16,6 +16,11 @@ const { meta, lang } = Astro.props;
 
 const headerData = lang === 'EN' ? headerDataEN : headerDataEL;
 const footerData = lang === 'EN' ? footerDataEN : footerDataEL;
+
+// Set language based on page lang (same as PageLayout)
+if (lang && meta) {
+  meta.language = lang === 'EN' ? 'en' : 'el-GR';
+}
 ---
 
 <Layout {meta}>

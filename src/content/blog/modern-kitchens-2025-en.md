@@ -8,8 +8,6 @@ tags: ["modern kitchens", "kitchen design 2025", "kitchen renovation", "smart ki
 lang: "en"
 ---
 
-# 5 Top Ideas for Modern Kitchens in 2025
-
 The kitchen is the heart of every home — a space where the family gathers, memories are made, and wonderful meals are enjoyed. 2025 brings innovative and exciting trends in kitchen design that blend aesthetics, functionality, and technology. Whether you're planning a full renovation or a small upgrade, this guide will give you the inspiration you need.
 
 ## 1. Minimalist Design: Simplicity at Its Best

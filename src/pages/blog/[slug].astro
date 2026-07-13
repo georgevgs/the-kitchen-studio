@@ -40,8 +40,16 @@ const postContent = remarkPluginFrontmatter?.content || "";
 // Calculate reading time if not provided in frontmatter
 const readingTime = post.data.readingTime || calculateReadingTime(postContent);
 
-// Get canonical URL
-const canonicalURL = new URL(`/blog/${post.id}`, Astro.site).toString();
+// Intrinsic sizes of the public/ blog hero images (public assets aren't
+// processed by astro:assets, so dimensions must be declared to avoid CLS)
+const HERO_DIMENSIONS: Record<string, { width: number; height: number }> = {
+  "/assets/images/blog/kitchen-island.avif": { width: 1920, height: 1078 },
+  "/assets/images/blog/modern-grey-and-terracotta-kitchen-2025.avif": { width: 1920, height: 1256 },
+};
+const heroDims = post.data.image ? HERO_DIMENSIONS[post.data.image] : undefined;
+
+// Get canonical URL (trailing slash to match the sitemap and hreflang URLs)
+const canonicalURL = new URL(`/blog/${post.id}/`, Astro.site).toString();
 
 // Format the post data to match MetaSEO interface
 const meta: MetaSEO = {
@@ -67,11 +75,11 @@ const blogPostSchema = generateBlogPostSchema(postForSchema, canonicalURL, SITE)
 // Generate breadcrumb structured data
 const breadcrumbSchema = generateBreadcrumbSchema(
   [
-    { name: "Home", item: "/" },
-    { name: "Blog", item: "/blog" },
-    { name: post.data.title, item: `/blog/${post.id}` },
+    { name: "Αρχική", item: "/" },
+    { name: "Blog", item: "/blog/" },
+    { name: post.data.title, item: `/blog/${post.id}/` },
   ],
-  SITE.url
+  SITE.origin
 );
 
 const hasRelatedPosts = relatedPosts && relatedPosts.length > 0;
@@ -150,7 +158,15 @@ const hasTags = post.data.tags && post.data.tags.length > 0;
       {
         post.data.image && (
           <div class="mb-12 overflow-hidden rounded-xl shadow-lg">
-            <img src={post.data.image} alt={post.data.title} class="w-full h-auto object-cover" />
+            <img
+              src={post.data.image}
+              alt={post.data.title}
+              width={heroDims?.width}
+              height={heroDims?.height}
+              fetchpriority="high"
+              decoding="async"
+              class="w-full h-auto object-cover"
+            />
           </div>
         )
       }

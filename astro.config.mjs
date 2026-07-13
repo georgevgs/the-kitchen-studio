@@ -3,7 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import { SITE } from "./src/config";
-import serviceWorker from "astrojs-service-worker";
 import astroI18next from "astro-i18next";
 import vercel from "@astrojs/vercel";
 
@@ -19,7 +18,8 @@ export default defineConfig({
         filter: (page) => !page.includes('/404'),
         changefreq: 'weekly',
         priority: 0.7,
-    }), mdx(), serviceWorker()],
+        lastmod: new Date(),
+    }), mdx()],
 
     vite: {
         plugins: [

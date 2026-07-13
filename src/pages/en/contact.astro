@@ -2,19 +2,24 @@
 import { t, changeLanguage } from "i18next";
 import { localizePath } from "astro-i18next";
 import Layout from "../../layouts/PageLayoutMinimal.astro";
+import { generateContactPageSchema } from "../../utils/schema";
 
 changeLanguage("en");
 
 const lang = "EN";
 const meta = {
   title: "Contact Us",
-  description: "Contact Us",
+  description: "Contact The Kitchen Studio in Glyfada, Athens — call 210 8981423 or visit us at 28 Grigoriou Lampraki. Book a free kitchen design consultation.",
 };
+
+const contactPageSchema = generateContactPageSchema("en");
 ---
 
 <Layout meta={meta} lang={lang}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(contactPageSchema)} />
   <section class="contact-form">
     <div class="container mx-auto p-8 max-w-3xl">
+      <h1 class="text-primary dark:text-accent text-4xl font-bold mb-8 text-center">Contact us</h1>
       <form
         action="https://formspree.io/f/xzzppyrb"
         method="POST"

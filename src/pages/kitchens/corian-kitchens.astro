@@ -4,7 +4,7 @@ import Carousel from "../../components/widgets/Carousel.astro";
 import PageDescription from "../../components/widgets/PageDescription.astro";
 import Spacer from "../../components/widgets/Spacer.astro";
 import Layout from "../../layouts/PageLayout.astro";
-import { generateBreadcrumbSchema } from "../../utils/schema";
+import { generateBreadcrumbSchema, generateServiceSchema } from "../../utils/schema";
 import corianKitchenCountertopImage from "../../assets/images/kitchens/corian/corian-kitchen-countertop.avif";
 import corianKitchenCountertop2Image from "../../assets/images/kitchens/corian/corian-kitchen-countertop-2.avif";
 import corianKitchenCountertop3Image from "../../assets/images/kitchens/corian/corian-kitchen-countertop-3.avif";
@@ -15,7 +15,7 @@ import corianKitchenSink3Image from "../../assets/images/kitchens/corian/corian-
 changeLanguage("el");
 
 const meta = {
-    title: t("pages.kitchens.corian_kitchens.title"),
+    title: t("pages.kitchens.corian_kitchens.meta_title"),
     description: t("pages.kitchens.corian_kitchens.description"),
 };
 
@@ -24,10 +24,18 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Κουζίνες", item: "/kitchens" },
   { name: "Κουζίνες Corian", item: "/kitchens/corian-kitchens" },
 ]);
+
+const serviceSchema = generateServiceSchema({
+  name: t("pages.kitchens.corian_kitchens.title"),
+  description: t("pages.kitchens.corian_kitchens.description"),
+  url: "/kitchens/corian-kitchens",
+  serviceType: "Σχεδιασμός και κατασκευή κουζίνας Corian",
+});
 ---
 
 <Layout meta={meta} lang={"EL"}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.kitchens.corian_kitchens.title")}

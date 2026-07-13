@@ -3,7 +3,7 @@ import { SEO } from "astro-seo";
 import { getAsset } from "~/utils/permalinks";
 import CustomStyles from "~/components/CustomStyles.astro";
 import type { MetaSEO } from "~/types";
-import { getImageUrl, generateWebsiteSchema } from "~/utils/schema";
+import { getImageUrl, generateWebsiteSchema, generateLocalBusinessSchema } from "~/utils/schema";
 import { SITE } from "~/config";
 
 const {
@@ -16,7 +16,14 @@ const {
   keywords = SITE.keywords,
   author = SITE.name, // Fallback to site name if author not specified
   language = SITE.language, // Use SITE.language instead of defaultLanguage
+  dontUseTitleTemplate = false,
 }: MetaTagsProps = Astro.props;
+
+// Append the brand to page titles unless the page opts out or already includes it
+const pageTitle =
+  !dontUseTitleTemplate && title && !title.includes(SITE.name)
+    ? `${title} | ${SITE.name}`
+    : title;
 
 // Get image URL as string
 const imageUrl = getImageUrl(image, SITE.origin);
@@ -42,53 +49,8 @@ const ogCanonicalURL = canonicalURL ? new URL(canonicalURL, Astro.site) : new UR
 // Format publish date for articles
 const articlePublishDate = articlePublishTime ? new Date(articlePublishTime).toISOString() : undefined;
 
-// Business Schema - using your actual business info
-const businessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "The Kitchen Studio",
-  "@id": "https://www.thekitchenstudio.gr",
-  url: "https://www.thekitchenstudio.gr",
-  image: `${SITE.origin}/assets/logo/the-kitchen-studio-logo.png`,
-  sameAs: [
-    "https://www.instagram.com/thekitchenstudiogr/",
-    "https://www.facebook.com/kitchenstudio/",
-  ],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Grigoriou Lampraki 28",
-    addressLocality: "Glyfada",
-    addressRegion: "Attica",
-    postalCode: "16675",
-    addressCountry: "GR",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 37.86350802540611,
-    longitude: 23.754075789949074,
-  },
-  telephone: "+30 210 8981423",
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Wednesday", "Saturday"],
-      opens: "10:00",
-      closes: "14:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Tuesday", "Thursday", "Friday"],
-      opens: "10:00",
-      closes: "14:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Tuesday", "Thursday", "Friday"],
-      opens: "17:30",
-      closes: "20:30",
-    },
-  ],
-};
+// Canonical business entity (FurnitureStore), referenced by other schemas via @id
+const businessSchema = generateLocalBusinessSchema();
 
 // Website Schema
 // Convert defaultImage to a string URL for compatibility
@@ -96,7 +58,7 @@ const siteConfig = {
   ...SITE,
   defaultImage: getImageUrl(SITE.defaultImage, SITE.origin),
 };
-const websiteSchema = generateWebsiteSchema(siteConfig);
+const websiteSchema = generateWebsiteSchema(siteConfig, language);
 
 // Define types for meta and link tags
 interface MetaTag {
@@ -105,29 +67,24 @@ interface MetaTag {
   media?: string;
 }
 
-interface LinkTag {
-  rel: string;
-  href: string;
-  color?: string;
-}
-
 // Process keywords into a string if they're an array
 const keywordsString = Array.isArray(keywords) ? keywords.join(", ") : keywords || "";
 
 // Configure SEO props
 const seoProps = {
-  title: title,
+  title: pageTitle,
   description: description,
   canonical: ogCanonicalURL.toString(),
   openGraph: {
     basic: {
-      title: title,
+      title: pageTitle,
       type: ogType,
       image: imageUrl || "",
       url: ogCanonicalURL.toString(),
     },
     optional: {
-      locale: language || "el-GR",
+      // og:locale expects underscore format (el_GR), not BCP 47 (el-GR)
+      locale: language === "en" ? "en_US" : "el_GR",
       siteName: SITE.name,
       description: description,
     },
@@ -152,7 +109,7 @@ const seoProps = {
     card: "summary_large_image",
     image: imageUrl || "",
     imageAlt: ogImageAlt,
-    title: title,
+    title: pageTitle,
     description: description,
   },
   extend: {
@@ -167,7 +124,6 @@ const seoProps = {
       ...(author ? [{ name: "author", content: author }] : []),
       { name: "robots", content: "max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
     ] as MetaTag[],
-    link: [{ rel: "canonical", href: ogCanonicalURL.toString() }] as LinkTag[],
   },
 } as const;
 
@@ -175,7 +131,7 @@ const seoProps = {
 const currentPath = Astro.url.pathname;
 const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
 const elPath = isEnglish ? currentPath.replace(/^\/en/, '') || '/' : currentPath;
-const enPath = isEnglish ? currentPath : `/en${currentPath === '/' ? '' : currentPath}`;
+const enPath = isEnglish ? currentPath : `/en${currentPath === '/' ? '/' : currentPath}`;
 const elUrl = `${SITE.origin}${elPath}`;
 const enUrl = `${SITE.origin}${enPath}`;
 
@@ -194,8 +150,6 @@ const enUrl = `${SITE.origin}${enPath}`;
 <link rel="apple-touch-icon" href={getAsset("/apple-touch-icon.png")} />
 <link rel="manifest" href={getAsset("/site.webmanifest")} />
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
 <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 <link rel="dns-prefetch" href="https://formspree.io" />

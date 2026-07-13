@@ -4,7 +4,7 @@ import Carousel from "../../../components/widgets/Carousel.astro";
 import PageDescription from "../../../components/widgets/PageDescription.astro";
 import Spacer from "../../../components/widgets/Spacer.astro";
 import Layout from "../../../layouts/PageLayout.astro";
-import { generateBreadcrumbSchema } from "../../../utils/schema";
+import { generateBreadcrumbSchema, generateServiceSchema } from "../../../utils/schema";
 import corianBathroomSinkImage from "../../../assets/images/bath/corian/corian-bathroom-sink.avif";
 import corianBathroomSink2Image from "../../../assets/images/bath/corian/corian-bathroom-sink-2.avif";
 import corianBathroomSink3Image from "../../../assets/images/bath/corian/corian-bathroom-sink-3.avif";
@@ -25,10 +25,18 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Bath", item: "/en/bath" },
   { name: "Corian Bath", item: "/en/bath/corian-bath" },
 ]);
+
+const serviceSchema = generateServiceSchema({
+  name: t("pages.bath.corian_bath.title"),
+  description: t("pages.bath.corian_bath.description"),
+  url: "/en/bath/corian-bath",
+  serviceType: "Corian bathroom design and manufacturing",
+});
 ---
 
 <Layout meta={meta} lang={"EN"}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
   <div class="content-container">
     <PageDescription
       title={t("pages.bath.corian_bath.title")}

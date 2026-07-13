@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 
 interface ImageType {
   src: ImageMetadata;
@@ -70,20 +71,23 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                     data-carousel-skeleton
                     style="will-change: transform;"
                   >
-                    <img
-                      src={image.src.src}
+    {/* Blur backdrop shares the main image's srcset so the browser reuses one download */}
+                    <Image
+                      src={image.src}
                       alt=""
                       aria-hidden="true"
+                      widths={[640, 1024, 1600]}
+                      sizes="(max-width: 768px) 100vw, 1280px"
                       loading={eagerLoading}
                       decoding="async"
                       style="will-change: opacity; transform: translateZ(0);"
                       class="absolute inset-0 h-full w-full scale-110 object-cover blur-xl md:blur-3xl opacity-30 md:opacity-40 transition-opacity duration-500 pointer-events-none"
                     />
-                    <img
-                      src={image.src.src}
+                    <Image
+                      src={image.src}
                       alt={image.alt || `Carousel image ${index + 1}`}
-                      width={image.src?.width}
-                      height={image.src?.height}
+                      widths={[640, 1024, 1600]}
+                      sizes="(max-width: 768px) 100vw, 1280px"
                       loading={eagerLoading}
                       decoding="async"
                       fetchpriority={index === 0 ? "high" : undefined}
@@ -98,11 +102,11 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
                     data-carousel-skeleton
                     style="will-change: transform;"
                   >
-                    <img
-                      src={image.src.src}
+                    <Image
+                      src={image.src}
                       alt={image.alt || `Carousel image ${index + 1}`}
-                      width={image.src?.width}
-                      height={image.src?.height}
+                      widths={[640, 1024, 1600]}
+                      sizes="(max-width: 768px) 100vw, 1280px"
                       loading={eagerLoading}
                       decoding="async"
                       fetchpriority={index === 0 ? "high" : undefined}
@@ -184,7 +188,7 @@ const eagerLoading = widthType === "default" ? "eager" : "lazy";
           src={images[0]?.src.src}
           alt={images[0]?.alt || "Carousel image"}
           class="h-auto w-full max-h-[90vh] rounded-md object-contain shadow-2xl"
-          loading="eager"
+          loading="lazy"
         />
       </div>
     </div>

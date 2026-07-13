@@ -43,7 +43,7 @@ export const headerDataEL: HeaderData = {
       text: "Έπιπλα Κουζίνας",
       links: [
         { text: "Μοντέρνες Κουζίνες", href: "/kitchens/modern-kitchens" },
-        { text: "Κλασσικές Κουζίνες", href: "/kitchens/classic-kitchens" },
+        { text: "Κλασικές Κουζίνες", href: "/kitchens/classic-kitchens" },
         { text: "Κουζίνες Corian", href: "/kitchens/corian-kitchens" },
       ],
     },
@@ -117,7 +117,7 @@ export const footerDataEL: FooterData = {
       title: "ΕΠΙΠΛΑ ΚΟΥΖΙΝΑΣ",
       links: [
         { text: "Μοντέρνες Κουζίνες", href: "/kitchens/modern-kitchens" },
-        { text: "Κλασσικές Κουζίνες", href: "/kitchens/classic-kitchens" },
+        { text: "Κλασικές Κουζίνες", href: "/kitchens/classic-kitchens" },
         { text: "Κουζίνες Corian", href: "/kitchens/corian-kitchens" },
       ],
     },
@@ -134,7 +134,7 @@ export const footerDataEL: FooterData = {
     {
       title: "THE KITCHEN STUDIO",
       links: [
-        { text: "About us", href: "/about-us" },
+        { text: "Ποιοι Είμαστε", href: "/about-us" },
         { text: "Showroom", href: "/showroom" },
         { text: "Έργα", href: "/erga" },
         { text: "Μελέτες", href: "/meletes" },

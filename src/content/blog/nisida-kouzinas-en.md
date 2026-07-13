@@ -8,8 +8,6 @@ tags: ["kitchen island", "kitchen design", "bespoke kitchen", "modern kitchen", 
 lang: "en"
 ---
 
-# Kitchen Island: The New Definition of the Heart of the Home
-
 There is a point in every home where space acquires meaning. It's where the family gathers in the morning, where the first glass of wine is poured when friends arrive, where conversations that started elsewhere find their conclusion. In 2026, this point is no longer just a functional choice — it is the **kitchen island**, reimagined as the architectural centrepiece of the home.
 
 ---

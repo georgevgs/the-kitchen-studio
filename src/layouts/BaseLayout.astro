@@ -12,7 +12,12 @@ export interface Props {
 }
 
 const { meta = {} } = Astro.props;
-const { language = "el", textDirection = "ltr" } = SITE;
+const { textDirection = "ltr" } = SITE;
+
+// Derive the document language from the URL so /en/ pages get lang="en"
+// regardless of which layout rendered them.
+const isEnglish = Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/");
+const language = isEnglish ? "en" : "el";
 ---
 
 <!doctype html>
@@ -57,16 +62,16 @@ const { language = "el", textDirection = "ltr" } = SITE;
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:shadow-lg focus:outline-none dark:focus:bg-neutral-800 dark:focus:text-white"
     >
-      Μετάβαση στο κύριο περιεχόμενο
+      {isEnglish ? "Skip to main content" : "Μετάβαση στο κύριο περιεχόμενο"}
     </a>
     <slot />
 
     <!-- Floating CTA -->
     <a
-      href="/contact"
+      href={isEnglish ? "/en/contact" : "/contact"}
       class="floating-cta"
       data-floating-cta
-      aria-label="Επικοινωνία"
+      aria-label={isEnglish ? "Contact" : "Επικοινωνία"}
     >
       <i class="fa-solid fa-comment-dots"></i>
     </a>

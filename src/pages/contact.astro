@@ -2,21 +2,26 @@
 import { t, changeLanguage } from "i18next";
 import { localizePath } from "astro-i18next";
 import Layout from "../layouts/PageLayoutMinimal.astro";
+import { generateContactPageSchema } from "../utils/schema";
 
 changeLanguage("el");
 
 const lang = "EL";
 const meta = {
   title: "Επικοινωνία",
-  description: "Επικοινωνία με το The Kitchen Studio",
+  description: "Επικοινωνήστε με το The Kitchen Studio στη Γλυφάδα — τηλέφωνο 210 8981423, Γρηγορίου Λαμπράκη 28. Κλείστε ραντεβού για δωρεάν μελέτη κουζίνας.",
 };
+
+const contactPageSchema = generateContactPageSchema("el");
 ---
 
 <Layout meta={meta} lang={lang}>
   <link rel="preconnect" href="https://maps.googleapis.com" crossorigin slot="head" />
   <link rel="preconnect" href="https://maps.gstatic.com" crossorigin slot="head" />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(contactPageSchema)} />
   <section class="contact-form">
     <div class="container mx-auto p-8 max-w-3xl">
+      <h1 class="text-primary dark:text-accent text-4xl font-bold mb-8 text-center">Επικοινωνήστε μαζί μας</h1>
       <form
         action="https://formspree.io/f/xzzppyrb"
         method="POST"

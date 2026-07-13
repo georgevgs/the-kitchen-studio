@@ -1,6 +1,10 @@
 # The Kitchen Studio
 > Custom kitchen, bathroom, and living room furniture showroom in Glyfada, Athens, Greece. We design and install bespoke kitchen furniture, bathroom cabinets, tiles, wardrobes, doors, and living room furniture.
 
+## About
+
+The Kitchen Studio has designed and manufactured custom kitchen furniture in Glyfada since 2000 — more than 20 years of experience. Every kitchen is designed in 3D before ordering and built to measure, using Blum and Hettich drawer and hinge systems, Corian solid surfaces, natural wood, MDF and lacquered finishes. We serve Glyfada, Voula, Vouliagmeni, Varkiza, Elliniko, Alimos, Palaio Faliro, Argyroupoli and the wider Attica region. Our work has been featured in Villas by ek magazine. Installation is carried out by our own crew, with technical support after the sale, and we also work directly with architects and interior designers.
+
 ## Services
 
 - [Kitchen Furniture](https://www.thekitchenstudio.gr/kitchens): Modern, Classic, and Corian kitchen designs — custom-built and installed
@@ -29,7 +33,7 @@
 
 ## Location & Contact
 
-Address: Grigoriou Lampraki 28, Glyfada, Attica 16675, Greece
+Address: Grigoriou Lampraki 28, Glyfada, Attica 16674, Greece
 Phone: +30 210 8981423
 Email: info@thekitchenstudio.gr
 Opening hours: Mon/Wed/Sat 10:00–14:00 | Tue/Thu/Fri 10:00–14:00 & 17:30–20:30

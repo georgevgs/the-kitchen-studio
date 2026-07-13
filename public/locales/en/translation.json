@@ -1,7 +1,7 @@
 {
     "site": {
         "title": "The Kitchen Studio",
-        "description": "Kitchen furnitures in Glyfada"
+        "description": "Kitchen furniture in Glyfada"
     },
     "home": {
         "hero": {
@@ -62,11 +62,11 @@
             "items": {
                 "first_item": {
                     "title": "Kitchen Furniture",
-                    "description": "Discover quality kitchen furnitures with functionality, aesthetics, and innovative design. Trust us for the ideal solution for your space."
+                    "description": "Discover quality kitchen furniture with functionality, aesthetics, and innovative design. Trust us for the ideal solution for your space."
                 },
                 "second_item": {
                     "title": "Bath Furniture",
-                    "description": "Discover unique bathroom furnitures that combines quality, functionality, and aesthetics. Be inspired by the innovative design."
+                    "description": "Discover unique bathroom furniture that combines quality, functionality, and aesthetics. Be inspired by the innovative design."
                 },
                 "third_item": {
                     "title": "Tiles",
@@ -82,7 +82,7 @@
                 },
                 "sixth_item": {
                     "title": "Living",
-                    "description": "Refresh your space with living room furnitures that will upgrade the look and bring a new feel to your living room."
+                    "description": "Refresh your space with living room furniture that will upgrade the look and bring a new feel to your living room."
                 }
             }
         },
@@ -102,7 +102,7 @@
                     "answer": "To schedule an appointment to discuss your needs and receive personalized advice, please contact us via the phone number or email provided on our website. We will be happy to assist you and arrange a suitable appointment."
                 },
                 "fourth_item": {
-                    "question": "Do you provide a warranty for the kitchen furnitures?",
+                    "question": "Do you provide a warranty for the kitchen furniture?",
                     "answer": "Yes, we provide a warranty for the kitchen furniture you purchase from us. The details of the warranty will be presented to you during your visit to our store, and all the necessary information regarding coverage and duration will be covered."
                 }
             }
@@ -165,8 +165,9 @@
             },
             "bath_category": {
                 "title": "Bath",
+                "meta_title": "Bathroom Furniture in Glyfada, Athens",
                 "subtitle": "Modern sleek lines and high-tech materials",
-                "description": "Create the ideal bathroom with our variety of bathroom furniture and Corian solutions. Refresh your space with modern or classic bathroom furniture designs, designed to combine practicality and aesthetics.",
+                "description": "Modern and classic bathroom furniture and Corian solutions combining practicality and aesthetics, made to measure for your space. See them in person at our showroom in Glyfada.",
                 "categories": {
                     "text_bath_furnitures": "Bathroom Furniture",
                     "text_corian_bath": "Corian Bath",
@@ -177,23 +178,27 @@
         "kitchens": {
             "classic_kitchens": {
                 "title": "Classic Kitchens",
+                "meta_title": "Classic Kitchens in Glyfada, Athens",
                 "subtitle": "The charm of classic kitchen furniture",
-                "description": "Discover the timeless charm of classic kitchen furniture. Classic kitchen furniture combines the harmony of the past with the functionality of the present."
+                "description": "Classic kitchen furniture combining the charm of the past with the functionality of the present. Designed and built to measure in Glyfada, Athens."
             },
             "modern_kitchens": {
                 "title": "Modern Kitchens",
+                "meta_title": "Modern Kitchens in Glyfada, Athens",
                 "subtitle": "Simple lines and durable high-quality materials",
-                "description": "Discover the aesthetics of the future with modern kitchen furniture. With exceptional design and innovative materials, they incorporate modern technology and functional innovations"
+                "description": "Modern kitchens with clean lines, innovative materials and contemporary technology. Designed and built to measure in Glyfada, Athens."
             },
             "corian_kitchens": {
                 "title": "Corian Kitchens",
+                "meta_title": "Corian Kitchens in Glyfada, Athens",
                 "subtitle": "The future of aesthetics in kitchen furniture",
-                "description": "Explore the innovative and contemporary aesthetics of Corian Kitchens"
+                "description": "Corian kitchens with seamless jointless surfaces and innovative aesthetics. Designed and built to measure in Glyfada, Athens."
             },
             "kitchens_category": {
                 "title": "Kitchens",
-                "subtitle": "Modern minimalist lines and high-tech materials.",
-                "description": "Discover unique kitchen designs: modern, classic, and Corian. Redefine your space with refined kitchen furniture that combines functionality and aesthetics.",
+                "meta_title": "Kitchens in Glyfada, Athens — Modern, Classic & Corian",
+                "subtitle": "Modern, classic and Corian kitchens made to measure",
+                "description": "Modern, classic and Corian kitchens designed and built to measure. Visit our showroom in Glyfada at 28 Grigoriou Lampraki.",
                 "categories": {
                     "text_modern_kitchens": "Modern Kitchens",
                     "text_classic_kitchens": "Classic Kitchens",
@@ -204,37 +209,39 @@
         "doors": {
             "title": "Doors",
             "subtitle": "Endless options with different materials, such as wood, glass, and metal",
-            "description": "Discover doors that can add character and functionality to both the interior and exterior spaces of your home."
+            "description": "Interior and exterior doors in wood, glass and metal that add character to your home. See samples at our showroom in Glyfada, Athens."
         },
         "erga": {
             "title": "Projects",
             "subtitle": "As unique as you are",
-            "description": "Explore our projects and see the possibilities we offer you."
+            "description": "Browse completed kitchen and furniture projects in Glyfada, Voula, Vouliagmeni and the southern suburbs of Athens."
         },
         "living": {
             "title": "Living",
             "subtitle": "The future of aesthetics in living room furniture.",
-            "description": "Discover the innovative and contemporary character of living room furniture. With their distinctive design and advanced aesthetics, these pieces bring a new dimension to your space."
+            "description": "Living room furniture with an innovative, contemporary character that brings a new dimension to your space. See the collection at our Glyfada showroom."
         },
         "meletes": {
             "title": "Designs",
             "subtitle": "Explore our designs",
-            "description": "Our designs are characterized by careful design and thought, taking into account both the aesthetics and functionality of the space."
+            "description": "Kitchen studies and 3D design tailored to your space — careful attention to both aesthetics and functionality in every detail."
         },
         "showroom": {
             "title": "Showroom",
-            "subtitle": "Glyfada Showroom",
-            "description": "Visit our Showroom and find the ideal kitchen among a large and unique range of kitchen furniture."
+            "meta_title": "Showroom in Glyfada — 28 Grigoriou Lampraki",
+            "subtitle": "28 Grigoriou Lampraki, Glyfada",
+            "description": "Visit our showroom in Glyfada, Athens, and find the ideal kitchen among a large and unique range of kitchen furniture."
         },
         "tiles": {
             "title": "Tiles",
             "subtitle": "Endless options in designs, colors, materials, and sizes",
-            "description": "Discover the variety of tiles that transform your space into an area of aesthetics and practicality."
+            "description": "Tiles in endless designs, colours and materials for kitchens and bathrooms. See our range at the showroom in Glyfada."
         },
         "wardrobes": {
-            "title": "Wardrobes",
+            "title": "Bedroom Wardrobes",
+            "meta_title": "Bedroom Wardrobes in Glyfada, Athens",
             "subtitle": "Organized and relaxing atmosphere in your bedroom",
-            "description": "Discover the harmony between functionality and aesthetics with bedroom wardrobes."
+            "description": "Bedroom wardrobes made to measure — harmony between functionality and aesthetics. Designed and built in Glyfada, Athens."
         }
     },
     "blog": {
@@ -242,7 +249,7 @@
                 "title": "The Kitchen Studio Journal",
                 "subtitle": "Thoughts, ideas and tips for your dream kitchen",
                 "meta_title": "Blog | The Kitchen Studio",
-                "meta_description": "Read the latest articles and tips for your kitchen design.",
+                "meta_description": "Ideas, trends and advice on kitchens and renovation from The Kitchen Studio team in Glyfada, Athens.",
                 "all_tags": "All",
                 "latest_articles": "Latest Articles",
                 "no_articles_title": "No articles yet",

@@ -17,8 +17,8 @@ import PortfolioTeaser from "../../components/widgets/PortfolioTeaser.astro";
 changeLanguage("en");
 
 import showroomBWImage from "../../assets/images/showroom/the-kitchen-studio-showroom-bw.avif";
-const images = processImagesForCarousel("home-images");
-const ergaImages = processImagesForCarousel("erga");
+const images = processImagesForCarousel("home-images", "en");
+const ergaImages = processImagesForCarousel("erga", "en");
 
 const mediaTexts = {
   title: t("home.media.title"),
@@ -34,8 +34,9 @@ const mediaTexts = {
 };
 const lang = "EN";
 const meta = {
-    title: `${SITE.title} - Custom Kitchen Furniture`,
-  description: SITE.description,
+  title: `${SITE.title} - Custom Kitchen Furniture`,
+  description:
+    "Custom kitchen furniture designed and built in Glyfada, Athens. Visit our showroom at 28 Grigoriou Lampraki — serving Glyfada, Voula, Vouliagmeni and the southern suburbs.",
   dontUseTitleTemplate: true,
 };
 
@@ -80,11 +81,14 @@ const faqSchema = {
 ---
 
 <Layout {meta} lang={lang}>
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
-  {images[0] && (
-    <link rel="preload" as="image" href={images[0].src.src} fetchpriority="high" slot="head" />
-  )}
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" as="style" slot="head" />
+  {/* All head content must live in a single Fragment: a conditional-expression
+      sibling breaks Astro's named-slot assignment for the other elements. */}
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    {images[0] && (
+      <link rel="preload" as="image" href={images[0].src.src} fetchpriority="high" />
+    )}
+  </Fragment>
 
   <!-- Hero Widget *************** -->
 
