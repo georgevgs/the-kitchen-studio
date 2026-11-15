@@ -15,11 +15,11 @@ export interface NavLink {
   href: string;
 }
 
-export interface NavCard extends NavLink {
+interface NavCard extends NavLink {
   image: ImageMetadata;
 }
 
-export interface FooterGroup {
+interface FooterGroup {
   titleKey: string;
   links: NavLink[];
 }

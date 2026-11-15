@@ -66,9 +66,6 @@ const meta: MetaSEO = {
 
 // Map post to match the Post interface required by schema functions
 const postForSchema = collectionEntryToPost(post);
-postForSchema.Content = Content;
-postForSchema.content = postContent;
-postForSchema.permalink = canonicalURL;
 
 // Generate blog post structured data
 const blogPostSchema = generateBlogPostSchema(postForSchema, canonicalURL, SITE, "en");

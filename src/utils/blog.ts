@@ -43,17 +43,6 @@ export function getUrlSlug(post: CollectionEntry<"blog">): string {
 }
 
 /**
- * Get all unique tags from blog posts
- */
-export async function getAllTags(lang = "el"): Promise<string[]> {
-  const allPosts = await getAllPosts(lang);
-
-  const allTags = allPosts.flatMap((post) => post.data.tags || []);
-
-  return [...new Set(allTags)].sort();
-}
-
-/**
  * Get related posts based on tags
  */
 export async function getRelatedPosts(

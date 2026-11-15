@@ -4,7 +4,6 @@ description: "Από πού ξεκινά μια σωστή ανακαίνιση 
 pubDate: 2026-07-13
 image: "/assets/images/blog/kitchen-renovation-guide.avif"
 author: "The Kitchen Studio"
-featured: true
 tags: ["ανακαίνιση κουζίνας", "σχεδιασμός κουζίνας", "υλικά κουζίνας", "επιπλα κουζινας", "κουζίνα στα μέτρα μου"]
 ---
 

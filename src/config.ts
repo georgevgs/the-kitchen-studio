@@ -5,14 +5,11 @@ export interface SiteConfig {
   name: string;
   origin: string;
   basePathname: string;
-  trailingSlash: string;
   title: string;
   description: string;
   defaultImage: ImageMetadata;
   defaultTheme: "system" | "light" | "dark" | "light:only" | "dark:only";
   language: string;
-  textDirection: "ltr" | "rtl";
-  dateFormatter: Intl.DateTimeFormat;
   keywords: string[];
 }
 
@@ -21,7 +18,6 @@ const CONFIG: SiteConfig = {
 
   origin: "https://www.thekitchenstudio.gr",
   basePathname: "/",
-  trailingSlash: "",
 
   title: "The Kitchen Studio",
   description: "Σχεδιάζουμε την κουζίνα στα μέτρα σας. Εξατομικευμένα έπιπλα κουζίνας στη Γλυφάδα για λειτουργικότητα, ποιότητα και στυλ που ανταποκρίνονται στις ανάγκες σας.",
@@ -30,14 +26,6 @@ const CONFIG: SiteConfig = {
   defaultTheme: "system",
 
   language: "el",
-  textDirection: "ltr",
-
-  dateFormatter: new Intl.DateTimeFormat("el", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  }),
 
   keywords: [
     'κουζίνες',

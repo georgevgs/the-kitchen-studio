@@ -127,13 +127,12 @@ export function generateBlogPostSchema(
 ): Record<string, any> {
   const publishDate = post.publishDate || (post as any).pubDate;
   const siteUrl = siteInfo.origin || SITE_URL;
-  const postUrl = url || post.permalink || `${siteUrl}/blog/${post.slug}/`;
 
   const schema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": post.title || "",
-    "description": post.description || post.excerpt || "",
+    "description": post.description ?? "",
     "image": post.image ? {
       "@type": "ImageObject",
       "url": getImageUrl(post.image, siteUrl),
@@ -159,16 +158,13 @@ export function generateBlogPostSchema(
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": postUrl
+      "@id": url
     },
-    "url": postUrl,
+    "url": url,
   };
 
   if (post.tags?.length) {
     schema.keywords = post.tags.join(", ");
-  }
-  if (post.category) {
-    schema.articleSection = post.category;
   }
 
   return schema;

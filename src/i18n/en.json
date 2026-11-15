@@ -1,8 +1,4 @@
 {
-    "site": {
-        "title": "The Kitchen Studio",
-        "description": "Kitchen furniture in Glyfada"
-    },
     "home": {
         "hero": {
             "subtitle": "Custom kitchen, bath & living furniture crafted with precision and elegance in Glyfada.",
@@ -149,12 +145,6 @@
         "terms_b": "privacy policy",
         "send": "Send",
         "success_message": "Your message has been sent successfully!",
-        "phone": "Phone",
-        "address": "Grigoriou Lampraki 28",
-        "city": "Glyfada",
-        "working_hours": "Operating hours",
-        "mon_wed_sat": "Monday - Wednesday - Saturday",
-        "tue_thu_fri": "Tuesday - Thursday - Friday",
         "title_before": "Book a",
         "title_emphasis": "visit.",
         "lead": "A free kitchen design consultation at our Glyfada showroom. Fill in the form and we will call you to confirm.",
@@ -200,7 +190,6 @@
                 "description": "Explore the innovative and contemporary aesthetics of Corian Bath and indulge in the unique experience it offers."
             },
             "bath_category": {
-                "title": "Bath",
                 "meta_title": "Bathroom Furniture in Glyfada, Athens",
                 "subtitle": "Modern sleek lines and high-tech materials",
                 "description": "Modern and classic bathroom furniture and Corian solutions combining practicality and aesthetics, made to measure for your space. See them in person at our showroom in Glyfada.",
@@ -231,7 +220,6 @@
                 "description": "Corian kitchens with seamless jointless surfaces and innovative aesthetics. Designed and built to measure in Glyfada, Athens."
             },
             "kitchens_category": {
-                "title": "Kitchens",
                 "meta_title": "Kitchens in Glyfada, Athens: Modern, Classic & Corian",
                 "subtitle": "Modern, classic and Corian kitchens made to measure",
                 "description": "Modern, classic and Corian kitchens designed and built to measure. Visit our showroom in Glyfada at 28 Grigoriou Lampraki.",
@@ -292,26 +280,20 @@
             "subtitle": "Thoughts, ideas and tips for your dream kitchen",
             "meta_title": "Blog | The Kitchen Studio",
             "meta_description": "Ideas, trends and advice on kitchens and renovation from The Kitchen Studio team in Glyfada, Athens.",
-            "all_tags": "All",
             "latest_articles": "Latest articles",
-            "no_articles_title": "No articles yet",
-            "no_articles_desc": "New articles will be added to our blog soon.",
             "count": "articles",
             "latest_badge": "Latest",
             "read_article": "Read the article"
         },
         "card": {
-            "read_more": "Read more",
             "reading_time_unit": "min"
         },
         "post": {
-            "back_to_blog": "Back to Blog",
             "reading_time": "min read",
             "related_articles": "Related articles",
             "cta_title": "Did you enjoy this article?",
             "cta_desc": "Visit our showroom to see our kitchens in person",
             "cta_button": "Contact us",
-            "author_label": "The Kitchen Studio Team",
             "toc": "Contents",
             "toc_aria": "Article contents"
         }

@@ -4,7 +4,6 @@ description: "Where a good kitchen renovation really starts, the order decisions
 pubDate: 2026-07-13
 image: "/assets/images/blog/kitchen-renovation-guide.avif"
 author: "The Kitchen Studio"
-featured: true
 tags: ["kitchen renovation", "kitchen design", "kitchen materials", "kitchen furniture", "bespoke kitchen"]
 lang: "en"
 ---

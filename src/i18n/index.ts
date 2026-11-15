@@ -2,7 +2,7 @@ import el from "./el.json";
 import en from "./en.json";
 
 export const LOCALES = ["el", "en"] as const;
-export type Locale = (typeof LOCALES)[number];
+type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "el";
 
 const translations: Record<Locale, unknown> = { el, en };

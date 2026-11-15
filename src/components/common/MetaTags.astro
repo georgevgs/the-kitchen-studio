@@ -16,7 +16,7 @@ const {
   author = SITE.name, // Fallback to site name if author not specified
   language = SITE.language, // Use SITE.language instead of defaultLanguage
   dontUseTitleTemplate = false,
-}: MetaTagsProps = Astro.props;
+}: MetaSEO = Astro.props;
 
 // Append the brand to page titles unless the page opts out or already includes it
 const pageTitle =

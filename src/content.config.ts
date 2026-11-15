@@ -7,7 +7,6 @@ const blogSchema = z.object({
   description: z.string(),
   pubDate: z.date(),
   image: z.string().optional(),
-  featured: z.boolean().optional().default(false),
   tags: z.array(z.string()).optional().default([]),
   author: z.string().optional(),
   readingTime: z.number().optional(),
