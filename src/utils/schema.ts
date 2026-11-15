@@ -6,6 +6,14 @@ const SITE_URL = "https://www.thekitchenstudio.gr";
 const BUSINESS_ID = `${SITE_URL}/#business`;
 const LOGO_URL = `${SITE_URL}/assets/logo/the-kitchen-studio-logo.png`;
 
+const pageUrl = (siteUrl: string, path: string) => {
+  if (path.endsWith("/")) {
+    return `${siteUrl}${path}`;
+  } else {
+    return `${siteUrl}${path}/`;
+  }
+};
+
 interface BreadcrumbItem {
   name: string;
   item: string;
@@ -184,7 +192,7 @@ export function generateBreadcrumbSchema(
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `${siteUrl}${item.item}`
+      "item": pageUrl(siteUrl, item.item)
     }))
   };
 }
@@ -230,7 +238,7 @@ export function generateItemListSchema(
       "name": item.name,
       ...(item.description && { "description": item.description }),
       ...(item.image && { "image": getImageUrl(item.image, siteUrl) }),
-      "url": `${siteUrl}${item.url}`,
+      "url": pageUrl(siteUrl, item.url),
     })),
   };
 }
@@ -247,7 +255,7 @@ export function generateServiceSchema(
     "@type": "Service",
     "name": service.name,
     "description": service.description,
-    "url": `${siteUrl}${service.url}`,
+    "url": pageUrl(siteUrl, service.url),
     ...(service.serviceType && { "serviceType": service.serviceType }),
     "provider": { "@id": BUSINESS_ID },
     "areaServed": {
@@ -257,6 +265,8 @@ export function generateServiceSchema(
     },
   };
 }
+
+const CONTACT_PATH_BY_LANG = { el: "/contact", en: "/en/contact" };
 
 /**
  * Generate a ContactPage schema pointing at the business entity.
@@ -271,7 +281,7 @@ export function generateContactPageSchema(
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": isEnglish ? "Contact The Kitchen Studio" : "Επικοινωνία με το The Kitchen Studio",
-    "url": isEnglish ? `${siteUrl}/en/contact` : `${siteUrl}/contact`,
+    "url": pageUrl(siteUrl, CONTACT_PATH_BY_LANG[lang]),
     "inLanguage": lang,
     "mainEntity": { "@id": BUSINESS_ID },
   };

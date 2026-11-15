@@ -17,7 +17,7 @@ const SITE = {
 };
 
 // Get canonical URL
-const canonicalURL = new URL("/blog", Astro.site).toString();
+const canonicalURL = new URL("/blog/", Astro.site).toString();
 
 const meta: MetaSEO = {
   title: t("blog.index.meta_title"),
@@ -31,7 +31,7 @@ const meta: MetaSEO = {
 const breadcrumbSchema = generateBreadcrumbSchema(
   [
     { name: "Home", item: "/" },
-    { name: "Blog", item: "/blog" },
+    { name: "Blog", item: "/blog/" },
   ],
   SITE.url
 );

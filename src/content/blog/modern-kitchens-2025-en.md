@@ -107,6 +107,6 @@ Natural granite, quartz, stainless steel, and high-quality solid wood offer exce
 ---
 
 **Ready to create your own modern kitchen?** <br/>
-Contact [The Kitchen Studio](/en/contact) for a free consultation and quote! Our experienced designers are ready to turn your vision into reality, offering personalised solutions tailored to your needs and style.
+Contact [The Kitchen Studio](/en/contact/) for a free consultation and quote! Our experienced designers are ready to turn your vision into reality, offering personalised solutions tailored to your needs and style.
 
-[View our project portfolio](/en/erga) | [Book a consultation](/en/contact) | [Visit our showroom](/en/showroom)
+[View our project portfolio](/en/erga/) | [Book a consultation](/en/contact/) | [Visit our showroom](/en/showroom/)

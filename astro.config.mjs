@@ -8,7 +8,7 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
     site: SITE.origin,
     base: SITE.basePathname,
-    trailingSlash: "ignore",
+    trailingSlash: "always",
     output: "static",
 
     adapter: vercel(),

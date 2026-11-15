@@ -109,6 +109,6 @@ Autumn and winter: the trades are more available, and the kitchen is delivered b
 ---
 
 **Would you like a second opinion on your own space?** Bring us a floor plan, or simply your room's measurements: at our showroom in Glyfada we'll draft an initial design together, with no obligation whatsoever. <br/>
-Book an appointment for a [personal design study](/en/contact) or [browse our projects](/en/erga) for ideas.
+Book an appointment for a [personal design study](/en/contact/) or [browse our projects](/en/erga/) for ideas.
 
-[Modern Kitchens](/en/kitchens/modern-kitchens) | [Classic Kitchens](/en/kitchens/classic-kitchens) | [Corian Kitchens](/en/kitchens/corian-kitchens)
+[Modern Kitchens](/en/kitchens/modern-kitchens/) | [Classic Kitchens](/en/kitchens/classic-kitchens/) | [Corian Kitchens](/en/kitchens/corian-kitchens/)

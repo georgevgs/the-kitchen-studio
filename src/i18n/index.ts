@@ -43,6 +43,17 @@ export function localizePath(path: string): string {
       break;
     }
   }
-  if (currentLocale === DEFAULT_LOCALE) return normalized;
-  return normalized === "/" ? `/${currentLocale}` : `/${currentLocale}${normalized}`;
+  if (DEFAULT_LOCALE === currentLocale) {
+    return withTrailingSlash(normalized);
+  } else {
+    return withTrailingSlash(`/${currentLocale}${normalized}`);
+  }
 }
+
+const withTrailingSlash = (path: string) => {
+  if (path.endsWith("/")) {
+    return path;
+  } else {
+    return `${path}/`;
+  }
+};

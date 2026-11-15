@@ -74,6 +74,6 @@ There are no right or wrong answers. There are only **your** answers, and the de
 ---
 
 **Visit The Kitchen Studio showroom** and see our islands in person: materials, proportions, details that don't come through in photographs. <br/>
-Book an appointment for a [personal consultation](/en/contact) or [view our work](/en/erga) for inspiration.
+Book an appointment for a [personal consultation](/en/contact/) or [view our work](/en/erga/) for inspiration.
 
-[Modern Kitchens](/en/kitchens/modern-kitchens) | [Classic Kitchens](/en/kitchens/classic-kitchens) | [Corian Kitchens](/en/kitchens/corian-kitchens)
+[Modern Kitchens](/en/kitchens/modern-kitchens/) | [Classic Kitchens](/en/kitchens/classic-kitchens/) | [Corian Kitchens](/en/kitchens/corian-kitchens/)

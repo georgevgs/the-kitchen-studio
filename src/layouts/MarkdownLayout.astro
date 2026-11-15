@@ -24,7 +24,7 @@ const { frontmatter, headings } = Astro.props;
 // Markdown pages have no frontmatter script, so the build-time language is set from the route here
 changeLanguage(LOCALES.find((locale) => locale === Astro.currentLocale) ?? DEFAULT_LOCALE);
 
-const pathname = Astro.url.pathname.replace(/\/$/, "");
+const pathname = Astro.url.pathname;
 const sections = headings.filter((item) => 2 === item.depth);
 
 const currentOrNull = (href: string) => {

@@ -23,13 +23,9 @@ const { tone } = Astro.props;
 const INITIAL_SOLID = { light: "true", overlay: "false" };
 const WRAPPER_CLASS = { light: "", overlay: "h-0" };
 
-const pathname = Astro.url.pathname.replace(/\/$/, "");
+const pathname = Astro.url.pathname;
 
-const isActiveLink = (href: string) => {
-  const target = localizePath(href);
-
-  return pathname === target || pathname.startsWith(`${target}/`);
-};
+const isActiveLink = (href: string) => pathname.startsWith(localizePath(href));
 
 const currentOrNull = (href: string) => {
   if (isActiveLink(href)) {
