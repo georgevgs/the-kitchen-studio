@@ -1,5 +1,6 @@
 ---
 title: "Πολιτική Απορρήτου"
+description: "Πώς συλλέγουμε, χρησιμοποιούμε και προστατεύουμε τα προσωπικά σας δεδομένα όταν επισκέπτεστε την ιστοσελίδα του The Kitchen Studio."
 layout: "~/layouts/MarkdownLayout.astro"
 ---
 

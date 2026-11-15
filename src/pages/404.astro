@@ -7,11 +7,11 @@ changeLanguage("el");
 const meta = {
     title: t("not_found.title"),
     description: t("not_found.title"),
+    noindex: true,
 };
 ---
 
 <Layout meta={meta} footerCta={false}>
-  <meta slot="head" name="robots" content="noindex, nofollow" />
   <section class="ks-container flex min-h-[60vh] flex-col justify-center gap-8 py-24">
     <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">{t("not_found.code")}</span></p>
     <h1 class="ks-display m-0 max-w-[900px]">{t("not_found.title")}</h1>

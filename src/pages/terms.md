@@ -1,5 +1,6 @@
 ---
 title: "Όροι και Προϋποθέσεις"
+description: "Οι όροι χρήσης της ιστοσελίδας του The Kitchen Studio: πνευματικά δικαιώματα, ακρίβεια πληροφοριών και σύνδεσμοι προς τρίτους."
 layout: "~/layouts/MarkdownLayout.astro"
 ---
 

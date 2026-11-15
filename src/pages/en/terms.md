@@ -1,5 +1,6 @@
 ---
 title: "Terms and Conditions"
+description: "The terms of use for The Kitchen Studio website: intellectual property, accuracy of information and third-party links."
 layout: "~/layouts/MarkdownLayout.astro"
 ---
 

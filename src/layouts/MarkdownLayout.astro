@@ -10,7 +10,7 @@ interface PageHeading {
 }
 
 export interface Props {
-  frontmatter: { title: string };
+  frontmatter: { title: string; description: string };
   headings: PageHeading[];
 }
 
@@ -25,6 +25,15 @@ const { frontmatter, headings } = Astro.props;
 changeLanguage(LOCALES.find((locale) => locale === Astro.currentLocale) ?? DEFAULT_LOCALE);
 
 const pathname = Astro.url.pathname;
+const meta = { title: frontmatter.title, description: frontmatter.description };
+
+const layoutLang = (): "EN" | "EL" => {
+  if ("en" === Astro.currentLocale) {
+    return "EN";
+  } else {
+    return "EL";
+  }
+};
 const sections = headings.filter((item) => 2 === item.depth);
 
 const currentOrNull = (href: string) => {
@@ -36,7 +45,7 @@ const currentOrNull = (href: string) => {
 };
 ---
 
-<Layout footerCta={false}>
+<Layout {meta} lang={layoutLang()} footerCta={false}>
   <section class="ks-container pb-14 pt-14">
     <div class="mb-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
       <Breadcrumb trail={[]} current={frontmatter.title} />

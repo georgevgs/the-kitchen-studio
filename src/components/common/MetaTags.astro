@@ -4,6 +4,7 @@ import { getAsset } from "~/utils/permalinks";
 import type { MetaSEO } from "~/types";
 import { getImageUrl, generateWebsiteSchema, generateLocalBusinessSchema } from "~/utils/schema";
 import { SITE } from "~/config";
+import ShowWhen from "~/components/common/ShowWhen.astro";
 
 const {
   title = SITE.title,
@@ -16,6 +17,7 @@ const {
   author = SITE.name, // Fallback to site name if author not specified
   language = SITE.language, // Use SITE.language instead of defaultLanguage
   dontUseTitleTemplate = false,
+  noindex = false,
 }: MetaSEO = Astro.props;
 
 // Append the brand to page titles unless the page opts out or already includes it
@@ -74,6 +76,8 @@ const seoProps = {
   title: pageTitle,
   description: description,
   canonical: ogCanonicalURL.toString(),
+  noindex,
+  nofollow: noindex,
   openGraph: {
     basic: {
       title: pageTitle,
@@ -150,9 +154,11 @@ const enUrl = `${SITE.origin}${enPath}`;
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
 <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 <link rel="dns-prefetch" href="https://formspree.io" />
-<link rel="alternate" hreflang="el" href={elUrl} />
-<link rel="alternate" hreflang="en" href={enUrl} />
-<link rel="alternate" hreflang="x-default" href={elUrl} />
+<ShowWhen isVisible={false === noindex}>
+  <link rel="alternate" hreflang="el" href={elUrl} />
+  <link rel="alternate" hreflang="en" href={enUrl} />
+  <link rel="alternate" hreflang="x-default" href={elUrl} />
+</ShowWhen>
 
 <!-- Add the structured data -->
 <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />

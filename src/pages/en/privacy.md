@@ -1,5 +1,6 @@
 ---
 title: "Privacy Policy"
+description: "How The Kitchen Studio collects, uses and protects your personal data when you visit our website."
 layout: "~/layouts/MarkdownLayout.astro"
 ---
 

@@ -12,6 +12,7 @@ export interface MetaSEO {
   author?: string;
   dontUseTitleTemplate?: boolean;
   language?: string;
+  noindex?: boolean;
 }
 
 export interface Post {
