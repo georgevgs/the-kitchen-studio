@@ -38,7 +38,7 @@ export default defineConfig({
         build: {
             // Never inline fonts as data: URIs. The production CSP (vercel.json)
             // sets `font-src 'self'`, which blocks data: fonts — emitting them as
-            // same-origin /_astro/*.woff2 files keeps the CSP strict and the icons
+            // same-origin /_astro/*.woff2 files keeps the CSP strict and the fonts
             // rendering. Everything else keeps Vite's default size-based inlining.
             assetsInlineLimit(filePath) {
                 if (/\.(woff2?|ttf|otf|eot)$/i.test(filePath)) return false;
