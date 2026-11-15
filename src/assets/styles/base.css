@@ -12,10 +12,6 @@
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-
 @media (prefers-reduced-motion: reduce), (scripting: none) {
   .reveal-up {
     opacity: 1;
@@ -143,30 +139,6 @@
     opacity: 0.88;
   }
 
-  .ks-btn-outline {
-    background-color: transparent;
-    border-color: var(--ks-ink-line);
-    color: var(--ks-ink);
-  }
-
-  .ks-btn-outline:hover {
-    opacity: 1;
-    background-color: var(--ks-ink);
-    color: var(--ks-ground);
-  }
-
-  .ks-btn-light {
-    background-color: transparent;
-    border-color: rgb(255 255 255 / 0.75);
-    color: #ffffff;
-  }
-
-  .ks-btn-light:hover {
-    opacity: 1;
-    background-color: #ffffff;
-    color: #151515;
-  }
-
   .ks-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -196,12 +168,6 @@
 
   .ks-chip:hover {
     background-color: var(--ks-ink);
-    color: var(--ks-ground);
-  }
-
-  .ks-chip-active {
-    background-color: var(--ks-ink);
-    border-color: var(--ks-ink);
     color: var(--ks-ground);
   }
 
@@ -265,14 +231,6 @@
 
   .ks-rows > li {
     border-bottom: 1px solid var(--ks-line);
-  }
-
-  .ks-rows-night {
-    border-top-color: var(--ks-night-line);
-  }
-
-  .ks-rows-night > li {
-    border-bottom-color: var(--ks-night-line);
   }
 
   /* FAQ, native <details> with a rotating plus */

@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @config "../../tailwind.config.cjs";
 @plugin "@tailwindcss/typography";
-@plugin "tailwindcss-animate";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -10,7 +9,6 @@
   :root {
     --ks-ground: #f3f2ee;
     --ks-surface: #e7e5df;
-    --ks-surface-alt: #eae8e2;
     --ks-paper: #ffffff;
     --ks-ink: #151515;
     --ks-copy: #3e3c38;
@@ -27,35 +25,14 @@
     --ks-night-line-soft: #34322f;
     --ks-lightbox: rgb(12 12 11 / 0.97);
 
-    /* Legacy tokens, still read by pages that are not restyled yet */
-    --background: 48 14% 94%;
-    --foreground: 0 0% 8%;
     --border: 40 11% 81%;
-    --input: 40 11% 81%;
-    --ring: 0 0% 8%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --radius: 0.5rem;
 
     --aw-font-sans: "Inter Variable", "Helvetica Neue", Arial, sans-serif;
-    --aw-font-serif: var(--aw-font-sans);
-    --aw-font-heading: "Inter Tight Variable", "Inter Variable", "Helvetica Neue", Arial, sans-serif;
-    --aw-color-primary: rgb(21 21 21);
-    --aw-color-accent: var(--ks-brand);
-    --aw-color-accent-hover: rgb(31 44 160);
-    --aw-color-text-page: var(--ks-ink);
-    --aw-color-text-muted: var(--ks-quiet);
-    --aw-color-bg-page: var(--ks-ground);
   }
 
   .dark {
     --ks-ground: #121211;
     --ks-surface: #1c1b19;
-    --ks-surface-alt: #262521;
     --ks-paper: #1c1b19;
     --ks-ink: #edebe6;
     --ks-copy: #cfcbc4;
@@ -66,27 +43,13 @@
     --ks-brand: #9aa4ff;
     --ks-night: #0a0a09;
 
-    --background: 60 4% 7%;
-    --foreground: 43 15% 91%;
     --border: 40 5% 19%;
-    --input: 40 5% 19%;
-    --ring: 43 15% 91%;
-    --card: 40 5% 11%;
-    --card-foreground: 43 15% 91%;
-    --popover: 40 5% 11%;
-    --popover-foreground: 43 15% 91%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --aw-color-primary: rgb(237 235 230);
-    --aw-color-accent-hover: rgb(190 197 255);
   }
 }
 
 @theme inline {
   --color-ground: var(--ks-ground);
   --color-surface: var(--ks-surface);
-  --color-surface-alt: var(--ks-surface-alt);
   --color-paper: var(--ks-paper);
   --color-ink: var(--ks-ink);
   --color-copy: var(--ks-copy);
