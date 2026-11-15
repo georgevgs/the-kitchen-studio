@@ -48,6 +48,14 @@ const HERO_DIMENSIONS: Record<string, { width: number; height: number }> = {
 };
 const heroDims = post.data.image ? HERO_DIMENSIONS[post.data.image] : undefined;
 
+// Social networks do not render AVIF previews, so shares use 1200x630 JPEG crops
+const OG_IMAGES: Partial<Record<string, string>> = {
+  "/assets/images/blog/kitchen-island.avif": "/assets/images/blog/kitchen-island-og.jpg",
+  "/assets/images/blog/modern-grey-and-terracotta-kitchen-2025.avif": "/assets/images/blog/modern-grey-and-terracotta-kitchen-2025-og.jpg",
+  "/assets/images/blog/kitchen-renovation-guide.avif": "/assets/images/blog/kitchen-renovation-guide-og.jpg",
+};
+const ogImage = OG_IMAGES[post.data.image ?? ""] ?? post.data.image;
+
 // Get canonical URL — must use the URL slug (post.id keeps the -en suffix,
 // which is stripped from the route and would 404)
 const canonicalURL = new URL(`/en/blog/${getUrlSlug(post)}/`, Astro.site).toString();
@@ -56,7 +64,7 @@ const canonicalURL = new URL(`/en/blog/${getUrlSlug(post)}/`, Astro.site).toStri
 const meta: MetaSEO = {
   title: `${post.data.title} | The Kitchen Studio`,
   description: post.data.description,
-  image: post.data.image,
+  image: ogImage,
   articlePublishTime: post.data.pubDate,
   ogType: "article",
   canonicalURL: canonicalURL,
@@ -65,7 +73,7 @@ const meta: MetaSEO = {
 };
 
 // Map post to match the Post interface required by schema functions
-const postForSchema = collectionEntryToPost(post);
+const postForSchema = { ...collectionEntryToPost(post), image: ogImage };
 
 // Generate blog post structured data
 const blogPostSchema = generateBlogPostSchema(postForSchema, canonicalURL, SITE, "en");

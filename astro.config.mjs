@@ -23,6 +23,10 @@ export default defineConfig({
 
     integrations: [sitemap({
         filter: (page) => !page.includes('/404'),
+        i18n: {
+            defaultLocale: 'el',
+            locales: { el: 'el', en: 'en' },
+        },
         changefreq: 'weekly',
         priority: 0.7,
         lastmod: new Date(),

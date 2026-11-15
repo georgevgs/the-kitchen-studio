@@ -1,5 +1,5 @@
 ---
-title: "5 Top Ideas for Modern Kitchens in 2025 | New Design Trends"
+title: "5 Top Ideas for Modern Kitchens in 2025"
 description: "Discover the top trends for modern kitchens in 2025, from smart technologies to sustainable materials. A complete guide to the perfect kitchen renovation."
 pubDate: 2025-04-15
 image: "/assets/images/blog/modern-grey-and-terracotta-kitchen-2025.avif"

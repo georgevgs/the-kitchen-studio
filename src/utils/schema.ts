@@ -82,6 +82,7 @@ export function generateLocalBusinessSchema(): Record<string, any> {
       latitude: 37.86350802540611,
       longitude: 23.754075789949074,
     },
+    hasMap: "https://maps.google.com/?q=Γρηγορίου+Λαμπράκη+28+Γλυφάδα",
     areaServed: [
       { "@type": "City", name: "Γλυφάδα", alternateName: "Glyfada" },
       { "@type": "City", name: "Βούλα", alternateName: "Voula" },

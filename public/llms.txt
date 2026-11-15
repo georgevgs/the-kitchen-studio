@@ -1,43 +1,53 @@
 # The Kitchen Studio
-> Custom kitchen, bathroom, and living room furniture showroom in Glyfada, Athens, Greece. We design and install bespoke kitchen furniture, bathroom cabinets, tiles, wardrobes, doors, and living room furniture.
+
+> Custom kitchen, bathroom and living room furniture showroom in Glyfada, Athens, Greece. We design and install bespoke kitchen furniture, bathroom cabinets, tiles, wardrobes, doors and living room furniture.
 
 ## About
 
-The Kitchen Studio has designed and manufactured custom kitchen furniture in Glyfada since 2000 — more than 20 years of experience. Every kitchen is designed in 3D before ordering and built to measure, using Blum and Hettich drawer and hinge systems, Corian solid surfaces, natural wood, MDF and lacquered finishes. We serve Glyfada, Voula, Vouliagmeni, Varkiza, Elliniko, Alimos, Palaio Faliro, Argyroupoli and the wider Attica region. Our work has been featured in Villas by ek magazine. Installation is carried out by our own crew, with technical support after the sale, and we also work directly with architects and interior designers.
+The Kitchen Studio has designed and manufactured custom kitchen furniture in Glyfada since 2000, more than 20 years of experience. Every kitchen is designed in 3D before ordering and built to measure, using Blum and Hettich drawer and hinge systems, Corian solid surfaces, natural wood, MDF and lacquered finishes. We serve Glyfada, Voula, Vouliagmeni, Varkiza, Elliniko, Alimos, Palaio Faliro, Argyroupoli and the wider Attica region. Our work has been featured in Villas by ek magazine. Installation is carried out by our own crew, with technical support after the sale, and we also work directly with architects and interior designers.
+
+The site is in Greek (default) and English (under /en/).
 
 ## Services
 
-- [Kitchen Furniture](https://www.thekitchenstudio.gr/kitchens): Modern, Classic, and Corian kitchen designs — custom-built and installed
-- [Modern Kitchens](https://www.thekitchenstudio.gr/kitchens/modern-kitchens): Contemporary minimalist kitchen furniture with clean lines and premium materials
-- [Classic Kitchens](https://www.thekitchenstudio.gr/kitchens/classic-kitchens): Traditional wood cabinetry with timeless detailing and craftsmanship
-- [Corian Kitchens](https://www.thekitchenstudio.gr/kitchens/corian-kitchens): Seamless integrated Corian countertops and surfaces for a premium finish
-- [Bathroom Furniture](https://www.thekitchenstudio.gr/bath): Custom bathroom cabinets, vanity units, and Corian bath solutions
-- [Bathroom Cabinets](https://www.thekitchenstudio.gr/bath/bath-furnitures): Custom-built bathroom furniture combining functionality and modern aesthetics
-- [Corian Bath](https://www.thekitchenstudio.gr/bath/corian-bath): Corian surfaces for a seamless, hygienic bathroom design
-- [Tiles](https://www.thekitchenstudio.gr/tiles): Porcelain, ceramic, and natural stone tiles in a wide range of sizes and finishes
-- [Wardrobes](https://www.thekitchenstudio.gr/wardrobes): Custom bedroom wardrobes — hinged and sliding door configurations
-- [Doors](https://www.thekitchenstudio.gr/doors): Interior doors in wood, glass, and metal finishes
-- [Living Room Furniture](https://www.thekitchenstudio.gr/living): Bespoke living room furniture design and installation
+- [Kitchen Furniture](https://www.thekitchenstudio.gr/kitchens/): Modern, classic and Corian kitchen designs, custom-built and installed
+- [Modern Kitchens](https://www.thekitchenstudio.gr/kitchens/modern-kitchens/): Contemporary minimalist kitchen furniture with clean lines and premium materials
+- [Classic Kitchens](https://www.thekitchenstudio.gr/kitchens/classic-kitchens/): Traditional wood cabinetry with timeless detailing and craftsmanship
+- [Corian Kitchens](https://www.thekitchenstudio.gr/kitchens/corian-kitchens/): Seamless integrated Corian countertops and surfaces
+- [Bathroom Furniture](https://www.thekitchenstudio.gr/bath/): Custom bathroom cabinets, vanity units and Corian bath solutions
+- [Bathroom Cabinets](https://www.thekitchenstudio.gr/bath/bath-furnitures/): Custom-built bathroom furniture combining function and modern aesthetics
+- [Corian Bath](https://www.thekitchenstudio.gr/bath/corian-bath/): Corian surfaces for a seamless, hygienic bathroom
+- [Tiles](https://www.thekitchenstudio.gr/tiles/): Porcelain, ceramic and natural stone tiles in a wide range of sizes and finishes
+- [Wardrobes](https://www.thekitchenstudio.gr/wardrobes/): Custom bedroom wardrobes with hinged and sliding doors
+- [Doors](https://www.thekitchenstudio.gr/doors/): Interior doors in wood, glass and metal finishes
+- [Living Room Furniture](https://www.thekitchenstudio.gr/living/): Bespoke living room furniture design and installation
+
+## Guides
+
+- [Kitchen renovation: what to know before you start](https://www.thekitchenstudio.gr/en/blog/anakainisi-kouzinas-prin-xekinisete/): The order to make renovation decisions in, materials in plain language, the five most common mistakes, how long it takes, and ready-made versus bespoke ([Greek](https://www.thekitchenstudio.gr/blog/anakainisi-kouzinas-prin-xekinisete/))
+- [Kitchen island design](https://www.thekitchenstudio.gr/en/blog/nisida-kouzinas/): Three island types for three ways of living, the materials that define them, and the questions to answer before designing one ([Greek](https://www.thekitchenstudio.gr/blog/nisida-kouzinas/))
+- [Modern kitchen ideas](https://www.thekitchenstudio.gr/en/blog/modern-kitchens-2025/): Minimalist design, natural materials, smart technology, colour trends and open layouts ([Greek](https://www.thekitchenstudio.gr/blog/modern-kitchens-2025/))
 
 ## Portfolio
 
-- [Projects](https://www.thekitchenstudio.gr/erga): Gallery of completed kitchen and interior design projects
-- [Designs](https://www.thekitchenstudio.gr/meletes): Interior design studies and 3D renders
+- [Projects](https://www.thekitchenstudio.gr/erga/): Gallery of completed kitchen and interior projects
+- [Designs](https://www.thekitchenstudio.gr/meletes/): Kitchen design studies and 3D renders
 
 ## Information
 
-- [About Us](https://www.thekitchenstudio.gr/about-us): Our story, team, and design philosophy
-- [Showroom](https://www.thekitchenstudio.gr/showroom): Visit our Glyfada showroom — see kitchen and furniture displays in person
-- [Blog](https://www.thekitchenstudio.gr/blog): Kitchen design tips, trends, and inspiration
-- [Contact](https://www.thekitchenstudio.gr/contact): Address, phone, email, and opening hours
+- [About Us](https://www.thekitchenstudio.gr/about-us/): Our story, team and design approach
+- [Showroom](https://www.thekitchenstudio.gr/showroom/): Visit our Glyfada showroom to see kitchen and furniture displays in person
+- [Contact](https://www.thekitchenstudio.gr/contact/): Address, phone, email and opening hours
 
 ## Location & Contact
 
-Address: Grigoriou Lampraki 28, Glyfada, Attica 16674, Greece
+Address: Grigoriou Lampraki 28, Glyfada 166 74, Attica, Greece
 Phone: +30 210 8981423
 Email: info@thekitchenstudio.gr
-Opening hours: Mon/Wed/Sat 10:00–14:00 | Tue/Thu/Fri 10:00–14:00 & 17:30–20:30
+Opening hours: Mon, Wed, Sat 10:00-14:00. Tue, Thu, Fri 10:00-14:00 and 17:30-20:30. Closed Sunday.
 
 ## Optional
 
-- [English version](https://www.thekitchenstudio.gr/en/): Site available in Greek and English
+- [English home page](https://www.thekitchenstudio.gr/en/): The full site in English
+- [Blog (Greek)](https://www.thekitchenstudio.gr/blog/): All articles in Greek
+- [Blog (English)](https://www.thekitchenstudio.gr/en/blog/): All articles in English
