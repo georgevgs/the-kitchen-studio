@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import { t } from "~/i18n";
+import mainImage from "~/assets/images/home-images/italian-kitchen-home-8.avif";
+import sideImage from "~/assets/images/erga/erga-57.avif";
+
+const POINTS = ["first", "second", "third", "fourth", "fifth"];
+const KARADIMAS_URL = "https://ikaradimas.gr";
+const KARADIMAS_LIGHT_LOGO =
+  "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif";
+const KARADIMAS_DARK_LOGO =
+  "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524859/karadimas-logo-darkmode_qfuxja.avif";
+---
+
+<section class="border-t border-line">
+  <div class="ks-container flex flex-wrap items-center gap-x-20 gap-y-[72px] py-[104px]">
+    <div class="relative min-w-0 flex-[1_1_420px] pb-12">
+      <Image
+        src={mainImage}
+        alt={t("home.why.image_main_alt")}
+        widths={[480, 720, 960]}
+        sizes="(min-width: 1100px) 45vw, 100vw"
+        loading="lazy"
+        class="ks-rise block aspect-[4/5] w-full object-cover object-[60%_50%]"
+      />
+      <Image
+        src={sideImage}
+        alt={t("home.why.image_side_alt")}
+        widths={[240, 480, 720]}
+        sizes="(min-width: 1100px) 18vw, 40vw"
+        loading="lazy"
+        class="ks-rise absolute bottom-0 right-[-28px] aspect-[4/5] w-2/5 object-cover object-left shadow-[0_0_0_10px_var(--ks-ground)] max-sm:right-0"
+      />
+    </div>
+    <div class="flex min-w-0 flex-[1_1_520px] flex-col gap-10">
+      <div class="flex flex-col gap-5">
+        <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">(02)</span> {t("home.why.eyebrow")}</p>
+        <DisplayHeading
+          as="h2"
+          size="display"
+          before={t("home.why.title")}
+          emphasis={t("home.why.title_emphasis")}
+        />
+        <p class="m-0 max-w-[520px] text-[17px] font-normal leading-[1.6] text-copy">{t("home.why.text")}</p>
+      </div>
+      <ol class="ks-rows m-0 flex list-none flex-col p-0">
+        {
+          POINTS.map((point, index) => (
+            <li class="grid grid-cols-[48px_minmax(0,1fr)] gap-4 py-[18px] text-[17px] leading-[1.45]">
+              <span class="pt-[3px] text-[13px] text-quiet">{(index + 1).toString().padStart(2, "0")}</span>
+              <span>{t(`home.why.items.${point}`)}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+        <span class="ks-eyebrow">{t("home.why.partner")}</span>
+        <a
+          href={KARADIMAS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex min-h-11 items-center"
+        >
+          <img
+            src={KARADIMAS_LIGHT_LOGO}
+            alt={t("home.why.partner_alt")}
+            height="56"
+            loading="lazy"
+            class="block h-14 w-auto dark:hidden"
+          />
+          <img
+            src={KARADIMAS_DARK_LOGO}
+            alt={t("home.why.partner_alt")}
+            height="56"
+            loading="lazy"
+            class="hidden h-14 w-auto dark:block"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,148 +1,167 @@
 ---
-import { localizePath } from "~/i18n";
-import Logo from "../Logo.astro";
-
-interface Link {
-  text?: string;
-  href?: string;
-  ariaLabel?: string;
-  icon?: string;
-}
-
-interface Links {
-  title?: string;
-  links: Array<Link>;
-}
+import Logo from "~/components/Logo.astro";
+import Icon from "~/components/common/Icon.astro";
+import ShowWhen from "~/components/common/ShowWhen.astro";
+import { t, localizePath } from "~/i18n";
+import { BUSINESS, FOOTER_GROUPS } from "~/data";
 
 export interface Props {
-  links: Array<Links>;
-  secondaryLinks: Array<Link>;
-  socialLinks: Array<Link>;
-  footNote?: string;
-  showroomInfo?: {
-    title: string;
-    address: string;
-    phone: string;
-  };
-  theme?: string;
-  class?: string;
+  showCta: boolean;
 }
 
-const {
-  class: classes = "",
-  socialLinks = [],
-  secondaryLinks = [],
-  links = [],
-  footNote = "",
-  showroomInfo,
-  theme = "light",
-} = Astro.props;
+const { showCta } = Astro.props;
+
+const footerLinkClass = "text-night-ink no-underline";
+const groupTitleClass = "mb-1 text-[12px] uppercase tracking-[0.14em] text-night-quiet";
+const ctaRowClass = "grid grid-cols-[120px_minmax(0,1fr)] gap-4 border-b border-line-strong py-4";
+const ctaLabelClass = "pt-[3px] text-[12px] uppercase tracking-[0.12em] text-quiet";
 ---
 
-<footer
-  class:list={[
-    classes,
-    { dark: theme === "dark" },
-    "relative border-t border-gray-200 dark:border-neutral-800",
-    "bg-offwhite",
-  ]}>
-  <div class="dark:bg-black absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 dark:text-neutral-300">
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={localizePath("/")}>
-            <Logo placement="footer" />
-          </a>
-        </div>
-        <div class="text-sm text-muted">
-          {
-            secondaryLinks.map(({ text, href }) => (
-              <a
-                class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out mr-2"
-                href={localizePath(href)}
-                set:html={text}
-              />
-            ))
-          }
-        </div>
+<ShowWhen isVisible={showCta}>
+  <section aria-label={t("footer.cta.aria")} class="bg-surface">
+    <div
+      class="ks-container flex flex-wrap items-end justify-between gap-x-16 gap-y-12 py-24"
+    >
+      <div class="flex min-w-0 flex-[3_1_560px] flex-col gap-7">
+        <p class="m-0 text-[12px] uppercase tracking-[0.12em] text-quiet">{t("footer.cta.eyebrow")}</p>
+        <h2
+          class="m-0 font-display text-[clamp(48px,7vw,104px)] font-medium leading-[0.95] tracking-[-0.02em]"
+        >
+          {t("footer.cta.title")}{" "}
+          <em class="not-italic text-brand">{t("footer.cta.title_emphasis")}</em>
+        </h2>
+        <p class="ks-lead m-0 max-w-[500px]">{t("footer.cta.text")}</p>
+        <a href={localizePath("/contact")} class="ks-btn self-start">
+          {t("footer.cta.button")}
+          <Icon name="arrow-right" size={18} />
+        </a>
       </div>
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2 min-w-[200px]">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
-                    <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={localizePath(href)}
-                      aria-label={ariaLabel}>
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-      <div class="col-span-6 md:col-span-3 lg:col-span-2 min-w-[200px]">
-        <div class="dark:text-gray-300 font-medium mb-2">{showroomInfo?.title}</div>
-        <div class="text-sm text-muted">
+      <dl class="m-0 flex min-w-0 flex-[2_1_360px] flex-col border-t border-ink-line">
+        <div class={ctaRowClass}>
+          <dt class={ctaLabelClass}>{t("business.address_label")}</dt>
+          <dd class="m-0 text-[16px] leading-normal">{t("business.address")}</dd>
+        </div>
+        <div class={ctaRowClass}>
+          <dt class={ctaLabelClass}>{t("business.phone_label")}</dt>
+          <dd class="m-0 text-[16px] leading-normal">
+            <a href={BUSINESS.phoneHref} class="text-inherit no-underline">{BUSINESS.phoneDisplay}</a>
+          </dd>
+        </div>
+        <div class={ctaRowClass}>
+          <dt class={ctaLabelClass}>{t("business.hours_label")}</dt>
+          <dd class="m-0 text-[16px] leading-normal">
+            {t("business.days_morning")} {BUSINESS.morningHours}<br />
+            {t("business.days_evening")} {BUSINESS.eveningHours}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</ShowWhen>
+
+<footer class="bg-night text-night-ink">
+  <div class="ks-container flex flex-col gap-14 pb-8 pt-[72px]">
+    <div class="flex flex-wrap justify-between gap-x-12 gap-y-10">
+      <div class="flex flex-[1_1_240px] flex-col gap-4">
+        <a href={localizePath("/")} aria-label={t("nav.home_aria")} class="flex text-inherit">
+          <Logo placement="footer" />
+        </a>
+        <p class="m-0 max-w-[260px] text-[17px] leading-relaxed text-night-quiet">{t("footer.tagline")}</p>
+      </div>
+      <nav
+        aria-label={t("footer.nav_aria")}
+        class="grid min-w-0 flex-[3_1_720px] grid-cols-[repeat(auto-fit,minmax(min(170px,100%),1fr))] gap-8"
+      >
+        {
+          FOOTER_GROUPS.map((group) => (
+            <div class="flex flex-col gap-3 text-[16px]">
+              <p class={groupTitleClass}>{t(group.titleKey)}</p>
+              {group.links.map((link) => (
+                <a href={localizePath(link.href)} class={footerLinkClass}>
+                  {t(link.labelKey)}
+                </a>
+              ))}
+            </div>
+          ))
+        }
+        <div class="flex flex-col gap-3 text-[16px]">
+          <p class={groupTitleClass}>{t("footer.showroom_title")}</p>
           <a
-            href={`https://maps.google.com/?q=${showroomInfo?.address}`}
+            href={BUSINESS.mapsHref}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-block py-1 hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out">
-            {showroomInfo?.address}
-          </a><br />
-          <a
-            href={`tel:+30${showroomInfo?.phone?.replace(/\s+/g, "")}`}
-            class="inline-block py-1 hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out">
-            Τ {showroomInfo?.phone}
+            class={`${footerLinkClass} leading-normal`}
+          >
+            {t("footer.address_lines")}<br />{t("footer.address_city")}
           </a>
+          <a href={BUSINESS.phoneHref} class={footerLinkClass}>{BUSINESS.phoneDisplay}</a>
+          <a href={`mailto:${BUSINESS.email}`} class={footerLinkClass}>{BUSINESS.email}</a>
+          <p class="m-0 leading-normal text-night-quiet">
+            {t("business.days_morning")} {BUSINESS.morningHours}<br />
+            {t("business.days_evening")} {BUSINESS.eveningHours}
+          </p>
+          <a href={localizePath("/contact")} class={footerLinkClass}>{t("footer.contact")}</a>
         </div>
-      </div>
+      </nav>
     </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
-      <!-- Social Links -->
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 md:mb-0 -ml-2 md:ml-0">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-              <li>
-                <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center w-10 h-10"
-                  aria-label={ariaLabel}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  {icon && <i class={`${icon} fa-xl`} />}
-                  <Fragment set:html={text} />
-                </a>
-              </li>
-            ))}
-            <li>
-              <a
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-lg font-bold p-2 inline-flex items-center"
-                href="tel:+302108981423"
-                aria-label="Contact us at 210 8981423">
-                <i class="fa-solid fa-phone fa-bounce fa-lg mr-2 align-middle mt-[-0.5px]" />
-                <span class="align-middle ml-2">210 8981423</span>
-              </a>
-            </li>
-          </ul>
-        ) : (
-          ""
-        )
-      }
 
-      <!-- Footnote -->
-      <div class="text-sm mr-4 dark:text-neutral-400 md:ml-auto">
-        <Fragment set:html={footNote} />
+    <div
+      class="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-t border-night-line pt-6 text-[14px] text-night-quiet"
+    >
+      <div class="flex items-center gap-5">
+        <a
+          href={BUSINESS.instagramHref}
+          aria-label="Instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex h-11 min-w-6 items-center text-night-ink hover:opacity-70"
+        >
+          <Icon name="instagram" size={18} />
+        </a>
+        <a
+          href={BUSINESS.facebookHref}
+          aria-label="Facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex h-11 min-w-6 items-center text-night-ink hover:opacity-70"
+        >
+          <Icon name="facebook" size={18} />
+        </a>
+        <span>{t("footer.copyright")}</span>
+      </div>
+      <div class="flex flex-wrap gap-x-6 gap-y-2">
+        <a href={localizePath("/terms")} class="text-night-quiet no-underline">{t("footer.terms")}</a>
+        <a href={localizePath("/privacy")} class="text-night-quiet no-underline">{t("footer.privacy")}</a>
+        <a
+          href={BUSINESS.creditHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-night-quiet no-underline"
+        >
+          {t("footer.credit")} VAGDAS
+        </a>
       </div>
     </div>
+    <div aria-hidden="true" class="h-16 desk:hidden"></div>
   </div>
 </footer>
+
+<nav
+  aria-label={t("nav.quick_aria")}
+  class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 border-t border-night-line-soft bg-night pb-[env(safe-area-inset-bottom)] text-night-ink desk:hidden"
+>
+  <a
+    href={BUSINESS.phoneHref}
+    class="flex min-h-[60px] flex-col items-center justify-center gap-1 text-[13px] text-night-ink no-underline"
+  >
+    <Icon name="phone" size={20} />
+    {t("nav.call")}
+  </a>
+  <a
+    href={localizePath("/contact")}
+    class="flex min-h-[60px] flex-col items-center justify-center gap-1 bg-brand-fill text-[13px] font-medium text-white no-underline"
+  >
+    <Icon name="calendar" size={20} />
+    {t("nav.appointment")}
+  </a>
+</nav>

@@ -1,0 +1,141 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import Layout from "~/layouts/PageLayout.astro";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import Icon from "~/components/common/Icon.astro";
+import Lightbox from "~/components/widgets/Lightbox.astro";
+import LightboxTrigger from "~/components/widgets/LightboxTrigger.astro";
+import { t } from "~/i18n";
+import type { MetaSEO } from "~/types";
+import featuredOne from "~/assets/images/erga/erga-53.avif";
+import featuredTwo from "~/assets/images/erga/erga-55.avif";
+import featuredThree from "~/assets/images/erga/erga-13.avif";
+
+interface PhotoSource {
+  src: ImageMetadata;
+  alt: string;
+}
+
+export interface Props {
+  meta: MetaSEO;
+  lang: "EL" | "EN";
+  images: PhotoSource[];
+}
+
+const FEATURED = [featuredOne, featuredTwo, featuredThree];
+const LOADING_BY_POSITION: Record<string, "eager" | "lazy"> = { true: "eager", false: "lazy" };
+const PRIORITY_BY_POSITION: Record<string, "high" | "low"> = { true: "high", false: "low" };
+
+const { meta, lang, images } = Astro.props;
+
+const photoLabel = t("common.photo");
+const featuredTotal = FEATURED.length.toString().padStart(2, "0");
+---
+
+<Layout {meta} {lang}>
+  <section class="ks-container pb-16 pt-14">
+    <Breadcrumb trail={[]} current={t("pages.erga.title")} class="mb-14" />
+    <div class="flex flex-wrap items-end justify-between gap-x-16 gap-y-8">
+      <div class="flex flex-col gap-[18px]">
+        <p class="m-0 text-[12px] uppercase tracking-[0.14em] text-brand">{t("pages.erga.subtitle")}</p>
+        <DisplayHeading
+          as="h1"
+          size="xl"
+          before={t("pages.erga.title_lead")}
+          emphasis={t("pages.erga.title_emphasis")}
+          isSplitWord
+        />
+      </div>
+      <p class="ks-lead m-0 flex-[0_1_460px] pb-3">{t("pages.erga.description")}</p>
+    </div>
+  </section>
+
+  <section aria-label={t("erga_page.featured_aria")} class="ks-container">
+    <div
+      class="relative aspect-video min-h-[360px] overflow-hidden bg-[#2b2925] text-white"
+      data-slider
+      data-slider-autoplay="false"
+    >
+      {
+        FEATURED.map((image, index) => (
+          <Image
+            src={image}
+            alt={`${t("home.projects.alt")}, ${photoLabel} ${index + 1}`}
+            widths={[640, 960, 1280, 1600]}
+            sizes="(min-width: 1440px) 1344px, 92vw"
+            class="ks-slide absolute inset-0 h-full w-full object-cover opacity-0 data-[active=true]:opacity-100"
+            data-slide
+            data-active={(0 === index).toString()}
+            aria-hidden={(0 !== index).toString()}
+            loading={LOADING_BY_POSITION[(0 === index).toString()]}
+            fetchpriority={PRIORITY_BY_POSITION[(0 === index).toString()]}
+            decoding="async"
+          />
+        ))
+      }
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0/0)_55%,rgb(0_0_0/0.6)_100%)]"
+      >
+      </div>
+      <div
+        class="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-x-8 gap-y-4 p-[clamp(16px,3vw,36px)]"
+      >
+        <p class="m-0 text-[11px] uppercase tracking-[0.14em]">{t("erga_page.featured")}</p>
+        <div class="flex items-center gap-3.5">
+          <span class="ks-italic-number text-[36px]" data-slider-current aria-live="polite">01</span>
+          <span class="text-[12px]">/ {featuredTotal}</span>
+          <button
+            type="button"
+            class="ks-icon-btn ks-icon-btn-light ml-2"
+            aria-label={t("common.previous")}
+            data-slider-previous
+          >
+            <Icon name="arrow-left" size={18} />
+          </button>
+          <button
+            type="button"
+            class="ks-icon-btn ks-icon-btn-light"
+            aria-label={t("common.next")}
+            data-slider-next
+          >
+            <Icon name="arrow-right" size={18} />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label={t("erga_page.grid_aria")} class="ks-container py-[104px]">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+      <DisplayHeading
+        as="h2"
+        size="md"
+        before={t("erga_page.all_before")}
+        emphasis={t("erga_page.all_emphasis")}
+      />
+      <p class="ks-eyebrow m-0">{t("common.click_to_zoom")}</p>
+    </div>
+    <div class="columns-1 gap-6 sm:columns-2 lg:columns-3">
+      {
+        images.map((image, index) => (
+          <LightboxTrigger
+            image={image}
+            position={index + 1}
+            sizes="(min-width: 1024px) 31vw, (min-width: 640px) 48vw, 100vw"
+            imageClass="h-auto w-full"
+            class="mb-6 w-full break-inside-avoid"
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <Lightbox label={`${t("common.photos")}: ${t("pages.erga.title")}`} />
+</Layout>
+
+<script>
+  import "~/js/slider.ts";
+</script>

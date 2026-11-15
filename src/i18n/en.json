@@ -5,84 +5,29 @@
     },
     "home": {
         "hero": {
-            "headline": "We Design Spaces That Inspire",
             "subtitle": "Custom kitchen, bath & living furniture crafted with precision and elegance in Glyfada.",
-            "cta": "Explore"
-        },
-        "features": {
-            "highlight": "Kitchen Furniture in Glyfada | Quality & Custom Solutions",
-            "title": "Renovation and decoration of your space",
-            "subtitle": "📐 We design to your specifications",
-            "items": {
-                "first_title": "The ultimate specialization in the field of furniture",
-                "second_title": "The flawless aesthetics, the timelessness and the functionality",
-                "third_title": "Renovation with solutions and advantageous offers",
-                "fourth_title": "The provision of high-level services in renovation",
-                "fith_title": "Technical support after the sale",
-                "sixth_title": "In cooperation with"
-            }
+            "cta": "Book a free visit",
+            "aria": "Main image",
+            "eyebrow": "The Kitchen Studio · Glyfada",
+            "title": "We design spaces that",
+            "title_emphasis": "inspire.",
+            "secondary": "See our projects",
+            "categories_aria": "Categories",
+            "previous": "Previous image",
+            "next": "Next image",
+            "slide_alt_kitchen": "Modern made-to-measure kitchen",
+            "slide_alt_project": "Kitchen from a completed The Kitchen Studio project",
+            "slide_alt_wardrobe": "Made-to-measure wardrobe with sliding doors"
         },
         "media": {
-            "title": "Featured in Press",
-            "subtitle": "Our work has been recognized by leading publications",
+            "title": "Featured in the press",
             "villas": {
-                "title": "Villas Magazine Feature",
                 "description": "Our kitchen project was showcased in the prestigious Villas by ek magazine, highlighting our commitment to excellence in design and craftsmanship.",
                 "alt": "Villas Magazine Feature",
                 "features": {
-                    "first": "Modern Design Showcase",
-                    "second": "Featured Project Details",
-                    "third": "Professional Recognition"
-                }
-            }
-        },
-        "steps": {
-            "title": "The kitchen of your dreams in 3 simple steps",
-            "items": {
-                "first_item": {
-                    "title": "Step 1: Visit our store",
-                    "description": "Come to our store in the Southern Suburbs of Athens and more specifically in Glyfada to discuss your needs."
-                },
-                "second_item": {
-                    "title": "Step 2: Design",
-                    "description": "Based on the measurements from your space, we will design your kitchen in combination with your needs and desires."
-                },
-                "third_item": {
-                    "title": "Step 3: Installation",
-                    "description": "After we finalize the design together and order your kitchen, the installation will begin by our team."
-                },
-                "fourth_item": {
-                    "title": "Ready!"
-                }
-            }
-        },
-        "features2": {
-            "title": "We undertake:",
-            "highlight": "WE DESIGN TO YOUR SPECIFICATIONS",
-            "items": {
-                "first_item": {
-                    "title": "Kitchen Furniture",
-                    "description": "Discover quality kitchen furniture with functionality, aesthetics, and innovative design. Trust us for the ideal solution for your space."
-                },
-                "second_item": {
-                    "title": "Bath Furniture",
-                    "description": "Discover unique bathroom furniture that combines quality, functionality, and aesthetics. Be inspired by the innovative design."
-                },
-                "third_item": {
-                    "title": "Tiles",
-                    "description": "Discover unique tiles for impressive and functional style in your space."
-                },
-                "fourth_item": {
-                    "title": "Wardrobes",
-                    "description": "Discover practical and functional wardrobes for organization and storage in your space."
-                },
-                "fith_item": {
-                    "title": "Doors",
-                    "description": "Discover quality doors that add functionality and aesthetics to your space."
-                },
-                "sixth_item": {
-                    "title": "Living",
-                    "description": "Refresh your space with living room furniture that will upgrade the look and bring a new feel to your living room."
+                    "first": "Modern design showcase",
+                    "second": "Featured project details",
+                    "third": "Professional recognition"
                 }
             }
         },
@@ -105,34 +50,99 @@
                     "question": "Do you provide a warranty for the kitchen furniture?",
                     "answer": "Yes, we provide a warranty for the kitchen furniture you purchase from us. The details of the warranty will be presented to you during your visit to our store, and all the necessary information regarding coverage and duration will be covered."
                 }
+            },
+            "heading": "Before we start"
+        },
+        "services": {
+            "eyebrow": "We design to your specifications",
+            "title": "We take on",
+            "intro": "Six categories, one approach: every piece is designed for your own space.",
+            "items": {
+                "kitchens": {
+                    "title": "Kitchen furniture",
+                    "description": "Quality kitchen furniture with function, aesthetics and bold design.",
+                    "alt": "Modern kitchen with a wooden island"
+                },
+                "bath": {
+                    "title": "Bath furniture",
+                    "description": "Distinctive bath furniture that combines quality, function and aesthetics.",
+                    "alt": "Bathroom vanity with a basin and a lit mirror"
+                },
+                "tiles": {
+                    "title": "Tiles",
+                    "description": "Distinctive tiles for a striking and practical style in your space.",
+                    "alt": "Bathroom with large tiles and a bathtub"
+                },
+                "wardrobes": {
+                    "title": "Wardrobes",
+                    "description": "Practical, functional wardrobes for organisation and storage.",
+                    "alt": "Wardrobe with an organised interior"
+                },
+                "doors": {
+                    "title": "Doors",
+                    "description": "Quality doors that bring function and aesthetics to your space.",
+                    "alt": "Interior door in a grey room"
+                },
+                "living": {
+                    "title": "Living",
+                    "description": "Refresh your space with furniture that gives your living room a new feel.",
+                    "alt": "Living room furniture with wall units"
+                }
             }
         },
-        "stats": {
-            "first_stat": "CUSTOMERS",
-            "second_stat": "PROJECTS",
-            "third_stat": "KITCHENS",
-            "fourth_stat": "SMILES"
+        "why": {
+            "eyebrow": "Renovation and decoration of your space",
+            "title": "From first sketch",
+            "title_emphasis": "to final fitting.",
+            "text": "Quality, tailor-made solutions since 2000, designed around you and looked after at every stage of the project.",
+            "items": {
+                "first": "Complete specialisation in the furniture industry",
+                "second": "Flawless aesthetics, timelessness and functionality",
+                "third": "Renovation with smart solutions and good offers",
+                "fourth": "High-level service throughout the renovation",
+                "fifth": "Technical support after the sale"
+            },
+            "partner": "In collaboration with",
+            "partner_alt": "Ioannis Karadimas",
+            "image_main_alt": "Kitchen with an island and pendant lights",
+            "image_side_alt": "Made-to-measure lit display cabinets and shelving"
         },
-        "social_proof": {
-            "rating": "4.9",
-            "reviews": "50+",
-            "source": "Google Reviews",
-            "cta": "See our reviews"
+        "projects": {
+            "eyebrow": "Every space is a unique story",
+            "title": "Our",
+            "title_emphasis": "projects",
+            "title_after": "",
+            "cta": "See all projects",
+            "alt": "Completed project by The Kitchen Studio in Glyfada"
         },
-        "portfolio": {
-            "title": "Our Projects",
-            "subtitle": "Every space tells a unique story",
-            "cta": "View all projects"
+        "process": {
+            "eyebrow": "How it works",
+            "title": "Your dream kitchen in",
+            "title_emphasis": "3 simple steps.",
+            "steps": {
+                "first": {
+                    "title": "Visit our showroom",
+                    "description": "Come to our showroom in Glyfada and tell us what you need."
+                },
+                "second": {
+                    "title": "Survey and design",
+                    "description": "We design from measurements taken in your space, around your needs and wishes."
+                },
+                "third": {
+                    "title": "Installation",
+                    "description": "Once the design and the order are final, our own team takes care of the installation."
+                }
+            },
+            "image_alt": "The Kitchen Studio showroom front in Glyfada"
         },
-        "call_to_action": {
-            "text": "Book a Visit",
-            "title": "Let's meet",
-            "subtitle": "Visit our showroom in Glyfada for a free design consultation."
+        "press": {
+            "title": "Featured in",
+            "title_emphasis": "Villas Magazine."
         }
     },
     "contact": {
         "title": "Title",
-        "name": "Full Name",
+        "name": "Full name",
         "email": "Email",
         "message": "Message",
         "terms_a": " I have read and accept the ",
@@ -144,17 +154,43 @@
         "city": "Glyfada",
         "working_hours": "Operating hours",
         "mon_wed_sat": "Monday - Wednesday - Saturday",
-        "tue_thu_fri": "Tuesday - Thursday - Friday"
+        "tue_thu_fri": "Tuesday - Thursday - Friday",
+        "title_before": "Book a",
+        "title_emphasis": "visit.",
+        "lead": "A free kitchen design consultation at our Glyfada showroom. Fill in the form and we will call you to confirm.",
+        "form_aria": "Contact form",
+        "space_legend": "Which space is it for?",
+        "space_kitchen": "Kitchen",
+        "space_bath": "Bathroom",
+        "space_wardrobe": "Wardrobe",
+        "space_other": "Other",
+        "details_legend": "Your details",
+        "phone_optional": "Phone (optional)",
+        "sending": "Sending...",
+        "thanks": "Thank you!",
+        "new_message": "New message",
+        "required": "This field is required",
+        "fill_all": "Please fill in all required fields",
+        "error": "There was a problem sending the form. Please try again.",
+        "showroom_label": "Showroom",
+        "email_label": "Email",
+        "hours_label": "Hours",
+        "image_alt": "The showroom in Glyfada",
+        "map_aria": "Map",
+        "map_title": "Map: 28 Grigoriou Lampraki, Glyfada",
+        "call": "Call",
+        "social_aria": "Social media"
     },
     "not_found": {
         "title": "Oops! It seems like the kitchen furniture went on a coffee break.",
         "subtitle": "Don't worry, we'll get everything back in order soon!",
-        "button": "Back to homepage"
+        "button": "Back to homepage",
+        "code": "404"
     },
     "pages": {
         "bath": {
             "bath_furnitures": {
-                "title": "Bathroom Furniture",
+                "title": "Bathroom furniture",
                 "subtitle": "Contemporary clean lines and high-tech materials",
                 "description": "Discover the wonderful variety of bathroom furniture that can transform your space into a place of relaxation and care."
             },
@@ -169,7 +205,7 @@
                 "subtitle": "Modern sleek lines and high-tech materials",
                 "description": "Modern and classic bathroom furniture and Corian solutions combining practicality and aesthetics, made to measure for your space. See them in person at our showroom in Glyfada.",
                 "categories": {
-                    "text_bath_furnitures": "Bathroom Furniture",
+                    "text_bath_furnitures": "Bathroom furniture",
                     "text_corian_bath": "Corian Bath",
                     "text_karadimas": "Ioannis Karadimas"
                 }
@@ -177,13 +213,13 @@
         },
         "kitchens": {
             "classic_kitchens": {
-                "title": "Classic Kitchens",
+                "title": "Classic kitchens",
                 "meta_title": "Classic Kitchens in Glyfada, Athens",
                 "subtitle": "The charm of classic kitchen furniture",
                 "description": "Classic kitchen furniture combining the charm of the past with the functionality of the present. Designed and built to measure in Glyfada, Athens."
             },
             "modern_kitchens": {
-                "title": "Modern Kitchens",
+                "title": "Modern kitchens",
                 "meta_title": "Modern Kitchens in Glyfada, Athens",
                 "subtitle": "Simple lines and durable high-quality materials",
                 "description": "Modern kitchens with clean lines, innovative materials and contemporary technology. Designed and built to measure in Glyfada, Athens."
@@ -200,8 +236,8 @@
                 "subtitle": "Modern, classic and Corian kitchens made to measure",
                 "description": "Modern, classic and Corian kitchens designed and built to measure. Visit our showroom in Glyfada at 28 Grigoriou Lampraki.",
                 "categories": {
-                    "text_modern_kitchens": "Modern Kitchens",
-                    "text_classic_kitchens": "Classic Kitchens",
+                    "text_modern_kitchens": "Modern kitchens",
+                    "text_classic_kitchens": "Classic kitchens",
                     "text_corian_kitchens": "Corian Kitchens"
                 }
             }
@@ -214,7 +250,9 @@
         "erga": {
             "title": "Projects",
             "subtitle": "As unique as you are",
-            "description": "Browse completed kitchen and furniture projects in Glyfada, Voula, Vouliagmeni and the southern suburbs of Athens."
+            "description": "Browse completed kitchen and furniture projects in Glyfada, Voula, Vouliagmeni and the southern suburbs of Athens.",
+            "title_lead": "Proj",
+            "title_emphasis": "ects"
         },
         "living": {
             "title": "Living",
@@ -224,13 +262,17 @@
         "meletes": {
             "title": "Designs",
             "subtitle": "Explore our designs",
-            "description": "Kitchen studies and 3D design tailored to your space, with careful attention to both aesthetics and functionality in every detail."
+            "description": "Kitchen studies and 3D design tailored to your space, with careful attention to both aesthetics and functionality in every detail.",
+            "title_lead": "Desi",
+            "title_emphasis": "gns"
         },
         "showroom": {
             "title": "Showroom",
             "meta_title": "Showroom in Glyfada, 28 Grigoriou Lampraki",
             "subtitle": "28 Grigoriou Lampraki, Glyfada",
-            "description": "Visit our showroom in Glyfada, Athens, and find the ideal kitchen among a large and unique range of kitchen furniture."
+            "description": "Visit our showroom in Glyfada, Athens, and find the ideal kitchen among a large and unique range of kitchen furniture.",
+            "title_lead": "Show",
+            "title_emphasis": "room"
         },
         "tiles": {
             "title": "Tiles",
@@ -238,41 +280,269 @@
             "description": "Tiles in endless designs, colours and materials for kitchens and bathrooms. See our range at the showroom in Glyfada."
         },
         "wardrobes": {
-            "title": "Bedroom Wardrobes",
+            "title": "Bedroom wardrobes",
             "meta_title": "Bedroom Wardrobes in Glyfada, Athens",
             "subtitle": "Organized and relaxing atmosphere in your bedroom",
             "description": "Bedroom wardrobes made to measure: harmony between functionality and aesthetics. Designed and built in Glyfada, Athens."
         }
     },
     "blog": {
-            "index": {
-                "title": "The Kitchen Studio Journal",
-                "subtitle": "Thoughts, ideas and tips for your dream kitchen",
-                "meta_title": "Blog | The Kitchen Studio",
-                "meta_description": "Ideas, trends and advice on kitchens and renovation from The Kitchen Studio team in Glyfada, Athens.",
-                "all_tags": "All",
-                "latest_articles": "Latest Articles",
-                "no_articles_title": "No articles yet",
-                "no_articles_desc": "New articles will be added to our blog soon."
-            },
-            "card": {
-                "read_more": "Read more",
-                "reading_time_unit": "min"
-            },
-            "post": {
-                "back_to_blog": "Back to Blog",
-                "reading_time": "min read",
-                "related_articles": "Related Articles",
-                "cta_title": "Did you enjoy this article?",
-                "cta_desc": "Visit our showroom to see our kitchens in person",
-                "cta_button": "Contact Us",
-                "author_label": "The Kitchen Studio Team"
-            }
+        "index": {
+            "title": "The Kitchen Studio Journal",
+            "subtitle": "Thoughts, ideas and tips for your dream kitchen",
+            "meta_title": "Blog | The Kitchen Studio",
+            "meta_description": "Ideas, trends and advice on kitchens and renovation from The Kitchen Studio team in Glyfada, Athens.",
+            "all_tags": "All",
+            "latest_articles": "Latest articles",
+            "no_articles_title": "No articles yet",
+            "no_articles_desc": "New articles will be added to our blog soon.",
+            "count": "articles",
+            "latest_badge": "Latest",
+            "read_article": "Read the article"
+        },
+        "card": {
+            "read_more": "Read more",
+            "reading_time_unit": "min"
+        },
+        "post": {
+            "back_to_blog": "Back to Blog",
+            "reading_time": "min read",
+            "related_articles": "Related articles",
+            "cta_title": "Did you enjoy this article?",
+            "cta_desc": "Visit our showroom to see our kitchens in person",
+            "cta_button": "Contact us",
+            "author_label": "The Kitchen Studio Team",
+            "toc": "Contents",
+            "toc_aria": "Article contents"
+        }
     },
     "components": {
         "category": {
-            "button_more": "See More ",
+            "button_more": "See more",
             "button_karadimas": "Visit ikaradimas.gr "
         }
+    },
+    "common": {
+        "skip_to_content": "Skip to main content",
+        "photo": "photo",
+        "home": "Home",
+        "breadcrumb_aria": "Breadcrumb",
+        "close": "Close",
+        "previous": "Previous",
+        "next": "Next",
+        "photos": "Photos",
+        "click_to_zoom": "Click to enlarge",
+        "zoom_photo": "Enlarge photo",
+        "see": "See"
+    },
+    "nav": {
+        "main_aria": "Main navigation",
+        "home_aria": "The Kitchen Studio, home",
+        "kitchens": "Kitchen furniture",
+        "products": "Products",
+        "projects": "Projects",
+        "studies": "Designs",
+        "showroom": "Showroom",
+        "blog": "Blog",
+        "about": "About us",
+        "book": "Book a visit",
+        "modern_kitchens": "Modern kitchens",
+        "classic_kitchens": "Classic kitchens",
+        "corian_kitchens": "Corian® kitchens",
+        "modern_short": "Modern",
+        "classic_short": "Classic",
+        "corian_short": "Corian®",
+        "all_kitchens": "All kitchens",
+        "kitchens_tagline": "Designed around you.",
+        "bath": "Bath & Corian® Bath",
+        "bath_short": "Bath",
+        "tiles": "Tiles",
+        "wardrobes": "Wardrobes",
+        "doors": "Doors",
+        "living": "Living",
+        "menu_open": "Open menu",
+        "menu_close": "Close menu",
+        "menu_label": "Menu",
+        "theme_toggle": "Switch between light and dark theme",
+        "language_toggle": "Change language (EN / EL)",
+        "quick_aria": "Quick contact",
+        "call": "Call",
+        "appointment": "Book",
+        "bath_furniture": "Bath furniture",
+        "corian_bath": "Corian® Bath",
+        "types_aria": "Types"
+    },
+    "footer": {
+        "tagline": "Designed to measure.",
+        "nav_aria": "Footer",
+        "company": "The Kitchen Studio",
+        "showroom_title": "Showroom Glyfada",
+        "contact": "Contact",
+        "copyright": "© The Kitchen Studio",
+        "terms": "Terms",
+        "privacy": "Privacy policy",
+        "credit": "Web magic by",
+        "address_lines": "28 Grigoriou Lampraki,",
+        "address_city": "Glyfada",
+        "cta": {
+            "aria": "Book a visit",
+            "eyebrow": "Showroom Glyfada",
+            "title": "Let's",
+            "title_emphasis": "meet.",
+            "text": "Visit our showroom in Glyfada for a free design consultation.",
+            "button": "Book a visit"
+        }
+    },
+    "business": {
+        "address_label": "Address",
+        "address": "28 Grigoriou Lampraki, Glyfada 166 74",
+        "phone_label": "Phone",
+        "hours_label": "Hours",
+        "days_morning": "Mon, Wed, Sat",
+        "days_evening": "Tue, Thu, Fri"
+    },
+    "product": {
+        "related": "See also",
+        "included_eyebrow": "Every kitchen includes",
+        "included": {
+            "first": "Design based on international ergonomic standards",
+            "second": "3D visualisation before you order",
+            "third": "Blum and Hettich mechanisms",
+            "fourth": "Installation by a specialised team",
+            "fifth": "Warranty and technical support",
+            "sixth": "Wood, MDF, lacquer or Corian®"
+        },
+        "lightbox_prefix": "Photos"
+    },
+    "hub": {
+        "kitchens": {
+            "title_lead": "Kitch",
+            "title_emphasis": "ens",
+            "breadcrumb": "Kitchen furniture",
+            "rows": {
+                "modern": "Clean lines, innovative materials and contemporary technology.",
+                "classic": "Traditional paneled cabinets in timeless shades with modern construction.",
+                "corian": "Seamless worktops with no visible joints and integrated sinks."
+            }
+        },
+        "bath": {
+            "title_lead": "B",
+            "title_emphasis": "ath",
+            "breadcrumb": "Bath",
+            "rows": {
+                "furniture": "Contemporary clean lines and high-tech materials.",
+                "corian": "The future of bathroom aesthetics.",
+                "karadimas": "Complete bathroom solutions from our partner Ioannis Karadimas."
+            }
+        },
+        "showroom_eyebrow": "Showroom Glyfada",
+        "showroom_title": "See the kitchens",
+        "showroom_emphasis": "in person.",
+        "showroom_link": "Our showroom",
+        "showroom_alt": "The showroom front in Glyfada"
+    },
+    "erga_page": {
+        "featured": "Featured projects",
+        "featured_aria": "Featured project",
+        "all_before": "All",
+        "all_emphasis": "projects",
+        "grid_aria": "All projects"
+    },
+    "meletes_page": {
+        "gallery_aria": "All designs",
+        "band_before": "Book a visit for a",
+        "band_emphasis": "free kitchen design",
+        "band_after": "consultation.",
+        "band_button": "Book a visit"
+    },
+    "showroom_page": {
+        "directions": "Directions on the map",
+        "map_aria": "Map",
+        "map_title": "Map: 28 Grigoriou Lampraki, Glyfada",
+        "hero_alt": "The Kitchen Studio showroom front in Glyfada",
+        "gallery_before": "Inside the",
+        "gallery_emphasis": "showroom",
+        "gallery_aria": "Showroom photos",
+        "visit": {
+            "first": {
+                "title": "Free, no obligation",
+                "text": "The visit and the first conversation with our designers are free."
+            },
+            "second": {
+                "title": "Material samples in your hands",
+                "text": "Wood, MDF, lacquers and Corian® to hold, so you can decide with confidence."
+            },
+            "third": {
+                "title": "For private clients and professionals",
+                "text": "We serve clients, architects and decorators from all over Attica."
+            }
+        }
+    },
+    "about": {
+        "hero_before": "The design that defines",
+        "hero_emphasis": "The Kitchen Studio.",
+        "hero_alt": "Kitchen with glossy cabinets and a marble worktop",
+        "years_number": "20+",
+        "years_label": "years of experience",
+        "intro": "We were created to specialise in the design and production of kitchen furniture and bedroom wardrobes. At our showroom in Glyfada we combine ergonomic standards, quality materials and personal style.",
+        "experience": {
+            "eyebrow": "Experience & expertise",
+            "title": "Every stage of the renovation,",
+            "title_emphasis": "in one place.",
+            "text": "Renovating a kitchen takes knowledge of ergonomics, functionality and manufacturing technology. We cover everything from materials (wood, MDF, Corian®, lacquers) and hardware (Blum and Hettich drawers, integrated lighting, worktops) to coordination with contractors, architects and electricians.",
+            "items": {
+                "first": "Design to international ergonomic standards",
+                "second": "3D visualisation before you order",
+                "third": "High-quality materials from leading manufacturers",
+                "fourth": "Installation by a specialised team",
+                "fifth": "Warranty and after-sales technical support",
+                "sixth": "Service for architects and interior designers"
+            }
+        },
+        "partners": {
+            "eyebrow": "Collaborations & range",
+            "title": "Our own furniture,",
+            "title_emphasis": "leading brands.",
+            "text": "We build our own furniture and work with leading furniture houses. We develop bathroom solutions together with Ioannis Karadimas, and our projects have been featured in Villas by ek magazine.",
+            "karadimas_alt": "Ioannis Karadimas",
+            "villas_label": "Villas by ek"
+        },
+        "offer": {
+            "eyebrow": "What we offer",
+            "kitchens": {
+                "title": "Kitchens",
+                "description": "Modern, classic and Corian, made to measure."
+            },
+            "bath": {
+                "title": "Bath furniture",
+                "description": "Contemporary furniture and Corian surfaces."
+            },
+            "tiles": {
+                "title": "Tiles",
+                "description": "European production, in a range of sizes and finishes."
+            },
+            "wardrobes": {
+                "title": "Wardrobes",
+                "description": "Bedroom wardrobes with complete interior organisation."
+            },
+            "doors": {
+                "title": "Doors",
+                "description": "Interior doors in wood, glass and metal."
+            },
+            "living": {
+                "title": "Living",
+                "description": "Furniture for your living room."
+            }
+        },
+        "visit": {
+            "eyebrow": "Visit us",
+            "title": "Free,",
+            "title_emphasis": "no obligation.",
+            "text": "Private clients and professionals from Glyfada and all over Attica discuss their needs with us and see material samples in person."
+        }
+    },
+    "legal": {
+        "tabs_aria": "Legal documents",
+        "sections_aria": "Sections"
     }
 }

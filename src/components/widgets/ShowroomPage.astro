@@ -1,0 +1,143 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import Layout from "~/layouts/PageLayout.astro";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import Lightbox from "~/components/widgets/Lightbox.astro";
+import LightboxTrigger from "~/components/widgets/LightboxTrigger.astro";
+import { t, localizePath } from "~/i18n";
+import { BUSINESS } from "~/data";
+import type { MetaSEO } from "~/types";
+import facadeImage from "~/assets/images/showroom/showroom.avif";
+
+interface PhotoSource {
+  src: ImageMetadata;
+  alt: string;
+}
+
+export interface Props {
+  meta: MetaSEO;
+  lang: "EL" | "EN";
+  images: PhotoSource[];
+}
+
+const VISIT_POINTS = ["first", "second", "third"];
+const ROMAN_NUMERALS = ["i.", "ii.", "iii."];
+
+const { meta, lang, images } = Astro.props;
+
+const hoursRowClass = "grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-line py-4 text-[16px]";
+---
+
+<Layout {meta} {lang} footerCta={false}>
+  <section class="ks-container pb-24 pt-14">
+    <Breadcrumb trail={[]} current={t("pages.showroom.title")} class="mb-14" />
+    <div class="flex flex-wrap items-stretch gap-x-16 gap-y-12">
+      <div class="flex min-w-0 flex-[1_1_480px] flex-col justify-between gap-12">
+        <div class="flex flex-col gap-5">
+          <DisplayHeading
+            as="h1"
+            size="xl"
+            before={t("pages.showroom.title_lead")}
+            emphasis={t("pages.showroom.title_emphasis")}
+            isSplitWord
+          />
+          <h2 class="m-0 text-[22px] font-normal leading-[1.35]">{t("pages.showroom.subtitle")}</h2>
+          <p class="ks-text m-0 max-w-[460px]">{t("pages.showroom.description")}</p>
+        </div>
+        <div class="flex flex-col gap-6">
+          <dl class="m-0 flex flex-col border-t border-ink-line">
+            <div class={hoursRowClass}>
+              <dt>{t("business.days_morning")}</dt>
+              <dd class="m-0">{BUSINESS.morningHours}</dd>
+            </div>
+            <div class={hoursRowClass}>
+              <dt>{t("business.days_evening")}</dt>
+              <dd class="m-0">{BUSINESS.eveningHours}</dd>
+            </div>
+            <div class={hoursRowClass}>
+              <dt>{t("business.phone_label")}</dt>
+              <dd class="m-0"><a href={BUSINESS.phoneHref} class="text-inherit no-underline">{BUSINESS.phoneDisplay}</a></dd>
+            </div>
+          </dl>
+          <div class="flex flex-wrap items-center gap-x-7 gap-y-4">
+            <a href={localizePath("/contact")} class="ks-btn">{t("nav.book")}</a>
+            <a
+              href={BUSINESS.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="ks-link text-[16px] font-medium"
+            >
+              {t("showroom_page.directions")}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-0 flex-[1_1_480px]">
+        <Image
+          src={facadeImage}
+          alt={t("showroom_page.hero_alt")}
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1100px) 46vw, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="block aspect-[4/5] h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-line">
+    <div class="ks-container py-20">
+      <ol class="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-x-12 gap-y-10 p-0">
+        {
+          VISIT_POINTS.map((point, index) => (
+            <li class="flex flex-col gap-3 border-t border-ink-line pt-5">
+              <span class="ks-italic-number text-[28px] text-brand">{ROMAN_NUMERALS[index]}</span>
+              <h3 class="m-0 text-[22px] font-normal">{t(`showroom_page.visit.${point}.title`)}</h3>
+              <p class="ks-text m-0">{t(`showroom_page.visit.${point}.text`)}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section aria-label={t("showroom_page.gallery_aria")} class="ks-container py-[104px]">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+      <h2 class="ks-display-md m-0">
+        {t("showroom_page.gallery_before")}{" "}
+        <em class="not-italic">{t("showroom_page.gallery_emphasis")}</em>
+        <sup class="text-[14px] tracking-normal text-brand">{images.length}</sup>
+      </h2>
+      <p class="ks-eyebrow m-0">{t("common.click_to_zoom")}</p>
+    </div>
+    <div class="columns-1 gap-6 sm:columns-2 lg:columns-3">
+      {
+        images.map((image, index) => (
+          <LightboxTrigger
+            image={image}
+            position={index + 1}
+            sizes="(min-width: 1024px) 31vw, (min-width: 640px) 48vw, 100vw"
+            imageClass="h-auto w-full"
+            class="mb-6 w-full break-inside-avoid"
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section aria-label={t("showroom_page.map_aria")}>
+    <iframe
+      title={t("showroom_page.map_title")}
+      src={BUSINESS.mapEmbedHref}
+      class="block h-[440px] w-full border-0 grayscale"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>
+  </section>
+
+  <Lightbox label={`${t("common.photos")}: ${t("pages.showroom.title")}`} />
+</Layout>

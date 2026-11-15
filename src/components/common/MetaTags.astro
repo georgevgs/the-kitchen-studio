@@ -1,7 +1,6 @@
 ---
 import { SEO } from "astro-seo";
 import { getAsset } from "~/utils/permalinks";
-import CustomStyles from "~/components/CustomStyles.astro";
 import type { MetaSEO } from "~/types";
 import { getImageUrl, generateWebsiteSchema, generateLocalBusinessSchema } from "~/utils/schema";
 import { SITE } from "~/config";
@@ -141,8 +140,6 @@ const enUrl = `${SITE.origin}${enPath}`;
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <SEO {...seoProps} />
-
-<CustomStyles />
 
 <link rel="shortcut icon" href={getAsset("/favicon.ico")} />
 <link rel="icon" type="image/svg+xml" href={getAsset("/favicon.svg")} />

@@ -3,311 +3,74 @@ import { SITE } from "~/config";
 ---
 
 <script is:inline data-cfasync="false" define:vars={{ defaultTheme: SITE.defaultTheme }}>
-  const logoImages = document.querySelectorAll(".tks-logo-image");
-  const themeToggleButtonIcon = document.querySelectorAll(".theme-toggle");
+  const THEME_KEY = "theme";
+  const isThemeLocked = defaultTheme.endsWith(":only");
 
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
+
+  function readStoredTheme() {
+    try {
+      return localStorage.getItem(THEME_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function storeTheme(theme) {
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (error) {
+      // Private mode, the theme still applies for this page view.
+    }
+  }
 
   function applyTheme(theme) {
-    const isDark = theme === "dark";
+    const isDark = "dark" === theme;
 
     document.documentElement.classList.toggle("dark", isDark);
-
-    const filterValue = isDark ? "" : "brightness(0)";
-    logoImages.forEach((element) => {
-      element.style.filter = filterValue;
+    document.querySelectorAll("[data-aw-toggle-color-scheme]").forEach((toggle) => {
+      toggle.setAttribute("aria-pressed", isDark.toString());
     });
-
-    themeToggleButtonIcon.forEach((icon) => {
-      const shouldHide =
-        (icon.classList.contains("fa-sun") && !isDark) || (icon.classList.contains("fa-moon") && isDark);
-      icon.style.display = shouldHide ? "none" : "";
-    });
-
-    decideFeatureImageLogo();
   }
 
-  if ((defaultTheme && defaultTheme.endsWith(":only")) || (!localStorage.theme && defaultTheme !== "system")) {
-    applyTheme(defaultTheme.replace(":only", ""));
-  } else if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    applyTheme("dark");
-  } else {
-    applyTheme("light");
-  }
-
-  function attachEvent(selector, event, fn) {
-    const matches = typeof selector === "string" ? document.querySelectorAll(selector) : selector;
-    if (matches && matches.length) {
-      matches.forEach((elem) => {
-        elem.addEventListener(event, (e) => fn(e, elem), false);
-      });
+  function switchTheme(isDarkNow) {
+    if (isDarkNow) {
+      applyTheme("light");
+      storeTheme("light");
+    } else {
+      applyTheme("dark");
+      storeTheme("dark");
     }
   }
 
-  window.onload = function () {
-    let lastKnownScrollPosition = window.scrollY;
-    let ticking = true;
+  function decideInitialTheme() {
+    const storedTheme = readStoredTheme();
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    let menuFocusTrapHandler = null;
-
-    function closeMobileMenu(toggleBtn) {
-      toggleBtn.classList.remove("expanded");
-      toggleBtn.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("overflow-hidden");
-      document.getElementById("header")?.classList.remove("h-screen");
-      document.querySelector("#header nav")?.classList.add("hidden");
-      if (menuFocusTrapHandler) {
-        document.removeEventListener("keydown", menuFocusTrapHandler);
-        menuFocusTrapHandler = null;
-      }
-      toggleBtn.focus();
+    if (isThemeLocked) {
+      return defaultTheme.replace(":only", "");
+    }
+    if (null === storedTheme && "system" !== defaultTheme) {
+      return defaultTheme;
+    }
+    if ("dark" === storedTheme || (null === storedTheme && prefersDark)) {
+      return "dark";
     }
 
-    attachEvent("[data-aw-toggle-menu]", "click", function (_, elem) {
-      const isOpen = elem.classList.contains("expanded");
-      elem.classList.toggle("expanded");
-      elem.setAttribute("aria-expanded", isOpen ? "false" : "true");
-      document.body.classList.toggle("overflow-hidden");
-      document.getElementById("header")?.classList.toggle("h-screen");
-      const nav = document.querySelector("#header nav");
-      nav?.classList.toggle("hidden");
+    return "light";
+  }
 
-      if (!isOpen && nav) {
-        const firstFocusable = nav.querySelector("a[href], button:not([disabled])");
-        if (firstFocusable) firstFocusable.focus();
+  applyTheme(decideInitialTheme());
 
-        const focusable = Array.from(nav.querySelectorAll("a[href], button:not([disabled])"));
-        menuFocusTrapHandler = function (e) {
-          if (e.key === "Escape") {
-            closeMobileMenu(elem);
-          } else if (e.key === "Tab" && focusable.length) {
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            if (e.shiftKey && document.activeElement === first) {
-              e.preventDefault();
-              last.focus();
-            } else if (!e.shiftKey && document.activeElement === last) {
-              e.preventDefault();
-              first.focus();
-            }
-          }
-        };
-        document.addEventListener("keydown", menuFocusTrapHandler);
-      } else if (isOpen) {
-        if (menuFocusTrapHandler) {
-          document.removeEventListener("keydown", menuFocusTrapHandler);
-          menuFocusTrapHandler = null;
-        }
+  document.querySelectorAll("[data-aw-toggle-color-scheme]").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      if (false === isThemeLocked) {
+        switchTheme(document.documentElement.classList.contains("dark"));
       }
     });
-
-    attachEvent("[data-aw-toggle-color-scheme]", "click", function () {
-      if (defaultTheme.endsWith(":only")) {
-        return;
-      }
-
-      const isDark = document.documentElement.classList.toggle("dark");
-      localStorage.theme = isDark ? "dark" : "light";
-
-      const filterValue = isDark ? "" : "brightness(0)";
-      logoImages.forEach((element) => {
-        element.style.filter = filterValue;
-      });
-
-      themeToggleButtonIcon.forEach((icon) => {
-        const shouldHide =
-          (icon.classList.contains("fa-sun") && !isDark) || (icon.classList.contains("fa-moon") && isDark);
-        icon.style.display = shouldHide ? "none" : "";
-      });
-
-      decideFeatureImageLogo();
-    });
-
-    attachEvent("[data-aw-social-share]", "click", function (_, elem) {
-      const network = elem.getAttribute("data-aw-social-share");
-      const url = encodeURIComponent(elem.getAttribute("data-aw-url"));
-      const text = encodeURIComponent(elem.getAttribute("data-aw-text"));
-
-      let href;
-      switch (network) {
-        case "facebook":
-          href = `https://www.facebook.com/sharer.php?u=${url}`;
-          break;
-        case "twitter":
-          href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-          break;
-        case "linkedin":
-          href = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
-          break;
-        case "whatsapp":
-          href = `https://wa.me/?text=${text}%20${url}`;
-          break;
-        case "mail":
-          href = `mailto:?subject=%22${text}%22&body=${text}%20${url}`;
-          break;
-
-        default:
-          return;
-      }
-
-      const newlink = document.createElement("a");
-      newlink.target = "_blank";
-      newlink.href = href;
-      newlink.click();
-    });
-
-    function applyHeaderStylesOnScroll() {
-      const header = document.getElementById("header");
-      if (lastKnownScrollPosition > 25 && !header?.classList.contains("scroll")) {
-        header?.classList.add("scroll");
-      } else if (lastKnownScrollPosition <= 25 && header?.classList.contains("scroll")) {
-        header?.classList.remove("scroll");
-      }
-      ticking = false;
-    }
-    applyHeaderStylesOnScroll();
-
-    attachEvent([document], "scroll", function () {
-      lastKnownScrollPosition = window.scrollY;
-
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          applyHeaderStylesOnScroll();
-        });
-        ticking = true;
-      }
-    });
-  };
+  });
 
   window.onpageshow = function () {
     document.documentElement.classList.add("motion-safe:scroll-smooth");
-    const elem = document.querySelector("[data-aw-toggle-menu]");
-    if (elem) {
-      elem.classList.remove("expanded");
-    }
-    document.body.classList.remove("overflow-hidden");
-    document.getElementById("header")?.classList.remove("h-screen");
-    document.querySelector("#header nav")?.classList.add("hidden");
   };
-
-  document.addEventListener("DOMContentLoaded", () => {
-    applySlideInAnimation();
-    setupDropdownMenus();
-  });
-
-  function applySlideInAnimation() {
-    const slidingElements = document.querySelectorAll(".slide-in");
-
-    function checkPosition() {
-      const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
-
-      slidingElements.forEach((elem) => {
-        const elemPos = elem.getBoundingClientRect().top + scrollPos;
-
-        if (scrollPos + window.innerHeight > elemPos) {
-          elem.classList.add("active");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", checkPosition);
-  }
-
-  function setupDropdownMenus() {
-    const dropdowns = document.querySelectorAll(".dropdown");
-
-    dropdowns.forEach((dropdown) => {
-      const menu = dropdown.querySelector(".dropdown-menu");
-      setMenuStyles(menu);
-      setMenuPosition(menu, dropdown);
-      const button = dropdown.querySelector("button");
-      setupMenuButton(button, menu);
-      handleMenuHover(dropdown, button, menu);
-    });
-  }
-
-  function setMenuStyles(menu) {
-    menu.style.marginLeft = "5px";
-    menu.style.opacity = "0";
-    menu.style.transform = "translateX(-10px)";
-    menu.style.transition = "all 0.3s ease";
-  }
-
-  function setMenuPosition(menu, dropdown) {
-    if (dropdown.parentElement?.classList.contains("dropdown-menu")) {
-      menu.style.top = "0";
-      menu.style.left = "100%";
-    }
-  }
-
-  function setupMenuButton(button, menu) {
-    if (button) {
-      button.addEventListener("click", (event) => {
-        if (window.innerWidth < 768) {
-          event.stopPropagation();
-          if (menu.style.display !== "block") {
-            showMenu(button, menu);
-          } else {
-            hideMenu(button, menu);
-          }
-        }
-      });
-    }
-
-    document.addEventListener("click", () => {
-      if (window.innerWidth < 768) {
-        hideMenu(button, menu);
-      }
-    });
-  }
-
-  function handleMenuHover(dropdown, button, menu) {
-    if (window.innerWidth >= 768) {
-      dropdown.addEventListener("mouseenter", () => showMenu(button, menu));
-      dropdown.addEventListener("mouseleave", () => hideMenu(button, menu));
-    }
-  }
-
-  function showMenu(button, menu) {
-    menu.style.display = "block";
-    menu.style.opacity = "1";
-    menu.style.transform = "translateX(0)";
-    menu.style.maxHeight = "500px";
-    button?.classList.add("open");
-    button?.setAttribute("aria-expanded", "true");
-  }
-
-  function hideMenu(button, menu) {
-    menu.style.opacity = "0";
-    menu.style.transform = "translateX(-10px)";
-    menu.style.maxHeight = "0";
-    button?.classList.remove("open");
-    button?.setAttribute("aria-expanded", "false");
-
-    setTimeout(() => {
-      menu.style.display = "none";
-    }, 300);
-  }
-
-  function decideFeatureImageLogo() {
-    const featureImageLogo = document.querySelector(".feature-logo-img");
-
-    if (null === featureImageLogo) {
-      return;
-    }
-
-    const darkModeImage =
-      "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524859/karadimas-logo-darkmode_qfuxja.avif";
-    const lightModeImage = "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif";
-
-    if (document.documentElement.classList.contains("dark")) {
-      featureImageLogo.src = darkModeImage;
-    } else {
-      featureImageLogo.src = lightModeImage;
-    }
-  }
 </script>

@@ -3,219 +3,134 @@
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-animate";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens. Light values here, dark values under .dark. */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --ks-ground: #f3f2ee;
+    --ks-surface: #e7e5df;
+    --ks-surface-alt: #eae8e2;
+    --ks-paper: #ffffff;
+    --ks-ink: #151515;
+    --ks-copy: #3e3c38;
+    --ks-quiet: #5c5a55;
+    --ks-line: #d6d3cc;
+    --ks-line-strong: #c9c5bd;
+    --ks-ink-line: #151515;
+    --ks-brand: #2a3bd1;
+    --ks-brand-fill: #2a3bd1;
+    --ks-night: #151515;
+    --ks-night-ink: #f3f2ee;
+    --ks-night-quiet: #a9a6a0;
+    --ks-night-line: #4a4844;
+    --ks-night-line-soft: #34322f;
+    --ks-lightbox: rgb(12 12 11 / 0.97);
 
+    /* Legacy tokens, still read by pages that are not restyled yet */
+    --background: 48 14% 94%;
+    --foreground: 0 0% 8%;
+    --border: 40 11% 81%;
+    --input: 40 11% 81%;
+    --ring: 0 0% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
+    --card-foreground: 0 0% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
+    --popover-foreground: 0 0% 8%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-
     --radius: 0.5rem;
 
-    /* Brand system */
-    --aw-font-sans: 'InterVariable';
+    --aw-font-sans: "Inter Variable", "Helvetica Neue", Arial, sans-serif;
     --aw-font-serif: var(--aw-font-sans);
-    --aw-font-heading: var(--aw-font-sans);
-
-    --aw-color-primary: rgb(0 0 0);
-    --aw-color-accent: rgb(184 132 72);
-    --aw-color-accent-hover: rgb(156 112 60);
-    --aw-color-text-page: rgb(17 24 39);
-    --aw-color-text-muted: rgb(75 85 99);
-    --aw-color-bg-page: rgb(255 255 255);
+    --aw-font-heading: "Inter Tight Variable", "Inter Variable", "Helvetica Neue", Arial, sans-serif;
+    --aw-color-primary: rgb(21 21 21);
+    --aw-color-accent: var(--ks-brand);
+    --aw-color-accent-hover: rgb(31 44 160);
+    --aw-color-text-page: var(--ks-ink);
+    --aw-color-text-muted: var(--ks-quiet);
+    --aw-color-bg-page: var(--ks-ground);
   }
 
   .dark {
-    --background: 0 0% 9%;
-    --foreground: 0 0% 95%;
+    --ks-ground: #121211;
+    --ks-surface: #1c1b19;
+    --ks-surface-alt: #262521;
+    --ks-paper: #1c1b19;
+    --ks-ink: #edebe6;
+    --ks-copy: #cfcbc4;
+    --ks-quiet: #a6a39c;
+    --ks-line: #34322f;
+    --ks-line-strong: #43413c;
+    --ks-ink-line: #77736c;
+    --ks-brand: #9aa4ff;
+    --ks-night: #0a0a09;
 
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 0 0% 95%;
-    --primary-foreground: 0 0% 9%;
-
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 64%;
-
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 95%;
-
+    --background: 60 4% 7%;
+    --foreground: 43 15% 91%;
+    --border: 40 5% 19%;
+    --input: 40 5% 19%;
+    --ring: 43 15% 91%;
+    --card: 40 5% 11%;
+    --card-foreground: 43 15% 91%;
+    --popover: 40 5% 11%;
+    --popover-foreground: 43 15% 91%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 0 0% 84%;
-
-    /* Brand dark mode */
-    --aw-color-accent: rgb(210 168 108);
-    --aw-color-accent-hover: rgb(224 182 128);
-    --aw-color-text-page: rgb(229 229 229);
-    --aw-color-text-muted: rgb(163 163 163);
-    --aw-color-bg-page: rgb(23 23 23);
+    --aw-color-primary: rgb(237 235 230);
+    --aw-color-accent-hover: rgb(190 197 255);
   }
+}
+
+@theme inline {
+  --color-ground: var(--ks-ground);
+  --color-surface: var(--ks-surface);
+  --color-surface-alt: var(--ks-surface-alt);
+  --color-paper: var(--ks-paper);
+  --color-ink: var(--ks-ink);
+  --color-copy: var(--ks-copy);
+  --color-quiet: var(--ks-quiet);
+  --color-line: var(--ks-line);
+  --color-line-strong: var(--ks-line-strong);
+  --color-ink-line: var(--ks-ink-line);
+  --color-brand: var(--ks-brand);
+  --color-brand-fill: var(--ks-brand-fill);
+  --color-night: var(--ks-night);
+  --color-night-ink: var(--ks-night-ink);
+  --color-night-quiet: var(--ks-night-quiet);
+  --color-night-line: var(--ks-night-line);
+  --color-night-line-soft: var(--ks-night-line-soft);
+  --font-display: "Inter Tight Variable", "Inter Variable", "Helvetica Neue", Arial, sans-serif;
+}
+
+@theme {
+  --breakpoint-desk: 961px;
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--ks-ground);
+    color: var(--ks-ink);
+    font-family: var(--aw-font-sans);
+    -webkit-font-smoothing: antialiased;
   }
   button, [role="button"], a, select, summary {
     cursor: pointer;
   }
-}
-
-/* src/styles/blog.css */
-
-/* Enhanced Typography */
-.blog-content h1 {
-  font-size: 2.25rem;
-  line-height: 1.2;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.blog-content h2 {
-  font-size: 1.75rem;
-  line-height: 1.3;
-  margin-top: 1.75rem;
-  margin-bottom: 0.75rem;
-  font-weight: 700;
-}
-
-.blog-content h3 {
-  font-size: 1.5rem;
-  line-height: 1.4;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.blog-content p {
-  margin-bottom: 1.25rem;
-  line-height: 1.7;
-}
-
-.blog-content ul,
-.blog-content ol {
-  margin-bottom: 1.25rem;
-  padding-left: 1.5rem;
-}
-
-.blog-content li {
-  margin-bottom: 0.5rem;
-}
-
-.blog-content blockquote {
-  border-left: 4px solid var(--aw-color-accent);
-  padding-left: 1rem;
-  margin-left: 0;
-  margin-right: 0;
-  font-style: italic;
-  color: #4b5563; /* gray-600 */
-}
-
-.dark .blog-content blockquote {
-  border-left-color: var(--aw-color-accent);
-  color: #d1d5db;
-}
-
-/* Fancy link underline animation */
-.fancy-link {
-  position: relative;
-  display: inline-block;
-}
-
-.fancy-link::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: currentColor;
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform 0.3s ease-out;
-}
-
-.fancy-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-/* Card hover effects */
-.blog-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.blog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Image hover zoom effect */
-.image-zoom-container {
-  overflow: hidden;
-}
-
-.image-zoom {
-  transition: transform 0.5s ease;
-}
-
-.image-zoom:hover {
-  transform: scale(1.05);
-}
-
-/* Date badge */
-.date-badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background-color: #f8fafc; /* slate-50 */
-  border: 1px solid #e2e8f0; /* slate-200 */
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #64748b; /* slate-500 */
-  letter-spacing: 0.05em;
-}
-
-.dark .date-badge {
-  background-color: #262626; /* neutral-800 */
-  border-color: #404040; /* neutral-700 */
-  color: #a3a3a3; /* neutral-400 */
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
 }

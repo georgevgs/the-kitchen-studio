@@ -1,0 +1,130 @@
+---
+import { Image } from "astro:assets";
+import Layout from "~/layouts/PageLayout.astro";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import Lightbox from "~/components/widgets/Lightbox.astro";
+import { t, localizePath } from "~/i18n";
+import { splitHeading } from "~/utils/heading";
+import type { MetaSEO } from "~/types";
+import {
+  KITCHEN_CARDS,
+  BATH_CARDS,
+  STANDALONE_CARDS,
+  KITCHEN_CHIPS,
+  BATH_CHIPS,
+  type NavLink,
+} from "~/data";
+
+export interface Props {
+  meta: MetaSEO;
+  lang: "EL" | "EN";
+  group: "kitchens" | "bath" | "products";
+  contentKey: string;
+  href: string;
+}
+
+const CRUMBS_BY_GROUP: Record<Props["group"], NavLink[]> = {
+  kitchens: [{ labelKey: "hub.kitchens.breadcrumb", href: "/kitchens" }],
+  bath: [{ labelKey: "hub.bath.breadcrumb", href: "/bath" }],
+  products: [],
+};
+
+const CHIPS_BY_GROUP: Record<Props["group"], NavLink[]> = {
+  kitchens: KITCHEN_CHIPS,
+  bath: BATH_CHIPS,
+  products: [],
+};
+
+const CARDS_BY_GROUP = {
+  kitchens: KITCHEN_CARDS,
+  bath: BATH_CARDS,
+  products: STANDALONE_CARDS,
+};
+
+const { meta, lang, group, contentKey, href } = Astro.props;
+
+const title = t(`${contentKey}.title`);
+const heading = splitHeading(title);
+const chips = CHIPS_BY_GROUP[group];
+const trail = CRUMBS_BY_GROUP[group].map((crumb) => ({ label: t(crumb.labelKey), href: crumb.href }));
+const relatedCards = CARDS_BY_GROUP[group].filter((card) => card.href !== href);
+
+const currentOrNull = (chipHref: string) => {
+  if (chipHref === href) {
+    return "page";
+  } else {
+    return null;
+  }
+};
+---
+
+<Layout {meta} {lang}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
+  <section class="ks-container pb-14 pt-14">
+    <div class="mb-14 flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+      <Breadcrumb trail={trail} current={title} />
+      <nav aria-label={t("nav.types_aria")} class="flex flex-wrap gap-2">
+        {
+          chips.map((chip) => (
+            <a
+              href={localizePath(chip.href)}
+              aria-current={currentOrNull(chip.href)}
+              class="ks-chip min-h-11 px-[18px] text-[14px] no-underline aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-ground"
+            >
+              {t(chip.labelKey)}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+    <div class="flex flex-wrap items-end justify-between gap-x-16 gap-y-8">
+      <DisplayHeading
+        as="h1"
+        size="lg"
+        before={heading.before}
+        emphasis={heading.emphasis}
+        class="max-w-[900px]"
+      />
+      <div class="flex min-w-0 flex-[0_1_440px] flex-col gap-4 pb-2.5">
+        <h2 class="m-0 text-[22px] font-normal leading-[1.35]">{t(`${contentKey}.subtitle`)}</h2>
+        <p class="ks-text m-0">{t(`${contentKey}.description`)}</p>
+      </div>
+    </div>
+  </section>
+
+  <slot />
+
+  <section class="border-t border-line">
+    <div class="ks-container py-24">
+      <p class="ks-eyebrow m-0 mb-10"><span class="ks-eyebrow-index">(02)</span> {t("product.related")}</p>
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(min(420px,100%),1fr))] gap-x-6 gap-y-12">
+        {
+          relatedCards.map((card) => (
+            <a href={localizePath(card.href)} class="ks-card flex flex-col gap-[18px] text-inherit no-underline">
+              <div class="overflow-hidden">
+                <Image
+                  src={card.image}
+                  alt=""
+                  widths={[480, 720, 960]}
+                  sizes="(min-width: 1100px) 33vw, 100vw"
+                  loading="lazy"
+                  class="ks-rise block aspect-[16/10] w-full object-cover"
+                />
+              </div>
+              <div class="flex items-baseline justify-between gap-4">
+                <h3 class="m-0 font-display text-[30px] font-medium tracking-[-0.01em]">{t(card.labelKey)}</h3>
+                <span class="ks-link text-[14px] font-medium">{t("common.see")}</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Lightbox label={`${t("product.lightbox_prefix")}: ${title}`} />
+</Layout>

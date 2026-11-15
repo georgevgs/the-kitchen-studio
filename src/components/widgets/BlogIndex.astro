@@ -1,0 +1,75 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Layout from "~/layouts/PageLayout.astro";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import BlogCard from "~/components/BlogCard.astro";
+import { t, localizePath } from "~/i18n";
+import { formatDate, calculateReadingTime, getUrlSlug } from "~/utils/blog";
+import { splitHeading } from "~/utils/heading";
+import type { MetaSEO } from "~/types";
+
+export interface Props {
+  meta: MetaSEO;
+  canonicalURL: string;
+  lang: "EL" | "EN";
+  locale: string;
+  posts: CollectionEntry<"blog">[];
+}
+
+const { meta, canonicalURL, lang, locale, posts } = Astro.props;
+
+const [featuredPost, ...otherPosts] = posts;
+const heading = splitHeading(t("blog.index.title"));
+const countLabel = `${posts.length} ${t("blog.index.count")}`;
+const featuredReadingTime = calculateReadingTime(featuredPost.body ?? "");
+---
+
+<Layout {meta} {canonicalURL} {lang}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
+  <section class="ks-container pb-16 pt-14">
+    <Breadcrumb trail={[]} current={t("nav.blog")} class="mb-14" />
+    <DisplayHeading as="h1" size="lg" before={heading.before} emphasis={heading.emphasis} />
+    <div class="mt-8 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
+      <p class="ks-lead m-0 max-w-[560px]">{t("blog.index.subtitle")}</p>
+      <p class="ks-eyebrow m-0">{countLabel}</p>
+    </div>
+  </section>
+
+  <section aria-label={t("blog.index.latest_badge")} class="ks-container pb-24">
+    <a
+      href={localizePath(`/blog/${getUrlSlug(featuredPost)}`)}
+      class="ks-card flex flex-wrap items-center gap-x-16 gap-y-8 border-t border-ink-line pt-8 text-inherit no-underline"
+    >
+      <div class="min-w-0 flex-[3_1_560px] overflow-hidden bg-surface">
+        <img
+          src={featuredPost.data.image}
+          alt={featuredPost.data.title}
+          decoding="async"
+          class="ks-rise block aspect-[3/2] w-full object-cover"
+        />
+      </div>
+      <div class="flex min-w-0 flex-[2_1_320px] flex-col gap-5">
+        <p class="ks-eyebrow m-0">
+          <span class="ks-eyebrow-index">{t("blog.index.latest_badge")}</span>
+          · {formatDate(featuredPost.data.pubDate, locale)} · {featuredReadingTime} {t("blog.card.reading_time_unit")}
+        </p>
+        <h2 class="ks-display-sm m-0">{featuredPost.data.title}</h2>
+        <p class="ks-text m-0">{featuredPost.data.description}</p>
+        <span class="ks-link self-start text-[15px] font-medium">{t("blog.index.read_article")}</span>
+      </div>
+    </a>
+  </section>
+
+  <section aria-label={t("blog.index.latest_articles")} class="border-t border-line">
+    <div class="ks-container py-24">
+      <h2 class="ks-display-sm m-0 mb-12">{t("blog.index.latest_articles")}</h2>
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(min(380px,100%),1fr))] gap-x-6 gap-y-14">
+        {otherPosts.map((post) => <BlogCard post={post} locale={locale} isRelated={false} />)}
+      </div>
+    </div>
+  </section>
+</Layout>

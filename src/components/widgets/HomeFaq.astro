@@ -1,0 +1,30 @@
+---
+import Icon from "~/components/common/Icon.astro";
+import { t } from "~/i18n";
+
+const QUESTIONS = ["first_item", "second_item", "third_item", "fourth_item"];
+---
+
+<section class="border-t border-line">
+  <div class="ks-container flex flex-wrap gap-x-16 gap-y-8 py-24">
+    <div class="flex flex-[1_1_300px] flex-col gap-5">
+      <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">(06)</span> {t("home.faq.title")}</p>
+      <h2 class="ks-display-sm m-0">{t("home.faq.heading")}</h2>
+    </div>
+    <div class="ks-faq flex min-w-0 flex-[999_1_640px] flex-col border-t border-ink-line">
+      {
+        QUESTIONS.map((question) => (
+          <details>
+            <summary class="flex min-h-11 items-center justify-between gap-6 py-[22px] text-[19px]">
+              {t(`home.faq.items.${question}.question`)}
+              <span class="ks-plus inline-flex shrink-0"><Icon name="plus" size={20} /></span>
+            </summary>
+            <p class="m-0 mb-6 max-w-[620px] text-[16px] font-normal leading-[1.6] text-quiet">
+              {t(`home.faq.items.${question}.answer`)}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

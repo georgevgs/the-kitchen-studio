@@ -1,9 +1,6 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Carousel from "~/components/widgets/Carousel.astro";
-import PageDescription from "~/components/widgets/PageDescription.astro";
-import Spacer from "~/components/widgets/Spacer.astro";
-import Layout from "~/layouts/PageLayout.astro";
+import ShowroomPage from "~/components/widgets/ShowroomPage.astro";
 import { processImagesForCarousel } from "~/utils/images";
 
 changeLanguage("en");
@@ -16,16 +13,4 @@ const meta = {
 };
 ---
 
-<Layout meta={meta} lang={"EN"}>
-  <div class="content-container">
-    <PageDescription
-      title={t("pages.showroom.title")}
-      subtitle={t("pages.showroom.subtitle")}
-      description={t("pages.showroom.description")}
-    />
-
-    <Carousel images={images} widthType="normal" />
-  </div>
-
-  <Spacer />
-</Layout>
+<ShowroomPage {meta} lang="EN" {images} />

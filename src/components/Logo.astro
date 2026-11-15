@@ -2,20 +2,26 @@
 import { Image } from "astro:assets";
 import logoImage from "../assets/images/the-kitchen-studio-logo-header.avif";
 
+export interface Props {
+  placement: "header" | "menu" | "footer";
+}
+
+const LOADING_BY_PLACEMENT = { header: "eager", menu: "lazy", footer: "lazy" } as const;
+const PRIORITY_BY_PLACEMENT = { header: "high", menu: "auto", footer: "auto" } as const;
+const WIDTH_BY_PLACEMENT = { header: 144, menu: 110, footer: 240 } as const;
+const HEIGHT_BY_PLACEMENT = { header: 84, menu: 64, footer: 140 } as const;
+
 const { placement } = Astro.props;
-const isHeader = placement === "header";
 ---
 
-<span class="self-center ml-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
-  <Image
-    src={logoImage}
-    alt="the-kitchen-studio-logo"
-    height="73"
-    width="125"
-    densities={[1, 2, 3]}
-    class={`tks-logo-image ${placement} rounded-xl`}
-    format="avif"
-    loading={isHeader ? "eager" : "lazy"}
-    fetchpriority={isHeader ? "high" : "auto"}
-  /></span
->
+<Image
+  src={logoImage}
+  alt="The Kitchen Studio"
+  width={WIDTH_BY_PLACEMENT[placement]}
+  height={HEIGHT_BY_PLACEMENT[placement]}
+  densities={[1, 2, 3]}
+  class={`ks-logo ks-logo-${placement}`}
+  format="avif"
+  loading={LOADING_BY_PLACEMENT[placement]}
+  fetchpriority={PRIORITY_BY_PLACEMENT[placement]}
+/>

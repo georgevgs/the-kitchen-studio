@@ -1,9 +1,7 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Carousel from "../../../components/widgets/Carousel.astro";
-import PageDescription from "../../../components/widgets/PageDescription.astro";
-import Spacer from "../../../components/widgets/Spacer.astro";
-import Layout from "../../../layouts/PageLayout.astro";
+import ProductPage from "~/components/widgets/ProductPage.astro";
+import ProductGallery from "~/components/widgets/ProductGallery.astro";
 import { generateBreadcrumbSchema, generateServiceSchema } from "../../../utils/schema";
 import bathFurnituresImage from "../../../assets/images/bath/furniture/bath-furniture.avif";
 import bathFurnitures2Image from "../../../assets/images/bath/furniture/bath-furniture-2.avif";
@@ -43,18 +41,10 @@ const serviceSchema = generateServiceSchema({
 });
 ---
 
-<Layout meta={meta} lang={"EN"}>
+<ProductPage {meta} lang="EN" group="bath" contentKey="pages.bath.bath_furnitures" href="/bath/bath-furnitures">
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
-  <div class="content-container">
-    <PageDescription
-      title={t("pages.bath.bath_furnitures.title")}
-      subtitle={t("pages.bath.bath_furnitures.subtitle")}
-      description={t("pages.bath.bath_furnitures.description")}
-    />
-
-    <Carousel
-      images={[
+  <ProductGallery group="bath" title={t("pages.bath.bath_furnitures.title")} images={[
         {
           src: bathFurnituresImage,
           alt: "Bathroom furniture by The Kitchen Studio, photo 1",
@@ -119,11 +109,5 @@ const serviceSchema = generateServiceSchema({
           src: bathFurnitures15Image,
           alt: "Bathroom furniture by The Kitchen Studio, photo 16",
         },
-      ]}
-      widthType="normal"
-
-    />
-  </div>
-
-  <Spacer />
-</Layout>
+      ]} />
+</ProductPage>

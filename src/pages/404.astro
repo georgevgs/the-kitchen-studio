@@ -1,7 +1,6 @@
 ---
-import { t, changeLanguage } from "~/i18n";
-import Layout from "../layouts/BaseLayout.astro";
-import { localizePath } from "~/i18n";
+import { t, changeLanguage, localizePath } from "~/i18n";
+import Layout from "~/layouts/PageLayout.astro";
 
 changeLanguage("el");
 
@@ -11,84 +10,12 @@ const meta = {
 };
 ---
 
-<style>
-  body {
-    background-color: #f7f7f7;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-
-  .title {
-    font-size: 4em;
-    margin-bottom: 0.5em;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  p {
-    font-size: 1.5em;
-    text-align: center;
-  }
-
-  .animated-furniture {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 1em;
-    animation-name: bounce;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-
-  @keyframes bounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-
-
-  .back-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 4px;
-    background-color: #333;
-    color: white;
-    text-decoration: none;
-    margin-top: 1em;
-    transition: background-color 0.3s;
-  }
-
-  .back-btn:hover {
-    background-color: #555;
-  }
-</style>
-
-<Layout meta={meta}>
+<Layout meta={meta} footerCta={false}>
   <meta slot="head" name="robots" content="noindex, nofollow" />
-  <div class="flex items-center justify-center h-screen">
-    <div class="container text-center">
-      <h1 class="title">
-        <span class="text-accent">404</span> - Page Not Found
-      </h1>
-      <p>{t("not_found.title")}</p>
-      <div class="animated-furniture">
-        <span style="font-size: 120px;">☕️</span>
-      </div>
-      <p>{t("not_found.subtitle")}</p>
-      <a class="back-btn" href={localizePath('/')}>{t("not_found.button")}</a>
-    </div>
-  </div>
+  <section class="ks-container flex min-h-[60vh] flex-col justify-center gap-8 py-24">
+    <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">{t("not_found.code")}</span></p>
+    <h1 class="ks-display m-0 max-w-[900px]">{t("not_found.title")}</h1>
+    <p class="ks-lead m-0 max-w-[560px]">{t("not_found.subtitle")}</p>
+    <a href={localizePath("/")} class="ks-btn self-start">{t("not_found.button")}</a>
+  </section>
 </Layout>

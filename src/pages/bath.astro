@@ -1,9 +1,6 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Category from "../components/widgets/Category.astro";
-import PageDescription from "../components/widgets/PageDescription.astro";
-import Spacer from "../components/widgets/Spacer.astro";
-import Layout from "../layouts/PageLayout.astro";
+import HubPage from "~/components/widgets/HubPage.astro";
 import { localizePath } from "~/i18n";
 import { generateItemListSchema } from "../utils/schema";
 import bathFurnituresImage from "../assets/images/bath/furniture/bath-furniture-2.avif";
@@ -31,46 +28,14 @@ const bathListSchema = generateItemListSchema([
         image: corianBathroomImage,
     },
 ]);
+
+const rows = [
+  { text: t("pages.bath.bath_category.categories.text_bath_furnitures"), href: localizePath("/bath/bath-furnitures"), src: bathFurnituresImage, alt: "Custom bathroom furniture with modern vanity and storage solutions" },
+  { text: t("pages.bath.bath_category.categories.text_corian_bath"), href: localizePath("/bath/corian-bath"), src: corianBathroomImage, alt: "Corian bathroom sink and countertop with seamless integrated design" },
+  { text: t("pages.bath.bath_category.categories.text_karadimas"), href: "https://ikaradimas.gr", src: ioannisKaradimasImage, alt: "Ioannis Karadimas luxury bath collection showroom" },
+];
 ---
 
-<Layout meta={meta} lang={"EL"}>
+<HubPage {meta} lang="EL" group="bath" contentKey="pages.bath.bath_category" {rows}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(bathListSchema)} />
-  <div class="category-container">
-    <PageDescription
-      title={t("pages.bath.bath_category.title")}
-      subtitle={t("pages.bath.bath_category.subtitle")}
-      description={t("pages.bath.bath_category.description")}
-    />
-
-    <Category
-      categories={[
-        {
-          text: t("pages.bath.bath_category.categories.text_bath_furnitures"),
-          href: localizePath("/bath/bath-furnitures"),
-          src: bathFurnituresImage,
-          alt: "Custom bathroom furniture with modern vanity and storage solutions",
-        },
-        {
-          text: t("pages.bath.bath_category.categories.text_corian_bath"),
-          href: localizePath("/bath/corian-bath"),
-          src: corianBathroomImage,
-          alt: "Corian bathroom sink and countertop with seamless integrated design",
-        },
-      ]}
-      widecategory={false}
-    />
-    <Category
-      categories={[
-        {
-          text: t("pages.bath.bath_category.categories.text_karadimas"),
-          href: "https://ikaradimas.gr",
-          src: ioannisKaradimasImage,
-          alt: "Ioannis Karadimas luxury bath collection showroom",
-        },
-      ]}
-      widecategory={true}
-    />
-  </div>
-
-  <Spacer />
-</Layout>
+</HubPage>

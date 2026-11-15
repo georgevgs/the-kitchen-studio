@@ -1,9 +1,7 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Carousel from "../components/widgets/Carousel.astro";
-import PageDescription from "../components/widgets/PageDescription.astro";
-import Spacer from "../components/widgets/Spacer.astro";
-import Layout from "../layouts/PageLayout.astro";
+import ProductPage from "~/components/widgets/ProductPage.astro";
+import ProductGallery from "~/components/widgets/ProductGallery.astro";
 import tilesImage from "../assets/images/tiles/tile.avif";
 import tiles2Image from "../assets/images/tiles/tile-2.avif";
 import tiles3Image from "../assets/images/tiles/tile-3.avif";
@@ -34,16 +32,8 @@ const meta = {
 };
 ---
 
-<Layout meta={meta} lang={"EL"}>
-  <div class="content-container">
-    <PageDescription
-      title={t("pages.tiles.title")}
-      subtitle={t("pages.tiles.subtitle")}
-      description={t("pages.tiles.description")}
-    />
-
-    <Carousel
-      images={[
+<ProductPage {meta} lang="EL" group="products" contentKey="pages.tiles" href="/tiles">
+  <ProductGallery group="products" title={t("pages.tiles.title")} images={[
         {
           src: tilesImage,
           alt: "Premium floor and wall tile collection 1 - The Kitchen Studio",
@@ -128,11 +118,5 @@ const meta = {
           src: tiles21Image,
           alt: "Premium floor and wall tile collection 21 - The Kitchen Studio",
         },
-      ]}
-      widthType="normal"
-
-    />
-  </div>
-
-  <Spacer />
-</Layout>
+      ]} />
+</ProductPage>

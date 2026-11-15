@@ -1,9 +1,7 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Carousel from "../../components/widgets/Carousel.astro";
-import PageDescription from "../../components/widgets/PageDescription.astro";
-import Spacer from "../../components/widgets/Spacer.astro";
-import Layout from "../../layouts/PageLayout.astro";
+import ProductPage from "~/components/widgets/ProductPage.astro";
+import ProductGallery from "~/components/widgets/ProductGallery.astro";
 import { processImagesForCarousel } from "~/utils/images";
 
 changeLanguage("en");
@@ -16,16 +14,6 @@ const meta = {
 };
 ---
 
-<Layout meta={meta} lang={"EN"}>
-  <div class="content-container">
-    <PageDescription
-      title={t("pages.wardrobes.title")}
-      subtitle={t("pages.wardrobes.subtitle")}
-      description={t("pages.wardrobes.description")}
-    />
-
-    <Carousel images={images} widthType="normal" />
-  </div>
-
-  <Spacer />
-</Layout>
+<ProductPage {meta} lang="EN" group="products" contentKey="pages.wardrobes" href="/wardrobes">
+  <ProductGallery group="products" title={t("pages.wardrobes.title")} images={images} />
+</ProductPage>

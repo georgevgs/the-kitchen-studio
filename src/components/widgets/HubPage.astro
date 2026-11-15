@@ -1,0 +1,128 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import Layout from "~/layouts/PageLayout.astro";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import { t, localizePath } from "~/i18n";
+import type { MetaSEO } from "~/types";
+import showroomImage from "~/assets/images/showroom/showroom.avif";
+
+interface HubRow {
+  text: string;
+  href: string;
+  src: ImageMetadata;
+  alt: string;
+}
+
+export interface Props {
+  meta: MetaSEO;
+  lang: "EL" | "EN";
+  group: "kitchens" | "bath";
+  contentKey: string;
+  rows: HubRow[];
+}
+
+const ROW_KEYS = {
+  kitchens: ["modern", "classic", "corian"],
+  bath: ["furniture", "corian", "karadimas"],
+};
+
+const ROW_WRAP_CLASS = ["flex-wrap", "flex-wrap-reverse"];
+const LABEL_KEY_BY_EXTERNAL: Record<string, string> = {
+  true: "components.category.button_karadimas",
+  false: "components.category.button_more",
+};
+const TARGET_BY_EXTERNAL: Record<string, string | null> = { true: "_blank", false: null };
+const REL_BY_EXTERNAL: Record<string, string | null> = { true: "noopener noreferrer", false: null };
+
+const { meta, lang, group, contentKey, rows } = Astro.props;
+
+const rowKeys = ROW_KEYS[group];
+const isExternal = (href: string) => href.startsWith("https://");
+---
+
+<Layout {meta} {lang}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
+  <section class="ks-container pb-20 pt-14">
+    <Breadcrumb trail={[]} current={t(`hub.${group}.breadcrumb`)} class="mb-14" />
+    <div class="flex flex-wrap items-end justify-between gap-x-16 gap-y-8">
+      <DisplayHeading
+        as="h1"
+        size="xl"
+        before={t(`hub.${group}.title_lead`)}
+        emphasis={t(`hub.${group}.title_emphasis`)}
+        isSplitWord
+      />
+      <div class="flex min-w-0 flex-[0_1_460px] flex-col gap-4 pb-3">
+        <h2 class="m-0 text-[22px] font-normal leading-[1.35]">{t(`${contentKey}.subtitle`)}</h2>
+        <p class="ks-text m-0">{t(`${contentKey}.description`)}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ks-container flex flex-col gap-24 pb-28">
+    {
+      rows.map((row, index) => (
+        <a
+          href={localizePath(row.href)}
+          target={TARGET_BY_EXTERNAL[isExternal(row.href).toString()]}
+          rel={REL_BY_EXTERNAL[isExternal(row.href).toString()]}
+          class:list={[
+            "ks-card flex items-center gap-x-16 gap-y-8 border-t border-ink-line pt-8 text-inherit no-underline",
+            ROW_WRAP_CLASS[index % 2],
+          ]}
+        >
+          <div class="min-w-0 flex-[3_1_560px] overflow-hidden">
+            <Image
+              src={row.src}
+              alt={row.alt}
+              widths={[640, 960, 1280]}
+              sizes="(min-width: 1100px) 60vw, 100vw"
+              loading="lazy"
+              class="ks-rise block aspect-[3/2] w-full object-cover"
+            />
+          </div>
+          <div class="flex min-w-0 flex-[2_1_320px] flex-col gap-[18px]">
+            <span class="ks-italic-number text-[72px] text-brand">
+              {(index + 1).toString().padStart(2, "0")}
+            </span>
+            <h2 class="m-0 font-display text-[clamp(34px,3.6vw,52px)] font-medium leading-none tracking-[-0.015em]">
+              {row.text}
+            </h2>
+            <p class="ks-text m-0 max-w-[420px]">{t(`hub.${group}.rows.${rowKeys[index]}`)}</p>
+            <span class="ks-link self-start text-[15px] font-medium">{t(LABEL_KEY_BY_EXTERNAL[isExternal(row.href).toString()])}</span>
+          </div>
+        </a>
+      ))
+    }
+  </section>
+
+  <section class="bg-night text-night-ink">
+    <div class="ks-container flex flex-wrap items-stretch gap-x-16">
+      <Image
+        src={showroomImage}
+        alt={t("hub.showroom_alt")}
+        widths={[640, 960, 1280]}
+        sizes="(min-width: 1100px) 50vw, 100vw"
+        loading="lazy"
+        class="block aspect-[2/1] w-full min-w-0 flex-[1_1_520px] object-cover"
+      />
+      <div class="flex min-w-0 flex-[1_1_380px] flex-col justify-center gap-5 py-14">
+        <p class="m-0 text-[12px] uppercase tracking-[0.12em] text-night-quiet">{t("hub.showroom_eyebrow")}</p>
+        <DisplayHeading
+          as="h2"
+          size="sm"
+          before={t("hub.showroom_title")}
+          emphasis={t("hub.showroom_emphasis")}
+        />
+        <a href={localizePath("/showroom")} class="ks-link self-start text-[15px] font-medium">
+          {t("hub.showroom_link")}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

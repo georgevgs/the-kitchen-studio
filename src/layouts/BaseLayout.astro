@@ -1,5 +1,6 @@
 ---
 import "~/styles/globals.css";
+import "~/styles/fonts.css";
 import "~/assets/styles/base.css";
 import "~/assets/fontawesome/fontawesome-subset.css";
 
@@ -7,6 +8,7 @@ import MetaTags from "~/components/common/MetaTags.astro";
 import BasicScripts from "~/components/common/BasicScripts.astro";
 import type { MetaSEO } from "~/types";
 import { SITE } from "~/config";
+import { t } from "~/i18n";
 export interface Props {
   meta?: MetaSEO;
 }
@@ -16,30 +18,29 @@ const { textDirection = "ltr" } = SITE;
 
 // Derive the document language from the URL so /en/ pages get lang="en"
 // regardless of which layout rendered them.
-const isEnglish = Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/");
-const language = isEnglish ? "en" : "el";
+const language = Astro.currentLocale ?? "el";
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={language} dir={textDirection}>
   <head>
     <MetaTags {...meta} />
     <slot name="head" />
     <style is:inline>
       /* Critical CSS to prevent FOUC */
       html {
-        background-color: rgb(255 255 255);
+        background-color: #f3f2ee;
       }
       html.dark {
-        background-color: rgb(23 23 23);
+        background-color: #121211;
       }
       body {
-        background-color: rgb(255 255 255);
-        color: rgb(17 24 39);
+        background-color: #f3f2ee;
+        color: #151515;
       }
       html.dark body {
-        background-color: rgb(23 23 23);
-        color: rgb(229 229 229);
+        background-color: #121211;
+        color: #edebe6;
       }
     </style>
     <script is:inline data-cfasync="false">
@@ -54,29 +55,16 @@ const language = isEnglish ? "en" : "el";
       })();
     </script>
   </head>
-  <body class="antialiased text-page bg-light dark:text-neutral-300 tracking-tight dark:bg-dark min-h-screen">
+  <body class="antialiased bg-ground text-ink min-h-screen">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:shadow-lg focus:outline-none dark:focus:bg-neutral-800 dark:focus:text-white"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:px-5 focus:py-3 focus:bg-paper focus:text-ink focus:shadow-lg focus:outline-none"
     >
-      {isEnglish ? "Skip to main content" : "Μετάβαση στο κύριο περιεχόμενο"}
+      {t("common.skip_to_content")}
     </a>
     <slot />
 
-    <!-- Floating CTA -->
-    <a
-      href={isEnglish ? "/en/contact" : "/contact"}
-      class="floating-cta"
-      data-floating-cta
-      aria-label={isEnglish ? "Contact" : "Επικοινωνία"}
-    >
-      <i class="fa-solid fa-comment-dots"></i>
-    </a>
-
     <BasicScripts />
-    <script>
-      import "~/js/carousel.ts";
-    </script>
     <script>
       import "~/js/scroll-reveal.ts";
     </script>

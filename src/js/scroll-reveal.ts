@@ -1,7 +1,6 @@
 /**
  * Global scroll-reveal animation system
  * Elements with class "reveal-up" will fade in and slide up when scrolled into view.
- * Also handles the floating CTA visibility.
  */
 
 function initScrollReveal() {
@@ -29,23 +28,6 @@ function initScrollReveal() {
     );
 
     revealElements.forEach((el) => revealObserver.observe(el));
-  }
-
-  // Floating CTA - show after scrolling past first viewport
-  const floatingCta = document.querySelector<HTMLElement>('[data-floating-cta]');
-  if (floatingCta) {
-    const showThreshold = window.innerHeight * 0.8;
-
-    const handleScroll = () => {
-      if (window.scrollY > showThreshold) {
-        floatingCta.classList.add('visible');
-      } else {
-        floatingCta.classList.remove('visible');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial position
   }
 }
 

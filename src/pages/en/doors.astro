@@ -1,9 +1,7 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Carousel from "../../components/widgets/Carousel.astro";
-import PageDescription from "../../components/widgets/PageDescription.astro";
-import Spacer from "../../components/widgets/Spacer.astro";
-import Layout from "../../layouts/PageLayout.astro";
+import ProductPage from "~/components/widgets/ProductPage.astro";
+import ProductGallery from "~/components/widgets/ProductGallery.astro";
 import doorImage from "../../assets/images/doors/door.avif";
 import door2Image from "../../assets/images/doors/door-2.avif";
 import door3Image from "../../assets/images/doors/door-3.avif";
@@ -24,16 +22,8 @@ const meta = {
 };
 ---
 
-<Layout meta={meta} lang={"EN"}>
-  <div class="content-container">
-    <PageDescription
-      title={t("pages.doors.title")}
-      subtitle={t("pages.doors.subtitle")}
-      description={t("pages.doors.description")}
-    />
-
-    <Carousel
-      images={[
+<ProductPage {meta} lang="EN" group="products" contentKey="pages.doors" href="/doors">
+  <ProductGallery group="products" title={t("pages.doors.title")} images={[
         {
           src: doorImage,
           alt: "doors",
@@ -78,11 +68,5 @@ const meta = {
           src: door11Image,
           alt: "doors",
         },
-      ]}
-      widthType="normal"
-     
-    />
-  </div>
-
-  <Spacer />
-</Layout>
+      ]} />
+</ProductPage>

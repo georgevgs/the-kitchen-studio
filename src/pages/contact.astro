@@ -1,12 +1,10 @@
 ---
-import { t, changeLanguage } from "~/i18n";
-import { localizePath } from "~/i18n";
-import Layout from "../layouts/PageLayoutMinimal.astro";
+import { changeLanguage } from "~/i18n";
+import ContactPage from "~/components/widgets/ContactPage.astro";
 import { generateContactPageSchema } from "../utils/schema";
 
 changeLanguage("el");
 
-const lang = "EL";
 const meta = {
   title: "Επικοινωνία",
   description: "Επικοινωνήστε με το The Kitchen Studio στη Γλυφάδα: τηλέφωνο 210 8981423, Γρηγορίου Λαμπράκη 28. Κλείστε ραντεβού για δωρεάν μελέτη κουζίνας.",
@@ -15,146 +13,8 @@ const meta = {
 const contactPageSchema = generateContactPageSchema("el");
 ---
 
-<Layout meta={meta} lang={lang}>
+<ContactPage {meta} lang="EL">
   <link rel="preconnect" href="https://maps.googleapis.com" crossorigin slot="head" />
   <link rel="preconnect" href="https://maps.gstatic.com" crossorigin slot="head" />
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(contactPageSchema)} />
-  <section class="contact-form">
-    <div class="container mx-auto p-8 max-w-3xl">
-      <h1 class="text-primary dark:text-accent text-4xl font-bold mb-8 text-center">Επικοινωνήστε μαζί μας</h1>
-      <form
-        action="https://formspree.io/f/xzzppyrb"
-        method="POST"
-        id="contact-form"
-        name="contact"
-        aria-label="Φόρμα Επικοινωνίας"
-        novalidate
-        class="bg-white dark:bg-neutral-900 rounded-lg shadow-md p-6">
-        <div id="form-inputs">
-          <input type="hidden" name="form-name" value="contact" />
-          <div class="mb-4 hidden">
-            <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="person-title">
-              {t("contact.title")}
-            </label>
-            <input
-              id="person-title"
-              name="person-title"
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="name">
-              {t("contact.name")}
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black transition-colors aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-200 dark:aria-[invalid=true]:ring-red-900"
-              id="name"
-              type="text"
-              name="name"
-              required
-              aria-required="true"
-              aria-describedby="name-error"
-            />
-            <p id="name-error" class="hidden text-red-500 text-xs mt-1" role="alert"></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="email">
-              {t("contact.email")}
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black transition-colors aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-200 dark:aria-[invalid=true]:ring-red-900"
-              id="email"
-              type="email"
-              name="email"
-              required
-              aria-required="true"
-              aria-describedby="email-error"
-            />
-            <p id="email-error" class="hidden text-red-500 text-xs mt-1" role="alert"></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="message">
-              {t("contact.message")}
-            </label>
-            <textarea
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:text-black transition-colors aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-200 dark:aria-[invalid=true]:ring-red-900"
-              id="message"
-              name="message"
-              required
-              aria-required="true"
-              aria-describedby="message-error"
-            ></textarea>
-            <p id="message-error" class="hidden text-red-500 text-xs mt-1" role="alert"></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
-              <input type="checkbox" name="terms" id="terms" class="rounded" required aria-required="true" />
-              {t("contact.terms_a")}
-              <a href={localizePath("/privacy")} target="_blank" class="text-accent">
-                {t("contact.terms_b")}
-              </a>
-            </label>
-          </div>
-          <div class="flex items-center justify-between">
-            <button
-              id="submit-btn"
-              class="bg-accent hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit">
-              <span id="submit-text">{t("contact.send")}</span>
-              <span id="submit-loading" class="hidden" aria-live="polite">Αποστολή...</span>
-            </button>
-          </div>
-        </div>
-        <div class="hidden" id="success-message">
-          <p class="text-center text-green-500">Το μήνυμά σας στάλθηκε επιτυχώς!</p>
-        </div>
-      </form>
-    </div>
-  </section>
-  <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
-  <section class="contact-details">
-    <div class="grid md:grid-cols-2 grid-cols-1 gap-4 mx-auto p-8 max-w-4xl">
-      <div class="pl-4 pr-4 mb-4 md:mb-0 md:justify-self-start">
-        <p class="font-bold text-2xl">{t("site.title")}</p>
-        <p class="font-bold text-lg">
-          {t("contact.email")} : <a href="mailto:info@thekitchenstudio.gr" class="text-accent"
-            ><span class="blockspam invisible" aria-hidden="true">Hello!</span>
-            info@<!-- sdfjsdhfkjypcs --> thekitchenstudio.gr</a
-          >
-        </p>
-        <p class="font-bold text-lg">
-          {t("contact.phone")} : <a href="tel:+302108981423" class="text-accent">210 8981423</a>
-        </p>
-        <p class="font-bold text-lg">{t("contact.address")}</p>
-        <p class="font-bold text-lg">{t("contact.city")}</p>
-        <p class="font-bold text-lg">166 74</p>
-      </div>
-      <div class="pl-4 pr-4 md:justify-self-end">
-        <p class="font-bold text-2xl">{t("contact.working_hours")}</p>
-        <p class="font-bold text-lg">
-          {t("contact.mon_wed_sat")}: <br /><span class="text-accent">10:00 - 14:00</span>
-        </p>
-        <p class="font-bold text-lg">
-          {t("contact.tue_thu_fri")}: <br /><span class="text-accent">10:00 - 14:00 & 17:30 - 20:30</span>
-        </p>
-      </div>
-    </div>
-  </section>
-  <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
-  <section class="map">
-    <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mx-auto p-8 max-w-full justify-center items-center">
-      <div class="h-96 w-full md:max-h-[500px]">
-        <iframe
-          class="w-full h-full"
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12599.46668416214!2d23.7539803!3d37.86341!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bfd2351a4041%3A0xae265f67cd7f7a72!2sThe%20Kitchen%20Studio!5e0!3m2!1sen!2sgr!4v1685711084495!5m2!1sen!2sgr"
-          style="border:0; -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </section>
-</Layout>
-
-<script src="../js/contact.ts"></script>
+</ContactPage>

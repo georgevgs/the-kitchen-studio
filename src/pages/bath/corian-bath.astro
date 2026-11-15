@@ -1,9 +1,7 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Carousel from "../../components/widgets/Carousel.astro";
-import PageDescription from "../../components/widgets/PageDescription.astro";
-import Spacer from "../../components/widgets/Spacer.astro";
-import Layout from "../../layouts/PageLayout.astro";
+import ProductPage from "~/components/widgets/ProductPage.astro";
+import ProductGallery from "~/components/widgets/ProductGallery.astro";
 import { generateBreadcrumbSchema, generateServiceSchema } from "../../utils/schema";
 import corianBathroomSinkImage from "../../assets/images/bath/corian/corian-bathroom-sink.avif";
 import corianBathroomSink2Image from "../../assets/images/bath/corian/corian-bathroom-sink-2.avif";
@@ -34,18 +32,10 @@ const serviceSchema = generateServiceSchema({
 });
 ---
 
-<Layout meta={meta} lang={"EL"}>
+<ProductPage {meta} lang="EL" group="bath" contentKey="pages.bath.corian_bath" href="/bath/corian-bath">
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
-  <div class="content-container">
-    <PageDescription
-      title={t("pages.bath.corian_bath.title")}
-      subtitle={t("pages.bath.corian_bath.subtitle")}
-      description={t("pages.bath.corian_bath.description")}
-    />
-
-    <Carousel
-      images={[
+  <ProductGallery group="bath" title={t("pages.bath.corian_bath.title")} images={[
         {
           src: corianBathroomSinkImage,
           alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 1",
@@ -74,11 +64,5 @@ const serviceSchema = generateServiceSchema({
           src: corianBathroomSink7Image,
           alt: "Νεροχύτης Corian μπάνιου The Kitchen Studio, φωτογραφία 7",
         },
-      ]}
-      widthType="normal"
-
-    />
-  </div>
-
-  <Spacer />
-</Layout>
+      ]} />
+</ProductPage>

@@ -1,9 +1,7 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Carousel from "../../components/widgets/Carousel.astro";
-import PageDescription from "../../components/widgets/PageDescription.astro";
-import Spacer from "../../components/widgets/Spacer.astro";
-import Layout from "../../layouts/PageLayout.astro";
+import ProductPage from "~/components/widgets/ProductPage.astro";
+import ProductGallery from "~/components/widgets/ProductGallery.astro";
 import livingImage from "../../assets/images/living/living.avif";
 import living2Image from "../../assets/images/living/living-2.avif";
 import living3Image from "../../assets/images/living/living-3.avif";
@@ -27,16 +25,8 @@ const meta = {
 };
 ---
 
-<Layout meta={meta} lang={"EN"}>
-  <div class="content-container">
-    <PageDescription
-      title={t("pages.living.title")}
-      subtitle={t("pages.living.subtitle")}
-      description={t("pages.living.description")}
-    />
-
-    <Carousel
-      images={[
+<ProductPage {meta} lang="EN" group="products" contentKey="pages.living" href="/living">
+  <ProductGallery group="products" title={t("pages.living.title")} images={[
         {
           src: livingImage,
           alt: "living-furnitures",
@@ -93,11 +83,5 @@ const meta = {
           src: living14Image,
           alt: "living-furnitures",
         },
-      ]}
-      widthType="normal"
-     
-    />
-  </div>
-
-  <Spacer />
-</Layout>
+      ]} />
+</ProductPage>

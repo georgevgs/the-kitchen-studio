@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import { t, localizePath } from "~/i18n";
+import kitchensImage from "~/assets/images/kitchens/modern/modern-kitchen.avif";
+import bathImage from "~/assets/images/bath/furniture/bath-furniture-2.avif";
+import tilesImage from "~/assets/images/tiles/tile-2.avif";
+import wardrobesImage from "~/assets/images/wardrobes/wardrobe-2.avif";
+import doorsImage from "~/assets/images/doors/door-2.avif";
+import livingImage from "~/assets/images/living/living-2.avif";
+
+const SERVICES = [
+  { key: "kitchens", href: "/kitchens", image: kitchensImage },
+  { key: "bath", href: "/bath", image: bathImage },
+  { key: "tiles", href: "/tiles", image: tilesImage },
+  { key: "wardrobes", href: "/wardrobes", image: wardrobesImage },
+  { key: "doors", href: "/doors", image: doorsImage },
+  { key: "living", href: "/living", image: livingImage },
+];
+---
+
+<section id="services" class="ks-container pb-[104px] pt-28">
+  <div class="mb-12 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+    <div class="flex flex-col gap-5">
+      <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">(01)</span> {t("home.services.eyebrow")}</p>
+      <DisplayHeading as="h2" size="display" before="" emphasis={t("home.services.title")} />
+    </div>
+    <p class="ks-text m-0 max-w-[380px]">{t("home.services.intro")}</p>
+  </div>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(340px,100%),1fr))] gap-x-6 gap-y-14">
+    {
+      SERVICES.map((service, index) => (
+        <a href={localizePath(service.href)} class="ks-card flex flex-col gap-4 text-inherit no-underline">
+          <div class="overflow-hidden">
+            <Image
+              src={service.image}
+              alt={t(`home.services.items.${service.key}.alt`)}
+              widths={[480, 720, 960]}
+              sizes="(min-width: 1440px) 450px, (min-width: 768px) 33vw, 100vw"
+              loading="lazy"
+              class="ks-rise block aspect-[3/2] w-full object-cover"
+            />
+          </div>
+          <div class="flex items-baseline justify-between gap-4">
+            <h3 class="m-0 font-display text-[26px] font-medium tracking-[-0.01em]">
+              {t(`home.services.items.${service.key}.title`)}
+            </h3>
+            <span class="text-[12px] text-quiet">{(index + 1).toString().padStart(2, "0")}</span>
+          </div>
+          <p class="m-0 text-[15px] font-normal leading-[1.55] text-quiet">
+            {t(`home.services.items.${service.key}.description`)}
+          </p>
+        </a>
+      ))
+    }
+  </div>
+</section>

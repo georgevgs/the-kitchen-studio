@@ -1,0 +1,112 @@
+---
+import { Image } from "astro:assets";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import { t, localizePath } from "~/i18n";
+import projectOne from "~/assets/images/erga/erga-55.avif";
+import projectTwo from "~/assets/images/erga/erga-53.avif";
+import projectThree from "~/assets/images/erga/erga-27.avif";
+import projectFour from "~/assets/images/erga/erga-56.avif";
+import projectFive from "~/assets/images/erga/erga.avif";
+import projectSix from "~/assets/images/erga/erga-6.avif";
+
+const photoLabel = t("common.photo");
+const altFor = (position: number) => `${t("home.projects.alt")}, ${photoLabel} ${position}`;
+
+const IMAGE_SIZES = "(min-width: 1100px) 33vw, 100vw";
+const IMAGE_WIDTHS = [480, 720, 960];
+---
+
+<section id="projects" class="ks-container pb-[104px]">
+  <div
+    class="mb-12 flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-t border-line pt-24"
+  >
+    <div class="flex flex-col gap-5">
+      <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">(03)</span> {t("home.projects.eyebrow")}</p>
+      <DisplayHeading
+        as="h2"
+        size="display"
+        before={t("home.projects.title")}
+        emphasis={t("home.projects.title_emphasis")}
+        after={t("home.projects.title_after")}
+      />
+    </div>
+    <a href={localizePath("/erga")} class="ks-link text-[16px] font-medium">{t("home.projects.cta")}</a>
+  </div>
+  <div class="flex flex-col gap-6">
+    <div class="flex flex-wrap gap-6">
+      <a
+        href={localizePath("/erga")}
+        class="ks-card relative block min-w-0 flex-[2_1_560px] overflow-hidden"
+      >
+        <Image
+          src={projectOne}
+          alt={altFor(1)}
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1100px) 60vw, 100vw"
+          loading="lazy"
+          class="ks-rise block aspect-[16/10] w-full object-cover"
+        />
+      </a>
+      <div class="flex min-w-0 flex-[1_1_300px] flex-col gap-6">
+        <a
+          href={localizePath("/erga")}
+          class="ks-card relative block min-h-[220px] flex-[1_1_220px] overflow-hidden"
+        >
+          <Image
+            src={projectTwo}
+            alt={altFor(2)}
+            widths={IMAGE_WIDTHS}
+            sizes={IMAGE_SIZES}
+            loading="lazy"
+            class="ks-rise absolute inset-0 h-full w-full object-cover"
+          />
+        </a>
+        <a
+          href={localizePath("/erga")}
+          class="ks-card relative block min-h-[220px] flex-[1_1_220px] overflow-hidden"
+        >
+          <Image
+            src={projectThree}
+            alt={altFor(3)}
+            widths={IMAGE_WIDTHS}
+            sizes={IMAGE_SIZES}
+            loading="lazy"
+            class="ks-rise absolute inset-0 h-full w-full object-cover"
+          />
+        </a>
+      </div>
+    </div>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-6">
+      <a href={localizePath("/erga")} class="ks-card block overflow-hidden">
+        <Image
+          src={projectFour}
+          alt={altFor(4)}
+          widths={IMAGE_WIDTHS}
+          sizes={IMAGE_SIZES}
+          loading="lazy"
+          class="ks-rise block aspect-[4/3] w-full object-cover"
+        />
+      </a>
+      <a href={localizePath("/erga")} class="ks-card block overflow-hidden">
+        <Image
+          src={projectFive}
+          alt={altFor(5)}
+          widths={IMAGE_WIDTHS}
+          sizes={IMAGE_SIZES}
+          loading="lazy"
+          class="ks-rise block aspect-[4/3] w-full object-cover"
+        />
+      </a>
+      <a href={localizePath("/erga")} class="ks-card block overflow-hidden">
+        <Image
+          src={projectSix}
+          alt={altFor(6)}
+          widths={IMAGE_WIDTHS}
+          sizes={IMAGE_SIZES}
+          loading="lazy"
+          class="ks-rise block aspect-[4/3] w-full object-cover"
+        />
+      </a>
+    </div>
+  </div>
+</section>

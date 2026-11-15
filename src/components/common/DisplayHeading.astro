@@ -1,0 +1,30 @@
+---
+export interface Props {
+  as: "h1" | "h2" | "h3";
+  size: "hero" | "xl" | "lg" | "display" | "md" | "sm";
+  before: string;
+  emphasis: string;
+  after?: string;
+  isSplitWord?: boolean;
+  class?: string;
+}
+
+const SIZE_CLASS = {
+  hero: "ks-hero-title",
+  xl: "ks-title-xl",
+  lg: "ks-title-lg",
+  display: "ks-display",
+  md: "ks-display-md",
+  sm: "ks-display-sm",
+};
+
+const { as: Tag, size, before, emphasis, after = "", isSplitWord = false, class: extraClass = "" } = Astro.props;
+
+const joinerByFlag: Record<string, string> = { true: "", false: " " };
+const trailerByFlag: Record<string, string> = { true: ` ${after}`, false: "" };
+
+const joiner = joinerByFlag[isSplitWord.toString()];
+const trailer = trailerByFlag[("" !== after).toString()];
+---
+
+<Tag class:list={["m-0", SIZE_CLASS[size], extraClass]}>{before}{joiner}<em>{emphasis}</em>{trailer}</Tag>

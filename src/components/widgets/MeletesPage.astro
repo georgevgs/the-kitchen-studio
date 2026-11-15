@@ -1,0 +1,87 @@
+---
+import type { ImageMetadata } from "astro";
+import Layout from "~/layouts/PageLayout.astro";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import Icon from "~/components/common/Icon.astro";
+import Lightbox from "~/components/widgets/Lightbox.astro";
+import LightboxTrigger from "~/components/widgets/LightboxTrigger.astro";
+import { t, localizePath } from "~/i18n";
+import type { MetaSEO } from "~/types";
+
+interface PhotoSource {
+  src: ImageMetadata;
+  alt: string;
+}
+
+export interface Props {
+  meta: MetaSEO;
+  lang: "EL" | "EN";
+  images: PhotoSource[];
+}
+
+const { meta, lang, images } = Astro.props;
+---
+
+<Layout {meta} {lang} footerCta={false}>
+  <section class="border-b border-line bg-ground ks-drafting-grid">
+    <div class="ks-container pb-24 pt-14">
+      <Breadcrumb trail={[]} current={t("pages.meletes.title")} class="mb-14" />
+      <div class="flex flex-wrap items-end justify-between gap-x-16 gap-y-8">
+        <div class="flex flex-col gap-[18px]">
+          <p class="m-0 text-[12px] uppercase tracking-[0.14em] text-brand">{t("pages.meletes.subtitle")}</p>
+          <DisplayHeading
+            as="h1"
+            size="xl"
+            before={t("pages.meletes.title_lead")}
+            emphasis={t("pages.meletes.title_emphasis")}
+            isSplitWord
+          />
+        </div>
+        <p class="ks-lead m-0 flex-[0_1_460px] pb-3">{t("pages.meletes.description")}</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label={t("meletes_page.gallery_aria")} class="ks-container py-[104px]">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+      <h2 class="ks-display-sm m-0">
+        {t("pages.meletes.title")}
+        <sup class="text-[14px] tracking-normal text-brand">{images.length}</sup>
+      </h2>
+      <p class="ks-eyebrow m-0">{t("common.click_to_zoom")}</p>
+    </div>
+    <div class="columns-1 gap-6 sm:columns-2 lg:columns-3">
+      {
+        images.map((image, index) => (
+          <LightboxTrigger
+            image={image}
+            position={index + 1}
+            sizes="(min-width: 1024px) 31vw, (min-width: 640px) 48vw, 100vw"
+            imageClass="h-auto w-full"
+            class="mb-6 w-full break-inside-avoid"
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-night text-night-ink">
+    <div class="ks-container flex flex-wrap items-center justify-between gap-x-16 gap-y-8 py-[88px]">
+      <DisplayHeading
+        as="h2"
+        size="md"
+        before={t("meletes_page.band_before")}
+        emphasis={t("meletes_page.band_emphasis")}
+        after={t("meletes_page.band_after")}
+        class="max-w-[760px]"
+      />
+      <a href={localizePath("/contact")} class="ks-btn">
+        {t("meletes_page.band_button")}
+        <Icon name="arrow-right" size={18} />
+      </a>
+    </div>
+  </section>
+
+  <Lightbox label={`${t("common.photos")}: ${t("pages.meletes.title")}`} />
+</Layout>

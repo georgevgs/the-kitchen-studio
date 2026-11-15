@@ -1,9 +1,7 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Carousel from "../../components/widgets/Carousel.astro";
-import PageDescription from "../../components/widgets/PageDescription.astro";
-import Spacer from "../../components/widgets/Spacer.astro";
-import Layout from "../../layouts/PageLayout.astro";
+import ProductPage from "~/components/widgets/ProductPage.astro";
+import ProductGallery from "~/components/widgets/ProductGallery.astro";
 import { generateBreadcrumbSchema, generateServiceSchema } from "../../utils/schema";
 import classicKitchenImage from "../../assets/images/kitchens/classic/classic-kitchen.avif";
 import classicKitchen2Image from "../../assets/images/kitchens/classic/classic-kitchen-2.avif";
@@ -44,18 +42,10 @@ const serviceSchema = generateServiceSchema({
 });
 ---
 
-<Layout meta={meta} lang={"EL"}>
+<ProductPage {meta} lang="EL" group="kitchens" contentKey="pages.kitchens.classic_kitchens" href="/kitchens/classic-kitchens">
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
-  <div class="content-container">
-    <PageDescription
-      title={t("pages.kitchens.classic_kitchens.title")}
-      subtitle={t("pages.kitchens.classic_kitchens.subtitle")}
-      description={t("pages.kitchens.classic_kitchens.description")}
-    />
-
-    <Carousel
-      images={[
+  <ProductGallery group="kitchens" title={t("pages.kitchens.classic_kitchens.title")} images={[
         {
           src: classicKitchenImage,
           alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 1",
@@ -124,11 +114,5 @@ const serviceSchema = generateServiceSchema({
           src: classicKitchen17Image,
           alt: "Κλασική κουζίνα The Kitchen Studio, φωτογραφία 17",
         },
-      ]}
-      widthType="normal"
-
-    />
-  </div>
-
-  <Spacer />
-</Layout>
+      ]} />
+</ProductPage>

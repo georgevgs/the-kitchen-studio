@@ -1,42 +1,85 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
-import type { MetaSEO } from "~/types";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import { t, localizePath, changeLanguage, LOCALES, DEFAULT_LOCALE } from "~/i18n";
 
-export interface Props {
-  meta: MetaSEO;
-  canonicalURL?: string;
-  lang?: "EN" | "EL";
+interface PageHeading {
+  depth: number;
+  slug: string;
+  text: string;
 }
 
-const { meta, canonicalURL, lang } = Astro.props;
+export interface Props {
+  frontmatter: { title: string };
+  headings: PageHeading[];
+}
+
+const LEGAL_LINKS = [
+  { labelKey: "footer.privacy", href: "/privacy" },
+  { labelKey: "footer.terms", href: "/terms" },
+];
+
+const { frontmatter, headings } = Astro.props;
+
+// Markdown pages have no frontmatter script, so the build-time language is set from the route here
+changeLanguage(LOCALES.find((locale) => locale === Astro.currentLocale) ?? DEFAULT_LOCALE);
+
+const pathname = Astro.url.pathname.replace(/\/$/, "");
+const sections = headings.filter((item) => 2 === item.depth);
+
+const currentOrNull = (href: string) => {
+  if (localizePath(href) === pathname) {
+    return "page";
+  } else {
+    return null;
+  }
+};
 ---
 
-<Layout {meta} {canonicalURL} {lang}>
-  <!-- Pass through any structured data to the MetaTags component -->
-  <Fragment slot="head">
-    <slot name="head" />
-  </Fragment>
+<Layout footerCta={false}>
+  <section class="ks-container pb-14 pt-14">
+    <div class="mb-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+      <Breadcrumb trail={[]} current={frontmatter.title} />
+      <nav aria-label={t("legal.tabs_aria")} class="flex flex-wrap gap-2">
+        {
+          LEGAL_LINKS.map((link) => (
+            <a
+              href={localizePath(link.href)}
+              aria-current={currentOrNull(link.href)}
+              class="ks-chip min-h-11 px-[18px] text-[14px] no-underline aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-ground"
+            >
+              {t(link.labelKey)}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+    <h1 class="ks-display m-0">{frontmatter.title}</h1>
+  </section>
 
-  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
-    <div class="fadeIn animate-slide-up">
+  <section class="ks-container flex flex-wrap gap-x-16 gap-y-10 pb-[104px]">
+    <nav
+      aria-label={t("legal.sections_aria")}
+      class="flex-[1_1_240px] self-start md:sticky md:top-28 md:max-w-[300px]"
+    >
+      <ol class="ks-rows m-0 list-none p-0">
+        {
+          sections.map((section, index) => (
+            <li>
+              <a
+                href={`#${section.slug}`}
+                class="grid grid-cols-[32px_minmax(0,1fr)] gap-2 py-3 text-[15px] leading-[1.4] text-inherit no-underline"
+              >
+                <span class="text-[12px] text-quiet">{(index + 1).toString().padStart(2, "0")}</span>
+                {section.text}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+    <div class="ks-prose ks-prose-numbered min-w-0 max-w-[760px] flex-[999_1_560px]">
       <slot />
     </div>
   </section>
 </Layout>
-
-<style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .fadeIn {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-</style>

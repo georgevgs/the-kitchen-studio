@@ -1,237 +1,387 @@
 ---
-import Logo from "../../components/Logo.astro";
-import ToggleTheme from "../../components/common/ToggleTheme.astro";
-import ToggleMenu from "../../components/common/ToggleMenu.astro";
-import ToggleLanguage from "../common/ToggleLanguage.astro";
-
-import { localizePath } from "~/i18n";
-
-interface Link {
-  text?: string;
-  href?: string;
-  ariaLabel?: string;
-  icon?: string;
-  links?: Array<Link>;
-  newtab?: boolean;
-}
-
-interface ActionLink extends Link {
-  type?: string;
-}
-
-interface MenuLink extends Link {
-  links?: Array<Link>;
-}
+import { Image } from "astro:assets";
+import Logo from "~/components/Logo.astro";
+import Icon from "~/components/common/Icon.astro";
+import ToggleTheme from "~/components/common/ToggleTheme.astro";
+import ToggleLanguage from "~/components/common/ToggleLanguage.astro";
+import { t, localizePath } from "~/i18n";
+import {
+  BUSINESS,
+  KITCHEN_CARDS,
+  PRODUCT_CARDS,
+  PLAIN_LINKS,
+  KITCHEN_CHIPS,
+  PRODUCT_CHIPS,
+} from "~/data";
 
 export interface Props {
-  links?: Array<MenuLink>;
-  actions?: Array<ActionLink>;
-  isSticky?: boolean;
-  showToggleTheme?: boolean;
-  position?: string;
+  tone: "light" | "overlay";
 }
 
-const {
-  links = [],
-  actions = [],
-  isSticky = false,
-  showToggleTheme = false,
-  position = "center",
-} = Astro.props;
+const { tone } = Astro.props;
+
+const INITIAL_SOLID = { light: "true", overlay: "false" };
+const WRAPPER_CLASS = { light: "", overlay: "h-0" };
+
+const pathname = Astro.url.pathname.replace(/\/$/, "");
+
+const isActiveLink = (href: string) => {
+  const target = localizePath(href);
+
+  return pathname === target || pathname.startsWith(`${target}/`);
+};
+
+const currentOrNull = (href: string) => {
+  if (isActiveLink(href)) {
+    return "page";
+  } else {
+    return null;
+  }
+};
+
+const isKitchensActive = isActiveLink("/kitchens");
+const isProductsActive = PRODUCT_CARDS.some((card) => isActiveLink(card.href));
+
+const navItemClass =
+  "ks-nav-item inline-flex min-h-11 items-center gap-1.5 px-3 text-[16px] text-inherit no-underline";
 ---
 
-<header
-  class:list={[
-    { sticky: isSticky, relative: !isSticky },
-    "top-0 z-40 flex-none mx-auto w-full transition-all ease-in duration-100",
-  ]}
-  id="header"
-  data-header
->
-  <div
-    class="py-3 px-3 md:py-3.5 md:px-4 mx-auto w-full md:flex md:justify-between max-w-screen-xl"
+<div class:list={["sticky top-0 z-50", WRAPPER_CLASS[tone]]}>
+  <header
+    class="ks-header relative"
+    data-header
+    data-tone={tone}
+    data-solid={INITIAL_SOLID[tone]}
+    data-scrolled="false"
   >
-    <div
-      class:list={[{ "mr-auto": position === "right" }, "flex justify-between"]}
-    >
-      <a class="flex items-center" href={localizePath("/")}>
+    <div class="ks-header-bar ks-container flex items-center justify-between gap-x-6 gap-y-3">
+      <a
+        href={localizePath("/")}
+        aria-label={t("nav.home_aria")}
+        class="flex min-h-11 items-center text-inherit"
+      >
         <Logo placement="header" />
       </a>
-      <div class="flex items-center md:hidden">
-        <ToggleLanguage iconClass="w-5 h-5" />
-        <ToggleTheme />
-        <ToggleMenu />
-      </div>
-    </div>
-    <nav
-      id="main-nav"
-      class="items-center w-full md:w-auto hidden md:flex dark:text-neutral-200 h-[calc(100vh-72px)] md:h-auto overflow-y-auto md:overflow-visible md:mx-5 bg-white dark:bg-neutral-900 md:bg-transparent md:dark:bg-transparent"
-      aria-label="Main navigation"
-    >
-      <ul
-        class="flex flex-col pt-8 md:pt-0 md:flex-row md:self-center w-full md:w-auto text-xl md:text-base"
-      >
+
+      <nav aria-label={t("nav.main_aria")} class="hidden items-center gap-0.5 desk:flex">
+        <button
+          type="button"
+          class={navItemClass}
+          aria-expanded="false"
+          aria-controls="mega-kitchens"
+          data-mega-toggle="kitchens"
+          data-active={isKitchensActive.toString()}
+        >
+          <span>{t("nav.kitchens")}</span>
+          <span class="ks-chevron"><Icon name="chevron-down" size={14} /></span>
+        </button>
+        <button
+          type="button"
+          class={navItemClass}
+          aria-expanded="false"
+          aria-controls="mega-products"
+          data-mega-toggle="products"
+          data-active={isProductsActive.toString()}
+        >
+          <span>{t("nav.products")}</span>
+          <span class="ks-chevron"><Icon name="chevron-down" size={14} /></span>
+        </button>
         {
-          links.map(({ text, href, links, newtab }) => (
-            <li
-              class="md:dark:hover:bg-gray-700 md:hover:bg-gray-100 rounded-lg"
-              class:list={[{ dropdown: links?.length }]}
+          PLAIN_LINKS.map((link) => (
+            <a
+              href={localizePath(link.href)}
+              class={navItemClass}
+              aria-current={currentOrNull(link.href)}
             >
-              {links?.length ? (
-                <>
-                  <button
-                    class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-controls={`dropdown-${text?.replace(/\s+/g, "-").toLowerCase()}`}
-                  >
-                    {text} <i class="fa-solid fa-chevron-down ml-1" aria-hidden="true" />
-                  </button>
-                  <ul
-                    id={`dropdown-${text?.replace(/\s+/g, "-").toLowerCase()}`}
-                    role="menu"
-                    class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 dark:md:bg-neutral-800/95 md:min-w-[200px] drop-shadow-xl"
-                  >
-                    {links.map(
-                      ({
-                        text: text2,
-                        href: href2,
-                        links: subLinks,
-                        newtab: newtab2,
-                      }) => (
-                        <li
-                          class="md:dark:hover:bg-gray-700 md:hover:bg-gray-100 rounded-lg"
-                          class:list={[
-                            { dropdown: subLinks?.length },
-                            "relative",
-                          ]}
-                        >
-                          {subLinks?.length ? (
-                            <>
-                              <button
-                                class="rotate-icon font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-                                aria-expanded="false"
-                                aria-haspopup="true"
-                                aria-controls={`dropdown-${text2?.replace(/\s+/g, "-").toLowerCase()}`}
-                              >
-                                {text2}{" "}
-                                <i class="fa-solid fa-chevron-down icon ml-1" aria-hidden="true" />
-                              </button>
-                              <ul
-                                id={`dropdown-${text2?.replace(/\s+/g, "-").toLowerCase()}`}
-                                role="menu"
-                                class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 dark:md:bg-neutral-800/95 md:min-w-[200px] drop-shadow-xl"
-                              >
-                                {subLinks.map(
-                                  ({
-                                    text: text3,
-                                    href: href3,
-                                    newtab: newtab3,
-                                  }) => (
-                                    <li>
-                                      <a
-                                        class="first:rounded-t last:rounded-b md:hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap"
-                                        href={
-                                          href3?.startsWith("https://")
-                                            ? href3
-                                            : localizePath(href3)
-                                        }
-                                        target={newtab3 ? "_blank" : ""}
-                                        rel={
-                                          newtab3 ? "noopener noreferrer" : ""
-                                        }
-                                      >
-                                        {text3}
-                                      </a>
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            </>
-                          ) : (
-                            <a
-                              class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-                              href={localizePath(href2)}
-                            >
-                              {text2}
-                            </a>
-                          )}
-                        </li>
-                      )
-                    )}
-                  </ul>
-                </>
-              ) : (
-                <a
-                  class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-                  href={localizePath(href)}
-                >
-                  {text}
-                </a>
-              )}
-            </li>
+              {t(link.labelKey)}
+            </a>
           ))
         }
-        <li class="md:hidden">
-          <a
-            href={localizePath("/contact")}
-            class="font-medium hover:text-gray-900 dark:hover:text-white px-0 py-2 pr-4 mt-4 flex items-center"
-          >
-            <span class="border-2 border-gray-500 rounded-xl px-4 py-2">
-              Επικοινωνία
-            </span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <div class="hidden desk:block"><ToggleLanguage /></div>
+        <ToggleTheme />
+        <a
+          href={localizePath("/contact")}
+          class="ks-header-cta hidden min-h-11 items-center rounded-full px-[22px] text-[16px] font-medium text-inherit no-underline desk:inline-flex"
+        >
+          {t("nav.book")}
+        </a>
+        <button
+          type="button"
+          class="ks-icon-btn desk:hidden"
+          aria-label={t("nav.menu_open")}
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          data-menu-open
+        >
+          <Icon name="menu" size={20} />
+        </button>
+      </div>
+    </div>
+
     <div
-      class:list={[
-        { "ml-auto": position === "left" },
-        "md:self-center flex items-center md:mb-0",
-      ]}
+      id="mega-kitchens"
+      class="ks-mega"
+      data-mega-panel="kitchens"
+      hidden
     >
-      <div class="hidden items-center md:flex">
-        <ToggleLanguage iconClass="w-5 h-5" />
-        {showToggleTheme && <ToggleTheme />}
+      <div class="ks-container grid grid-cols-4 gap-6 pb-10 pt-8">
         {
-          actions?.length ? (
-            <span class="ml-4">
-              {actions.map(({ text, href, type }) => (
-                <a
-                  class:list={[
-                    "btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm",
-                    {
-                      "btn-ghost": type === "ghost",
-                      "btn-primary": type === "primary",
-                    },
-                  ]}
-                  href={localizePath(href)}
-                >
-                  <Fragment set:html={text} />
-                </a>
-              ))}
-            </span>
-          ) : (
-            ""
-          )
+          KITCHEN_CARDS.map((card) => (
+            <a href={localizePath(card.href)} class="ks-card flex flex-col gap-3 text-inherit no-underline">
+              <div class="overflow-hidden">
+                <Image
+                  src={card.image}
+                  alt=""
+                  width={360}
+                  height={270}
+                  widths={[360, 720]}
+                  sizes="(min-width: 1440px) 340px, 25vw"
+                  loading="lazy"
+                  class="block aspect-[4/3] w-full object-cover"
+                />
+              </div>
+              <span class="text-[17px]">{t(card.labelKey)}</span>
+            </a>
+          ))
+        }
+        <div class="flex flex-col justify-between gap-4 bg-night p-5 text-night-ink">
+          <p class="font-display text-[26px] font-medium leading-[1.15] tracking-[-0.01em]">{t("nav.kitchens_tagline")}</p>
+          <a href={localizePath("/kitchens")} class="ks-link self-start text-[15px] text-night-ink no-underline">
+            {t("nav.all_kitchens")}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="mega-products"
+      class="ks-mega"
+      data-mega-panel="products"
+      hidden
+    >
+      <div class="ks-container grid grid-cols-5 gap-5 pb-10 pt-8">
+        {
+          PRODUCT_CARDS.map((card) => (
+            <a href={localizePath(card.href)} class="ks-card flex flex-col gap-3 text-inherit no-underline">
+              <div class="overflow-hidden">
+                <Image
+                  src={card.image}
+                  alt=""
+                  width={280}
+                  height={280}
+                  widths={[280, 560]}
+                  sizes="(min-width: 1440px) 270px, 20vw"
+                  loading="lazy"
+                  class="block aspect-square w-full object-cover"
+                />
+              </div>
+              <span class="text-[16px]">{t(card.labelKey)}</span>
+            </a>
+          ))
         }
       </div>
     </div>
-  </div>
-</header>
+
+    <div
+      id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label={t("nav.menu_label")}
+      class="fixed inset-0 z-[100] flex flex-col overflow-y-auto bg-night text-night-ink"
+      data-mobile-menu
+      hidden
+    >
+      <div class="flex items-center justify-between border-b border-night-line-soft px-4 py-3.5">
+        <a
+          href={localizePath("/")}
+          aria-label={t("nav.home_aria")}
+          class="flex min-h-11 items-center text-inherit"
+        >
+          <Logo placement="menu" />
+        </a>
+        <div class="flex items-center gap-2">
+          <ToggleLanguage />
+          <button
+            type="button"
+            class="ks-icon-btn ks-chip-night"
+            aria-label={t("nav.menu_close")}
+            data-menu-close
+          >
+            <Icon name="close" size={20} />
+          </button>
+        </div>
+      </div>
+
+      <nav aria-label={t("nav.main_aria")} class="flex flex-1 flex-col px-4 pb-6 pt-4">
+        <a href={localizePath("/kitchens")} class="ks-menu-link">{t("nav.kitchens")}</a>
+        <div class="flex flex-wrap gap-2 border-b border-night-line-soft py-3.5">
+          {
+            KITCHEN_CHIPS.map((chip) => (
+              <a href={localizePath(chip.href)} class="ks-chip ks-chip-night text-[15px]">
+                {t(chip.labelKey)}
+              </a>
+            ))
+          }
+        </div>
+        <p class="ks-menu-link">{t("nav.products")}</p>
+        <div class="flex flex-wrap gap-2 border-b border-night-line-soft py-3.5">
+          {
+            PRODUCT_CHIPS.map((chip) => (
+              <a href={localizePath(chip.href)} class="ks-chip ks-chip-night text-[15px]">
+                {t(chip.labelKey)}
+              </a>
+            ))
+          }
+        </div>
+        {
+          PLAIN_LINKS.map((link) => (
+            <a href={localizePath(link.href)} class="ks-menu-link">
+              {t(link.labelKey)}
+            </a>
+          ))
+        }
+        <a href={localizePath("/about-us")} class="ks-menu-link">{t("nav.about")}</a>
+      </nav>
+
+      <div class="flex flex-col gap-3.5 border-t border-night-line-soft px-4 pb-7 pt-5 text-[15px] text-night-quiet">
+        <p class="m-0">
+          {t("business.address")} ·
+          <a href={BUSINESS.phoneHref} class="text-night-ink">{BUSINESS.phoneDisplay}</a>
+        </p>
+        <a href={localizePath("/contact")} class="ks-btn">{t("nav.book")}</a>
+      </div>
+    </div>
+  </header>
+</div>
 
 <script>
-  function setHeaderHeight() {
-    const header = document.querySelector('[data-header]');
-    if (header) {
-      document.documentElement.style.setProperty(
-        '--header-height',
-        `${header.offsetHeight}px`
-      );
+  const SCROLL_THRESHOLD = 24;
+  const DESKTOP_QUERY = "(min-width: 961px)";
+  const FOCUSABLE_SELECTOR = "a[href], button:not([disabled])";
+
+  function initHeader(header: HTMLElement) {
+    const toggles = header.querySelectorAll<HTMLButtonElement>("[data-mega-toggle]");
+    const panels = header.querySelectorAll<HTMLElement>("[data-mega-panel]");
+    const openButton = header.querySelector<HTMLButtonElement>("[data-menu-open]");
+    const closeButton = header.querySelector<HTMLButtonElement>("[data-menu-close]");
+    const menu = header.querySelector<HTMLElement>("[data-mobile-menu]");
+    const isOverlay = "overlay" === header.dataset.tone;
+
+    const hasOpenPanel = () => null !== header.querySelector("[data-mega-panel]:not([hidden])");
+
+    const syncSolid = () => {
+      const isScrolled = "true" === header.dataset.scrolled;
+
+      header.dataset.solid = (false === isOverlay || isScrolled || hasOpenPanel()).toString();
+    };
+
+    const closePanels = () => {
+      toggles.forEach((toggle) => toggle.setAttribute("aria-expanded", "false"));
+      panels.forEach((panel) => {
+        panel.hidden = true;
+      });
+      syncSolid();
+    };
+
+    const togglePanel = (toggle: HTMLButtonElement) => {
+      const panel = header.querySelector<HTMLElement>(`[data-mega-panel="${toggle.dataset.megaToggle}"]`);
+      const wasClosed = null !== panel && panel.hidden;
+
+      closePanels();
+      if (null !== panel && wasClosed) {
+        panel.hidden = false;
+        toggle.setAttribute("aria-expanded", "true");
+        syncSolid();
+      }
+    };
+
+    const trapFocus = (event: KeyboardEvent) => {
+      if (null !== menu && "Tab" === event.key) {
+        const focusable = Array.from(menu.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (false === event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    const closeMenu = () => {
+      if (null !== menu && null !== openButton) {
+        menu.hidden = true;
+        openButton.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("overflow-hidden");
+        menu.removeEventListener("keydown", trapFocus);
+        openButton.focus();
+      }
+    };
+
+    const openMenu = () => {
+      if (null !== menu && null !== openButton && null !== closeButton) {
+        closePanels();
+        menu.hidden = false;
+        openButton.setAttribute("aria-expanded", "true");
+        document.body.classList.add("overflow-hidden");
+        menu.addEventListener("keydown", trapFocus);
+        closeButton.focus();
+      }
+    };
+
+    const syncScroll = () => {
+      header.dataset.scrolled = (window.scrollY > SCROLL_THRESHOLD).toString();
+      syncSolid();
+    };
+
+    toggles.forEach((toggle) => toggle.addEventListener("click", () => togglePanel(toggle)));
+    panels.forEach((panel) => {
+      panel.addEventListener("click", (event) => {
+        if (event.target instanceof Element && null !== event.target.closest("a")) {
+          closePanels();
+        }
+      });
+    });
+
+    if (null !== openButton && null !== closeButton) {
+      openButton.addEventListener("click", openMenu);
+      closeButton.addEventListener("click", closeMenu);
     }
+
+    document.addEventListener("click", (event) => {
+      if (event.target instanceof Node && false === header.contains(event.target)) {
+        closePanels();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if ("Escape" === event.key) {
+        closePanels();
+        if (null !== menu && false === menu.hidden) {
+          closeMenu();
+        }
+      }
+    });
+
+    window.matchMedia(DESKTOP_QUERY).addEventListener("change", (event) => {
+      if (event.matches && null !== menu && false === menu.hidden) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener("scroll", syncScroll, { passive: true });
+    syncScroll();
   }
 
-  setHeaderHeight();
-  window.addEventListener('resize', setHeaderHeight);
-  document.addEventListener('astro:page-load', setHeaderHeight);
+  const header = document.querySelector<HTMLElement>("[data-header]");
+
+  if (null !== header) {
+    initHeader(header);
+  }
 </script>

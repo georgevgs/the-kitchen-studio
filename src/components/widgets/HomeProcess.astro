@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import { t } from "~/i18n";
+import showroomImage from "~/assets/images/showroom/showroom.avif";
+
+const STEPS = ["first", "second", "third"];
+---
+
+<section id="process" class="bg-night text-night-ink">
+  <div class="ks-container flex flex-wrap items-center gap-x-20 gap-y-16 py-[104px]">
+    <div class="flex min-w-0 flex-[1_1_480px] flex-col gap-12">
+      <div class="flex flex-col gap-5">
+        <p class="ks-eyebrow m-0 text-night-quiet">
+          <span class="text-night-ink">(04)</span> {t("home.process.eyebrow")}
+        </p>
+        <DisplayHeading
+          as="h2"
+          size="md"
+          before={t("home.process.title")}
+          emphasis={t("home.process.title_emphasis")}
+        />
+      </div>
+      <ol class="m-0 flex list-none flex-col p-0">
+        {
+          STEPS.map((step, index) => (
+            <li class="grid grid-cols-[64px_minmax(0,1fr)] gap-5 border-t border-night-line py-6 last:border-b">
+              <span class="ks-italic-number text-[44px]">{index + 1}</span>
+              <div class="flex flex-col gap-2">
+                <h3 class="m-0 text-[21px] font-normal">{t(`home.process.steps.${step}.title`)}</h3>
+                <p class="m-0 text-[16px] font-normal leading-[1.6] text-night-quiet">
+                  {t(`home.process.steps.${step}.description`)}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+    <div class="min-w-0 flex-[1_1_520px]">
+      <Image
+        src={showroomImage}
+        alt={t("home.process.image_alt")}
+        widths={[640, 960, 1280]}
+        sizes="(min-width: 1100px) 45vw, 100vw"
+        loading="lazy"
+        class="ks-rise block aspect-[5/4] w-full object-cover object-top grayscale"
+      />
+    </div>
+  </div>
+</section>

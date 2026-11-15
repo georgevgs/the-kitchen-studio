@@ -1,0 +1,42 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image, getImage } from "astro:assets";
+import { t } from "~/i18n";
+
+interface PhotoSource {
+  src: ImageMetadata;
+  alt: string;
+}
+
+export interface Props {
+  image: PhotoSource;
+  position: number;
+  sizes: string;
+  imageClass: string;
+  class?: string;
+  loading?: "eager" | "lazy";
+}
+
+const LIGHTBOX_WIDTH = 1600;
+
+const { image, position, sizes, imageClass, class: buttonClass = "", loading = "lazy" } = Astro.props;
+const fullSize = await getImage({ src: image.src, width: LIGHTBOX_WIDTH, format: "avif" });
+---
+
+<button
+  type="button"
+  class:list={["ks-card block cursor-zoom-in overflow-hidden border-0 bg-transparent p-0", buttonClass]}
+  aria-label={`${t("common.zoom_photo")} ${position}`}
+  data-lightbox-src={fullSize.src}
+  data-lightbox-alt={image.alt}
+>
+  <Image
+    src={image.src}
+    alt={image.alt}
+    widths={[480, 720, 1080, 1440]}
+    {sizes}
+    {loading}
+    decoding="async"
+    class:list={["ks-rise", imageClass]}
+  />
+</button>

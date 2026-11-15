@@ -4,23 +4,19 @@ import { getImage } from "astro:assets";
 import { HERO_IMAGE } from "~/utils/heroImage";
 import Layout from "../../layouts/PageLayout.astro";
 import { t, changeLanguage } from "~/i18n";
-import { localizePath } from "~/i18n";
-import { processImagesForCarousel } from "~/utils/images";
+import { heroSlides } from "~/utils/heroSlides";
 
-import Features from "../../components/widgets/Features.astro";
-import Features2 from "../../components/widgets/Features2.astro";
-import MediaRecognition from "~/components/widgets/MediaRecognition.astro";
-import Steps from "../../components/widgets/Steps.astro";
-import FAQs from "../../components/widgets/FAQs.astro";
-import CallToAction from "../../components/widgets/CallToAction.astro";
-import Hero from "../../components/widgets/Hero.astro";
-import PortfolioTeaser from "../../components/widgets/PortfolioTeaser.astro";
+import Hero from "~/components/widgets/Hero.astro";
+import HomeServices from "~/components/widgets/HomeServices.astro";
+import HomeWhyUs from "~/components/widgets/HomeWhyUs.astro";
+import HomeProjects from "~/components/widgets/HomeProjects.astro";
+import HomeProcess from "~/components/widgets/HomeProcess.astro";
+import HomePress from "~/components/widgets/HomePress.astro";
+import HomeFaq from "~/components/widgets/HomeFaq.astro";
 
 changeLanguage("en");
 
-import showroomBWImage from "../../assets/images/showroom/the-kitchen-studio-showroom-bw.avif";
-const images = processImagesForCarousel("home-images", "en");
-const ergaImages = processImagesForCarousel("erga", "en");
+const images = heroSlides();
 
 // Preload the exact responsive variant the Hero <Image> will render (same options
 // via HERO_IMAGE) so the LCP image is discovered early and no unused image is fetched.
@@ -28,18 +24,6 @@ const heroPreload = images[0]
   ? await getImage({ src: images[0].src, ...HERO_IMAGE })
   : null;
 
-const mediaTexts = {
-  title: t("home.media.title"),
-  subtitle: t("home.media.subtitle"),
-  featureTitle: t("home.media.villas.title"),
-  featureDescription: t("home.media.villas.description"),
-  featurePoints: {
-    first: t("home.media.villas.features.first"),
-    second: t("home.media.villas.features.second"),
-    third: t("home.media.villas.features.third"),
-  },
-  imageAlt: t("home.media.villas.alt"),
-};
 const lang = "EN";
 const meta = {
   title: `${SITE.title} - Custom Kitchen Furniture`,
@@ -88,7 +72,7 @@ const faqSchema = {
 };
 ---
 
-<Layout {meta} lang={lang}>
+<Layout {meta} lang={lang} headerTone="overlay">
   {/* All head content must live in a single Fragment: a conditional-expression
       sibling breaks Astro's named-slot assignment for the other elements. */}
   <Fragment slot="head">
@@ -104,200 +88,11 @@ const faqSchema = {
     )}
   </Fragment>
 
-  <!-- Hero Widget *************** -->
-
-  <Hero
-    images={images}
-    headline={t("home.hero.headline")}
-    subtitle={t("home.hero.subtitle")}
-    ctaText={t("home.hero.cta")}
-    ctaHref={localizePath("/showroom")}
-    categories={[
-      { title: t("home.features2.items.first_item.title"), href: localizePath("/kitchens") },
-      { title: t("home.features2.items.second_item.title"), href: localizePath("/bath") },
-      { title: t("home.features2.items.third_item.title"), href: localizePath("/tiles") },
-      { title: t("home.features2.items.fourth_item.title"), href: localizePath("/wardrobes") },
-      { title: t("home.features2.items.fith_item.title"), href: localizePath("/doors") },
-      { title: t("home.features2.items.sixth_item.title"), href: localizePath("/living") },
-    ]}
-  />
-
-  <!-- Features Widget *************** -->
-
-  <Features
-    highlight={t("home.features.highlight")}
-    title={t("home.features.title")}
-    subtitle={t("home.features.subtitle")}
-    items={[
-      [
-        {
-          title: t("home.features.items.first_title"),
-          description: "",
-          icon: "fa-solid fa-chair",
-        },
-        {
-          title: t("home.features.items.second_title"),
-          description: "",
-          icon: "fa-solid fa-hourglass",
-        },
-        {
-          title: t("home.features.items.third_title"),
-          description: "",
-          icon: "fa-solid fa-tag",
-        },
-      ],
-      [
-        {
-          title: t("home.features.items.fourth_title"),
-          description: "",
-          icon: "fa-solid fa-arrow-up",
-        },
-        {
-          title: t("home.features.items.fith_title"),
-          description: "",
-          icon: "fa-solid fa-headset",
-        },
-        {
-          title: t("home.features.items.sixth_title"),
-          description: "",
-          icon: "fa-solid fa-bath",
-          logo: true,
-          imageURL: "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif",
-        },
-      ],
-    ]}
-  />
-
-  <!-- MediaRecognition Widget *************** -->
-
-  <MediaRecognition {...mediaTexts} />
-
-  <!-- Steps Widget ****************** -->
-
-  <Steps
-    title={t("home.steps.title")}
-    items={[
-      {
-        title: t("home.steps.items.first_item.title"),
-        description: t("home.steps.items.first_item.description"),
-        icon: "fa-solid fa-tape",
-      },
-      {
-        title: t("home.steps.items.second_item.title"),
-        description: t("home.steps.items.second_item.description"),
-        icon: "fa-solid fa-pencil",
-      },
-      {
-        title: t("home.steps.items.third_item.title"),
-        description: t("home.steps.items.third_item.description"),
-        icon: "fa-solid fa-screwdriver-wrench",
-      },
-      {
-        title: t("home.steps.items.fourth_item.title"),
-        icon: "fa-solid fa-check",
-      },
-    ]}
-    image={{
-      src: showroomBWImage,
-      alt: "The Kitchen Studio showroom in Glyfada",
-    }}
-  />
-
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    title={t("home.features2.title")}
-    subtitle=""
-    highlight={t("home.features2.highlight")}
-    items={[
-      {
-        title: t("home.features2.items.first_item.title"),
-        description: t("home.features2.items.first_item.description"),
-        icon: "fa-solid fa-fire-burner",
-        href: localizePath("/kitchens"),
-      },
-      {
-        title: t("home.features2.items.second_item.title"),
-        description: t("home.features2.items.second_item.description"),
-        icon: "fa-solid fa-bath",
-        href: localizePath("/bath"),
-      },
-      {
-        title: t("home.features2.items.third_item.title"),
-        description: t("home.features2.items.third_item.description"),
-        icon: "fa-solid fa-table-cells",
-        href: localizePath("/tiles"),
-      },
-      {
-        title: t("home.features2.items.fourth_item.title"),
-        description: t("home.features2.items.fourth_item.description"),
-        icon: "fa-solid fa-shirt",
-        href: localizePath("/wardrobes"),
-      },
-      {
-        title: t("home.features2.items.fith_item.title"),
-        description: t("home.features2.items.fith_item.description"),
-        icon: "fa-solid fa-door-closed",
-        href: localizePath("/doors"),
-      },
-      {
-        title: t("home.features2.items.sixth_item.title"),
-        description: t("home.features2.items.sixth_item.description"),
-        icon: "fa-solid fa-couch",
-        href: localizePath("/living"),
-      },
-    ]}
-  />
-
-  <!-- Portfolio Teaser ************** -->
-
-  <PortfolioTeaser
-    title={t("home.portfolio.title")}
-    subtitle={t("home.portfolio.subtitle")}
-    ctaText={t("home.portfolio.cta")}
-    ctaHref={localizePath("/erga")}
-    images={ergaImages}
-  />
-
-  <!-- FAQs Widget ******************* -->
-
-  <FAQs
-    title={t("home.faq.title")}
-    subtitle=""
-    highlight=""
-    items={[
-      [
-        {
-          question: t("home.faq.items.first_item.question"),
-          answer: t("home.faq.items.first_item.answer"),
-        },
-        {
-          question: t("home.faq.items.second_item.question"),
-          answer: t("home.faq.items.second_item.answer"),
-        },
-      ],
-      [
-        {
-          question: t("home.faq.items.third_item.question"),
-          answer: t("home.faq.items.third_item.answer"),
-        },
-        {
-          question: t("home.faq.items.fourth_item.question"),
-          answer: t("home.faq.items.fourth_item.answer"),
-        },
-      ],
-    ]}
-  />
-
-  <!-- CallToAction Widget *********** -->
-
-  <CallToAction
-    callToAction={{
-      text: t("home.call_to_action.text"),
-      href: localizePath("/contact"),
-    }}>
-    <Fragment slot="title">{t("home.call_to_action.title")}</Fragment>
-
-    <Fragment slot="subtitle">{t("home.call_to_action.subtitle")}</Fragment>
-  </CallToAction>
+  <Hero images={images} />
+  <HomeServices />
+  <HomeWhyUs />
+  <HomeProjects />
+  <HomeProcess />
+  <HomePress />
+  <HomeFaq />
 </Layout>

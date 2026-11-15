@@ -1,0 +1,203 @@
+---
+import { Image } from "astro:assets";
+import Layout from "~/layouts/PageLayout.astro";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import Icon from "~/components/common/Icon.astro";
+import { t, localizePath } from "~/i18n";
+import { BUSINESS } from "~/data";
+import type { MetaSEO } from "~/types";
+import heroImage from "~/assets/images/home-images/italian-kitchen-home-10.avif";
+import facadeImage from "~/assets/images/showroom/showroom.avif";
+import villasImage from "~/assets/images/villas-magazine-the-kitchen-studio.avif";
+
+export interface Props {
+  meta: MetaSEO;
+  lang: "EL" | "EN";
+}
+
+const EXPERIENCE_ITEMS = ["first", "second", "third", "fourth", "fifth", "sixth"];
+const OFFER_ROWS = [
+  { key: "kitchens", href: "/kitchens" },
+  { key: "bath", href: "/bath" },
+  { key: "tiles", href: "/tiles" },
+  { key: "wardrobes", href: "/wardrobes" },
+  { key: "doors", href: "/doors" },
+  { key: "living", href: "/living" },
+];
+const KARADIMAS_URL = "https://ikaradimas.gr";
+const KARADIMAS_LIGHT_LOGO =
+  "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524748/karadimas-logo_cxt3dl.avif";
+const KARADIMAS_DARK_LOGO =
+  "https://res.cloudinary.com/dz7agxkip/image/upload/v1705524859/karadimas-logo-darkmode_qfuxja.avif";
+
+const { meta, lang } = Astro.props;
+---
+
+<Layout {meta} {lang} footerCta={false}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
+  <section class="ks-container pb-24 pt-14">
+    <Breadcrumb trail={[]} current={t("nav.about")} class="mb-14" />
+    <DisplayHeading
+      as="h1"
+      size="display"
+      before={t("about.hero_before")}
+      emphasis={t("about.hero_emphasis")}
+      class="max-w-[1100px]"
+    />
+    <div class="mt-16 flex flex-wrap items-end gap-x-16 gap-y-10">
+      <div class="min-w-0 flex-[3_1_560px]">
+        <Image
+          src={heroImage}
+          alt={t("about.hero_alt")}
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1100px) 58vw, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="block aspect-[3/2] w-full object-cover"
+        />
+      </div>
+      <div class="flex min-w-0 flex-[2_1_320px] flex-col gap-6">
+        <p class="m-0 flex items-end gap-4">
+          <span class="ks-italic-number text-[clamp(72px,9vw,128px)] text-brand">{t("about.years_number")}</span>
+          <span class="pb-3 text-[15px] leading-[1.3] text-quiet">{t("about.years_label")}</span>
+        </p>
+        <p class="ks-lead m-0">{t("about.intro")}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-line">
+    <div class="ks-container flex flex-wrap gap-x-20 gap-y-12 py-24">
+      <div class="flex min-w-0 flex-[1_1_420px] flex-col gap-5">
+        <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">(01)</span> {t("about.experience.eyebrow")}</p>
+        <DisplayHeading
+          as="h2"
+          size="md"
+          before={t("about.experience.title")}
+          emphasis={t("about.experience.title_emphasis")}
+        />
+        <p class="m-0 max-w-[520px] text-[17px] font-normal leading-[1.6] text-copy">{t("about.experience.text")}</p>
+      </div>
+      <ul class="ks-rows m-0 min-w-0 flex-[1_1_480px] list-none p-0">
+        {
+          EXPERIENCE_ITEMS.map((item, index) => (
+            <li class="grid grid-cols-[48px_minmax(0,1fr)] gap-4 py-[18px] text-[17px] leading-[1.45]">
+              <span class="pt-[3px] text-[13px] text-quiet">{(index + 1).toString().padStart(2, "0")}</span>
+              <span>{t(`about.experience.items.${item}`)}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-surface">
+    <div class="ks-container flex flex-wrap items-center gap-x-20 gap-y-12 py-24">
+      <div class="flex min-w-0 flex-[1_1_420px] flex-col gap-6">
+        <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">(02)</span> {t("about.partners.eyebrow")}</p>
+        <DisplayHeading
+          as="h2"
+          size="md"
+          before={t("about.partners.title")}
+          emphasis={t("about.partners.title_emphasis")}
+        />
+        <p class="m-0 max-w-[520px] text-[17px] font-normal leading-[1.6] text-copy">{t("about.partners.text")}</p>
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-3">
+          <a
+            href={KARADIMAS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex min-h-11 items-center"
+          >
+            <img
+              src={KARADIMAS_LIGHT_LOGO}
+              alt={t("about.partners.karadimas_alt")}
+              height="28"
+              loading="lazy"
+              class="block h-7 w-auto dark:hidden"
+            />
+            <img
+              src={KARADIMAS_DARK_LOGO}
+              alt={t("about.partners.karadimas_alt")}
+              height="28"
+              loading="lazy"
+              class="hidden h-7 w-auto dark:block"
+            />
+          </a>
+          <span class="ks-eyebrow">{t("about.partners.villas_label")}</span>
+        </div>
+      </div>
+      <div
+        class="flex min-w-0 flex-[1_1_380px] items-center justify-center bg-ground px-6 py-[clamp(32px,5vw,64px)]"
+      >
+        <Image
+          src={villasImage}
+          alt={t("home.media.villas.alt")}
+          widths={[340, 680]}
+          sizes="320px"
+          loading="lazy"
+          class="block h-auto w-[min(320px,100%)] rotate-[-3deg] shadow-[0_40px_70px_-30px_rgb(21_21_21/0.45)]"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="ks-container py-24">
+    <p class="ks-eyebrow m-0 mb-10"><span class="ks-eyebrow-index">(03)</span> {t("about.offer.eyebrow")}</p>
+    <ul class="ks-rows m-0 list-none p-0">
+      {
+        OFFER_ROWS.map((row, index) => (
+          <li>
+            <a
+              href={localizePath(row.href)}
+              class="grid grid-cols-[48px_minmax(0,1fr)_auto] items-center gap-4 py-6 text-inherit no-underline transition-colors hover:bg-surface"
+            >
+              <span class="text-[13px] text-quiet">{(index + 1).toString().padStart(2, "0")}</span>
+              <span class="flex flex-col gap-1">
+                <span class="font-display text-[clamp(24px,2.6vw,36px)] font-medium tracking-[-0.01em]">
+                  {t(`about.offer.${row.key}.title`)}
+                </span>
+                <span class="ks-text">{t(`about.offer.${row.key}.description`)}</span>
+              </span>
+              <Icon name="arrow-right" size={20} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="border-t border-line">
+    <div class="ks-container flex flex-wrap items-center gap-x-20 gap-y-12 py-24">
+      <Image
+        src={facadeImage}
+        alt={t("showroom_page.hero_alt")}
+        widths={[480, 720, 960]}
+        sizes="(min-width: 1100px) 40vw, 100vw"
+        loading="lazy"
+        class="block aspect-[4/3] w-full min-w-0 flex-[1_1_380px] object-cover"
+      />
+      <div class="flex min-w-0 flex-[1_1_420px] flex-col gap-6">
+        <p class="ks-eyebrow m-0"><span class="ks-eyebrow-index">(04)</span> {t("about.visit.eyebrow")}</p>
+        <DisplayHeading
+          as="h2"
+          size="md"
+          before={t("about.visit.title")}
+          emphasis={t("about.visit.title_emphasis")}
+        />
+        <p class="m-0 max-w-[520px] text-[17px] font-normal leading-[1.6] text-copy">
+          {t("about.visit.text")} {t("business.address")} ·
+          <a href={BUSINESS.phoneHref} class="text-inherit">{BUSINESS.phoneDisplay}</a>
+        </p>
+        <div class="flex flex-wrap items-center gap-x-7 gap-y-4">
+          <a href={localizePath("/contact")} class="ks-btn">{t("nav.book")}</a>
+          <a href={localizePath("/showroom")} class="ks-link text-[16px] font-medium">{t("hub.showroom_link")}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

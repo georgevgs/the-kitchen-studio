@@ -1,0 +1,14 @@
+---
+import Passthrough from "~/components/common/Passthrough.astro";
+import Nothing from "~/components/common/Nothing.astro";
+
+export interface Props {
+  isVisible: boolean;
+}
+
+const { isVisible } = Astro.props;
+const WRAPPER_BY_VISIBILITY = { true: Passthrough, false: Nothing };
+const Wrapper = WRAPPER_BY_VISIBILITY[isVisible.toString() as "true" | "false"];
+---
+
+<Wrapper><slot /></Wrapper>

@@ -83,14 +83,7 @@ const sortImagesByNumber = (
   });
 };
 
-/**
- * Process images from a specific collection
- */
-export const processImagesForCarousel = (
-  collectionName: string,
-  lang: Lang = 'el'
-): { src: ImageMetadata; alt: string }[] => {
-  // Using template literal to construct the glob pattern
+const sortedCollectionModules = (collectionName: string): ImageModule[] => {
   const modules = import.meta.glob<ImageModule>('/src/assets/images/*/*.avif', { eager: true });
 
   // Filter modules to only include those from the requested collection
@@ -99,10 +92,31 @@ export const processImagesForCarousel = (
   );
 
   const modulesArray = collectionModules.map(([_, module]) => module);
-  const sortedModules = sortImagesByNumber(modulesArray, collectionName);
 
-  return sortedModules.map((module, index) => ({
+  return sortImagesByNumber(modulesArray, collectionName);
+};
+
+const toCarouselImages = (
+  modules: ImageModule[],
+  collectionName: string,
+  lang: Lang
+): { src: ImageMetadata; alt: string }[] =>
+  modules.map((module, index) => ({
     src: module.default,
     alt: createAltText(module.default.src, collectionName, lang, index + 1)
   }));
-};
+
+/**
+ * Process images from a specific collection
+ */
+export const processImagesForCarousel = (
+  collectionName: string,
+  lang: Lang = 'el'
+): { src: ImageMetadata; alt: string }[] =>
+  toCarouselImages(sortedCollectionModules(collectionName), collectionName, lang);
+
+export const processImagesNewestFirst = (
+  collectionName: string,
+  lang: Lang
+): { src: ImageMetadata; alt: string }[] =>
+  toCarouselImages([...sortedCollectionModules(collectionName)].reverse(), collectionName, lang);

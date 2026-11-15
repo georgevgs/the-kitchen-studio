@@ -1,9 +1,6 @@
 ---
 import { t, changeLanguage } from "~/i18n";
-import Category from "../components/widgets/Category.astro";
-import PageDescription from "../components/widgets/PageDescription.astro";
-import Spacer from "../components/widgets/Spacer.astro";
-import Layout from "../layouts/PageLayout.astro";
+import HubPage from "~/components/widgets/HubPage.astro";
 import { localizePath } from "~/i18n";
 import { generateItemListSchema } from "../utils/schema";
 import modernKitchenImage from "../assets/images/kitchens/modern/modern-kitchen.avif";
@@ -37,41 +34,14 @@ const kitchensListSchema = generateItemListSchema([
         image: corianKitchenImage,
     },
 ]);
+
+const rows = [
+  { text: t("pages.kitchens.kitchens_category.categories.text_modern_kitchens"), href: localizePath("/kitchens/modern-kitchens"), src: modernKitchenImage, alt: "Modern kitchen design with clean lines and minimalist aesthetic" },
+  { text: t("pages.kitchens.kitchens_category.categories.text_classic_kitchens"), href: localizePath("/kitchens/classic-kitchens"), src: classicKitchenImage, alt: "Classic kitchen with traditional wood cabinetry and elegant details" },
+  { text: t("pages.kitchens.kitchens_category.categories.text_corian_kitchens"), href: localizePath("/kitchens/corian-kitchens"), src: corianKitchenImage, alt: "Corian kitchen with seamless integrated countertops and surfaces" },
+];
 ---
 
-<Layout meta={meta} lang={"EL"}>
+<HubPage {meta} lang="EL" group="kitchens" contentKey="pages.kitchens.kitchens_category" {rows}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(kitchensListSchema)} />
-  <div class="category-container">
-    <PageDescription
-      title={t("pages.kitchens.kitchens_category.title")}
-      subtitle={t("pages.kitchens.kitchens_category.subtitle")}
-      description={t("pages.kitchens.kitchens_category.description")}
-    />
-
-    <Category
-      categories={[
-        {
-          text: t("pages.kitchens.kitchens_category.categories.text_modern_kitchens"),
-          href: localizePath("/kitchens/modern-kitchens"),
-          src: modernKitchenImage,
-          alt: "Modern kitchen design with clean lines and minimalist aesthetic",
-        },
-        {
-          text: t("pages.kitchens.kitchens_category.categories.text_classic_kitchens"),
-          href: localizePath("/kitchens/classic-kitchens"),
-          src: classicKitchenImage,
-          alt: "Classic kitchen with traditional wood cabinetry and elegant details",
-        },
-        {
-          text: t("pages.kitchens.kitchens_category.categories.text_corian_kitchens"),
-          href: localizePath("/kitchens/corian-kitchens"),
-          src: corianKitchenImage,
-          alt: "Corian kitchen with seamless integrated countertops and surfaces",
-        },
-      ]}
-      widecategory={false}
-    />
-  </div>
-
-  <Spacer />
-</Layout>
+</HubPage>

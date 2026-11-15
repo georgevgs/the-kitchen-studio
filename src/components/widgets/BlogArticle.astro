@@ -1,0 +1,130 @@
+---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import type { CollectionEntry } from "astro:content";
+import Layout from "~/layouts/PageLayout.astro";
+import Breadcrumb from "~/components/common/Breadcrumb.astro";
+import DisplayHeading from "~/components/common/DisplayHeading.astro";
+import ShowWhen from "~/components/common/ShowWhen.astro";
+import BlogCard from "~/components/BlogCard.astro";
+import { t, localizePath } from "~/i18n";
+import { formatDate } from "~/utils/blog";
+import { splitHeading } from "~/utils/heading";
+import type { MetaSEO } from "~/types";
+
+interface ArticleHeading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+export interface Props {
+  meta: MetaSEO;
+  canonicalURL: string;
+  lang: "EL" | "EN";
+  locale: string;
+  post: CollectionEntry<"blog">;
+  relatedPosts: CollectionEntry<"blog">[];
+  readingTime: number;
+  headings: ArticleHeading[];
+  Content: AstroComponentFactory;
+  imageSize?: { width: number; height: number };
+}
+
+const LEADING_NUMBER = /^\d+\.\s*/;
+const FALLBACK_IMAGE_SIZE = { width: 1920, height: 1080 };
+
+const { meta, canonicalURL, lang, locale, post, relatedPosts, readingTime, headings, Content, imageSize } = Astro.props;
+
+const heading = splitHeading(post.data.title);
+const size = imageSize ?? FALLBACK_IMAGE_SIZE;
+const sections = headings.filter((item) => 2 === item.depth);
+---
+
+<Layout {meta} {canonicalURL} {lang} footerCta={false}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
+  <article>
+    <header class="ks-container pb-12 pt-14">
+      <Breadcrumb
+        trail={[{ label: t("nav.blog"), href: "/blog" }]}
+        current={post.data.title}
+        class="mb-12"
+      />
+      <DisplayHeading
+        as="h1"
+        size="display"
+        before={heading.before}
+        emphasis={heading.emphasis}
+        class="max-w-[1000px]"
+      />
+      <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-quiet">
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
+        <span>{readingTime} {t("blog.post.reading_time")}</span>
+        <span>{post.data.author}</span>
+      </div>
+    </header>
+
+    <figure class="ks-container">
+      <img
+        src={post.data.image}
+        alt={post.data.title}
+        width={size.width}
+        height={size.height}
+        fetchpriority="high"
+        decoding="async"
+        class="block aspect-[4/3] w-full object-cover md:aspect-[21/9]"
+      />
+    </figure>
+
+    <div class="ks-container flex flex-wrap gap-x-16 gap-y-10 py-20">
+      <nav
+        aria-label={t("blog.post.toc_aria")}
+        class="flex-[1_1_240px] self-start md:sticky md:top-28 md:max-w-[300px]"
+      >
+        <p class="ks-eyebrow m-0 mb-4">{t("blog.post.toc")}</p>
+        <ol class="ks-rows m-0 list-none p-0">
+          {
+            sections.map((section, index) => (
+              <li>
+                <a
+                  href={`#${section.slug}`}
+                  class="grid grid-cols-[32px_minmax(0,1fr)] gap-2 py-3 text-[15px] leading-[1.4] text-inherit no-underline"
+                >
+                  <span class="text-[12px] text-quiet">{(index + 1).toString().padStart(2, "0")}</span>
+                  {section.text.replace(LEADING_NUMBER, "")}
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+
+      <div class="min-w-0 flex-[999_1_560px]">
+        <div class="ks-prose max-w-[720px]">
+          <Content />
+        </div>
+        <div class="mt-12 flex max-w-[720px] flex-wrap gap-2">
+          {post.data.tags.map((tag) => <span class="ks-chip min-h-9 px-4 text-[13px]">#{tag}</span>)}
+        </div>
+        <aside class="mt-16 flex max-w-[720px] flex-col gap-5 bg-surface p-10">
+          <h2 class="ks-display-sm m-0">{t("blog.post.cta_title")}</h2>
+          <p class="ks-text m-0">{t("blog.post.cta_desc")}</p>
+          <a href={localizePath("/contact")} class="ks-btn self-start">{t("blog.post.cta_button")}</a>
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  <ShowWhen isVisible={0 < relatedPosts.length}>
+    <section aria-label={t("blog.post.related_articles")} class="border-t border-line">
+      <div class="ks-container py-24">
+        <p class="ks-eyebrow m-0 mb-10">{t("blog.post.related_articles")}</p>
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(min(380px,100%),1fr))] gap-x-6 gap-y-12">
+          {relatedPosts.map((related) => <BlogCard post={related} locale={locale} isRelated />)}
+        </div>
+      </div>
+    </section>
+  </ShowWhen>
+</Layout>
