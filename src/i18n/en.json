@@ -36,7 +36,7 @@
                 },
                 "second_item": {
                     "question": "Which materials do you use for kitchen furniture?",
-                    "answer": "For the fronts we work with lacquer, solid wood, MDF, melamine and laminate. For the worktop we suggest quartz, Corian®, natural stone or solid wood, depending on how you use it and how much care you want to give it. Every kitchen gets Blum and Hettich hardware. You can see samples of every material at our showroom."
+                    "answer": "For the fronts we work with lacquer, solid wood, acrylic, HPL (laminate) and melamine. For the worktop we suggest quartz, Corian®, natural stone or solid wood, depending on how you use it and how much care you want to give it. Every kitchen gets Blum and Hettich hardware. You can see samples of every material at our showroom."
                 },
                 "third_item": {
                     "question": "How do we get started?",
@@ -44,7 +44,7 @@
                 },
                 "fourth_item": {
                     "question": "Do you handle installation and give a warranty?",
-                    "answer": "Yes. Our own team handles installation, and every project comes with a warranty and after-sales technical support. We also work with architects, interior designers and contractors so the whole renovation is coordinated. We serve Glyfada, the southern suburbs of Athens and the rest of Attica."
+                    "answer": "Yes. Our own team handles installation, and every project comes with a warranty and after-sales technical support. We also work with architects, interior designers and contractors so the whole renovation is coordinated. We serve Glyfada, the southern suburbs of Athens and the rest of Greece."
                 }
             },
             "heading": "Before we start"
@@ -241,7 +241,7 @@
                     },
                     "second": {
                         "heading": "Wood, lacquer and worktops",
-                        "text": "The fronts are made from solid wood or from lacquered MDF, which allows fine profiles in any colour you like. The worktop can be natural stone, quartz or solid wood, depending on how much care you want to give it. All hardware is Blum and Hettich, so drawers close smoothly and last for years."
+                        "text": "The fronts are made from solid wood or finished in lacquer, which allows fine profiles in any colour you like. The worktop can be natural stone, quartz or solid wood, depending on how much care you want to give it. All hardware is Blum and Hettich, so drawers close smoothly and last for years."
                     },
                     "third": {
                         "heading": "Made to measure for your home",
@@ -285,7 +285,7 @@
                     },
                     "third": {
                         "heading": "How we work with Corian",
-                        "text": "The worktop is made for your space, so we start with precise measurements and a 3D design. Corian pairs with lacquer, wood or MDF fronts and with Blum and Hettich hardware. You can see Corian colours and worktops in person at our showroom in Glyfada."
+                        "text": "The worktop is made for your space, so we start with precise measurements and a 3D design. Corian pairs with lacquer, wood, acrylic or HPL fronts and with Blum and Hettich hardware. You can see Corian colours and worktops in person at our showroom in Glyfada."
                     }
                 }
             },
@@ -518,7 +518,7 @@
             "third": "Blum and Hettich mechanisms",
             "fourth": "Installation by a specialised team",
             "fifth": "Warranty and technical support",
-            "sixth": "Wood, MDF, lacquer or Corian®"
+            "sixth": "Wood, acrylic, HPL, lacquer or Corian®"
         },
         "lightbox_prefix": "Photos",
         "details_eyebrow": "In detail"
@@ -579,11 +579,11 @@
             },
             "second": {
                 "title": "Material samples in your hands",
-                "text": "Wood, MDF, lacquers and Corian® to hold, so you can decide with confidence."
+                "text": "Wood, acrylic, HPL, lacquers and Corian® to hold, so you can decide with confidence."
             },
             "third": {
                 "title": "For private clients and professionals",
-                "text": "We serve clients, architects and decorators from all over Attica."
+                "text": "We serve clients, architects and decorators from all over Greece."
             }
         }
     },
@@ -598,7 +598,7 @@
             "eyebrow": "Experience & expertise",
             "title": "Every stage of the renovation,",
             "title_emphasis": "in one place.",
-            "text": "Renovating a kitchen takes knowledge of ergonomics, functionality and manufacturing technology. We cover everything from materials (wood, MDF, Corian®, lacquers) and hardware (Blum and Hettich drawers, integrated lighting, worktops) to coordination with contractors, architects and electricians.",
+            "text": "Renovating a kitchen takes knowledge of ergonomics, functionality and manufacturing technology. We cover everything from materials (wood, acrylic, HPL, Corian®, lacquers) and hardware (Blum and Hettich drawers, integrated lighting, worktops) to coordination with contractors, architects and electricians.",
             "items": {
                 "first": "Design to international ergonomic standards",
                 "second": "3D visualisation before you order",
@@ -647,7 +647,7 @@
             "eyebrow": "Visit us",
             "title": "Free,",
             "title_emphasis": "no obligation.",
-            "text": "Private clients and professionals from Glyfada and all over Attica discuss their needs with us and see material samples in person."
+            "text": "Private clients and professionals from Glyfada and all over Greece discuss their needs with us and see material samples in person."
         }
     },
     "legal": {
