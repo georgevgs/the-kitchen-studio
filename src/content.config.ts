@@ -6,6 +6,7 @@ const blogSchema = z.object({
   title: z.string(),
   description: z.string(),
   pubDate: z.date(),
+  updatedDate: z.date().optional(),
   image: z.string().optional(),
   tags: z.array(z.string()).optional().default([]),
   author: z.string().optional(),

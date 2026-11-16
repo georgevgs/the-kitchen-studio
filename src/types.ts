@@ -17,6 +17,7 @@ export interface MetaSEO {
 
 export interface Post {
   publishDate: Date;
+  updatedDate?: Date;
   title: string;
   description?: string;
   image?: string | ImageMetadata;
@@ -27,6 +28,7 @@ export interface Post {
 export function collectionEntryToPost(entry: CollectionEntry<"blog">): Post {
   return {
     publishDate: entry.data.pubDate,
+    updatedDate: entry.data.updatedDate,
     title: entry.data.title,
     description: entry.data.description,
     image: entry.data.image,

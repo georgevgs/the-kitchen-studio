@@ -149,7 +149,7 @@ export function generateBlogPostSchema(
       "height": 630
     } : undefined,
     "datePublished": publishDate ? publishDate.toISOString() : new Date().toISOString(),
-    "dateModified": publishDate ? publishDate.toISOString() : new Date().toISOString(),
+    "dateModified": (post.updatedDate ?? publishDate ?? new Date()).toISOString(),
     "inLanguage": lang,
     "author": {
       "@type": "Organization",
