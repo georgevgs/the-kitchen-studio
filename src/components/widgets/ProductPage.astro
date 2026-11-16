@@ -24,6 +24,8 @@ export interface Props {
   href: string;
 }
 
+const DETAILS = ["first", "second", "third"];
+
 const CRUMBS_BY_GROUP: Record<Props["group"], NavLink[]> = {
   kitchens: [{ labelKey: "hub.kitchens.breadcrumb", href: "/kitchens" }],
   bath: [{ labelKey: "hub.bath.breadcrumb", href: "/bath" }],
@@ -97,6 +99,22 @@ const currentOrNull = (chipHref: string) => {
   </section>
 
   <slot />
+
+  <section class="border-t border-line">
+    <div class="ks-container flex flex-wrap gap-x-16 gap-y-8 py-24">
+      <p class="ks-eyebrow m-0 flex-[1_1_220px]">{t("product.details_eyebrow")}</p>
+      <div class="flex min-w-0 max-w-[760px] flex-[999_1_640px] flex-col gap-12">
+        {
+          DETAILS.map((item) => (
+            <div class="flex flex-col gap-4">
+              <h2 class="m-0 text-[22px] font-normal leading-[1.35]">{t(`${contentKey}.details.${item}.heading`)}</h2>
+              <p class="m-0 text-[17px] font-normal leading-[1.6] text-copy">{t(`${contentKey}.details.${item}.text`)}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
   <section class="border-t border-line">
     <div class="ks-container py-24">

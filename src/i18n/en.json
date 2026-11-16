@@ -182,12 +182,40 @@
             "bath_furnitures": {
                 "title": "Bathroom furniture",
                 "subtitle": "Contemporary clean lines and high-tech materials",
-                "description": "Discover the wonderful variety of bathroom furniture that can transform your space into a place of relaxation and care."
+                "description": "Discover the wonderful variety of bathroom furniture that can transform your space into a place of relaxation and care.",
+                "details": {
+                    "first": {
+                        "heading": "Bathroom furniture made to measure",
+                        "text": "A bathroom rarely has a centimetre to spare, so every piece is designed for the specific room: wall-hung or floor-standing units, drawers for everyday things, mirror cabinets and mirrors with built-in lighting. The basin can sit on top, be set into the worktop, or be made of Corian as one piece with the surface."
+                    },
+                    "second": {
+                        "heading": "Materials that handle moisture",
+                        "text": "Moisture is a daily fact in a bathroom, so materials are chosen for durability first and looks second. We suggest lacquer or laminate fronts and quartz or Corian worktops. Clean lines keep the room calm to look at and easy to clean."
+                    },
+                    "third": {
+                        "heading": "The whole bathroom in one place",
+                        "text": "We develop our bathroom solutions together with Ioannis Karadimas, so we can take on anything from a single vanity unit to the entire bathroom. At our showroom in Glyfada you see furniture, basins and tiles side by side and choose the combination that suits your space."
+                    }
+                }
             },
             "corian_bath": {
                 "title": "Corian Bath",
                 "subtitle": "The future of bathroom aesthetics",
-                "description": "Explore the innovative and contemporary aesthetics of Corian Bath and indulge in the unique experience it offers."
+                "description": "Explore the innovative and contemporary aesthetics of Corian Bath and indulge in the unique experience it offers.",
+                "details": {
+                    "first": {
+                        "heading": "Corian in the bathroom",
+                        "text": "Corian® is a non-porous solid surface that joins with no visible seams. In a bathroom that means the basin and worktop are one continuous piece, with no silicone joints or corners where limescale and mould build up."
+                    },
+                    "second": {
+                        "heading": "Easy to clean, built to last",
+                        "text": "Because it does not absorb water, Corian resists stains and cleans with a cloth and a mild cleaner. Light wear from daily use can be sanded out, so the surface keeps its look for years. The material can be shaped with heat, which lets the basin take soft, organic forms."
+                    },
+                    "third": {
+                        "heading": "Designed for your space",
+                        "text": "Every Corian worktop is made to the dimensions of your bathroom, with as many basins as you need and the tap exactly where you want it. It pairs with the bathroom furniture we design, so everything fits together. You can see Corian basins and samples in person at our showroom in Glyfada."
+                    }
+                }
             },
             "bath_category": {
                 "meta_title": "Bathroom Furniture in Glyfada, Athens",
@@ -205,19 +233,61 @@
                 "title": "Classic kitchens",
                 "meta_title": "Classic Kitchens in Glyfada, Athens",
                 "subtitle": "The charm of classic kitchen furniture",
-                "description": "Classic kitchen furniture combining the charm of the past with the functionality of the present. Designed and built to measure in Glyfada, Athens."
+                "description": "Classic kitchen furniture combining the charm of the past with the functionality of the present. Designed and built to measure in Glyfada, Athens.",
+                "details": {
+                    "first": {
+                        "heading": "The character of a classic kitchen",
+                        "text": "Panelled doors, mouldings, discreet handles and colours you will not tire of. A classic kitchen does not mean old-fashioned construction, though. Behind the traditional look are the same drawers, mechanisms and storage solutions we fit in every contemporary kitchen."
+                    },
+                    "second": {
+                        "heading": "Wood, lacquer and worktops",
+                        "text": "The fronts are made from solid wood or from lacquered MDF, which allows fine profiles in any colour you like. The worktop can be natural stone, quartz or solid wood, depending on how much care you want to give it. All hardware is Blum and Hettich, so drawers close smoothly and last for years."
+                    },
+                    "third": {
+                        "heading": "Made to measure for your home",
+                        "text": "A classic kitchen works in a house or an apartment, in a closed kitchen or an open space with a living room. We design it for your room, show it to you in 3D before you order, and our own team installs it. You can see fronts, colours and worktops in person at our showroom in Glyfada."
+                    }
+                }
             },
             "modern_kitchens": {
                 "title": "Modern kitchens",
                 "meta_title": "Modern Kitchens in Glyfada, Athens",
                 "subtitle": "Simple lines and durable high-quality materials",
-                "description": "Modern kitchens with clean lines, innovative materials and contemporary technology. Designed and built to measure in Glyfada, Athens."
+                "description": "Modern kitchens with clean lines, innovative materials and contemporary technology. Designed and built to measure in Glyfada, Athens.",
+                "details": {
+                    "first": {
+                        "heading": "What makes a kitchen modern",
+                        "text": "Plain fronts with no unnecessary detail, often without visible handles, and continuous lines from one end to the other. Appliances sit behind doors that match the cabinets, and lighting is built in under the wall units or inside the shelving. The result is a calm room that blends easily into an open-plan living area."
+                    },
+                    "second": {
+                        "heading": "Materials and finishes",
+                        "text": "For the fronts we suggest lacquer, matt or gloss, when you want depth of colour, and melamine or laminate when everyday durability comes first. On the worktop, quartz resists scratches and Corian gives one seamless surface with no joints. All hardware is Blum and Hettich, because the mechanisms decide how many years a kitchen keeps working properly."
+                    },
+                    "third": {
+                        "heading": "From design to installation",
+                        "text": "We start by measuring your space and talking about how you cook. Then we design the kitchen in 3D, so you see it before you order. Manufacturing takes about four weeks and our own team handles the installation. You can see modern kitchens and material samples in person at our showroom in Glyfada."
+                    }
+                }
             },
             "corian_kitchens": {
                 "title": "Corian Kitchens",
                 "meta_title": "Corian Kitchens in Glyfada, Athens",
                 "subtitle": "The future of aesthetics in kitchen furniture",
-                "description": "Corian kitchens with seamless jointless surfaces and innovative aesthetics. Designed and built to measure in Glyfada, Athens."
+                "description": "Corian kitchens with seamless jointless surfaces and innovative aesthetics. Designed and built to measure in Glyfada, Athens.",
+                "details": {
+                    "first": {
+                        "heading": "What Corian is",
+                        "text": "Corian® is a solid surface material made by DuPont from minerals and acrylic resin. Pieces are joined with no visible seams, so the worktop, upstand and sink become one continuous surface. It is non-porous, which means it does not absorb liquids and is easy to clean."
+                    },
+                    "second": {
+                        "heading": "Why it suits a kitchen",
+                        "text": "With no joints there is nowhere for dirt to collect, which matters on the surface you use more than any other in the house. The sink is built into the worktop and wipes clean in one movement. Everyday light scratches can be sanded out, so the surface is renewed rather than replaced. And because the material can be shaped with heat, rounded corners and curved islands are possible."
+                    },
+                    "third": {
+                        "heading": "How we work with Corian",
+                        "text": "The worktop is made for your space, so we start with precise measurements and a 3D design. Corian pairs with lacquer, wood or MDF fronts and with Blum and Hettich hardware. You can see Corian colours and worktops in person at our showroom in Glyfada."
+                    }
+                }
             },
             "kitchens_category": {
                 "meta_title": "Kitchens in Glyfada, Athens: Modern, Classic & Corian",
@@ -233,7 +303,21 @@
         "doors": {
             "title": "Doors",
             "subtitle": "Endless options with different materials, such as wood, glass, and metal",
-            "description": "Interior and exterior doors in wood, glass and metal that add character to your home. See samples at our showroom in Glyfada, Athens."
+            "description": "Interior and exterior doors in wood, glass and metal that add character to your home. See samples at our showroom in Glyfada, Athens.",
+            "details": {
+                "first": {
+                    "heading": "Doors with character",
+                    "text": "A door is one of the first things anyone notices in a room. We offer interior doors in plain or panelled designs, with frames that sit neatly in the wall, so they match the furniture and floors of your home."
+                },
+                "second": {
+                    "heading": "Materials and colours",
+                    "text": "Lacquer allows any colour you like, from a white that disappears into the wall to bold shades that become a focal point. Wood brings warmth and natural texture. Glass lets light pass from room to room, and metal details give a more contemporary feel."
+                },
+                "third": {
+                    "heading": "Part of your renovation",
+                    "text": "If you are renovating a kitchen or bathroom, you can choose your doors at the same time, so colours and materials stay consistent throughout the house. Samples are at our showroom in Glyfada."
+                }
+            }
         },
         "erga": {
             "title": "Projects",
@@ -245,7 +329,21 @@
         "living": {
             "title": "Living",
             "subtitle": "The future of aesthetics in living room furniture.",
-            "description": "Living room furniture with an innovative, contemporary character that brings a new dimension to your space. See the collection at our Glyfada showroom."
+            "description": "Living room furniture with an innovative, contemporary character that brings a new dimension to your space. See the collection at our Glyfada showroom.",
+            "details": {
+                "first": {
+                    "heading": "Furniture for the living room",
+                    "text": "We design living room furniture to fit the space: TV units, floor-to-ceiling bookcases, lit display cabinets and storage that covers a whole wall or makes use of an awkward corner."
+                },
+                "second": {
+                    "heading": "In harmony with the kitchen",
+                    "text": "In an open-plan space, the kitchen and living room are seen together. That is why we design living furniture in the same materials and colours, so the whole space looks as if it was planned as one from the start."
+                },
+                "third": {
+                    "heading": "Materials and installation",
+                    "text": "Lacquer, wood, glass and metal shelving combine to suit the style you want, from clean and modern to warmer and more classic. You see the design in 3D before you order, and our own team installs it. You can see the living collection at our showroom in Glyfada."
+                }
+            }
         },
         "meletes": {
             "title": "Designs",
@@ -265,13 +363,41 @@
         "tiles": {
             "title": "Tiles",
             "subtitle": "Endless options in designs, colors, materials, and sizes",
-            "description": "Tiles in endless designs, colours and materials for kitchens and bathrooms. See our range at the showroom in Glyfada."
+            "description": "Tiles in endless designs, colours and materials for kitchens and bathrooms. See our range at the showroom in Glyfada.",
+            "details": {
+                "first": {
+                    "heading": "Tiles for kitchens and bathrooms",
+                    "text": "At our showroom you will find European-made tiles for floors and walls: porcelain, ceramic and natural stone, in many sizes, colours and finishes, from small decorative pieces to large-format slabs."
+                },
+                "second": {
+                    "heading": "How to choose",
+                    "text": "Porcelain is very hard-wearing and absorbs almost no moisture, which makes it right for floors and showers. Ceramic tiles offer more pattern choices for walls. Natural stone has a texture nothing else matches, but it needs sealing and a little more care. For bathroom floors we prefer a slip-resistant surface."
+                },
+                "third": {
+                    "heading": "Chosen together with your furniture",
+                    "text": "Because we design the furniture too, you choose tiles alongside your kitchen or bathroom and see from the start how colours and materials work together. Bring us the dimensions of your room and we will help you decide, at our showroom in Glyfada."
+                }
+            }
         },
         "wardrobes": {
             "title": "Bedroom wardrobes",
             "meta_title": "Bedroom Wardrobes in Glyfada, Athens",
             "subtitle": "Organized and relaxing atmosphere in your bedroom",
-            "description": "Bedroom wardrobes made to measure: harmony between functionality and aesthetics. Designed and built in Glyfada, Athens."
+            "description": "Bedroom wardrobes made to measure: harmony between functionality and aesthetics. Designed and built in Glyfada, Athens.",
+            "details": {
+                "first": {
+                    "heading": "Wardrobes made to fit the room",
+                    "text": "A made-to-measure wardrobe uses the full height up to the ceiling, plus the recesses and corners a ready-made one leaves empty. We design wardrobes with hinged or sliding doors, units that frame the bed, and walk-in closets for anyone with a room to spare."
+                },
+                "second": {
+                    "heading": "Organised inside",
+                    "text": "The interior is planned around what you will keep in it: hanging rails at two heights for shirts and jackets, a full-height rail for coats and dresses, shelves, drawers and space for shoes and accessories. Everything has its place and the wardrobe stays tidy."
+                },
+                "third": {
+                    "heading": "Fronts and installation",
+                    "text": "Doors can be lacquer, wood, glass or mirror, to match the rest of the room. You see the wardrobe in 3D before you order, and our own team handles the installation. Samples of fronts and interior fittings are at our showroom in Glyfada."
+                }
+            }
         }
     },
     "blog": {
@@ -394,7 +520,8 @@
             "fifth": "Warranty and technical support",
             "sixth": "Wood, MDF, lacquer or Corian®"
         },
-        "lightbox_prefix": "Photos"
+        "lightbox_prefix": "Photos",
+        "details_eyebrow": "In detail"
     },
     "hub": {
         "kitchens": {
