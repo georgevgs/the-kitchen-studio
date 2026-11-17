@@ -31,50 +31,47 @@ const hoursRowClass = "grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border
 ---
 
 <Layout {meta} {lang} footerCta={false}>
-  <section class="ks-container pb-16 pt-14">
+  <section class="ks-container pb-24 pt-14">
     <Breadcrumb trail={[]} current={t("pages.showroom.title")} class="mb-14" />
-    <div class="flex flex-wrap items-end justify-between gap-x-16 gap-y-8">
-      <DisplayHeading
-        as="h1"
-        size="lg"
-        before={t("pages.showroom.title_lead")}
-        emphasis={t("pages.showroom.title_emphasis")}
-        isSplitWord
-      />
-      <div class="flex min-w-0 flex-[0_1_440px] flex-col gap-4 pb-2.5">
-        <h2 class="m-0 text-[22px] font-normal leading-[1.35]">{t("pages.showroom.subtitle")}</h2>
-        <p class="ks-text m-0">{t("pages.showroom.description")}</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="ks-container pb-24">
     <div class="flex flex-wrap items-start gap-x-16 gap-y-12">
-      <div class="flex min-w-0 flex-[1_1_480px] flex-col gap-6">
-        <dl class="m-0 flex flex-col border-t border-ink-line">
-          <div class={hoursRowClass}>
-            <dt>{t("business.days_morning")}</dt>
-            <dd class="m-0">{BUSINESS.morningHours}</dd>
+      <div class="flex min-w-0 flex-[1_1_480px] flex-col gap-12">
+        <div class="flex flex-col gap-4">
+          <DisplayHeading
+            as="h1"
+            size="lg"
+            before={t("pages.showroom.title_lead")}
+            emphasis={t("pages.showroom.title_emphasis")}
+            isSplitWord
+          />
+          <h2 class="m-0 text-[22px] font-normal leading-[1.35]">{t("pages.showroom.subtitle")}</h2>
+          <p class="ks-text m-0 max-w-[460px]">{t("pages.showroom.description")}</p>
+        </div>
+        <div class="flex flex-col gap-6">
+          <dl class="m-0 flex flex-col border-t border-ink-line">
+            <div class={hoursRowClass}>
+              <dt>{t("business.days_morning")}</dt>
+              <dd class="m-0">{BUSINESS.morningHours}</dd>
+            </div>
+            <div class={hoursRowClass}>
+              <dt>{t("business.days_evening")}</dt>
+              <dd class="m-0">{BUSINESS.eveningHours}</dd>
+            </div>
+            <div class={hoursRowClass}>
+              <dt>{t("business.phone_label")}</dt>
+              <dd class="m-0"><a href={BUSINESS.phoneHref} class="text-inherit no-underline">{BUSINESS.phoneDisplay}</a></dd>
+            </div>
+          </dl>
+          <div class="flex flex-wrap items-center gap-x-7 gap-y-4">
+            <a href={localizePath("/contact")} class="ks-btn">{t("nav.book")}</a>
+            <a
+              href={BUSINESS.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="ks-link text-[16px] font-medium"
+            >
+              {t("showroom_page.directions")}
+            </a>
           </div>
-          <div class={hoursRowClass}>
-            <dt>{t("business.days_evening")}</dt>
-            <dd class="m-0">{BUSINESS.eveningHours}</dd>
-          </div>
-          <div class={hoursRowClass}>
-            <dt>{t("business.phone_label")}</dt>
-            <dd class="m-0"><a href={BUSINESS.phoneHref} class="text-inherit no-underline">{BUSINESS.phoneDisplay}</a></dd>
-          </div>
-        </dl>
-        <div class="flex flex-wrap items-center gap-x-7 gap-y-4">
-          <a href={localizePath("/contact")} class="ks-btn">{t("nav.book")}</a>
-          <a
-            href={BUSINESS.mapsHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="ks-link text-[16px] font-medium"
-          >
-            {t("showroom_page.directions")}
-          </a>
         </div>
       </div>
       <div class="min-w-0 flex-[1_1_480px]">
