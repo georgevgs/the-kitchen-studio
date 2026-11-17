@@ -53,13 +53,7 @@ const articlePublishDate = articlePublishTime ? new Date(articlePublishTime).toI
 // Canonical business entity (FurnitureStore), referenced by other schemas via @id
 const businessSchema = generateLocalBusinessSchema();
 
-// Website Schema
-// Convert defaultImage to a string URL for compatibility
-const siteConfig = {
-  ...SITE,
-  defaultImage: getImageUrl(SITE.defaultImage, SITE.origin),
-};
-const websiteSchema = generateWebsiteSchema(siteConfig, language);
+const websiteSchema = generateWebsiteSchema(SITE, language);
 
 // Define types for meta and link tags
 interface MetaTag {

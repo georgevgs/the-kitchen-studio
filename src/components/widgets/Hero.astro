@@ -50,7 +50,7 @@ const total = images.length.toString().padStart(2, "0");
         class="ks-slide absolute inset-0 h-full w-full object-cover opacity-0 data-[active=true]:opacity-100"
         data-slide
         data-active={(0 === index).toString()}
-        aria-hidden={(0 !== index).toString()}
+        aria-hidden={0 !== index}
         loading={LOADING_BY_POSITION[(0 === index).toString()]}
         decoding="async"
         fetchpriority={PRIORITY_BY_POSITION[(0 === index).toString()]}
